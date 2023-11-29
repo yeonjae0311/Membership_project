@@ -9,11 +9,10 @@
 	</settings>
 	
 	<typeAliases>
-		<typeAlias type="vo.MemberVO" alias="member"/>
 	</typeAliases>
 	
 	<mappers>
-		<mapper resource="config/mybatis/mapper/member.xml" />
+
 	</mappers>
 	
 </configuration>
