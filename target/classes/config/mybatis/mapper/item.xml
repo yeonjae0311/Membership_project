@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="i">
+
+	<insert id="item_upload" parameterType="item">
+		insert into item values (seq_item_idx.nextval,
+								#{i_name},
+								#{i_price},
+								#{i_color},
+								#{i_amount}
+								)
+	</insert>
+	
+	<select id="item_list_select" resultType="item">
+		select * from item
+	</select>
+</mapper>
