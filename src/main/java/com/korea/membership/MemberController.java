@@ -9,10 +9,10 @@ import util.Path;
 @Controller
 public class MemberController {
 	
-	PMemberDAO member_dao;
+	PMemberDAO pmember_dao;
 
-	public MemberController(PMemberDAO member_dao) {
-		this.member_dao = member_dao;
+	public MemberController(PMemberDAO pmember_dao) {
+		this.pmember_dao = pmember_dao;
 	}
 	
 	@RequestMapping("/")
