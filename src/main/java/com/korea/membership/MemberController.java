@@ -9,10 +9,10 @@ import util.Path;
 @Controller
 public class MemberController {
 	
-	PMemberDAO pmember_dao;
+	PMemberDAO member_dao;
 
-	public MemberController(PMemberDAO pmember_dao) {
-		this.pmember_dao = pmember_dao;
+	public MemberController(PMemberDAO member_dao) {
+		this.member_dao = member_dao;
 	}
 	
 	@RequestMapping("/")
@@ -33,5 +33,10 @@ public class MemberController {
 	@RequestMapping("board")
 	public String board() {
 		return Path.BoardPath.make_path("board");
+	}
+	
+	@RequestMapping("shop")
+	public String shop() {
+		return Path.ShopPath.make_path("shop");
 	}
 }

@@ -41,7 +41,7 @@ public class Path {
 	
 	public static class ShoppingCart_Path{
 		public static String make_path(String file) {
-			return VIEW_PATH + "shopping_cart/" + file + ".jsp";
+			return VIEW_PATH + "shopping_card/" + file + ".jsp";
 		}
 	}
 	
