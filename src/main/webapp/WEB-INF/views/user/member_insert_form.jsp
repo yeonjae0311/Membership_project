@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,13 +28,10 @@
 			return;
 		}
 		
-		
 		if(!b_idCheck){
 			alert('아이디 중복체크를 하세요')
 			return;
 		}
-		
-		
 		
 		f.action = "member_insert";
 		f.submit();
@@ -100,7 +98,7 @@
 				<th>이메일</th>
 				<td><input name="m_email"></td>
 			</tr>
-		
+			
 		
 			<tr>
 				<td colspan="2" align="center"><input type="button" value="가입"

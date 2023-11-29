@@ -14,13 +14,13 @@ import vo.PMemberVO;
 @Controller
 public class MemberController {
 	
-	PMemberDAO member_dao;
+	PMemberDAO pmember_dao;
 	
 	@Autowired
 	HttpSession session;
 
-	public MemberController(PMemberDAO member_dao) {
-		this.member_dao = member_dao;
+	public MemberController(PMemberDAO pmember_dao) {
+		this.pmember_dao = pmember_dao;
 	}
 	
 	@RequestMapping("/")
@@ -38,10 +38,7 @@ public class MemberController {
 		return Path.StoryPath.make_path("story");
 	}
 	
-	@RequestMapping("board")
-	public String board() {
-		return Path.BoardPath.make_path("board");
-	}
+	
 	
 	@RequestMapping("shop")
 	public String shop() {
@@ -58,7 +55,7 @@ public class MemberController {
 	public String login(String m_username, String m_password) {
 		
 		//id가 존재하냐 없냐에 대한 검증
-		PMemberVO vo = member_dao.loginCheck(m_username);
+		PMemberVO vo = pmember_dao.loginCheck(m_username);
 		
 		//아이디가 없는 경우
 		if(vo == null) {
@@ -71,7 +68,7 @@ public class MemberController {
 		}
 		
 		//아이디와 비밀번호 체크에 문제가 없다면 세션에 바인딩 한다.
-		session.setAttribute("m_username",vo);
+		session.setAttribute("id",vo);
 		
 		//로그인에 성공한 경우
 		return "[{'param':'clear'}]";
@@ -79,7 +76,7 @@ public class MemberController {
 	
 	@RequestMapping("logout")
 	public String logout() {
-		session.removeAttribute("m_username");
+		session.removeAttribute("id");
 		
 		return Path.HomePath.make_path("home");
 	}
@@ -92,7 +89,7 @@ public class MemberController {
 	@RequestMapping("check_id")
 	@ResponseBody
 	public String check_id(String m_username) {
-		int res = member_dao.idCheck(m_username);
+		int res = pmember_dao.idCheck(m_username);
 		
 		if(res == 0) {
 			return "[{'res':'yes'}]";

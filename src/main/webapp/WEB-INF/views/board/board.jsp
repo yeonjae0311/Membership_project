@@ -49,15 +49,17 @@
 		<div id="board_post_list">
 			<table>
 				<tr>
-					<th></th>
-					<th></th>
+					<th>번호</th><!-- 게시글번호 -->
+					<th>제목</th>
+					<th>작성자</th>
 				</tr>
-				<%-- <c:forEach var="r" items="${list2}">
+				<c:forEach var="i" items="${list2}">
 					<tr>
-						<td></td>
-						<td></td>
+						<td>${i.b_idx}</td>
+						<td>${i.b_title}</td>
+						<td>${i.m_idx}</td>
 					</tr>
-				</c:forEach> --%>
+				</c:forEach>
 			</table>
 		</div>
 	</body>
