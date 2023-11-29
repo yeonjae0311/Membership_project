@@ -9,7 +9,7 @@
 	</settings>
 	
 	<typeAliases>
-		<typeAlias type="vo.MemberVO" alias="member"/>
+		<typeAlias type="vo.PMemberVO" alias="member"/>
 	</typeAliases>
 	
 	<mappers>
