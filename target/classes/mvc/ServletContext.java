@@ -7,6 +7,8 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.korea.membership.MemberController;
+import com.korea.membership.ShopController;
+import com.korea.membership.UserController;
 
 import dao.PMemberDAO;
 
@@ -20,7 +22,17 @@ public class ServletContext implements WebMvcConfigurer {
 	}
 	
 	@Bean
-	public MemberController boradController(PMemberDAO member_dao) {
+	public MemberController memberController(PMemberDAO member_dao) {
 		return new MemberController(member_dao);
+	}
+	
+	@Bean 
+	public ShopController shopController() {
+		return new ShopController();
+	}
+	
+	@Bean 
+	public UserController userController() {
+		return new UserController();
 	}
 }
