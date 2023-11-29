@@ -3,19 +3,40 @@ package com.korea.membership;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import dao.MemberDAO;
+import dao.PMemberDAO;
+import util.Path;
 
 @Controller
 public class MemberController {
 	
-	MemberDAO member_dao;
+	PMemberDAO member_dao;
 
-	public MemberController(MemberDAO member_dao) {
+	public MemberController(PMemberDAO member_dao) {
 		this.member_dao = member_dao;
 	}
 	
-	@RequestMapping(value= {"/","main.do"})
-	public String main() {		
-		return "/WEB-INF/views/test.jsp";
+	@RequestMapping("/")
+	public String home() {		
+		return Path.HomePath.make_path("home");
+	}
+	
+	@RequestMapping("/main")
+	public String main() {
+		return "redirect:/";
+	}
+	
+	@RequestMapping("story")
+	public String story() {
+		return Path.StoryPath.make_path("story");
+	}
+	
+	@RequestMapping("board")
+	public String board() {
+		return Path.BoardPath.make_path("board");
+	}
+	
+	@RequestMapping("shop")
+	public String shop() {
+		return Path.ShopPath.make_path("shop");
 	}
 }

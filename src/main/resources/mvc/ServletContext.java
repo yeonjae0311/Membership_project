@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.korea.membership.MemberController;
 
-import dao.MemberDAO;
+import dao.PMemberDAO;
 
 @Configuration
 @EnableWebMvc
@@ -20,7 +20,7 @@ public class ServletContext implements WebMvcConfigurer {
 	}
 	
 	@Bean
-	public MemberController boradController(MemberDAO member_dao) {
+	public MemberController boradController(PMemberDAO member_dao) {
 		return new MemberController(member_dao);
 	}
 }

@@ -2,10 +2,10 @@ package dao;
 
 import org.apache.ibatis.session.SqlSession;
 
-public class MemberDAO {
+public class CartDetailDAO {
 	SqlSession sqlSession;
 	
-	public MemberDAO(SqlSession sqlSession) {
+	public CartDetailDAO(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
 	

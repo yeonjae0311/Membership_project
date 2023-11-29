@@ -15,7 +15,7 @@ public class Context_1_dataSource {
 		BasicDataSource ds = new BasicDataSource();
 		ds.setDriverClassName("oracle.jdbc.OracleDriver");
 		ds.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
-		ds.setUsername("test_pm");
+		ds.setUsername("membership_project");
 		ds.setPassword("1111");
 		return ds;
 	}

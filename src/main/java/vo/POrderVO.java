@@ -5,7 +5,8 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class MemberVO {
-
+public class POrderVO {
+	private int o_idx,
+				m_idx;
 }
 

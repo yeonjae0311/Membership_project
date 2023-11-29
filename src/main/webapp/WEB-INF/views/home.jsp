@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	hello
+	<input type="button" value="story" onclick="location.href='story'">
+	<input type="button" value="board" onclick="location.href='board'">
+	<input type="button" value="shop" onclick="location.href='shop'">
 </body>
 </html>
