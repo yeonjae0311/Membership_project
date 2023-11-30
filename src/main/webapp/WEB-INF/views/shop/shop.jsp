@@ -7,19 +7,26 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Membership</title>
+		<script>
+			function shop_item_select(){
+				var shop_item_one = document.shop_item_one;
+				
+				shop_item_one.submit();
+			}
+		</script>
 	</head>
 	<body>
-		<form>
-			<!-- 나중에 이미지 누르면 해당 상품으로 이동하도록 추가 -->
-			<a href="shop_item">
-				<img src="resources/img/title_04.gif" >
-			</a>
-			<div>
+		<form name="shop_item_one" action="shop_item_select" method="POST">
+			<div onclick="shop_item_select()" style="cursor:pointer;">
+				<img src="resources/img/title_04.gif" >		
 				<c:forEach var="vo" items="${list}">
-					<div onclick="location.href =''" style="cursor:pointer;">
+					<div>
 						<img src="resources/img/title_04.gif"><br>
-						<a>${vo.i_name}</a><br>
-						<a>${vo.i_price}</a><br>					
+						<input type="hidden" name="i_idx" value="${vo.i_idx}">
+						<input type="hidden" name="i_name" value="${vo.i_name}">
+						${vo.i_idx}<br>
+						${vo.i_name}<br>
+						${vo.i_price}<br>					
 					</div>
 				</c:forEach>
 			</div>	

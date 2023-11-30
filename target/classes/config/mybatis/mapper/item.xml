@@ -4,6 +4,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="i">
 
+	<!-- 상품 목록 조회 반환 map -->
+	
+	
+	<!-- 상품 업로드 -->
 	<insert id="item_upload" parameterType="item">
 		insert into item values (seq_item_idx.nextval,
 								#{i_name},
@@ -13,7 +17,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 								)
 	</insert>
 	
+	<!-- 상품 목록 조회 -->
 	<select id="item_list_select" resultType="item">
 		select * from item
+		<!-- SELECT i_name, i_price FROM item GROUP BY i_name, I_PRICE; -->
+	</select>
+	
+	<!-- 선택한 상품 한개 조회 -->
+	<select id="item_select_one" parameterType="int" resultType="item">
+		select * from item where i_idx=#{i_idx}
+	</select>
+	
+	<!-- 선택한 상품의 색상 조회 -->
+	<select id="item_select_color" parameterType="String" resultType="String">
+		select i_color from item where i_name=#{i_name}
 	</select>
 </mapper>
