@@ -71,7 +71,7 @@ public class MemberController {
 		}
 		
 		//아이디와 비밀번호 체크에 문제가 없다면 세션에 바인딩 한다.
-		session.setAttribute("m_username",vo);
+		session.setAttribute("m_username", vo);
 		
 		//로그인에 성공한 경우
 		return "[{'param':'clear'}]";
@@ -91,8 +91,8 @@ public class MemberController {
 	
 	@RequestMapping("check_id")
 	@ResponseBody
-	public String check_id(String m_username) {
-		int res = member_dao.idCheck(m_username);
+	public String check_id(String id) {
+		int res = member_dao.idCheck(id);
 		
 		if(res == 0) {
 			return "[{'res':'yes'}]";
@@ -100,4 +100,26 @@ public class MemberController {
 		
 		return "[{'res':'no'}]";
 	}
+	
+	@RequestMapping("user_info_form.do")
+	public String user_info_form() {
+		
+		return Path.UserPath.make_path("user_info_form");
+	}
+	
+	@RequestMapping("del.do")
+	@ResponseBody
+	public String delete(int idx) {
+		PMemberVO basevo = member_dao.selectone(idx);
+		
+		int res = member_dao.del_update(basevo);
+		
+		if(res == 1) {
+			return "[{'result':'yes']}";
+		} else {
+			return "[{'result':'no'}]";
+		}
+		
+	}
+	
 }

@@ -21,6 +21,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{m_email}
 		)
 	</insert>
+	
+	<select id="login_session_check" resultType="member" parameterType="int">
+		select * from pmember where idx=#{idx}
+	</select>
+	
+	<select id="selectone" resultType="member" parameterType="int">
+		select * from pmember where idx=#{idx}
+	</select>
+	
+	
+	<update id="del_update" parameterType="member">
+		update pmember set m_username = 'del'+#{m_username} where idx = #{idx}
+	</update>
 
 </mapper>
 
