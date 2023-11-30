@@ -58,10 +58,10 @@ public class ShopController {
 	
 	@RequestMapping("shop_item_select")
 	public String shop_item_select(int i_idx, String i_name, Model model) {
-		
+		System.out.println(i_name);
 		ItemVO vo = item_dao.item_select_one(i_idx);
 		List<String> colors = item_dao.item_select_color(i_name);
-		
+
 		model.addAttribute("vo", vo);
 		model.addAttribute("colors", colors);
 		

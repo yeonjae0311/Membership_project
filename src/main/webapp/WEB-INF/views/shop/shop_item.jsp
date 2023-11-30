@@ -19,30 +19,10 @@
 				       object-fit: contain;}  	   
 			.item_detail_img_div{height:600px;
  						  		 width: 300px;}	
- 			.dropdown-content a:hover{
- 				 background-color : #ececec}
 
-			.dropdown:hover .dropdown-content {
- 				 display: block;}
-			.dropdown-content{
-			  display : none;
-			  position : absolute;
-			  z-index : 1; /*다른 요소들보다 앞에 배치*/
-			  font-weight: 400;
-			  background-color: #f9f9f9;
-			  min-width : 200px;
-			}		
-			.dropdown-content a{
-			  display : block;
-			  text-decoration : none;
-			  color : rgb(37, 37, 37);
-			  font-size: 12px;
-			  padding : 12px 20px;
-			}
- 			
 		</style>
 	</head>
-	<body>
+	<body>	
 		<form>
 			<div id=item_info_div>
 				<div class=item_img_div>
@@ -50,17 +30,11 @@
 				</div>
 				${vo.i_name}<br>
 				${vo.i_price}<br>
-				<div class="dropdown">
-			      <button class="dropbtn"> 
-			        <span class="dropbtn_icon"></span>
-			        옵션 선택
-			      </button>
-			      <div class="dropdown-content">
-			      	<c:forEach var="color" items="${colors}">
-			      		<a href="#">${color}</a>
-			      	</c:forEach>		      
-	      		  </div>
-	    		</div>
+				<select class="color_option" id="color" name="color" required>
+				    <c:forEach var="colors" items="${colors}">
+				    	<option value="${colors}">${colors}</option>
+				    </c:forEach>	   
+				</select>
     		</div>
     		<div class=item_detail_img_div>
     			<img id=item_detail_img src="resources/img/ktda">
