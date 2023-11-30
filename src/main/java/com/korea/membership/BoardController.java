@@ -35,8 +35,14 @@ public class BoardController {
 		if(b_isfixed == null || b_isfixed.isEmpty()) {
 			b_isfixed="0";
 		}
-		List<BoardVO> list = board_dao.select_list_normal_user(b_isfixed);
-		model.addAttribute("list2",list);
+		
+		//전체 공지사항글 조회
+		List<BoardVO> list1 = board_dao.select_board_list("1");
+		model.addAttribute("list1",list1);
+		
+		//(공지사항제외) 전체 글 조회
+		List<BoardVO> list2 = board_dao.select_board_list("0");
+		model.addAttribute("list2",list2);
 		
 		return Path.BoardPath.make_path("board");
 	}
