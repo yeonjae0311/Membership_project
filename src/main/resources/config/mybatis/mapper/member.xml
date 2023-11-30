@@ -5,16 +5,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="m">
 	<select id="loginCheck" resultType="member"
 		parameterType="String">
-		select * from pmember where m_username=#{m_username}
+		select * from p_member where m_username=#{m_username}
 	</select>
 
 	<select id="idCheck" resultType="int" parameterType="String">
 		select
-		count(*) from pmember where m_username=#{m_username}
+		count(*) from p_member where m_username=#{m_username}
 	</select>
 
 	<insert id="insert" parameterType="member">
-		insert into pmember values(
+		insert into p_member values(
 		#{m_name},
 		#{m_username},
 		#{m_password},
@@ -23,16 +23,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="login_session_check" resultType="member" parameterType="int">
-		select * from pmember where idx=#{idx}
+		select * from p_member where idx=#{idx}
 	</select>
 	
 	<select id="selectone" resultType="member" parameterType="int">
-		select * from pmember where idx=#{idx}
+		select * from p_member where idx=#{idx}
 	</select>
 	
 	
 	<update id="del_update" parameterType="member">
-		update pmember set m_username = 'del'+#{m_username} where idx = #{idx}
+		update p_member set m_username = 'del'+#{m_username} where idx = #{idx}
 	</update>
 
 </mapper>
