@@ -23,4 +23,14 @@ public class ItemDAO {
 	public List<ItemVO> item_list_select(){
 		return sqlSession.selectList("i.item_list_select");
 	}
+	
+	// 선택한 item 한건 조회
+	public ItemVO item_select_one(int i_idx) {
+		return sqlSession.selectOne("i.item_select_one", i_idx);
+	}
+	
+	// 선택한 item의 모든 색상 조회
+	public List<String> item_select_color(String i_name) {
+		return sqlSession.selectList("i.item_select_color", i_name);
+	}
 }
