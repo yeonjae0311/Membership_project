@@ -1,10 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
-Built-By: Administrator
-Build-Jdk: 11.0.16.1
-=======
 Built-By: ekcs0
 Build-Jdk: 11.0.20
->>>>>>> branch_login
 Created-By: Maven Integration for Eclipse
 
