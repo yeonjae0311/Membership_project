@@ -88,8 +88,12 @@ public class MemberController {
 	
 	@RequestMapping("check_id")
 	@ResponseBody
-	public String check_id(String m_username) {
-		int res = pmember_dao.idCheck(m_username);
+	public String check_id(String id) {
+		
+		System.out.println("heree");
+		
+		System.out.println(id);
+		int res = pmember_dao.idCheck(id);
 		
 		if(res == 0) {
 			return "[{'res':'yes'}]";

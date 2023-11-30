@@ -46,6 +46,8 @@
 			return;
 		}
 		
+		console.log("here")
+		
 		var url = "check_id";
 		var param = "id="+encodeURIComponent(m_username);
 		
