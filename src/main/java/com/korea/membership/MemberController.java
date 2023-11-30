@@ -62,7 +62,7 @@ public class MemberController {
 		}
 		
 		//아이디와 비밀번호 체크에 문제가 없다면 세션에 바인딩 한다.
-		session.setAttribute("m_username", vo);
+		session.setAttribute("m_id", vo);
 		
 		//로그인에 성공한 경우
 		return "[{'param':'clear'}]";
@@ -70,7 +70,7 @@ public class MemberController {
 	
 	@RequestMapping("logout")
 	public String logout() {
-		session.removeAttribute("m_username");
+		session.removeAttribute("m_id");
 		
 		return Path.HomePath.make_path("home");
 	}
@@ -92,13 +92,7 @@ public class MemberController {
 		return "[{'res':'no'}]";
 	}
 	
-	@RequestMapping("user_info_form.do")
-	public String user_info_form() {
-		
-		return Path.UserPath.make_path("user_info_form");
-	}
-	
-	@RequestMapping("del.do")
+	@RequestMapping("del")
 	@ResponseBody
 	public String delete(int idx) {
 		PMemberVO basevo = pmember_dao.selectone(idx);
