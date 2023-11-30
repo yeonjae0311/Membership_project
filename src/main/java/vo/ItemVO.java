@@ -1,5 +1,7 @@
 package vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,7 +12,11 @@ public class ItemVO {
 				i_price,
 				i_amount;
     private String i_name,
-    			   i_color;
+    			   i_color,
+    			   i_photo_name,
+    			   i_detail_photo_name;
+    private MultipartFile i_photo, 
+    					  i_detail_photo;
 }
 
 

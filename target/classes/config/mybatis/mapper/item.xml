@@ -13,7 +13,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 								#{i_name},
 								#{i_price},
 								#{i_color},
-								#{i_amount}
+								#{i_amount},
+								#{i_photo_name},
+								#{i_detail_photo_name}
 								)
 	</insert>
 	
@@ -31,5 +33,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 선택한 상품의 색상 조회 -->
 	<select id="item_select_color" parameterType="String" resultType="String">
 		select i_color from item where i_name=#{i_name}
+	</select>
+	
+	<!-- 선택한 상품의 idx 조회 -->
+	<select id="item_find_idx" parameterType="java.util.HashMap" resultType="int">
+		select i_idx from item where i_name=#{i_name} and i_color=#{i_color}
 	</select>
 </mapper>

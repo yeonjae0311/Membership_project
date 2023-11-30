@@ -9,4 +9,8 @@ public class CartDetailDAO {
 		this.sqlSession = sqlSession;
 	}
 	
+	public int cart_insert(int i_idx) {
+		return sqlSession.insert("c.cart_insert", i_idx);
+	}
+	
 }

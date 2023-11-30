@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -32,5 +33,10 @@ public class ItemDAO {
 	// 선택한 item의 모든 색상 조회
 	public List<String> item_select_color(String i_name) {
 		return sqlSession.selectList("i.item_select_color", i_name);
+	}
+	
+	// 선택한 item의 idx 조회
+	public int item_find_idx(Map<String, String> map) {
+		return sqlSession.selectOne("i.item_find_idx", map);
 	}
 }
