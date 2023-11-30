@@ -1,15 +1,23 @@
 package com.korea.membership;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import dao.PMemberDAO;
 import util.Path;
+import vo.PMemberVO;
 
 @Controller
 public class MemberController {
 	
 	PMemberDAO pmember_dao;
+	
+	@Autowired
+	HttpSession session;
 
 	public MemberController(PMemberDAO pmember_dao) {
 		this.pmember_dao = pmember_dao;
@@ -29,18 +37,7 @@ public class MemberController {
 	public String story() {
 		return Path.StoryPath.make_path("story");
 	}
-	
-	@RequestMapping("board")
-	public String board() {
-		return Path.BoardPath.make_path("board");
-	}
-<<<<<<< HEAD
-=======
-	
-	@RequestMapping("shop")
-	public String shop() {
-		return Path.ShopPath.make_path("shop");
-	}
+
 	
 	@RequestMapping("login_form")
 	public String login_form() {
@@ -52,7 +49,7 @@ public class MemberController {
 	public String login(String m_username, String m_password) {
 		
 		//id가 존재하냐 없냐에 대한 검증
-		PMemberVO vo = member_dao.loginCheck(m_username);
+		PMemberVO vo = pmember_dao.loginCheck(m_username);
 		
 		//아이디가 없는 경우
 		if(vo == null) {
@@ -86,7 +83,7 @@ public class MemberController {
 	@RequestMapping("check_id")
 	@ResponseBody
 	public String check_id(String id) {
-		int res = member_dao.idCheck(id);
+		int res = pmember_dao.idCheck(id);
 		
 		if(res == 0) {
 			return "[{'res':'yes'}]";
@@ -104,9 +101,9 @@ public class MemberController {
 	@RequestMapping("del.do")
 	@ResponseBody
 	public String delete(int idx) {
-		PMemberVO basevo = member_dao.selectone(idx);
+		PMemberVO basevo = pmember_dao.selectone(idx);
 		
-		int res = member_dao.del_update(basevo);
+		int res = pmember_dao.del_update(basevo);
 		
 		if(res == 1) {
 			return "[{'result':'yes']}";
@@ -116,5 +113,4 @@ public class MemberController {
 		
 	}
 	
->>>>>>> origin/branch_lcs
 }

@@ -9,9 +9,9 @@
 	<script>
 	
 	 function leave(f){
-		if(!confirm("정말 탈퇴하시겠습니까?")) {
+		if(confirm("정말 탈퇴하시겠습니까?")) {
 			"location.href='del.do'"
-			
+			//삭제 ajax코드필요
 			alert("탈퇴완료");
 		}
 		

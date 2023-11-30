@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import dao.BoardDAO;
 import dao.ItemDAO;
 import dao.PMemberDAO;
 
@@ -18,5 +19,10 @@ public class Context_3_dao {
 	@Bean
 	public ItemDAO itemDAO(SqlSession sqlSession) {
 		return new ItemDAO(sqlSession);
+	}
+	
+	@Bean
+	public BoardDAO boardDAO(SqlSession sqlSession) {
+		return new BoardDAO(sqlSession);
 	}
 }
