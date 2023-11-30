@@ -11,7 +11,5 @@ public class StoryVO {
     private String s_content,
     			   s_postedDate,
     			   s_title,
-    			   s_path;
-    
+    			   s_filename;
 }
-
