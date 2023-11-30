@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="c">
+
+	<!-- 장바구니에 상품 추가 -->
+	<!-- m_idx와 count 늘어나도록 변경 -->
+	<!-- m_idx 연결 부터 다시 하기 / 풀이 안되있어서 로그인 안됨 -->
+	<insert id="cart_insert" parameterType="int">
+		insert into cart_detail values(999, #{i_idx}, 1)
+	</insert>
+</mapper>

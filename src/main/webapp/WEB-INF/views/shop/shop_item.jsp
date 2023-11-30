@@ -21,16 +21,22 @@
  						  		 width: 300px;}	
 
 		</style>
+		<script>
+			function send_shopping_cart(f){
+				f.submit();
+			}
+		</script>
 	</head>
 	<body>	
-		<form>
+		<form name="selected_item" action="shopping_cart" method="POST">
+			<input type="hidden" name="i_name" value="${vo.i_name}">
 			<div id=item_info_div>
 				<div class=item_img_div>
 					<img id=item_img src="resources/img/shortsleeve.jpg"><br>
 				</div>
 				${vo.i_name}<br>
 				${vo.i_price}<br>
-				<select class="color_option" id="color" name="color" required>
+				<select class="color_option" id="color" name="i_color" required>
 				    <c:forEach var="colors" items="${colors}">
 				    	<option value="${colors}">${colors}</option>
 				    </c:forEach>	   
@@ -40,7 +46,7 @@
     			<img id=item_detail_img src="resources/img/ktda">
     		</div>
     		<div id=shop_button_bar>
-    			<input type="button" value="장바구니" onclick=send_shopping_cart()>
+    			<input type="button" value="장바구니" onclick=send_shopping_cart(this.form)>
     			<input type="button" value="결제하기" onclick=send_shop_payment()>
     		</div>
 		</form>
