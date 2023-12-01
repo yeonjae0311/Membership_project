@@ -6,6 +6,7 @@ import vo.PMemberVO;
 
 public class PMemberDAO {
 	SqlSession sqlSession;
+	
 
 	public PMemberDAO(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
@@ -25,5 +26,9 @@ public class PMemberDAO {
 	public int insert(PMemberVO vo) {
 		return sqlSession.insert("m.insert", vo);
 	}
+	
+	
+	
+	
 
 }

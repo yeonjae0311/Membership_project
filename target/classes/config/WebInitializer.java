@@ -9,6 +9,7 @@ import context.Context_1_dataSource;
 import context.Context_2_mybatis;
 import context.Context_3_dao;
 import context.Context_4_fileupload;
+import context.Context_5_MailConfig;
 import mvc.ServletContext;
 
 public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -19,7 +20,8 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
 				Context_1_dataSource.class,
 				Context_2_mybatis.class,
 				Context_3_dao.class,
-				Context_4_fileupload.class};
+				Context_4_fileupload.class,
+				Context_5_MailConfig.class};
 	}
 	
 	@Override
@@ -39,4 +41,6 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
         characterEncodingFilter.setForceEncoding(true);
         return new Filter[] { characterEncodingFilter };
     }
+	
+	
 }
