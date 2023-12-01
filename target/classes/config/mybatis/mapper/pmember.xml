@@ -5,12 +5,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="pm">
 	<select id="login_check" resultType="pmember"
 		parameterType="String">
-		select * from p_member where m_username=#{m_username}
+		select * from p_member where m_id=#{m_id}
 	</select>
 
 	<select id="id_check" resultType="int" parameterType="String">
 		select
-		count(*) from p_member where m_username=#{m_username}
+		count(*) from p_member where m_id=#{m_id}
 	</select>
 
 	<insert id="insert" parameterType="pmember">
@@ -20,19 +20,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{m_password},
 		#{m_email}
 		)
+		<!-- db에 맞게 컬럼 수정필요  -->
 	</insert>
 	
 	<select id="login_session_check" resultType="pmember" parameterType="int">
-		select * from p_member where idx=#{idx}
+		select * from p_member where m_idx=#{m_idx}
 	</select>
 	
 	<select id="select_one" resultType="pmember" parameterType="int">
-		select * from p_member where idx=#{idx}
+		select * from p_member where m_idx=#{m_idx}
 	</select>
 	
 	
 	<update id="del_update" parameterType="pmember">
-		update p_member set m_id = 'del'+#{m_username} where idx=#{idx}
+		update p_member set m_id = 'del'+#{m_id} where m_idx=#{m_idx}
 	</update>
 
 </mapper>

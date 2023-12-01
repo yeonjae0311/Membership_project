@@ -22,10 +22,10 @@
 	</script>
 	</head>
 	<body>
-		<div> 이름 : ${m_id.m_name }		</div>
-		<div> 연락처 : ${m_id.m_tel }		</div>
-		<div> 생년월일 : ${m_id.m_date_of_birth }		</div>
-		<div> 이메일 : ${m_id.m_email }		</div>
+		<div> 이름 : ${id.m_name }		</div>
+		<div> 연락처 : ${id.m_tel }		</div>
+		<div> 생년월일 : ${id.m_date_of_birth }		</div>
+		<div> 이메일 : ${id.m_email }		</div>
 		<input type="button" value="회원탈퇴" onclick="leave()">
 	
 	</body>

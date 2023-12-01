@@ -17,8 +17,8 @@ public class PMemberDAO {
 	}
 
 	// 아이디 중복체크
-	public int id_check(String m_username) {
-		return sqlSession.selectOne("pm.id_check", m_username);
+	public int id_check(String m_id) {
+		return sqlSession.selectOne("pm.id_check", m_id);
 	}
 
 	// 회원가입하기

@@ -14,6 +14,8 @@ async function sendRequest(url, param, callBack, method){
 		}
 		
 		url += param_string;
+		
+		url = url.slice(0, -1)
 	}
 		
 	if(method === "GET"){
@@ -22,7 +24,6 @@ async function sendRequest(url, param, callBack, method){
 			headers: {"Content-Type": "application/json"}
 		});
 	}else{
-	console.log("here")
 		response = await fetch(url, {
 			method: method,
 			headers: {"Content-Type": "application/json"},

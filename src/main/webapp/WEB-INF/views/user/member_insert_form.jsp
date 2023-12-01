@@ -11,11 +11,11 @@
 	let b_idCheck = false;
 	
 	function send(f){
-		let m_username = f.m_username.value.trim();
+		let m_id = f.m_id.value.trim();
 		let m_password = f.m_password.value.trim();
 		
 		
-		if(m_username == ''){
+		if(m_id == ''){
 			alert('아이디를 입력하세요');
 			return;
 		}
@@ -35,9 +35,9 @@
 	}
 
 	function check_id(){
-		let m_username = document.getElementById("m_username").value.trim();
+		let m_id = document.getElementById("m_id").value.trim();
 		
-		if(m_username == ''){
+		if(m_id == ''){
 			alert('아이디를 입력하세요');
 			return;
 		}
@@ -45,7 +45,7 @@
 		console.log("here");
 		
 		let url = "check_id";
-		let param = "id="+encodeURIComponent(m_username);
+		let param = "m_id="+encodeURIComponent(m_id);
 		
 		sendRequest(url,param,resultFn,"POST");
 	}
@@ -85,7 +85,7 @@
 			</tr>
 			<tr>
 				<th>비밀번호 확인</th>
-				<td><input name="m_checkpassword" type="password"></td>
+				<td><input name="m_check_password" type="password"></td>
 			</tr>
 			<tr>
 				<th>이름</th>

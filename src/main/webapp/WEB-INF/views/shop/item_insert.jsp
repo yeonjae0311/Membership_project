@@ -18,7 +18,7 @@
 		} 
 		 */
 		 function upload(){
-			 
+			 //document.getElementById() ***** 로 변경
 			 const item_upload = document.item_upload;
 			 
 			 if(item_upload.i_name.value == ''){

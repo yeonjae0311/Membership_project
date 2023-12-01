@@ -1,10 +1,10 @@
 function send(f){
-	let m_username = f.m_username.value.trim();
+	let m_id = f.m_id.value.trim();
 	let m_password = f.m_password.value.trim();
 	
-	if(m_username == ''){
+	if(m_id == ''){
 		alert('아이디를 입력해주세요');
-		f.m_username.focus();
+		f.m_id.focus();
 		return;
 	}
 	
@@ -14,10 +14,10 @@ function send(f){
 		return;
 	}
 	
-	let url = "login2";
+	let url = "login";
 
 	let param = {
-		"m_username": encodeURIComponent(m_username),
+		"m_id": encodeURIComponent(m_id),
 		"m_password": encodeURIComponent(m_password)
 	};
 	
@@ -27,13 +27,11 @@ function send(f){
 function myCheck(...args){
 	let res = args[0].param
 	
-	let form = document.getElementsByTagName("form")[0];
+//	let form = document.getElementsByTagName("form")[0];
+//	localStorage.setItem("test", res);
+//	console.log(localStorage)
 	
-	localStorage.setItem("test", res);
-	
-	console.log(localStorage)
-	
-	if(res == 'no m_username'){
+	if(res == 'no m_id'){
 		alert('아이디가 존재하지 않습니다.');
 		form.m_username.focus();
 		return;
