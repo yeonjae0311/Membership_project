@@ -36,7 +36,7 @@ public class ItemDAO {
 	}
 	
 	// 선택한 item의 idx 조회
-	public int item_find_idx(Map<String, String> map) {
-		return sqlSession.selectOne("i.item_find_idx", map);
+	public int item_find_idx(Map<String, String> i_map) {
+		return sqlSession.selectOne("i.item_find_idx", i_map);
 	}
 }

@@ -9,24 +9,24 @@
 		<title>Insert title here</title>
 		<style>
 			#shopping_cart_item{background-color: skyblue;}
-			#buttonbar{background-color: pink;}
+			#button_bar{background-color: pink;}
 		</style>
 	</head>
 	<body>
 		<input type="checkbox">
 		<div>
 			<!-- 나중에 db 연결해서 이름, 가격 json으로 -->
-			<c:forEach var="vo" items="${items}">
+			<c:forEach var="vo" items="${list}">
 				<div id=shopping_cart_item>
-				<input type="checkbox">
-				<img src="resources/img/idcheck_but02"><br>
-				<a>상품 이름</a><br>
-				상품가격
+					<input type="checkbox">
+					<img src="resources/img/idcheck_but02"><br>
+					${vo.i_name}<br>
+					${vo.i_price}
 				</div>
 			</c:forEach>	
 		</div>
 		<p>총가격</p>
-		<div id=buttonbar>
+		<div id=button_bar>
 			<input type="button" value="결제하기" onclick="">
 			<input type="button" value="취소하기" onclick="">			
 		</div>
