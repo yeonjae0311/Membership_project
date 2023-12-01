@@ -18,7 +18,6 @@ public class Context_2_mybatis {
 		this.ds = ds;
 	}
 
-	@Bean
 	public SqlSessionFactory factoryBean() throws Exception {
 		SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
 		factoryBean.setDataSource(ds);
