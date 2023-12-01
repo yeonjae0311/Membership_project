@@ -30,7 +30,7 @@
 				<form id="shop_item_one_${number.current}" method="POST">
 					<div onclick="shop_item_select(document.getElementById('shop_item_one_${number.current}'))" style="cursor:pointer;">
 						<div class="item_one_img_div">
-							<img id="item_one" src="resources/upload/${vo.i_photo_name}">
+							<img id="item_one" src="${pageContext.request.contextPath}/resources/upload/${vo.i_photo_name}">
 						</div>
 						<input type="hidden" name="i_idx" value="${vo.i_idx}">
 						<input type="hidden" name="i_name" value="${vo.i_name}">
