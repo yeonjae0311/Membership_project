@@ -13,15 +13,15 @@ public class BoardDAO {
 		this.sqlSession = sqlSession;
 	}
 
-	public List<BoardPMemberViewVO> select_fixed_list(){
+	public List<BoardPMemberViewVO> fixed_board_list(){
 		return sqlSession.selectList("b.fixed_board_list");
 	}
 	
-	public List<BoardPMemberViewVO> select_unfixed_master_board_list(){
+	public List<BoardPMemberViewVO> unfixed_master_board_list(){
 		return sqlSession.selectList("b.unfixed_master_board_list");
 	}
 	
-	public List<BoardPMemberViewVO> select_unfixed_fan_board_list(){
-		return sqlSession.selectList("b.unfixed_fan_board_list");
+	public List<BoardPMemberViewVO> unfixed_all_board_list(){
+		return sqlSession.selectList("b.unfixed_all_board_list");
 	}
 }

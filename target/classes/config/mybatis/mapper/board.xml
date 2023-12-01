@@ -9,17 +9,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 고정된 게시글 조회 -->
 	<select id="fixed_board_list" resultType="vo.BoardPMemberViewVO">
 		SELECT * FROM board_p_member_join_view
-		
+		WHERE B_ISFIXED ='1'
+		ORDER BY B_POSTED_DATE DESC
 	</select>
 	
 	<select id="unfixed_master_board_list" resultType="vo.BoardPMemberViewVO">
 		SELECT * FROM board_p_member_join_view
-		
+		WHERE B_ISFIXED ='0'AND M_ISMASTER ='1'
+		ORDER BY B_POSTED_DATE DESC		
 	</select>
 	
-	<select id="unfixed_fan_board_list" resultType="vo.BoardPMemberViewVO">
+	<select id="unfixed_all_board_list" resultType="vo.BoardPMemberViewVO">
 		SELECT * FROM board_p_member_join_view
-		
+		WHERE B_ISFIXED ='0'
+		ORDER BY B_POSTED_DATE DESC
 	</select>
 
 </mapper>

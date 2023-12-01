@@ -32,9 +32,9 @@ public class BoardController {
 	@RequestMapping("board")
 	public String board(Model model) {
 
-		List<BoardPMemberViewVO> fixed_list =  board_dao.select_fixed_list();
-		List<BoardPMemberViewVO> unfixed_master_list =  board_dao.select_fixed_list();
-		List<BoardPMemberViewVO> unfixed_fan_list =  board_dao.select_fixed_list();
+		List<BoardPMemberViewVO> fixed_list =  board_dao.fixed_board_list();
+		List<BoardPMemberViewVO> unfixed_master_list =  board_dao.unfixed_master_board_list();
+		List<BoardPMemberViewVO> unfixed_fan_list =  board_dao.unfixed_all_board_list();
 				
 		
 		model.addAttribute("fixed_list",fixed_list);

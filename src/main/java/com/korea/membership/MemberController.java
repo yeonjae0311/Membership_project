@@ -32,8 +32,6 @@ public class MemberController {
 	
 	@Autowired  
 	JavaMailSender mailSender;
-	
-	
 
 	public MemberController(PMemberDAO pmember_dao) {
 		this.pmember_dao = pmember_dao;
