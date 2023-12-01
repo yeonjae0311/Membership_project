@@ -17,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 import dao.CartDetailDAO;
 import dao.ItemDAO;
 import util.Path;
-import vo.CartDetailVO;
 import vo.ItemVO;
 import vo.PMemberVO;
 
