@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
@@ -93,4 +93,14 @@
 			</table>
 		</div>
 	</body>
+=======
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	story
+	<input type="button" value="home" onclick="location.href='/membership/'">
+</body>
+>>>>>>> bd4d7d87508a0bd1e2ca78cb728736b99a25744c
 </html>

@@ -24,7 +24,7 @@ import vo.PMemberVO;
 
 @Controller
 public class MemberController {
-	
+
 	PMemberDAO pmember_dao;
 
 	@Autowired

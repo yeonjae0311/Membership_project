@@ -2,11 +2,10 @@ package dao;
 
 import org.apache.ibatis.session.SqlSession;
 
-import vo.PMemberVO;
-
 public class PMemberDAO {
 	SqlSession sqlSession;
 	
+<<<<<<< HEAD
 
 	public PMemberDAO(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
@@ -48,4 +47,10 @@ public class PMemberDAO {
 		return sqlSession.update("pm.del_update", vo);
 	}
 
+=======
+	public PMemberDAO(SqlSession sqlSession) {
+		this.sqlSession = sqlSession;
+	}
+	
+>>>>>>> bd4d7d87508a0bd1e2ca78cb728736b99a25744c
 }

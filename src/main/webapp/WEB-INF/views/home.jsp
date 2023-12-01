@@ -1,21 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<<<<<<< HEAD
 <script type="text/javascript">
 	function session_check(){
 		
 	}
 </script>
+=======
+
+>>>>>>> bd4d7d87508a0bd1e2ca78cb728736b99a25744c
 </head>
 <body>
 	<input type="button" value="story" onclick="location.href='story'">
 	<input type="button" value="board" onclick="location.href='board'">
 	<input type="button" value="shop" onclick="location.href='shop'">
+<<<<<<< HEAD
 	<c:choose>
 <<<<<<< HEAD
 		<c:when test="${empty m_id}">
@@ -36,5 +40,7 @@
 >>>>>>> cwh_login
 		</c:when>
 	</c:choose>
+=======
+>>>>>>> bd4d7d87508a0bd1e2ca78cb728736b99a25744c
 </body>
 </html>

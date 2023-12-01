@@ -8,11 +8,17 @@
 		<setting name="defaultExecutorType" value="REUSE" />
 	</settings>
 	
+<<<<<<< HEAD
 	<typeAliases>
 		<typeAlias type="vo.ItemVO" alias="item"/>
 		<typeAlias type="vo.PMemberVO" alias="pmember"/>
 		<typeAlias type="vo.BoardVO" alias="board"/>
 	</typeAliases>
+=======
+	<!-- <typeAliases>
+		<typeAlias type="vo.MemberVO" alias="member"/>
+	</typeAliases> -->
+>>>>>>> bd4d7d87508a0bd1e2ca78cb728736b99a25744c
 	
 	<mappers>
 		<mapper resource="config/mybatis/mapper/item.xml" />
