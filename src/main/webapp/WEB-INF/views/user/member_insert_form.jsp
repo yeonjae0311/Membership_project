@@ -6,30 +6,27 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="resources/js/httpRequest.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
 <script type="text/javascript">
-
-	var b_idCheck = false;
-	
-
+	let b_idCheck = false;
 	
 	function send(f){
-		var m_username = f.m_username.value.trim();
-		var m_password = f.m_password.value.trim();
+		let m_username = f.m_username.value.trim();
+		let m_password = f.m_password.value.trim();
 		
 		
 		if(m_username == ''){
-			alert('아이디를 입력하세요')
+			alert('아이디를 입력하세요');
 			return;
 		}
 		
 		if(m_password == ''){
-			alert('비밀번호를 입력하세요')
+			alert('비밀번호를 입력하세요');
 			return;
 		}
 		
 		if(!b_idCheck){
-			alert('아이디 중복체크를 하세요')
+			alert('아이디 중복체크를 하세요');
 			return;
 		}
 		
@@ -37,40 +34,38 @@
 		f.submit();
 	}
 
-
 	function check_id(){
-		var m_username = document.getElementById("m_username").value.trim();
+		let m_username = document.getElementById("m_username").value.trim();
 		
 		if(m_username == ''){
-			alert('아이디를 입력하세요')
+			alert('아이디를 입력하세요');
 			return;
 		}
 		
-		console.log("here")
+		console.log("here");
 		
-		var url = "check_id";
-		var param = "id="+encodeURIComponent(m_username);
+		let url = "check_id";
+		let param = "id="+encodeURIComponent(m_username);
 		
 		sendRequest(url,param,resultFn,"POST");
-		
 	}
 	
 	function resultFn(){
 		if(xhr.readyState == 4 && xhr.status == 200){
-			var data = xhr.responseText;
-			var json = (new Function('return'+data))();
+			let data = xhr.responseText;
+			let json = (new Function('return'+data))();
 			
 			if(json[0].res == 'no'){
-				alert('이미 사용중인 아이디입니다.')
-				return
+				alert('이미 사용중인 아이디입니다.');
+				return;
 			} else {
-				alert('사용 가능한 아이디 입니다.')
+				alert('사용 가능한 아이디 입니다.');
 				b_idCheck = true;
 			}
 		}
 	}
 	
-	function che(){
+	function change(){
 		b_idCheck = false;
 	}
 </script>
@@ -81,7 +76,7 @@
 			<caption>:::회원가입:::</caption>
 			<tr>
 				<th>아이디</th>
-				<td><input name="m_id" id="m_id" onchange="che()">
+				<td><input name="m_id" id="m_id" onchange="change()">
 					<input type="button" value="중복체크" onclick="check_id()"></td>
 			</tr>
 			<tr>

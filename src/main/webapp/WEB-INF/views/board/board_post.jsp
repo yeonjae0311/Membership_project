@@ -9,7 +9,7 @@
 		<title>Insert title here</title>
 		<script>
 			let isMaster=false;
-			function fileupload(){
+			function file_upload(){
 				alert('파일업로드가 눌림');
 				return;
 			}
@@ -35,7 +35,7 @@
 				</c:choose>
 				<input name="title">
 				<textarea name="content" rows="5" cols="50"></textarea>
-				<input type="button" value="파일업로드" onclick="fileupload()">
+				<input type="button" value="파일업로드" onclick="file_upload()">
 				<input type="button" value="확인" onclick="confirm()">
 			</form>
 		</div>

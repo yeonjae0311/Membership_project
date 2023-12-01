@@ -1,11 +1,17 @@
 package com.korea.membership;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.PMemberDAO;
 import util.Path;
@@ -44,6 +50,11 @@ public class MemberController {
 		return Path.UserPath.make_path("login_form");
 	}
 	
+	@RequestMapping("login_form2")
+	public String login_form2() {
+		return Path.UserPath.make_path("login_form_2");
+	}
+	
 	@RequestMapping("login")
 	@ResponseBody
 	public String login(String m_username, String m_password) {
@@ -66,6 +77,42 @@ public class MemberController {
 		
 		//로그인에 성공한 경우
 		return "[{'param':'clear'}]";
+	}
+	
+	@RequestMapping("login2")
+	@ResponseBody
+	public String login2(@RequestBody String body) {
+		ObjectMapper om = new ObjectMapper();
+		
+		Map<String, String> data = null;
+		
+		try {
+			data = om.readValue(body, new TypeReference<Map<String, String>>() {
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String m_username = data.get("m_username");
+		String m_password = data.get("m_password");
+		
+		PMemberVO vo = pmember_dao.loginCheck(m_username);
+		
+		//아이디가 없는 경우
+		if(vo == null) {
+			return "{\"param\": \"no m_username\"}";
+		}
+		
+		//비밀번호가 일치하지 않는 경우
+		if(!vo.getM_password().equals(m_password)) {
+			return "{\"param\": \"no m_password\"}";
+		}
+		
+		//아이디와 비밀번호 체크에 문제가 없다면 세션에 바인딩 한다.
+		session.setAttribute("m_id", vo);
+		
+		//로그인에 성공한 경우
+		return "{\"param\": \"success\"}";
 	}
 	
 	@RequestMapping("logout")

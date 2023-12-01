@@ -19,6 +19,7 @@
 	<c:choose>
 		<c:when test="${empty m_id}">
 			<input type="button" value="로그인" onclick="location.href='login_form'">
+			<input type="button" value="로그인" onclick="location.href='login_form2'">
 			<input type="button" value="회원가입" onclick="location.href='member_insert_form'">
 			<input type="button" value="마이페이지" onclick="location.href='login_form'">
 		</c:when>
