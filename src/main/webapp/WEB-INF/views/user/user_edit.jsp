@@ -15,7 +15,7 @@
 			user_name<br>
 			user_email
 		</div>
-		<div onclick="location.href='user_info'">
+		<div onclick="location.href='user_info_form'">
 			사용자 정보
 		</div>
 		<div onclick="location.href='user_order_list'">

@@ -8,6 +8,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- m_idx와 count 늘어나도록 변경 -->
 	<!-- m_idx 연결 부터 다시 하기 / 풀이 안되있어서 로그인 안됨 -->
 	<insert id="cart_insert" parameterType="int">
-		insert into cart_detail values(999, #{i_idx}, 1)
+		insert into cart_detail values(#{m_idx}, #{i_idx}, 1)
 	</insert>
 </mapper>

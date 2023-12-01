@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 
 public class CartDetailDAO {
@@ -9,8 +11,8 @@ public class CartDetailDAO {
 		this.sqlSession = sqlSession;
 	}
 	
-	public int cart_insert(int i_idx) {
-		return sqlSession.insert("c.cart_insert", i_idx);
+	public int cart_insert(Map<String, Integer> idx_map) {
+		return sqlSession.insert("c.cart_insert", idx_map);
 	}
 	
 }

@@ -19,4 +19,3 @@ public class ItemVO {
     					  i_detail_photo;
 }
 
-
