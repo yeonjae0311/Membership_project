@@ -1,7 +1,11 @@
 package mvc;
 
+import java.util.Properties;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -30,6 +34,7 @@ public class ServletContext implements WebMvcConfigurer {
 		return new MemberController(member_dao);
 	}
 	
+<<<<<<< HEAD
 
 	@Bean 
 	public ShopController shopController(ItemDAO item_dao, CartDetailDAO cart_detail_dao) {
@@ -45,4 +50,29 @@ public class ServletContext implements WebMvcConfigurer {
 	public BoardController boardController(BoardDAO board_dao) {
 		return new BoardController(board_dao);
 	}
+=======
+	 @Bean
+	    public JavaMailSender javaMailSender() {
+
+	        Properties mailProperties = new Properties();
+	        mailProperties.put("mail.transport.protocol", "smtp");
+	        mailProperties.put("mail.smtp.auth", "true");
+	        mailProperties.put("mail.smtp.starttls.enable", "true");
+	        mailProperties.put("mail.smtp.debug", "true");
+	        mailProperties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+	        mailProperties.put("mail.smtp.ssl.protocols", "TLSv1.2");
+
+	        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+	        mailSender.setJavaMailProperties(mailProperties);
+	        mailSender.setHost("smtp.gmail.com");
+	        mailSender.setPort(587);
+	        mailSender.setUsername("chai0805123@gmail.com");
+	        mailSender.setPassword("dowunvhjmsinzogu");
+	        mailSender.setDefaultEncoding("utf-8");
+	        return mailSender;
+	    }
+	
+	
+	
+>>>>>>> cwh_login
 }

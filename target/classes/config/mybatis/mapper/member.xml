@@ -22,6 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
+<<<<<<< HEAD
 	<select id="login_session_check" resultType="member" parameterType="int">
 		select * from p_member where idx=#{idx}
 	</select>
@@ -34,6 +35,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="del_update" parameterType="member">
 		update p_member set m_id = 'del'+#{m_username} where idx=#{idx}
 	</update>
+=======
+>>>>>>> cwh_login
 
 </mapper>
 
