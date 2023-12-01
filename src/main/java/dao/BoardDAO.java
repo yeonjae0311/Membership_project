@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import vo.BoardVO;
+import vo.BoardPMemberViewVO;
 
 public class BoardDAO {
 	SqlSession sqlSession;
@@ -12,10 +12,16 @@ public class BoardDAO {
 	public BoardDAO(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
+
+	public List<BoardPMemberViewVO> select_fixed_list(){
+		return sqlSession.selectList("b.fixed_board_list");
+	}
 	
-	//전체 게시글 조회 인자가 "1"일경우 공지사항글
-	//"0"일경우 유저가 쓴 글
-	public List<BoardVO> select_board_list(String b_isfixed){		
-		return sqlSession.selectList("b.board_list",b_isfixed);
+	public List<BoardPMemberViewVO> select_unfixed_master_board_list(){
+		return sqlSession.selectList("b.unfixed_master_board_list");
+	}
+	
+	public List<BoardPMemberViewVO> select_unfixed_fan_board_list(){
+		return sqlSession.selectList("b.unfixed_fan_board_list");
 	}
 }

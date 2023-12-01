@@ -7,40 +7,7 @@
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 		<script>
-			function left(){
-				//alert('left clicked');
-				prev();
-				return;
-			}
-			
-			function right(){
-				next();
-				//alert('right clicked');
-				return;
-			}
-			
-			function like(){
-				//ajax코드 필요
-				alert('like clicked');
-				return;
-			}
-			
-			function reply(){
-				alert('reply clicked');
-				return;
-			}
-			
-			//num이 바뀔때마다 liked상태인지와 likecount
-			//해당이미지에 해당하는 
-			function revalidate(){
-				let url = '';//여기서부터 이어서
-				let param = 'num='+num+'&m_idx='+${m_username.m_idx};
-				
-			}
-			
-		</script>
-		<script>
-		//이미지 로테이션 코드
+			//이미지 로테이션 코드///
 			let num=1;//시작 번호
 			let endnum=6; //마지막번호 개수가 바뀌면이부분을 수정
 			let path = "${pageContext.request.contextPath}/resources/img/";
@@ -66,6 +33,37 @@
 			}			
 			//setInterval("next()",5000);
 			//반복 기억하기 
+			//이미지 로테이션 코드///
+			function left(){
+				console.log('left clicked')
+				prev();
+				return;
+			}
+			
+			function right(){
+				console.log('right clicked')
+				next();
+				return;
+			}
+			
+			function like(){
+				//ajax코드 필요
+				alert('like clicked');
+				return;
+			}
+			
+			function reply(){
+				alert('reply clicked');
+				return;
+			}
+			
+			//num이 바뀔때마다 liked상태인지와 likecount
+			//해당이미지에 해당하는 
+			
+			function revalidate(){
+				let url = 'test';//여기서부터 이어서
+				let param = 'num='+num+'&m_idx=${m_username.m_idx}';
+			}
 		</script>
 		
 	</head>
@@ -79,7 +77,7 @@
 		
 		<input type="button" value="LIKE" onclick="like()">
 		<!-- 이 윗부분을 jsp include로 해야할듯? -->
-
+	
 		<div id="comment_form">
 			<table>
 				<tr>

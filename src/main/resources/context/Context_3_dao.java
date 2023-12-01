@@ -6,8 +6,6 @@ import org.springframework.context.annotation.Configuration;
 
 import dao.BoardDAO;
 import dao.CartDetailDAO;
-import dao.CartDetailDAO;
-import dao.CartDetailDAO;
 import dao.ItemDAO;
 import dao.PMemberDAO;
 
@@ -33,4 +31,5 @@ public class Context_3_dao {
 	public CartDetailDAO cartDetailDAO(SqlSession sqlSession) {
 		return new CartDetailDAO(sqlSession);
 	}
+	
 }
