@@ -12,6 +12,7 @@ import com.korea.membership.ShopController;
 import com.korea.membership.UserController;
 
 import dao.BoardDAO;
+import dao.CartDetailDAO;
 import dao.ItemDAO;
 import dao.PMemberDAO;
 
@@ -31,8 +32,8 @@ public class ServletContext implements WebMvcConfigurer {
 	
 
 	@Bean 
-	public ShopController shopController1(ItemDAO item_dao) {
-		return new ShopController(item_dao);
+	public ShopController shopController(ItemDAO item_dao, CartDetailDAO cart_detail_dao) {
+		return new ShopController(item_dao,cart_detail_dao);
 	}
 	
 	@Bean 
