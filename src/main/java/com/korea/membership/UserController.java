@@ -10,4 +10,10 @@ public class UserController {
 	public String user_edit() {		
 		return Path.UserPath.make_path("user_edit");
 	}
+	
+	@RequestMapping("user_info_form")
+	public String user_info_form() {
+		return Path.UserPath.make_path("user_info_form");
+	}
+	
 }

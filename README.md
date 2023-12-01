@@ -14,3 +14,6 @@ git add .
 git commit -m "YYMMDD_## 뭐했는지"
 git push origin main
 
+## memo
+. MemberController에 있던 'user_info_form'를 UserController로 이동함.
+. 세션 이름을 m_username -> m_id로 변경.

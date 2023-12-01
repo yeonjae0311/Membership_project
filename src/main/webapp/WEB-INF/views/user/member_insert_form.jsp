@@ -81,7 +81,7 @@
 			<caption>:::회원가입:::</caption>
 			<tr>
 				<th>아이디</th>
-				<td><input name="m_username" id="m_username" onchange="che()">
+				<td><input name="m_id" id="m_id" onchange="che()">
 					<input type="button" value="중복체크" onclick="check_id()"></td>
 			</tr>
 			<tr>
