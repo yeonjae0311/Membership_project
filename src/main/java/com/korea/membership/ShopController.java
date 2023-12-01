@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,8 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 import dao.CartDetailDAO;
 import dao.ItemDAO;
 import util.Path;
-import vo.CartDetailVO;
 import vo.ItemVO;
+import vo.PMemberVO;
 
 @Controller
 public class ShopController {
@@ -51,18 +52,32 @@ public class ShopController {
 	@RequestMapping("shopping_cart")
 	public String shopping_cart(String i_name, String i_color) {
 		
-		// i_name과 i_color로 i_idx를 조회한 후에 cart_detail table에 insert 하기
+		HttpSession session = request.getSession();
+		PMemberVO p_member_vo = (PMemberVO) session.getAttribute("m_id");
+		
+		// i_name과 i_color로 i_idx를 조회
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("i_name", i_name);
 		map.put("i_color", i_color);
 		
 		int i_idx = item_dao.item_find_idx(map);
+		int m_idx = p_member_vo.getM_idx();
 		
-		int cart = cart_detail_dao.cart_insert(i_idx);
+		// i_idx와 m_idx를 map으로 묶어 cart_detail table에 insert 하기		
+		HashMap<String, Integer> idx_map = new HashMap<String,Integer>();
+		idx_map.put("i_idx", i_idx);
+		idx_map.put("m_idx", m_idx);
+		
+		int cart = cart_detail_dao.cart_insert(idx_map);
 		
 		// idx로 해당 상품 정보 가져와서 바인딩
 		
-		return Path.ShopPath.make_path("shopping_cart");
+		
+		if(cart > 0) {
+			return Path.ShopPath.make_path("shopping_cart");
+		} 
+		
+		return null;
 	}
 	
 	@RequestMapping("item_insert")
