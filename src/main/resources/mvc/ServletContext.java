@@ -7,9 +7,9 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.korea.membership.BoardController;
+import com.korea.membership.MainController;
 import com.korea.membership.MemberController;
 import com.korea.membership.ShopController;
-import com.korea.membership.UserController;
 
 import dao.BoardDAO;
 import dao.CartDetailDAO;
@@ -24,25 +24,24 @@ public class ServletContext implements WebMvcConfigurer {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
-	
+
 	@Bean
-	public MemberController memberController(PMemberDAO member_dao) {
-		return new MemberController(member_dao);
+	public MainController main_controller() {
+		return new MainController();
 	}
 	
+	@Bean
+	public MemberController member_controller(PMemberDAO member_dao) {
+		return new MemberController(member_dao);
+	}
 
 	@Bean 
-	public ShopController shopController(ItemDAO item_dao, CartDetailDAO cart_detail_dao) {
+	public ShopController shop_controller(ItemDAO item_dao, CartDetailDAO cart_detail_dao) {
 		return new ShopController(item_dao,cart_detail_dao);
 	}
 	
-	@Bean 
-	public UserController userController() {
-		return new UserController();
-	}
-	
 	@Bean
-	public BoardController boardController(BoardDAO board_dao) {
+	public BoardController board_controller(BoardDAO board_dao) {
 		return new BoardController(board_dao);
 	}
 }

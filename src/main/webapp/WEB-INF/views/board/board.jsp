@@ -7,10 +7,10 @@
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 		<script>
-			let onlymaster = true; // true이면 관리자가 쓴글만 보이는 상태 기본값 true;			
+			let only_master = true; // true이면 관리자가 쓴글만 보이는 상태 기본값 true;			
 			
 			function managerfunc(){
-				onlymaster = true;
+				only_master = true;
 
 				let board_post_list1 = document.getElementById("board_post_list1");
 				let board_post_list2 = document.getElementById("board_post_list2");
@@ -23,7 +23,7 @@
 			}
 			//이 버튼이 눌렸을때 board_post_list를 ajax로 갱신
 			function userfunc(){
-				onlymaster = false;				
+				only_master = false;				
 
 				let board_post_list1 = document.getElementById("board_post_list1");
 				let board_post_list2 = document.getElementById("board_post_list2");

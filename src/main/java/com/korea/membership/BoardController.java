@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import dao.BoardDAO;
 import util.Path;
-import vo.BoardVO;
+import vo.BoardPMemberViewVO;
 
 @Controller
 public class BoardController {
@@ -30,19 +30,16 @@ public class BoardController {
 	}
 	
 	@RequestMapping("board")
-	public String board(Model model,String b_isfixed) {
+	public String board(Model model) {
+
+		List<BoardPMemberViewVO> fixed_list =  board_dao.select_fixed_list();
+		List<BoardPMemberViewVO> unfixed_master_list =  board_dao.select_fixed_list();
+		List<BoardPMemberViewVO> unfixed_fan_list =  board_dao.select_fixed_list();
+				
 		
-		if(b_isfixed == null || b_isfixed.isEmpty()) {
-			b_isfixed="0";
-		}
-		
-		//전체 공지사항글 조회
-		List<BoardVO> list1 = board_dao.select_board_list("1");
-		model.addAttribute("list1",list1);
-		
-		//(공지사항제외) 전체 글 조회
-		List<BoardVO> list2 = board_dao.select_board_list("0");
-		model.addAttribute("list2",list2);
+		model.addAttribute("fixed_list",fixed_list);
+		model.addAttribute("unfixed_master_list",unfixed_master_list);
+		model.addAttribute("unfixed_fan_list",unfixed_fan_list);
 		
 		return Path.BoardPath.make_path("board");
 	}

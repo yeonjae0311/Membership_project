@@ -12,35 +12,35 @@ public class PMemberDAO {
 	}
 
 	// 아이디가 DB에 존재하는지 체크
-	public PMemberVO loginCheck(String m_username) {
-		return sqlSession.selectOne("m.loginCheck", m_username);
+	public PMemberVO login_check(String m_username) {
+		return sqlSession.selectOne("pm.login_check", m_username);
 	}
 
 	// 아이디 중복체크
-	public int idCheck(String m_username) {
-		return sqlSession.selectOne("m.idCheck", m_username);
+	public int id_check(String m_username) {
+		return sqlSession.selectOne("pm.id_check", m_username);
 	}
 
 	// 회원가입하기
 	public int insert(PMemberVO vo) {
-		return sqlSession.insert("m.insert", vo);
+		return sqlSession.insert("pm.insert", vo);
 	}
 
 	// 로그인했는지 체크
 	public PMemberVO login_session_check(int idx) {
-		PMemberVO vo = sqlSession.selectOne("m.login_session_check", idx);
+		PMemberVO vo = sqlSession.selectOne("pm.login_session_check", idx);
 		return vo;
 	}
 
 	// 회원 탈퇴시 해당 아이디 조회
-	public PMemberVO selectone(int idx) {
-		PMemberVO vo = sqlSession.selectOne("m.selectOne", idx);
+	public PMemberVO select_one(int idx) {
+		PMemberVO vo = sqlSession.selectOne("pm.select_one", idx);
 		return vo;
 	}
 
 	// 탈퇴하기
 	public int del_update(PMemberVO vo) {
-		return sqlSession.update("m.del_update", vo);
+		return sqlSession.update("pm.del_update", vo);
 	}
 
 }

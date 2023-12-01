@@ -29,16 +29,6 @@ public class MemberController {
 		this.pmember_dao = pmember_dao;
 	}
 	
-	@RequestMapping("/")
-	public String home() {		
-		return Path.HomePath.make_path("home");
-	}
-	
-	@RequestMapping("/main")
-	public String main() {
-		return "redirect:/";
-	}
-	
 	@RequestMapping("story")
 	public String story() {
 		return Path.StoryPath.make_path("story");
@@ -60,7 +50,7 @@ public class MemberController {
 	public String login(String m_username, String m_password) {
 		
 		//id가 존재하냐 없냐에 대한 검증
-		PMemberVO vo = pmember_dao.loginCheck(m_username);
+		PMemberVO vo = pmember_dao.login_check(m_username);
 		
 		//아이디가 없는 경우
 		if(vo == null) {
@@ -96,7 +86,7 @@ public class MemberController {
 		String m_username = data.get("m_username");
 		String m_password = data.get("m_password");
 		
-		PMemberVO vo = pmember_dao.loginCheck(m_username);
+		PMemberVO vo = pmember_dao.login_check(m_username);
 		
 		//아이디가 없는 경우
 		if(vo == null) {
@@ -123,14 +113,14 @@ public class MemberController {
 	}
 	
 	@RequestMapping("member_insert_form")
-	public String m_insert() {
+	public String member_insert_form() {
 		return Path.UserPath.make_path("member_insert_form");
 	}
 	
 	@RequestMapping("check_id")
 	@ResponseBody
 	public String check_id(String id) {
-		int res = pmember_dao.idCheck(id);
+		int res = pmember_dao.id_check(id);
 		
 		if(res == 0) {
 			return "[{'res':'yes'}]";
@@ -141,8 +131,8 @@ public class MemberController {
 	
 	@RequestMapping("del")
 	@ResponseBody
-	public String delete(int idx) {
-		PMemberVO basevo = pmember_dao.selectone(idx);
+	public String del(int idx) {
+		PMemberVO basevo = pmember_dao.select_one(idx);
 		
 		int res = pmember_dao.del_update(basevo);
 		
@@ -151,7 +141,16 @@ public class MemberController {
 		} else {
 			return "[{'result':'no'}]";
 		}
-		
+	}
+	
+	@RequestMapping("user_edit")
+	public String user_edit() {		
+		return Path.UserPath.make_path("user_edit");
+	}
+	
+	@RequestMapping("user_info_form")
+	public String user_info_form() {
+		return Path.UserPath.make_path("user_info_form");
 	}
 	
 }

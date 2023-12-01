@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class BIsLikeVO {
+public class BIsLikedVO {
 	private String b_isliked;
     private int b_idx,
     			m_idx;
