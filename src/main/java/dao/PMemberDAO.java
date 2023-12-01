@@ -2,11 +2,11 @@ package dao;
 
 import org.apache.ibatis.session.SqlSession;
 
+import vo.PMemberVO;
+
 public class PMemberDAO {
 	SqlSession sqlSession;
 	
-<<<<<<< HEAD
-
 	public PMemberDAO(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
@@ -25,10 +25,6 @@ public class PMemberDAO {
 	public int insert(PMemberVO vo) {
 		return sqlSession.insert("pm.insert", vo);
 	}
-	
-	
-	
-	
 
 	// 로그인했는지 체크
 	public PMemberVO login_session_check(int idx) {
@@ -46,11 +42,4 @@ public class PMemberDAO {
 	public int del_update(PMemberVO vo) {
 		return sqlSession.update("pm.del_update", vo);
 	}
-
-=======
-	public PMemberDAO(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
-	}
-	
->>>>>>> bd4d7d87508a0bd1e2ca78cb728736b99a25744c
 }
