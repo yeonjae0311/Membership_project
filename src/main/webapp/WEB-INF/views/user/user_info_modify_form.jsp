@@ -5,24 +5,36 @@
 <html>
 	<head>
 	<meta charset="UTF-8">
-	<title>user_info_form</title>
+	<title>user_info_modify_form</title>
 	<script>
 	function send(f){
-		
-		f.action = "modify_form";
-		f.method = "POST";
+		f.action="user_modify";
+		f.method="POST";
 		f.submit();
 	}
 	</script>
 	</head>
 	<body>
 	<form>
-		<div> 이름 : 	${id.m_name }	</div>
-		<div> 아이디 : ${id.m_id }		</div>
-		<div> 연락처 : ${id.m_tel  }		</div>
-		<div> 생년월일 : ${id.m_date_of_birth }		</div>
-		<div> 이메일 : ${id.m_email }	</div>
-	<input type="button" value="수정완료" onclick="modify()">
+	<table>
+		<tr>
+		 <td> <input name="m_name"> </td>
+		</tr>
+		<tr>
+		 <td> <input name="m_tel"> </td>
+		</tr>
+		<tr>
+			<td> <input name="m_date_of_birth"> </td>
+		</tr>
+		<tr>
+				<th>이메일</th>
+				<td><input name="m_email" id="m_email" >
+				</td>
+		</tr>
+	<tr>
+		<td> <input type="button" value="수정완료" onclick="send(this.form)"> </td>
+	</tr>
+	</table>
 	</form>
 	</body>
 </html>
