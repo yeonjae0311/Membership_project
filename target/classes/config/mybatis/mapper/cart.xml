@@ -4,6 +4,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cd">
 
+	<!-- cart_detail 테이블과 item 테이블을 조인한 결과를 매핑해주기 -->
+	<resultMap type="vo.ItemVO" id="cart_list">
+	  <result column="i_name" property="i_name" jdbcType="VARCHAR"/>
+	  <result column="i_price" property="i_price" jdbcType="VARCHAR"/>
+	  <result column="i_color" property="i_color" jdbcType="VARCHAR"/>
+	  <result column="i_photo_name" property="i_photo_name" jdbcType="VARCHAR"/>
+	</resultMap>
+
 	<!-- 장바구니에 상품 추가 -->
 	<insert id="cart_insert" parameterType="int">
 		insert into cart_detail values(#{m_idx}, #{i_idx}, 1)
@@ -14,8 +22,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM item i, CART_DETAIL cd WHERE i.I_IDX = cd.I_IDX;
 	</select>
 	
-	<!-- cart_detail 테이블과 item 테이블을 조인한 결과를 매핑해주기 -->
-	<resultMap type="" id="cart_list">
-		
-	</resultMap>
+	
 </mapper>

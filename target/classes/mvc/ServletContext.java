@@ -39,6 +39,7 @@ public class ServletContext implements WebMvcConfigurer {
 		return new MemberController(member_dao);
 	}
 
+
 	@Bean
 	public ShopController shop_controller(ItemDAO item_dao, CartDetailDAO cart_detail_dao) {
 		return new ShopController(item_dao, cart_detail_dao);

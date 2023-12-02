@@ -19,7 +19,7 @@
 			<c:forEach var="vo" items="${list}">
 				<div id=shopping_cart_item>
 					<input type="checkbox">
-					<img src="resources/img/idcheck_but02"><br>
+					<img id=item_img src="${pageContext.request.contextPath}/resources/upload/${vo.i_photo_name}"><br>
 					${vo.i_name}<br>
 					${vo.i_price}
 				</div>
