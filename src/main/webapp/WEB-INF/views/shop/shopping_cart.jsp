@@ -8,18 +8,26 @@
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 		<style>
-			#shopping_cart_item{background-color: skyblue;}
+			#shopping_cart_item{background-color: skyblue;
+								height: 350px;
+								width: 300px;}
 			#button_bar{background-color: pink;}
+			#shopping_cart_item_img_div{height:300px;
+ 						  				width: 300px;}
+ 			#shopping_cart_item_img{height: 100%;
+				 	  		 		width: 100%;
+				       				object-fit: contain;}  	 
 		</style>
 	</head>
 	<body>
 		<input type="checkbox">
 		<div>
-			<!-- 나중에 db 연결해서 이름, 가격 json으로 -->
 			<c:forEach var="vo" items="${list}">
 				<div id=shopping_cart_item>
 					<input type="checkbox">
-					<img id=item_img src="${pageContext.request.contextPath}/resources/upload/${vo.i_photo_name}"><br>
+					<div id=shopping_cart_item_img_div>
+						<img id=shopping_cart_item_img src="${pageContext.request.contextPath}/resources/upload/${vo.i_photo_name}"><br>
+					</div>
 					${vo.i_name}<br>
 					${vo.i_price}
 				</div>

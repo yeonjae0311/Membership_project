@@ -2,8 +2,11 @@ package com.korea.membership;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,8 +14,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.CartDetailDAO;
 import dao.ItemDAO;
@@ -45,13 +53,22 @@ public class ShopController {
 		return Path.ShopPath.make_path("shop");
 	}
 	
-	@RequestMapping("shop_item")
-	public String shop_item() {
-		return Path.ShopPath.make_path("shop_item");
-	}
-	
-	@RequestMapping("shopping_cart")
-	public String shopping_cart(String i_name, String i_color, Model model) {
+	@RequestMapping("shopping_cart_insert")
+	@ResponseBody
+	public String shopping_cart_insert(@RequestBody String body) throws UnsupportedEncodingException {
+		ObjectMapper om = new ObjectMapper();
+			
+		Map<String, String> data = null;
+		
+		try {
+			data = om.readValue(body, new TypeReference<Map<String, String>>() {
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String i_color = data.get("i_color");	
+		String i_name = URLDecoder.decode(data.get("i_name"), "utf-8");
 		
 		HttpSession session = request.getSession();
 		PMemberVO p_member_vo = (PMemberVO) session.getAttribute("id");
@@ -69,18 +86,23 @@ public class ShopController {
 		idx_map.put("i_idx", i_idx);
 		idx_map.put("m_idx", m_idx);
 		
-		int cart = cart_detail_dao.cart_insert(idx_map);
+		int res = cart_detail_dao.cart_insert(idx_map);
 		
+		if(res > 0) {
+			return "{\"param\": \"yes\"}";
+		} else {
+			return "{\"param\": \"no\"}";
+		}
+	}
+		
+	@RequestMapping("shopping_cart")
+	public String shopping_cart(Model model) {
 		// 장바구니 테이블을 전체 조회해서 바인딩
 		List<CartDetailVO> list = cart_detail_dao.cart_select_list();
-		
+				
 		model.addAttribute("list", list);
 		
-		if(cart > 0) {
-			return Path.ShopPath.make_path("shopping_cart");
-		} 
-		
-		return null;
+		return Path.ShopPath.make_path("shopping_cart");
 	}
 	
 	@RequestMapping("item_insert")
