@@ -15,6 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="insert" parameterType="pmember">
 		insert into p_member values(
+		seq_member_idx.nextval,
 		#{m_name},
 		#{m_username},
 		#{m_password},
@@ -31,9 +32,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from p_member where m_idx=#{m_idx}
 	</select>
 	
+	<select id="email_check" resultType="int" parameterType="String">
+		select count(*) from p_member where m_email=#{m_email}
+	</select>
 	
 	<update id="del_update" parameterType="pmember">
 		update p_member set m_id = 'del'+#{m_id} where m_idx=#{m_idx}
+	</update>
+	
+	<update id="modify_id" parameterType="pmember">
+		update p_member set m_ip=#{m_ip}
+	</update>
+	
+	<update id="modify_password" parameterType="pmember">
+		update p_member set m_password=#{m_password}
 	</update>
 
 </mapper>

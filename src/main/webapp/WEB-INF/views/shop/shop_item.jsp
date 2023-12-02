@@ -32,7 +32,7 @@
 			<input type="hidden" name="i_name" value="${vo.i_name}">
 			<div id=item_info_div>
 				<div class=item_img_div>
-					<img id=item_img src="resources/img/shortsleeve.jpg"><br>
+					<img id=item_img src="${pageContext.request.contextPath}/resources/upload/${vo.i_photo_name}"><br>
 				</div>
 				${vo.i_name}<br>
 				${vo.i_price}<br>

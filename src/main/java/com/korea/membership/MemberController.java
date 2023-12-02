@@ -146,7 +146,7 @@ public class MemberController {
 		//이메일 전송 내용
 		String set_from = "chai0805123@gmail.com"; //발신 이메일
 		String to_mail = m_email;         //받는 이메일
-		String title = "membership 회원가입 인증 이메일 입니다.";
+		String title = "membership 인증 이메일 입니다.";
 		String content = 
 						"인증 번호는 " + check_num + "입니다." + 
 						"해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
@@ -166,6 +166,52 @@ public class MemberController {
 		}
 		String num = Integer.toString(check_num); // ajax를 뷰로 반환시 데이터 타입은 String 타입만 가능
 		return num; // String 타입으로 변환 후 반환
+	}
+	
+	@RequestMapping("check_email") // 이메일 중복체크
+	@ResponseBody
+	public String check_email(String m_email) {
+		int res = pmember_dao.email_check(m_email);
+		System.out.println("dddddddddddd");
+		if (res == 0) {
+			return "[{'res' : 'yes'}]";
+		}
+		return "[{'res' : 'no'}]";
+	}
+	
+	@RequestMapping("register_find_id")
+	public String register_find_id() {
+		return Path.LoginPath.make_path("register_find_id");
+	}
+	
+	@RequestMapping("register_find_password")
+	public String register_find_password() {
+		return Path.LoginPath.make_path("register_find_password");
+	}
+	
+	@RequestMapping("register_modify_id")
+	public String register_modify_id(String id) {
+		
+		int res = pmember_dao.id_update(id);
+		
+		if (res > 0) {
+			return "redirect:register_modify_id";
+		} else {
+			System.out.println("추가 에러");
+			return null;
+		}
+	}
+	
+	@RequestMapping("register_modify_password")
+	public String register_modify_password(String password) {
+		int res = pmember_dao.password_update(password);
+		
+		if (res > 0) {
+			return "redirect:register_modify_password";
+		} else {
+			System.out.println("추가 에러");
+			return null;
+		}
 	}
 }
 
