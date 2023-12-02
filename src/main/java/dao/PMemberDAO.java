@@ -42,4 +42,10 @@ public class PMemberDAO {
 	public int del_update(PMemberVO vo) {
 		return sqlSession.update("pm.del_update", vo);
 	}
+	
+	//수정하기
+	public int update(PMemberVO vo) {
+		return sqlSession.update("pm.update", vo);
+	}
+	
 }

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -123,6 +124,7 @@ public class MemberController {
 		}
 	}
 	
+	
 	@RequestMapping("user_edit")
 	public String user_edit() {		
 		return Path.UserPath.make_path("user_edit");
@@ -166,6 +168,21 @@ public class MemberController {
 		}
 		String num = Integer.toString(check_num); // ajax를 뷰로 반환시 데이터 타입은 String 타입만 가능
 		return num; // String 타입으로 변환 후 반환
+	}
+	
+	
+	@RequestMapping("modify_form")
+	public String modify_form(Model model, int idx) {
+		PMemberVO vo = pmember_dao.select_one(idx);
+		model.addAttribute("vo", vo);
+		return Path.UserPath.make_path("user_info_modify_form");
+		
+	}
+	
+	@RequestMapping("modify")
+	public String modify(PMemberVO vo) {
+		int res = pmember_dao.update(vo);
+		return "redirect:user_info_form";
 	}
 }
 

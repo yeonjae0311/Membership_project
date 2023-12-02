@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -11,7 +10,6 @@
 	board
 	<input type="button" value="home" onclick="location.href='/membership/'">
 </body>
-=======
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
@@ -110,5 +108,4 @@
 			</table>
 		</div>
 	</body>
->>>>>>> 8d6115e8af3d73c42ec1b4588fe6e3f8d13605da
 </html>
