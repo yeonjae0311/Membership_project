@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import vo.BoardPMemberViewVO;
+import vo.BoardVO;
 
 public class BoardDAO {
 	SqlSession sqlSession;
@@ -23,5 +24,9 @@ public class BoardDAO {
 	
 	public List<BoardPMemberViewVO> unfixed_all_board_list(){
 		return sqlSession.selectList("b.unfixed_all_board_list");
+	}
+	
+	public int board_insert(BoardVO vo) {
+		return sqlSession.insert("b.board_insert",vo);
 	}
 }

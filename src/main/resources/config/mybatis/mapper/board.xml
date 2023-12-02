@@ -24,6 +24,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE B_ISFIXED ='0'
 		ORDER BY B_POSTED_DATE DESC
 	</select>
+	
+	<insert id="board_insert" parameterType="vo.BoardVO">
+		insert into board values(
+			seq_board_idx.nextval,
+			#{m_idx},
+			#{b_title},
+			#{b_content},
+			#{b_filename},
+			sysdate,
+			#{b_isfixed},
+			#{b_ip}
+		)
+	</insert>
 
 </mapper>
 
