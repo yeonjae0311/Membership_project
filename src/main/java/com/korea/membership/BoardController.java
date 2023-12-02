@@ -109,8 +109,17 @@ public class BoardController {
 		}else {
 			System.out.println("추가 실패 에러");
 			return null;
-		}
+		}		
+	}
+	
+	@RequestMapping("board_view")
+	public String board_view(Model model,int b_idx) {
+		//게시물 한건 조회
+		BoardPMemberViewVO vo = board_dao.board_selectOne(b_idx);
 		
+		model.addAttribute("vo",vo);
+		
+		return Path.BoardPath.make_path("board_view");
 	}
 	
 }

@@ -29,4 +29,8 @@ public class BoardDAO {
 	public int board_insert(BoardVO vo) {
 		return sqlSession.insert("b.board_insert",vo);
 	}
+	
+	public BoardPMemberViewVO board_selectOne(int b_idx) {
+		return sqlSession.selectOne("b.board_selectOne",b_idx);
+	}
 }

@@ -10,6 +10,9 @@
 			.b_list{
 				align:center;
 			}
+			a{
+				text-decoration: none;
+			}
 		</style>
 	</head>
 	
@@ -52,8 +55,8 @@
 				<c:forEach var="i" items="${fixed_list}">
 					<tr>
 						<td>${i.m_idx}</td>
-						<td><a href="">${i.b_title}</a></td>
-						<td><a href="">${i.m_username}</a></td>
+						<td><a href="board_view?b_idx=${i.b_idx}">${i.b_title}</a></td>
+						<td>${i.m_username}</td>
 					</tr>
 				</c:forEach> 
 			</table>
@@ -72,8 +75,8 @@
 				<c:forEach var="i" items="${unfixed_master_list}">
 					<tr>
 						<td>${i.m_idx}</td>
-						<td><a href="">${i.b_title}</a></td>
-						<td><a href="">${i.m_username}</a></td>
+						<td><a href="board_view?b_idx=${i.b_idx}">${i.b_title}</a></td>
+						<td>${i.m_username}</td>
 					</tr>
 				</c:forEach> 
 			</table>
@@ -89,8 +92,8 @@
 				<c:forEach var="i" items="${unfixed_fan_list}">
 					<tr>
 						<td>${i.m_idx}</td>
-						<td><a href="">${i.b_title}</a></td>
-						<td><a href="">${i.m_username}</a></td>
+						<td><a href="board_view?b_idx=${i.b_idx}">${i.b_title}</a></td>
+						<td>${i.m_username}</td>
 					</tr>
 				</c:forEach> 
 			</table>
