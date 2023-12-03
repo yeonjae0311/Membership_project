@@ -133,6 +133,11 @@ public class MemberController {
 		return Path.UserPath.make_path("user_info_form");
 	}
 	
+	@RequestMapping("user_edit_profile")
+	public String user_edit_profile() {
+		return Path.UserPath.make_path("user_edit_profile");
+	}
+	
 	@RequestMapping(value = "mail_check", method =  RequestMethod.GET )	
 	@ResponseBody
 	public String mailCheck(String m_email) throws Exception{ //반환값이 있기에 메서드 타입도 String

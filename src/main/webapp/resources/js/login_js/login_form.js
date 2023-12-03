@@ -27,7 +27,8 @@ function send(f){
 function myCheck(...args){
 	let res = args[0].param
 	
-//	let form = document.getElementsByTagName("form")[0];
+	let form = document.getElementsByTagName("form")[0];
+
 //	localStorage.setItem("test", res);
 //	console.log(localStorage)
 	
