@@ -12,12 +12,14 @@
 		<typeAlias type="vo.ItemVO" alias="item"/>
 		<typeAlias type="vo.PMemberVO" alias="pmember"/>
 		<typeAlias type="vo.BoardVO" alias="board"/>
+		<typeAlias type="vo.CartDetailVO" alias="cart"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="config/mybatis/mapper/item.xml" />
 		<mapper resource="config/mybatis/mapper/board.xml" />
 		<mapper resource="config/mybatis/mapper/pmember.xml" />
+		<mapper resource="config/mybatis/mapper/cart.xml" />
 	</mappers>
 	
 </configuration>

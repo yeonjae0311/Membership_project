@@ -2,8 +2,11 @@ package com.korea.membership;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,12 +14,18 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.CartDetailDAO;
 import dao.ItemDAO;
 import util.Path;
+import vo.CartDetailVO;
 import vo.ItemVO;
 import vo.PMemberVO;
 
@@ -44,40 +53,56 @@ public class ShopController {
 		return Path.ShopPath.make_path("shop");
 	}
 	
-	@RequestMapping("shop_item")
-	public String shop_item() {
-		return Path.ShopPath.make_path("shop_item");
-	}
-	
-	@RequestMapping("shopping_cart")
-	public String shopping_cart(String i_name, String i_color) {
+	@RequestMapping("shopping_cart_insert")
+	@ResponseBody
+	public String shopping_cart_insert(@RequestBody String body) throws UnsupportedEncodingException {
+		ObjectMapper om = new ObjectMapper();
+			
+		Map<String, String> data = null;
+		
+		try {
+			data = om.readValue(body, new TypeReference<Map<String, String>>() {
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String i_color = data.get("i_color");	
+		String i_name = URLDecoder.decode(data.get("i_name"), "utf-8");
 		
 		HttpSession session = request.getSession();
-		PMemberVO p_member_vo = (PMemberVO) session.getAttribute("m_id");
+		PMemberVO p_member_vo = (PMemberVO) session.getAttribute("id");
 		
 		// i_name과 i_color로 i_idx를 조회
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("i_name", i_name);
-		map.put("i_color", i_color);
+		HashMap<String, String> i_map = new HashMap<String, String>();
+		i_map.put("i_name", i_name);
+		i_map.put("i_color", i_color);
 		
-		int i_idx = item_dao.item_find_idx(map);
+		int i_idx = item_dao.item_find_idx(i_map);
 		int m_idx = p_member_vo.getM_idx();
-		
+
 		// i_idx와 m_idx를 map으로 묶어 cart_detail table에 insert 하기		
 		HashMap<String, Integer> idx_map = new HashMap<String,Integer>();
 		idx_map.put("i_idx", i_idx);
 		idx_map.put("m_idx", m_idx);
 		
-		int cart = cart_detail_dao.cart_insert(idx_map);
+		int res = cart_detail_dao.cart_insert(idx_map);
 		
-		// idx로 해당 상품 정보 가져와서 바인딩
+		if(res > 0) {
+			return "{\"param\": \"yes\"}";
+		} else {
+			return "{\"param\": \"no\"}";
+		}
+	}
 		
+	@RequestMapping("shopping_cart")
+	public String shopping_cart(Model model) {
+		// 장바구니 테이블을 전체 조회해서 바인딩
+		List<CartDetailVO> list = cart_detail_dao.cart_select_list();
+				
+		model.addAttribute("list", list);
 		
-		if(cart > 0) {
-			return Path.ShopPath.make_path("shopping_cart");
-		} 
-		
-		return null;
+		return Path.ShopPath.make_path("shopping_cart");
 	}
 	
 	@RequestMapping("item_insert")
@@ -140,7 +165,6 @@ public class ShopController {
 	
 	@RequestMapping("shop_item_select")
 	public String shop_item_select(int i_idx, String i_name, Model model) {
-		System.out.println(i_name);
 		ItemVO vo = item_dao.item_select_one(i_idx);
 		List<String> colors = item_dao.item_select_color(i_name);
 
@@ -149,4 +173,28 @@ public class ShopController {
 		
 		return Path.ShopPath.make_path("shop_item");
 	}
+	
+	@RequestMapping("select_option")
+	@ResponseBody
+	public String select_option (Model model, @RequestBody String body) throws UnsupportedEncodingException{
+		ObjectMapper om = new ObjectMapper();
+			
+		Map<String, String> data = null;
+		
+		try {
+			data = om.readValue(body, new TypeReference<Map<String, String>>() {
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String i_name = URLDecoder.decode(data.get("i_name"), "utf-8");
+		
+		List<String> colors = item_dao.item_select_color(i_name);
+		
+		model.addAttribute("colors", colors);
+		
+		return "{\"param\": \"yes\"}";
+	}
 }
+

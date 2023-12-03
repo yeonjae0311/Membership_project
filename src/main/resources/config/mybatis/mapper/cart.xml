@@ -2,12 +2,23 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="c">
+<mapper namespace="cd">
+
+	<!-- cart_detail 테이블과 item 테이블을 조인한 결과를 매핑해주기 -->
+	<resultMap type="vo.ItemVO" id="cart_list">
+	  <result column="i_name" property="i_name" jdbcType="VARCHAR"/>
+	  <result column="i_price" property="i_price" jdbcType="VARCHAR"/>
+	  <result column="i_color" property="i_color" jdbcType="VARCHAR"/>
+	  <result column="i_photo_name" property="i_photo_name" jdbcType="VARCHAR"/>
+	</resultMap>
 
 	<!-- 장바구니에 상품 추가 -->
-	<!-- m_idx와 count 늘어나도록 변경 -->
-	<!-- m_idx 연결 부터 다시 하기 / 풀이 안되있어서 로그인 안됨 -->
 	<insert id="cart_insert" parameterType="int">
 		insert into cart_detail values(#{m_idx}, #{i_idx}, 1)
 	</insert>
+	
+	<!-- 장바구니 전체 조회 -->
+	<select id="cart_select_list" resultMap="cart_list">
+		SELECT * FROM item i, CART_DETAIL cd WHERE i.I_IDX = cd.I_IDX
+	</select>
 </mapper>
