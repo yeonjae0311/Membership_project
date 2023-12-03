@@ -31,5 +31,4 @@ public class Context_3_dao {
 	public CartDetailDAO cart_detail_DAO(SqlSession sqlSession) {
 		return new CartDetailDAO(sqlSession);
 	}
-
 }

@@ -23,4 +23,5 @@ public class CartDetailDAO {
 	public List<CartDetailVO> cart_select_list() {
 		return sqlSession.selectList("cd.cart_select_list");
 	}
+
 }

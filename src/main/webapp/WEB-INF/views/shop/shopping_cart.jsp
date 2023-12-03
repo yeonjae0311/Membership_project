@@ -7,7 +7,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
-				<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
 		<style>
 			#shopping_cart_item{background-color: skyblue;
 								height: 250px;

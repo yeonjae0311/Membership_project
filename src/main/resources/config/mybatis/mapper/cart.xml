@@ -21,6 +21,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="cart_select_list" resultMap="cart_list">
 		SELECT * FROM item i, CART_DETAIL cd WHERE i.I_IDX = cd.I_IDX
 	</select>
-	
-	
 </mapper>
