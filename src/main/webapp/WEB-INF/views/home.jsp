@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath}/resources/css/home.css" rel="stylesheet" type="text/css">
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/login_js/kakao_pay.js"></script>
 <script>
 	let isFilled = true;
 	
@@ -39,6 +41,7 @@
 			<input type="button" value="마이페이지" onclick="location.href='user_edit'">
 		</c:when>
 	</c:choose>
+	<input type="button" value="결제" onclick="location.href='kakao_pay'">
 	
 	<div>
 		<svg id="svg_test"

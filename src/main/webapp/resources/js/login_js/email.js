@@ -1,14 +1,8 @@
 	let code = "";  /*인증번호 저장할 곳*/
 
- 	let regEmail= /^[A-z0-9]{2,20}+@[A-z]{2,20}+\.[a-z]{2,3}$/;
-
 			$('#auth_btn').click(function() {
 				let m_email = $('#m_email').val();  /*입력한 이메일*/
-				if (regEmail.test(m_email) == false) {
-
-			    alert("올바른 이메일 형식을 적어주세요.");
-			
-			    }
+				
 				console.log('완성된 이메일 : ' + m_email); /* 이메일 오는지 확인*/
 				let checkInput = $('.mail_check_input') /* 인증번호 입력 */
 

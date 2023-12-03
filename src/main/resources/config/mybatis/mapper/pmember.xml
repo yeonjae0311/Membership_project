@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insert" parameterType="pmember">
 		insert into p_member values(
 		seq_member_idx.nextval,
-		${m_nsername},
+		${m_username},
 		#{m_password},
 		#{m_id},
 		#{m_name},

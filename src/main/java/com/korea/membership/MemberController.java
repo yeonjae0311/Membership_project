@@ -138,6 +138,16 @@ public class MemberController {
 
 		return "[{'res':'no'}]";
 	}
+	
+	@RequestMapping("member_insert")
+	public String insert_member(PMemberVO vo) {
+		int res = pmember_dao.insert(vo);
+		if(res>0) {
+			session.setAttribute("id", vo);
+			return "redirect:/";
+		}
+		return null;
+	}
 
 	@RequestMapping("del")
 	@ResponseBody
