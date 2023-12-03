@@ -18,7 +18,7 @@ function email_exist_check(){
 function resultFn(...args) {
 	let res = args[0].param
 	
-	if(res == 'yes'){
+	if(res == 'no m_email'){
 		alert('이메일이 존재하지 않습니다.');
 		return;
 	} else {

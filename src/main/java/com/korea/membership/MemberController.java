@@ -84,6 +84,32 @@ public class MemberController {
 		//로그인에 성공한 경우
 		return "{\"param\": \"success\"}";
 	}
+	
+	@RequestMapping("check_email") // 이메일 중복체크
+	@ResponseBody
+	public String check_email(@RequestBody String body) {
+		
+		ObjectMapper om = new ObjectMapper();
+		
+		Map<String, String> data = null;
+		
+		try {
+			data = om.readValue(body, new TypeReference<Map<String, String>>() {
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String m_email = data.get("m_email");
+		
+		int res = pmember_dao.email_check(m_email);
+		
+		if(res == 0) {
+			return "{\"param\": \"no m_email\"}";
+		}
+		return "{\"param\": \"success\"}";
+		
+	}
 
 	@RequestMapping("logout")
 	public String logout() {
@@ -168,16 +194,7 @@ public class MemberController {
 		return num; // String 타입으로 변환 후 반환
 	}
 	
-	@RequestMapping("check_email") // 이메일 중복체크
-	@ResponseBody
-	public String check_email(String m_email) {
-		int res = pmember_dao.email_check(m_email);
-		System.out.println("dddddddddddd");
-		if (res == 0) {
-			return "[{'res' : 'yes'}]";
-		}
-		return "[{'res' : 'no'}]";
-	}
+	
 	
 	@RequestMapping("register_find_id")
 	public String register_find_id() {
@@ -213,6 +230,13 @@ public class MemberController {
 			return null;
 		}
 	}
+	
+	@RequestMapping("kakao_pay")
+	public String kakao_pay() {
+		return Path.LoginPath.make_path("kakao_pay");
+		
+	}
+	
 }
 
 

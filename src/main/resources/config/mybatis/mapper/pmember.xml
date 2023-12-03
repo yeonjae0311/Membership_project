@@ -16,11 +16,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insert" parameterType="pmember">
 		insert into p_member values(
 		seq_member_idx.nextval,
+		${m_nsername},
+		#{m_password},
+		#{m_id},
 		#{m_name},
 		#{m_username},
-		#{m_password},
-		#{m_email}
+		#{m_tel},
+		#{m_email},
+		#{m_photo_name},
+		0, 
+		0,
+		sysdate,
+		null,
+		null,
+		null,
+		#{m_date_of_birth}
 		)
+		<!-- 시퀀스 추가 예정 -->
 		<!-- db에 맞게 컬럼 수정필요  -->
 	</insert>
 	

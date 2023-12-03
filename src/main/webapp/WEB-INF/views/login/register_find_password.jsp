@@ -24,7 +24,7 @@
 					<th>인증번호</th>
 					<td>
 						<input class="mail_check_input" disabled="disabled" onchange="chee()">
-						<button type="button" id="auth_btn">인증번호 보내기
+						<button type="button" id="auth_btn">인증번호 보내기</button>
 					</td>
 				</tr>
 				<tr>
@@ -46,8 +46,9 @@
 				<tr>
 					<td colspan="2" align="center">
 					<input type="button" value="비밀번호 변경" onclick="newpwd_update(this.form)">
-					<input type="button" value="취소" onclick="location.href='main'"></td>
+					<input type="button" value="취소" onclick="location.href='main'">
 					</td>
+					
 				</tr>
 			</table>
 		</form>
