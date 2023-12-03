@@ -5,7 +5,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="i">
 
 	<!-- 상품 목록 조회 반환 map -->
-	
+	<resultMap type="vo.ItemVO" id="shop_list">
+		<result column="i_name" property="i_name" jdbcType="VARCHAR"/>
+	  	<result column="i_price" property="i_price" jdbcType="VARCHAR"/>
+	  	<result column="i_photo_name" property="i_photo_name" jdbcType="VARCHAR"/>
+	  	<result column="i_detail_photo_name" property="i_detail_photo_name" jdbcType="VARCHAR"/>
+	</resultMap>
 	
 	<!-- 상품 업로드 -->
 	<insert id="item_upload" parameterType="item">
@@ -20,9 +25,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<!-- 상품 목록 조회 -->
-	<select id="item_list_select" resultType="item">
-		select * from item
-		<!-- SELECT i_name, i_price FROM item GROUP BY i_name, I_PRICE; -->
+	<select id="item_list_select" resultMap="shop_list">
+		SELECT * FROM item 
+		WHERE ROWID IN (SELECT MAX(ROWID) FROM item GROUP BY I_NAME)
 	</select>
 	
 	<!-- 선택한 상품 한개 조회 -->

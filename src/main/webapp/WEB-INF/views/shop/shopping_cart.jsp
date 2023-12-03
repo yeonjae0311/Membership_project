@@ -18,7 +18,46 @@
  			#shopping_cart_item_img{height: 100%;
 				 	  		 		width: 100%;
 				       				object-fit: contain;}  	 
+			.cart_item_list_div{display: flex;}
 		</style>
+		
+	</head>
+	<body>
+		<input type='checkbox'
+     	 	name='item_checkbox'value='select_all' 
+     	 	onclick='select_all(this)'/> 
+     	전체 선택
+		<div class="cart_item_list_div">
+			<c:forEach var="vo" items="${list}" varStatus="count">
+				<form id="shopping_cart_item_${count.current}">
+					<div id=shopping_cart_item>
+						<input type="checkbox" name="item_checkbox" value="${vo}">
+						<div id=shopping_cart_item_img_div>
+							<img id=shopping_cart_item_img src="${pageContext.request.contextPath}/resources/upload/${vo.i_photo_name}"><br>
+						</div>
+						<input type="hidden" name="i_name" value="${vo.i_name}">
+						${vo.i_name}<br>
+						<input type="hidden" class="i_price" name="i_price" value="${vo.i_price}">
+						${vo.i_price}원<br>
+						<input type="button" name="select_option" value="옵션 변경" 
+								onclick="select_option_fn(document.getElementById('shopping_cart_item_${count.current}'))">
+						<select class="color_option" id="color" name="i_color" required>
+						    <c:forEach var="colors" items="${colors}">
+						    	<option value="${colors}">${colors}</option>
+						    </c:forEach>	   
+						</select><br>
+						색상 : ${vo.i_color}<br>
+						수량 : <input type="number" class="cd_count" name="cd_count" value="${vo.cd_count}" min="1" max="99">
+					</div>
+				</form>
+			</c:forEach>	
+		</div><br><br>
+		총금액 : <input id="total_price" value="0" readonly="readonly"> 원
+		<div id=button_bar>
+			<input type="button" value="선택한 상품 주문하기" onclick="">
+			<input type="button" value="전체 상품 주문하기" onclick="">			
+		</div>
+		<!-- 이 파일은 스크립트 위치 여기 고정 -->
 		<script>
 			function select_all(select_all)  {
 				const checkboxes = document.getElementsByName('item_checkbox');
@@ -46,41 +85,18 @@
 					alert("옵션 선택 가능")
 				} 
 			}
+			
+			// 합계 구하기
+			let price = document.getElementsByClassName("i_price");
+			let count = document.getElementsByClassName("cd_count");
+			let total_price_sum = parseInt("0");
+			for(let i = 0; i < price.length; i++ ){
+				total_price_sum = total_price_sum 
+					+ parseInt(price.item(i).value)*parseInt(count.item(i).value);
+			}
+			
+			 document.getElementById('total_price').value = total_price_sum;
+			
 		</script>
-	</head>
-	<body>
-		<input type='checkbox'
-     	 	name='item_checkbox'value='select_all' 
-     	 	onclick='select_all(this)'/> 
-     	전체 선택
-		<div>
-			<c:forEach var="vo" items="${list}" varStatus="count">
-				<form id="shopping_cart_item_${count.current}">
-					<div id=shopping_cart_item>
-						<input type="checkbox" name="item_checkbox" value="${vo}">
-						<div id=shopping_cart_item_img_div>
-							<img id=shopping_cart_item_img src="${pageContext.request.contextPath}/resources/upload/${vo.i_photo_name}"><br>
-						</div>
-						<input type="hidden" name=i_name value="${vo.i_name}">
-						${vo.i_name}<br>
-						${vo.i_price}<br>
-						<input type="button" name="select_option" value="옵션 변경" 
-								onclick="select_option_fn(document.getElementById('shopping_cart_item_${count.current}'))">
-						<select class="color_option" id="color" name="i_color" required>
-						    <c:forEach var="colors" items="${colors}">
-						    	<option value="${colors}">${colors}</option>
-						    </c:forEach>	   
-						</select>
-						옵션 : ${vo.i_color}<br>
-						수량 : <input type="number" name="od_count" value="1" min="1" max="99">
-					</div>
-				</form>
-			</c:forEach>	
-		</div>
-		<p>총가격 : </p>
-		<div id=button_bar>
-			<input type="button" value="선택한 상품 주문하기" onclick="">
-			<input type="button" value="전체 상품 주문하기" onclick="">			
-		</div>
 	</body>
 </html>
