@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import dao.BoardDAO;
 import dao.ReplyDAO;
 import util.Path;
+import vo.BoardPMemberReplyViewVO;
 import vo.BoardPMemberViewVO;
 import vo.BoardVO;
 import vo.PMemberVO;
@@ -24,6 +25,7 @@ import vo.ReplyVO;
 public class BoardController {
 	
 	BoardDAO board_dao;
+	ReplyDAO reply_dao;
 	
 	@Autowired
 	HttpServletRequest request;	
@@ -31,8 +33,9 @@ public class BoardController {
 	@Autowired
 	HttpSession session;
 
-	public BoardController(BoardDAO board_dao) {
+	public BoardController(BoardDAO board_dao,ReplyDAO reply_dao) {
 		this.board_dao = board_dao;
+		this.reply_dao = reply_dao;
 	}
 	
 	@RequestMapping("board")
@@ -114,6 +117,21 @@ public class BoardController {
 		}		
 	}
 	
+	@RequestMapping("board_reply")
+	public String board_reply(ReplyVO vo) {
+		vo.setR_ip(request.getRemoteAddr());
+		PMemberVO pm_vo=(PMemberVO)session.getAttribute("id");
+		vo.setM_idx(pm_vo.getM_idx());
+		
+		int res = reply_dao.insert_reply(vo);
+		
+		if(res>0) {
+			return "redirect:board_view?b_idx="+vo.getB_idx();
+		}		
+		
+		return null;
+	}
+	
 	@RequestMapping("board_view")
 	public String board_view(Model model,int b_idx) {
 		//게시물 한건 조회
@@ -121,8 +139,14 @@ public class BoardController {
 		
 		model.addAttribute("vo",vo);
 		
+		List<BoardPMemberReplyViewVO> reply_list = reply_dao.select_reply_list(b_idx);
+		
+		model.addAttribute("reply_list",reply_list);
+		
 		return Path.BoardPath.make_path("board_view");
 	}
+	
+	
 
 
 }

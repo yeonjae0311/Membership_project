@@ -1,7 +1,10 @@
 package dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
+import vo.BoardPMemberReplyViewVO;
 import vo.ReplyVO;
 
 public class ReplyDAO {
@@ -13,6 +16,10 @@ public class ReplyDAO {
 	
 	public int insert_reply(ReplyVO vo) {
 		return sqlSession.insert("r.insert_reply",vo);
+	}
+	
+	public List<BoardPMemberReplyViewVO> select_reply_list(int b_idx){
+		return sqlSession.selectList("r.select_reply_list",b_idx);
 	}
 	
 }

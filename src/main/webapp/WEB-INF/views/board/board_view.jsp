@@ -65,7 +65,7 @@
 			</tr>
 			</table>
 		</div>
-		<div id="reply_form">
+		<div id="reply_form" align="center">
 			<form>
 				<input type="hidden" name="b_idx" value="${vo.b_idx}">
 			<table border="1">
@@ -76,7 +76,25 @@
 				</tr>
 			</table>
 			<input type="button" value="답글 작성 완료" onclick="send_reply(this.form);">
-		</form>
+			</form>
+				<!-- order by로 불러오기 -->
+				
+			<c:forEach var="i" items="${reply_list}">		
+			<div class="reply_div">
+				<div class="user_info_div">
+					<div class="user_photo">
+						<img src="${pageContext.request.contextPath}/resources/upload/${i.m_photo_name}" alt="이미지 유실">
+					</div>
+					<div>
+						${i.m_username}
+					</div>
+					<div>
+						${i.r_date}
+					</div>
+				</div>
+				${i.r_content}
+			</div>
+			</c:forEach>
 		</div>
 	</body>
 </html>

@@ -58,7 +58,7 @@
 				</tr>
 				<c:forEach var="i" items="${fixed_list}">
 					<tr>
-						<td>${i.m_idx}</td>
+						<td>${i.b_idx}</td>
 						<td><a href="board_view?b_idx=${i.b_idx}">${i.b_title}</a></td>
 						<td>${i.m_username}</td>
 					</tr>
@@ -78,7 +78,7 @@
 				</tr>
 				<c:forEach var="i" items="${unfixed_master_list}">
 					<tr>
-						<td>${i.m_idx}</td>
+						<td>${i.b_idx}</td>
 						<td><a href="board_view?b_idx=${i.b_idx}">${i.b_title}</a></td>
 						<td>${i.m_username}</td>
 					</tr>
@@ -95,7 +95,7 @@
 				</tr>
 				<c:forEach var="i" items="${unfixed_fan_list}">
 					<tr>
-						<td>${i.m_idx}</td>
+						<td>${i.b_idx}</td>
 						<td><a href="board_view?b_idx=${i.b_idx}">${i.b_title}</a></td>
 						<td>${i.m_username}</td>
 					</tr>
