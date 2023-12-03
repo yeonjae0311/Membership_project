@@ -13,6 +13,7 @@ public class BoardPMemberViewVO {
 				   b_title,
 				   b_isfixed,
 				   b_ip,
+				   b_filename,
 				   m_username,
 				   m_photo_name,
 				   m_ismaster;
