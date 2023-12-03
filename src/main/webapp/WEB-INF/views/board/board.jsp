@@ -8,7 +8,11 @@
 		<title>Board</title>
 		<style>
 			.b_list{
-				align:center;
+				margin:0 auto;
+				width:90%;
+			}
+			.b_list tbody tr td{
+				text-align: center;
 			}
 			a{
 				text-decoration: none;
@@ -45,7 +49,7 @@
 			<input type="button" value="유저버튼" onclick="userfunc()">	
 		</div>
 		
-		<div id="fixed_list">
+		<div id="fixed_list" style="background-color: gray">
 			<table border="1" class="b_list">
 				<tr>
 					<th>번호</th>
@@ -98,5 +102,6 @@
 				</c:forEach> 
 			</table>
 		</div>
+		<input type="button" value="글쓰기" onclick="location.href='board_post';">
 	</body>
 </html>

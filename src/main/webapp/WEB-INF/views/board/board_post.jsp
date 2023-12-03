@@ -14,11 +14,11 @@
 				switch(isfixed.value){
 				case "1":
 					isfixed.value ="0";
-					fixoption.value = "일반글로 작성하기";
+					fixoption.value = "공지글로 작성하기";
 					break;
 				case "0":
 					isfixed.value = "1";
-					fixoption.value = "공지글로 작성하기";
+					fixoption.value = "일반글로 작성하기";
 					break;
 				}
 			}

@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import dao.BoardDAO;
+import dao.ReplyDAO;
 import util.Path;
 import vo.BoardPMemberViewVO;
 import vo.BoardVO;
 import vo.PMemberVO;
+import vo.ReplyVO;
 
 @Controller
 public class BoardController {
@@ -121,5 +123,6 @@ public class BoardController {
 		
 		return Path.BoardPath.make_path("board_view");
 	}
-	
+
+
 }
