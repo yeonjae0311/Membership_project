@@ -20,7 +20,6 @@ function send(f){
 		"m_id": encodeURIComponent(m_id),
 		"m_password": encodeURIComponent(m_password)
 	};
-	
 	sendRequest(url, param, myCheck, "post");
 }
 
@@ -34,7 +33,7 @@ function myCheck(...args){
 	
 	if(res == 'no m_id'){
 		alert('아이디가 존재하지 않습니다.');
-		form.m_username.focus();
+		form.m_id.focus();
 		return;
 	} else if(res == 'no m_password'){
 		alert('비밀번호가 일치하지 않습니다');
