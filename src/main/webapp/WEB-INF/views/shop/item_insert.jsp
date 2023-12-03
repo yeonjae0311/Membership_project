@@ -18,8 +18,8 @@
 		} 
 		 */
 		 function upload(){
-			 //document.getElementById() ***** 로 변경
-			 const item_upload = document.item_upload;
+
+			 const item_upload = document.getElementById(item_upload);
 			 
 			 if(item_upload.i_name.value == ''){
 				alert('상품명을 입력하세요');
@@ -33,11 +33,11 @@
 	</script>
 	</head>
 	<body>
-		<form name="item_upload" action="item_insert_upload" method="POST" enctype="multipart/form-data">
+		<form id="item_upload" action="item_insert_upload" method="POST" enctype="multipart/form-data">
 			상품 이름 : <input name="i_name"><br>		
 			상품 가격 : <input name="i_price">원<br>
 			상품 색상 : <input name="i_color"><br>
-			재고 수량 : <input type="number" name="i_amount"><br>
+			재고 수량 : <input type="number" name="i_amount" min="1" max="99"><br>
 			상품 이미지 : <input type="file" name="i_photo"><br> 
     		상품 상세 이미지 : <input type="file" name="i_detail_photo"><br>	
 	    	<div id=button_bar>
