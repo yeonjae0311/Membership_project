@@ -1,5 +1,6 @@
 package com.korea.membership;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -18,14 +19,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import dao.BoardDAO;
 import dao.PMemberDAO;
 import util.Path;
+import vo.BoardPMemberViewVO;
 import vo.PMemberVO;
 
 @Controller
 public class MemberController {
 
 	PMemberDAO pmember_dao;
+	BoardDAO board_dao;
 
 	@Autowired
 	HttpSession session;
@@ -35,8 +39,9 @@ public class MemberController {
 	
 	
 
-	public MemberController(PMemberDAO pmember_dao) {
+	public MemberController(PMemberDAO pmember_dao, BoardDAO board_dao) {
 		this.pmember_dao = pmember_dao;
+		this.board_dao = board_dao;
 	}
 
 	@RequestMapping("story")
@@ -136,6 +141,22 @@ public class MemberController {
 	@RequestMapping("user_edit_profile")
 	public String user_edit_profile() {
 		return Path.UserPath.make_path("user_edit_profile");
+	}
+	
+	@RequestMapping("user_order_list")
+	public String user_order_list() {
+		return Path.UserPath.make_path("user_order_list");
+	}
+	
+	@RequestMapping("user_post_list")
+	public String user_post_list() {
+		PMemberVO vo = (PMemberVO) session.getAttribute("id");
+		
+		List<BoardPMemberViewVO> list = board_dao.select_fixed_list();
+		
+		session.setAttribute("list", list);
+		
+		return Path.UserPath.make_path("user_post_list");
 	}
 	
 	@RequestMapping(value = "mail_check", method =  RequestMethod.GET )	

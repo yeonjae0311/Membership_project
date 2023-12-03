@@ -35,8 +35,8 @@ public class ServletContext implements WebMvcConfigurer {
 	}
 
 	@Bean
-	public MemberController member_controller(PMemberDAO member_dao) {
-		return new MemberController(member_dao);
+	public MemberController member_controller(PMemberDAO member_dao, BoardDAO board_dao) {
+		return new MemberController(member_dao, board_dao);
 	}
 
 	@Bean
