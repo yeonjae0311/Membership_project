@@ -42,11 +42,11 @@
 			} 
 			
 			function return_page(...args){
-				let res = args[0].param
-				
+				let res = args[0].param;
+
 				if(res == 'yes'){
 					if(confirm("상품이 추가되었습니다.\n장바구니로 이동하시겠습니까?")){
-						location.href='shopping_cart';	
+						location.href='shopping_cart' ;	
 					} else{
 						return;
 					}	

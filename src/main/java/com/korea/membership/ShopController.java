@@ -173,4 +173,27 @@ public class ShopController {
 		
 		return Path.ShopPath.make_path("shop_item");
 	}
+	
+	@RequestMapping("select_option")
+	@ResponseBody
+	public String select_option (Model model, @RequestBody String body) throws UnsupportedEncodingException{
+		ObjectMapper om = new ObjectMapper();
+			
+		Map<String, String> data = null;
+		
+		try {
+			data = om.readValue(body, new TypeReference<Map<String, String>>() {
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String i_name = URLDecoder.decode(data.get("i_name"), "utf-8");
+		
+		List<String> colors = item_dao.item_select_color(i_name);
+		
+		model.addAttribute("colors", colors);
+		
+		return "{\"param\": \"yes\"}";
+	}
 }
