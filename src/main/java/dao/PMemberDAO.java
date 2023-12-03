@@ -58,4 +58,9 @@ public class PMemberDAO {
 	public int password_update(String m_password) {
 		return sqlSession.update("pm.modify_password", m_password);
 	}
+
+	//수정하기
+	public int update(PMemberVO vo) {
+		return sqlSession.update("pm.update", vo);
+	}
 }
