@@ -20,6 +20,7 @@
 		<mapper resource="config/mybatis/mapper/board.xml" />
 		<mapper resource="config/mybatis/mapper/pmember.xml" />
 		<mapper resource="config/mybatis/mapper/cart.xml" />
+		<mapper resource="config/mybatis/mapper/reply.xml" />
 	</mappers>
 	
 </configuration>

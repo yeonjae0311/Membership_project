@@ -9,18 +9,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 고정된 게시글 조회 -->
 	<select id="fixed_board_list" resultType="vo.BoardPMemberViewVO">
 		SELECT * FROM board_p_member_join_view
-		
+		WHERE B_ISFIXED ='1'
+		ORDER BY B_POSTED_DATE DESC
 	</select>
 	
 	<select id="unfixed_master_board_list" resultType="vo.BoardPMemberViewVO">
 		SELECT * FROM board_p_member_join_view
-		
+		WHERE B_ISFIXED ='0'AND M_ISMASTER ='1'
+		ORDER BY B_POSTED_DATE DESC		
 	</select>
 	
-	<select id="unfixed_fan_board_list" resultType="vo.BoardPMemberViewVO">
+	<select id="unfixed_all_board_list" resultType="vo.BoardPMemberViewVO">
 		SELECT * FROM board_p_member_join_view
-		
+		WHERE B_ISFIXED ='0'
+		ORDER BY B_POSTED_DATE DESC
 	</select>
+	
+	<insert id="board_insert" parameterType="vo.BoardVO">
+		insert into board values(
+			seq_board_idx.nextval,
+			#{m_idx},
+			#{b_title},
+			#{b_content},
+			#{b_filename},
+			sysdate,
+			#{b_isfixed},
+			#{b_ip}
+		)
+	</insert>
+	
+	<select id="board_selectOne" parameterType="int" resultType="vo.BoardPMemberViewVO">
+		select * from board_p_member_join_view
+		where b_idx=#{b_idx}
+	</select>
+	
+	
 
 </mapper>
 

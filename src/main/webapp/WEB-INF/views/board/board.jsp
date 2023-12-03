@@ -1,48 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	board
-	<input type="button" value="home" onclick="location.href='/membership/'">
-</body>
-=======
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
-		<script>
-			let only_master = true; // true이면 관리자가 쓴글만 보이는 상태 기본값 true;			
-			
-			function managerfunc(){
-				only_master = true;
-
-				let board_post_list1 = document.getElementById("board_post_list1");
-				let board_post_list2 = document.getElementById("board_post_list2");
-
-				board_post_list1.style="display:none";
-				board_post_list2.style="display:block";
-				
-				alert('매니저버튼 눌림');
-				return;
+		<title>Board</title>
+		<style>
+			.b_list{
+				margin:0 auto;
+				width:90%;
 			}
+			.b_list tbody tr td{
+				text-align: center;
+			}
+			a{
+				text-decoration: none;
+			}
+		</style>
+	</head>
+	
+	<head>
+		<script>			
+			function managerfunc(){
+				let unfixed_master_list = document.getElementById("unfixed_master_list");
+				let unfixed_fan_list = document.getElementById("unfixed_fan_list");
+
+				unfixed_master_list.style="display:block";
+				unfixed_fan_list.style="display:none";				
+			}
+			
 			//이 버튼이 눌렸을때 board_post_list를 ajax로 갱신
-			function userfunc(){
-				only_master = false;				
+			function userfunc(){			
+				let unfixed_master_list = document.getElementById("unfixed_master_list");
+				let unfixed_fan_list = document.getElementById("unfixed_fan_list");
 
-				let board_post_list1 = document.getElementById("board_post_list1");
-				let board_post_list2 = document.getElementById("board_post_list2");
-
-				board_post_list1.style="display:block";
-				board_post_list2.style="display:none";
-				
-				
-				alert('유저버튼 눌림');
-				return;
+				unfixed_master_list.style="display:none";
+				unfixed_fan_list.style="display:block";				
 			}//이 버튼이 눌렸을때 board_post_list를 ajax로 갱신
 		</script>
 	</head>
@@ -55,60 +49,59 @@
 			<input type="button" value="유저버튼" onclick="userfunc()">	
 		</div>
 		
-		<div id="pinned_post_list1" style="display:none;">
-			<table>
+		<div id="fixed_list" style="background-color: gray">
+			<table border="1" class="b_list">
 				<tr>
-					<th></th>
-					<th></th>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
 				</tr>
-				<%-- <c:forEach var="r" items="${list1}">
+				<c:forEach var="i" items="${fixed_list}">
 					<tr>
-						<td></td>
-						<td></td>
+						<td>${i.m_idx}</td>
+						<td><a href="board_view?b_idx=${i.b_idx}">${i.b_title}</a></td>
+						<td>${i.m_username}</td>
 					</tr>
-				</c:forEach> --%>
+				</c:forEach> 
 			</table>
 		</div>
 		<br>
 		<hr>
 		<br>
 		
-		<div id="board_post_list1">
-			<table>
+		<div id="unfixed_master_list">
+			<table border="1" class="b_list">
 				<tr>
-					<th>번호</th><!-- 게시글번호 -->
+					<th>번호</th>
 					<th>제목</th>
 					<th>작성자</th>
 				</tr>
-				<c:forEach var="i" items="${list1}">
+				<c:forEach var="i" items="${unfixed_master_list}">
 					<tr>
-						<td>${i.b_idx}</td>
-						<td>${i.b_title}</td>
 						<td>${i.m_idx}</td>
+						<td><a href="board_view?b_idx=${i.b_idx}">${i.b_title}</a></td>
+						<td>${i.m_username}</td>
 					</tr>
-				</c:forEach>
+				</c:forEach> 
 			</table>
 		</div>
-		<br>
-		<hr>
-		<br>
-		
-		<div id="board_post_list2">
-			<table>
+				
+		<div id="unfixed_fan_list" style="display:none;">
+			<table border="1" class="b_list">
 				<tr>
-					<th>번호</th><!-- 게시글번호 -->
+					<th>번호</th>
 					<th>제목</th>
 					<th>작성자</th>
 				</tr>
-				<c:forEach var="i" items="${list2}">
+				<c:forEach var="i" items="${unfixed_fan_list}">
 					<tr>
-						<td>${i.b_idx}</td>
-						<td>${i.b_title}</td>
 						<td>${i.m_idx}</td>
+						<td><a href="board_view?b_idx=${i.b_idx}">${i.b_title}</a></td>
+						<td>${i.m_username}</td>
 					</tr>
-				</c:forEach>
+				</c:forEach> 
 			</table>
 		</div>
+		<input type="button" value="글쓰기" onclick="location.href='board_post';">
 	</body>
->>>>>>> 8d6115e8af3d73c42ec1b4588fe6e3f8d13605da
 </html>

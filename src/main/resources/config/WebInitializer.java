@@ -41,6 +41,4 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
         characterEncodingFilter.setForceEncoding(true);
         return new Filter[] { characterEncodingFilter };
     }
-	
-	
 }

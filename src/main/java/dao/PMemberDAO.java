@@ -20,6 +20,12 @@ public class PMemberDAO {
 	public int id_check(String m_id) {
 		return sqlSession.selectOne("pm.id_check", m_id);
 	}
+	
+	// 이메일 중복 체크
+	public int email_check(String m_email) {
+		return sqlSession.selectOne("pm.email_check", m_email);
+
+	}
 
 	// 회원가입하기
 	public int insert(PMemberVO vo) {
@@ -41,5 +47,20 @@ public class PMemberDAO {
 	// 탈퇴하기
 	public int del_update(PMemberVO vo) {
 		return sqlSession.update("pm.del_update", vo);
+	}
+	
+	// 아이디 수정
+	public int id_update(String m_id) {
+		return sqlSession.update("pm.modify_id", m_id);
+	}
+	
+	// 아이디 수정
+	public int password_update(String m_password) {
+		return sqlSession.update("pm.modify_password", m_password);
+	}
+
+	//수정하기
+	public int update(PMemberVO vo) {
+		return sqlSession.update("pm.update", vo);
 	}
 }
