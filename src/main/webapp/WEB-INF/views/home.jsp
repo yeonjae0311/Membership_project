@@ -4,25 +4,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="${pageContext.request.contextPath}/resources/css/home.css" rel="stylesheet" type="text/css">
-<script>
-	let isFilled = true;
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link href="${pageContext.request.contextPath}/resources/css/home.css" rel="stylesheet" type="text/css">
+	<script>
+		let isFilled = true;
+		
+		function change(event){
 	
-	function change(event){
-
-		if(isFilled){
-			isFilled = !isFilled;
-			
-			event.target.style.fill = "red";
-		}else{
-			isFilled = !isFilled;
-			
-			event.target.style.fill = "white";
+			if(isFilled){
+				isFilled = !isFilled;
+				
+				event.target.style.fill = "red";
+			}else{
+				isFilled = !isFilled;
+				
+				event.target.style.fill = "white";
+			}
 		}
-	}
-</script>
+	</script>
 </head>
 <body>
 	<input type="button" value="story" onclick="location.href='story'">
