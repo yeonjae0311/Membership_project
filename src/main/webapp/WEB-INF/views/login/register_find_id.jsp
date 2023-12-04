@@ -15,11 +15,12 @@
 			
 			<tr>
 			<th>이메일</th>
-			<td><input name="m_email" id="m_email"  >
-			<button id="auth_btn" type="button">이메일 인증하기</button><br>
-			<input class="mail_check_input" name="m_mail" disabled placeholder="인증번호를 적어주세요"><br>
-			<div id="mail_check_input_info" ></div>
-			<input disabled placeholder="인증번호가 아이디입니다"><br>
+			<td>
+				<input name="m_email" id="m_email"  >
+				<button id="auth_btn" type="button">이메일 인증하기</button><br>
+				<input class="mail_check_input" name="m_mail" disabled placeholder="인증번호를 적어주세요"><br>
+				<div id="mail_check_input_info" ></div>
+				<input disabled placeholder="인증번호가 아이디입니다"><br>
 			</td>
 			
 		</tr>

@@ -45,7 +45,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-				<input type="button" value="비밀번호 변경" onclick="newpwd_update(this.form)">
+				<input type="button" value="비밀번호 변경" onclick="newpwd_update(this.form)"> <!-- new_pwd_update -->
 				<input type="button" value="취소" onclick="location.href='main'">
 				</td>
 				

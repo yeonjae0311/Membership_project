@@ -28,7 +28,7 @@
 			height: 100%;
  			width: 100%;
  			object-fit: contain;
- 		}  	 
+ 		}
 	</style>
 	<script>
 		function select_all(select_all)  {

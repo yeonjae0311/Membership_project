@@ -91,8 +91,8 @@
    			<img id=item_detail_img src="${pageContext.request.contextPath}/resources/upload/${vo.i_detail_photo_name}">
    		</div>
    		<div id=shop_button_bar>
-   			<input type="button" value="장바구니" onclick=send_shopping_cart(this.form)>
-   			<input type="button" value="결제하기" onclick=send_shop_payment()>
+   			<input type="button" value="장바구니" onclick="send_shopping_cart(this.form)">
+   			<input type="button" value="결제하기" onclick="send_shop_payment()">
    		</div>
 	</form>
 </body>

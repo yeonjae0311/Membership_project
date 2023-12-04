@@ -30,6 +30,7 @@ public class BoardDAO {
 		return sqlSession.insert("b.board_insert",vo);
 	}
 	
+	// board_selectOne => board_select_one
 	public BoardPMemberViewVO board_selectOne(int b_idx) {
 		return sqlSession.selectOne("b.board_selectOne",b_idx);
 	}

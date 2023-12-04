@@ -48,10 +48,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from p_member where m_email=#{m_email}
 	</select>
 	
+	<!-- del => delete -->
 	<update id="del_update" parameterType="pmember">
 		update p_member set m_id = 'del'+#{m_id} where m_idx=#{m_idx}
 	</update>
 	
+	<!-- modify => update -->
 	<update id="modify_id" parameterType="pmember">
 		update p_member set m_ip=#{m_ip}
 	</update>
