@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+*{
+	border: 1px solid black;
+}
+
+#user_edit{
+	margin: auto;
+	width: 70%;
+}
+
+#member_info_head_div{
+	margin: auto;
+	width: 80%;
+	position: relative;
+}
+
+#member_info_head_div > div {
+	margin: auto;
+}
+
+#member_photo{
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	margin: 4%;
+	display: inline-block;
+}
+
+#user_info_form{
+	position: absolute;
+	padding-top: 5%;
+	display: inline-block;
+	width:max-content;
+}
+
+.member_info_head{
+	padding: 5% 0 5% 5%;
+	display: inline-block;
+}
+
+#member_info_body_div{
+	margin: auto;
+	width: 80%;
+	position: relative;
+	padding-top: 5%;
+}
+
+.member_info_body{
+	margin: 4% 0;
+}
+
+.member_info_body > img {
+	width: 50px;
+	height: 50px;
+	display: inline-block;
+}
+
+.member_info_body > div {
+	display: inline-block;
+	position: absolute;
+	padding-top: 3%;
+	padding-left: 5%;
+}

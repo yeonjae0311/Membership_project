@@ -22,15 +22,16 @@
 	</head>
 	<body>	
 		<div>
-			<img src="resources/img/title_04.gif" >	
+			<img src="${pageContext.request.contextPath}/resources/img/logo.jpg" >	
+			<!-- 로고 사진 필요 -->
 		</div>
-		
+		<input type="button" value="상품 등록하기" onclick="location.href='item_insert'">
 		<div>
 			<c:forEach var="vo" items="${list}" varStatus="number">
 				<form id="shop_item_one_${number.current}" method="POST">
 					<div onclick="shop_item_select(document.getElementById('shop_item_one_${number.current}'))" style="cursor:pointer;">
 						<div class="item_one_img_div">
-							<img id="item_one" src="${pageContext.request.contextPath}/resources/upload/${vo.i_photo_name}">
+							<img id="item_one" src="${pageContext.request.contextPath}/resources/upload/${vo.i_detail_photo_name}">
 						</div>
 						<input type="hidden" name="i_idx" value="${vo.i_idx}">
 						<input type="hidden" name="i_name" value="${vo.i_name}">

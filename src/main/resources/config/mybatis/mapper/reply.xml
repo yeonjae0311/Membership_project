@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="r">
+	
+	<!-- 댓글 추가 -->
+	<insert id="insert_reply" parameterType="vo.ReplyVO">
+		insert into reply values(
+		seq_reply_idx.nextval,
+		#{r_content},
+		sysdate,
+		#{b_idx},
+		#{m_idx},
+		#{r_ip}
+		)
+	</insert>
+
+</mapper>

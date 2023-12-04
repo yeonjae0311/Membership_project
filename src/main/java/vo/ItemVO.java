@@ -10,7 +10,8 @@ import lombok.Setter;
 public class ItemVO {
 	private int i_idx,
 				i_price,
-				i_amount;
+				i_amount,
+				cd_count;
     private String i_name,
     			   i_color,
     			   i_photo_name,
