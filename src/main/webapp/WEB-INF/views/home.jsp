@@ -11,7 +11,6 @@
 		let isFilled = true;
 		
 		function change(event){
-	
 			if(isFilled){
 				isFilled = !isFilled;
 				
@@ -39,6 +38,7 @@
 			<input type="button" value="마이페이지" onclick="location.href='user_edit'">
 		</c:when>
 	</c:choose>
+	<input type="button" value="결제" onclick="location.href='kakao_pay'">
 	
 	<div>
 		<svg id="svg_test"

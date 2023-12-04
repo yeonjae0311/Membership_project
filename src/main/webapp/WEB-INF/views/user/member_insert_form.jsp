@@ -18,8 +18,6 @@
 			let m_password = document.getElementById("m_password");
 			let m_check_password = document.getElementById("m_check_password");
 			
-			
-			
 			if(m_id.value == ''){
 				alert('아이디를 입력하세요');
 				return;
@@ -76,8 +74,6 @@
 		function change(){
 			b_id_check = false;
 		}
-		
-		
 	</script>
 </head>
 <body>
@@ -128,18 +124,17 @@
 				<input class="mail_check_input" disabled placeholder="인증번호를 적어주세요"><br>
 				<div id="mail_check_input_info" ></div>
 				</td>
-				
 			</tr>
 			<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/login_js/email.js"></script>
 			<tr>
 				<th>프로필사진 등록</th>
-				<td><input name="m_name" id="m_name"></td>
+				<td><input type="file" name="m_photo_name" id="m_photo_name"></td>
 			</tr>
-			
 			<tr>
 				<td colspan="2" align="center">
-				<input type="button" value="가입" onclick="send(this.form)"> 
-				<input type="button" value="취소" onclick="location.href='main'"></td>
+					<input type="button" value="가입" onclick="send(this.form)"> 
+					<input type="button" value="취소" onclick="location.href='main'">
+				</td>
 			</tr>
 		</table>
 	</form>

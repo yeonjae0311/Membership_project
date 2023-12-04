@@ -21,13 +21,11 @@
             merchant_uid : 'merchant_' + new Date().getTime(),
             name : 'membership 1개월',
             amount : 9900,
-            buyer_email : ${id.m_email}, 
-            buyer_name : ${id.m_name},
-            buyer_tel : ${id.tel},
-            buyer_addr : ${id.addr1},
-            buyer_postcode : '123-456',
-            //m_redirect_url : 'http://www.naver.com'
-        }, function(rsp) {
+            buyer_email : '${id.m_email}', 
+            buyer_name : '${id.m_name}',
+            buyer_tel : '${id.m_tel}',
+            buyer_addr : '${id.m_addr1}',
+            buyer_postcode: "01181"        }, function(rsp) {
             if ( rsp.success ) {
                 //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
                 jQuery.ajax({

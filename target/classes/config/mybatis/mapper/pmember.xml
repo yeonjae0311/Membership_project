@@ -15,29 +15,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="insert" parameterType="pmember">
 		insert into p_member values(
-		seq_member_idx.nextval,
-<<<<<<< HEAD
-		#{m_username},
-		#{m_password},
-		#{m_id},
-		#{m_name},
-=======
-		${m_nsername},
-		#{m_password},
-		#{m_id},
-		#{m_name},
-		#{m_username},
->>>>>>> 9527fe2989bdf30e59bcf9165b2f8dc7fb02f821
-		#{m_tel},
-		#{m_email},
-		#{m_photo_name},
-		0, 
-		0,
-		sysdate,
-		null,
-		null,
-		null,
-		#{m_date_of_birth}
+			seq_member_idx.nextval,
+			#{m_username},
+			#{m_password},
+			#{m_id},
+			#{m_name},
+			#{m_tel},
+			#{m_email},
+			#{m_photo_name},
+			0, 
+			0,
+			sysdate,
+			null,
+			null,
+			null,
+			#{m_date_of_birth}
 		)
 		<!-- 시퀀스 추가 예정 -->
 		<!-- db에 맞게 컬럼 수정필요  -->
@@ -60,10 +52,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update p_member set m_id='del'||#{m_id} where m_idx=#{m_idx}
 	</update>
 	
-<<<<<<< HEAD
 	<!-- modify => update -->
-=======
->>>>>>> 9527fe2989bdf30e59bcf9165b2f8dc7fb02f821
 	<update id="modify_id" parameterType="pmember">
 		update p_member set m_ip=#{m_ip}
 	</update>
@@ -72,7 +61,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update p_member set m_password=#{m_password}
 	</update>
 	
-<<<<<<< HEAD
 	<update id="user_info_update" parameterType="pmember">
 		update p_member set m_name=#{m_name},
 							m_tel=#{m_tel},
@@ -90,16 +78,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 							m_photo_name=#{m_photo_name}
 							where m_idx=#{m_idx}
 	</update>
-	
-=======
-	<update id="update" parameterType="pmember">
-		update p_member set m_name=#{m_name},
-							m_tel=#{m_tel},
-							m_date_of_birth=#{m_date_of_birth},
-							m_email=#{m_email}
-							where idx=#{m_idx}
-	</update>
->>>>>>> 9527fe2989bdf30e59bcf9165b2f8dc7fb02f821
 </mapper>
 
 

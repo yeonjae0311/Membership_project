@@ -38,10 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 	
-<<<<<<< HEAD
 	<!-- board_selectOne => board_select_one -->
-=======
->>>>>>> 9527fe2989bdf30e59bcf9165b2f8dc7fb02f821
 	<select id="board_selectOne" parameterType="int" resultType="vo.BoardPMemberViewVO">
 		select * from board_p_member_join_view
 		where b_idx=#{b_idx}
