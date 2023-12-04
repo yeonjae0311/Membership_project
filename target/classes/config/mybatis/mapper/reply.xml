@@ -16,6 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 
+<<<<<<< HEAD
 	<select id="select_reply_list" resultType="vo.BoardPMemberReplyViewVO" parameterType="int">
 		select * from board_p_member_reply_join_view
 		WHERE b_idx = #{b_idx} 
@@ -23,4 +24,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY R_DATE DESC
 	</select>
 
+=======
+>>>>>>> 9527fe2989bdf30e59bcf9165b2f8dc7fb02f821
 </mapper>

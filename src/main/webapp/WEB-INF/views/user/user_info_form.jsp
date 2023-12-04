@@ -24,6 +24,7 @@
 			
 			sendRequest(url,param,del_check,"POST");
 	 	}
+		
 	 	function del_check(){
 			let res = args[0].param;
 				

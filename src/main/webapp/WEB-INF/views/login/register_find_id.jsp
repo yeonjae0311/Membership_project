@@ -22,7 +22,6 @@
 				<div id="mail_check_input_info" ></div>
 				<input disabled placeholder="인증번호가 아이디입니다"><br>
 			</td>
-			
 		</tr>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/login_js/email.js"></script>
 		<tr>

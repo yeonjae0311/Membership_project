@@ -30,7 +30,10 @@ public class BoardDAO {
 		return sqlSession.insert("b.board_insert",vo);
 	}
 	
+<<<<<<< HEAD
 	// board_selectOne => board_select_one
+=======
+>>>>>>> 9527fe2989bdf30e59bcf9165b2f8dc7fb02f821
 	public BoardPMemberViewVO board_selectOne(int b_idx) {
 		return sqlSession.selectOne("b.board_selectOne",b_idx);
 	}

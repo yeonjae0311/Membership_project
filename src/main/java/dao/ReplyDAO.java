@@ -4,7 +4,10 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+<<<<<<< HEAD
 import vo.BoardPMemberReplyViewVO;
+=======
+>>>>>>> 9527fe2989bdf30e59bcf9165b2f8dc7fb02f821
 import vo.ReplyVO;
 
 public class ReplyDAO {
@@ -18,8 +21,11 @@ public class ReplyDAO {
 		return sqlSession.insert("r.insert_reply",vo);
 	}
 	
+<<<<<<< HEAD
 	public List<BoardPMemberReplyViewVO> select_reply_list(int b_idx){
 		return sqlSession.selectList("r.select_reply_list",b_idx);
 	}
 	
+=======
+>>>>>>> 9527fe2989bdf30e59bcf9165b2f8dc7fb02f821
 }

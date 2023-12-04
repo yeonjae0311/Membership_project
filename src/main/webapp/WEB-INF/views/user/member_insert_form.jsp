@@ -14,7 +14,6 @@
 		let b_email_check = false;
 		
 		function send(f){
-			
 			let m_id = document.getElementById("m_id");	
 			let m_password = document.getElementById("m_password");
 			let m_check_password = document.getElementById("m_check_password");

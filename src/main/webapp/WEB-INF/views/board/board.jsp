@@ -20,8 +20,6 @@
 			text-decoration: none;
 		}
 	</style>
-</head>
-<head>
 	<script>			
 		function managerfunc(){
 			let unfixed_master_list = document.getElementById("unfixed_master_list");

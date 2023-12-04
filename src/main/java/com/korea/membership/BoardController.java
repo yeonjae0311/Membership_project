@@ -117,6 +117,7 @@ public class BoardController {
 		}		
 	}
 	
+<<<<<<< HEAD
 	@RequestMapping("board_reply")
 	public String board_reply(ReplyVO vo) {
 		vo.setR_ip(request.getRemoteAddr());
@@ -132,6 +133,8 @@ public class BoardController {
 		return null;
 	}
 	
+=======
+>>>>>>> 9527fe2989bdf30e59bcf9165b2f8dc7fb02f821
 	@RequestMapping("board_view")
 	public String board_view(Model model,int b_idx) {
 		//게시물 한건 조회
@@ -139,6 +142,7 @@ public class BoardController {
 		
 		model.addAttribute("vo",vo);
 		
+<<<<<<< HEAD
 		List<BoardPMemberReplyViewVO> reply_list = reply_dao.select_reply_list(b_idx);
 		
 		model.addAttribute("reply_list",reply_list);
@@ -147,6 +151,10 @@ public class BoardController {
 	}
 	
 	
+=======
+		return Path.BoardPath.make_path("board_view");
+	}
+>>>>>>> 9527fe2989bdf30e59bcf9165b2f8dc7fb02f821
 
 
 }

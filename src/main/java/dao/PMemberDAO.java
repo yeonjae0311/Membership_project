@@ -56,12 +56,17 @@ public class PMemberDAO {
 		return sqlSession.update("pm.modify_id", m_id);
 	}
 	
+<<<<<<< HEAD
 	// 비밀번호 수정
+=======
+	// 아이디 수정
+>>>>>>> 9527fe2989bdf30e59bcf9165b2f8dc7fb02f821
 	public int password_update(String m_password) {
 		return sqlSession.update("pm.modify_password", m_password);
 	}
 
 	//수정하기
+<<<<<<< HEAD
 	public int user_info_update(PMemberVO vo) {
 		return sqlSession.update("pm.user_info_update", vo);
 	}
@@ -76,4 +81,9 @@ public class PMemberDAO {
 		return sqlSession.update("pm.user_profile_update", vo);
 	}
 	
+=======
+	public int update(PMemberVO vo) {
+		return sqlSession.update("pm.update", vo);
+	}
+>>>>>>> 9527fe2989bdf30e59bcf9165b2f8dc7fb02f821
 }
