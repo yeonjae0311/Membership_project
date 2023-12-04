@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -28,6 +29,10 @@ public class StoryDAO {
 	
 	public StoryLikedVO check_isliked(HashMap<String, Object> map) {
 		return sqlSession.selectOne("s.check_isliked",map);
+	}
+	
+	public List<StoryVO> select_story_list(int m_idx){
+		return sqlSession.selectList("s.select_story_list_with_m_idx",m_idx);
 	}
 	
 }

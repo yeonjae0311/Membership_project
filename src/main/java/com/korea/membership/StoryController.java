@@ -2,6 +2,7 @@ package com.korea.membership;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -36,32 +37,16 @@ public class StoryController {
 	@RequestMapping("story")
 	public String story(String s_idx,Model model) {	
 		// s_idx가 String임을 주의
-		
-		//스토리사진 		
-		if(s_idx==null || s_idx.isEmpty()) {
-			s_idx="2";
-		}
-		StoryVO svo = story_dao.select_story_one(s_idx);
-		
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("s_idx", s_idx);
 		PMemberVO membervo = (PMemberVO) session.getAttribute("id");
 		if(membervo==null) {
 			return "redirect:main";
 		}
 		int m_idx = membervo.getM_idx();
-		map.put("m_idx",m_idx);
-		//svo의 m_idx는 게시글을 보고있는 사람의 m_idx
+		/////////////////////////////////////////////////////////////////
+		List<StoryVO> svo_list = story_dao.select_story_list(m_idx);
 		
-		StoryLikedVO isliked = story_dao.check_isliked(map);
-		System.out.println(svo);
-//		System.out.println(""+isliked);
-		if(isliked==null) {
-			svo.setSl_isliked("0");
-		}else {
-			svo.setSl_isliked(isliked.getSl_isliked());
-		}		
-		model.addAttribute("svo",svo);		
+		model.addAttribute("svo_list",svo_list);		
+		
 		return Path.StoryPath.make_path("story");
 	}
 	

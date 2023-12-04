@@ -54,13 +54,13 @@ public class ServletContext implements WebMvcConfigurer {
 	}
 	
 	@Bean
-<<<<<<< HEAD
 	public StoryController story_controller(StoryDAO story_dao) {
 		return new StoryController(story_dao);
-=======
+	}
+	
+	@Bean
 	public ReplyConroller reply_controller(ReplyDAO reply_dao) {
 		return new ReplyConroller(reply_dao);
->>>>>>> 머지시도새브랜치
 	}
 
 	@Bean

@@ -25,21 +25,7 @@ public class ReplyConroller {
 	public ReplyConroller(ReplyDAO reply_dao) {
 		this.reply_dao = reply_dao;
 	}
-	
-	@RequestMapping("board_reply")
-	public String board_reply(ReplyVO vo) {
-		vo.setR_ip(request.getRemoteAddr());
-		PMemberVO pm_vo=(PMemberVO)session.getAttribute("id");
-		vo.setM_idx(pm_vo.getM_idx());
-		
-		int res = reply_dao.insert_reply(vo);
-		
-		if(res>0) {
-			return "redirect:board_view?b_idx="+vo.getB_idx();
-		}		
-		
-		return null;
-	}
+
 	
 	
 	
