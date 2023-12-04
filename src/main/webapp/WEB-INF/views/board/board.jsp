@@ -57,54 +57,52 @@
 				<th>제목</th>
 				<th>작성자</th>
 			</tr>
-			<c:forEach var="i" items="${fixed_list}">
+				<c:forEach var="i" items="${fixed_list}">
+					<tr>
+						<td>${i.b_idx}</td>
+						<td><a href="board_view?b_idx=${i.b_idx}">${i.b_title}</a></td>
+						<td>${i.m_username}</td>
+					</tr>
+				</c:forEach> 
+			</table>
+		</div>
+		<br>
+		<hr>
+		<br>
+		
+		<div id="unfixed_master_list">
+			<table border="1" class="b_list">
 				<tr>
-					<td>${i.m_idx}</td>
-					<td>
-						<a href="board_view?b_idx=${i.b_idx}">${i.b_title}</a>
-					</td>
-					<td>${i.m_username}</td>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
 				</tr>
-			</c:forEach> 
-		</table>
-	</div>
-	<br>
-	<hr>
-	<br>
-	
-	<div id="unfixed_master_list">
-		<table border="1" class="b_list">
-			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-			</tr>
-			<c:forEach var="i" items="${unfixed_master_list}">
+				<c:forEach var="i" items="${unfixed_master_list}">
+					<tr>
+						<td>${i.b_idx}</td>
+						<td><a href="board_view?b_idx=${i.b_idx}">${i.b_title}</a></td>
+						<td>${i.m_username}</td>
+					</tr>
+				</c:forEach> 
+			</table>
+		</div>
+				
+		<div id="unfixed_fan_list" style="display:none;">
+			<table border="1" class="b_list">
 				<tr>
-					<td>${i.m_idx}</td>
-					<td><a href="board_view?b_idx=${i.b_idx}">${i.b_title}</a></td>
-					<td>${i.m_username}</td>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
 				</tr>
-			</c:forEach> 
-		</table>
-	</div>
-			
-	<div id="unfixed_fan_list" style="display:none;">
-		<table border="1" class="b_list">
-			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-			</tr>
-			<c:forEach var="i" items="${unfixed_fan_list}">
-				<tr>
-					<td>${i.m_idx}</td>
-					<td><a href="board_view?b_idx=${i.b_idx}">${i.b_title}</a></td>
-					<td>${i.m_username}</td>
-				</tr>
-			</c:forEach> 
-		</table>
-	</div>
-	<input type="button" value="글쓰기" onclick="location.href='board_post';">
-</body>
+				<c:forEach var="i" items="${unfixed_fan_list}">
+					<tr>
+						<td>${i.b_idx}</td>
+						<td><a href="board_view?b_idx=${i.b_idx}">${i.b_title}</a></td>
+						<td>${i.m_username}</td>
+					</tr>
+				</c:forEach> 
+			</table>
+		</div>
+		<input type="button" value="글쓰기" onclick="location.href='board_post';">
+	</body>
 </html>

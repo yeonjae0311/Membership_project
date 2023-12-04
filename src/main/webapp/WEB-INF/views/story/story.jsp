@@ -64,11 +64,12 @@
 			let param = 'num='+num+'&m_idx=${m_username.m_idx}';
 		}
 	</script>
+	
 </head>
 <body>
 	story
 	<input type="button" value="home" onclick="location.href='/membership/'">
-
+	
 	<input type="button" value="LEFT" onclick="left()">
 	<div id="story_photo">
 		<img id="gallery" src="${pageContext.request.contextPath}/resources/img/newjeans1.jpg" title="" alt="이미지없음">
@@ -77,13 +78,19 @@
 	
 	<input type="button" value="LIKE" onclick="like()">
 	<!-- 이 윗부분을 jsp include로 해야할듯? -->
-	
+
 	<div id="comment_form">
 		<table>
 			<tr>
 				<th></th>
 				<th></th>
 			</tr>
+			<%-- <c:forEach var="r" items="${list}">
+				<tr>
+					<td></td>
+					<td></td>
+				</tr>
+			</c:forEach> --%>
 		</table>
 	</div>
 </body>

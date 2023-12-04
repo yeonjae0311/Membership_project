@@ -38,10 +38,10 @@
 			width: 300px;
 		}	
 						  		 
-			#item_detail_img{
-				height: 100%;
-				width: 100%;
-			}			  		 
+		#item_detail_img{
+			height: 100%;
+			width: 100%;
+		}
 	</style>
 	<script>
 		function send_shopping_cart(f){
