@@ -145,8 +145,4 @@ public class BoardController {
 		
 		return Path.BoardPath.make_path("board_view");
 	}
-	
-	
-
-
 }
