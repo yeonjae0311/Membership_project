@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.HashMap;
+
 import org.apache.ibatis.session.SqlSession;
 
 import vo.PMemberVO;
@@ -39,8 +41,8 @@ public class PMemberDAO {
 	}
 
 	// 회원 탈퇴시 해당 아이디 조회
-	public PMemberVO select_one(int idx) {
-		PMemberVO vo = sqlSession.selectOne("pm.select_one", idx);
+	public PMemberVO select_one(int m_idx) {
+		PMemberVO vo = sqlSession.selectOne("pm.select_one", m_idx);
 		return vo;
 	}
 
@@ -54,13 +56,24 @@ public class PMemberDAO {
 		return sqlSession.update("pm.modify_id", m_id);
 	}
 	
-	// 아이디 수정
+	// 비밀번호 수정
 	public int password_update(String m_password) {
 		return sqlSession.update("pm.modify_password", m_password);
 	}
 
 	//수정하기
-	public int update(PMemberVO vo) {
-		return sqlSession.update("pm.update", vo);
+	public int user_info_update(PMemberVO vo) {
+		return sqlSession.update("pm.user_info_update", vo);
 	}
+	
+	//프로필 사진 수정하기
+	public int photo_upload(HashMap<String, Object> map) {
+		return sqlSession.update("pm.photo_upload", map);
+	}
+	
+	//프로필 수정
+	public int user_profile_update(PMemberVO vo) {
+		return sqlSession.update("pm.user_profile_update", vo);
+	}
+	
 }
