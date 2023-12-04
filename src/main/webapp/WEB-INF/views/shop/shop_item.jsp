@@ -87,6 +87,7 @@
 			    </c:forEach>	   
 			</select>
    		</div>
+   		<br><br><br>
    		<div class=item_detail_img_div>		
    			<img id=item_detail_img src="${pageContext.request.contextPath}/resources/upload/${vo.i_detail_photo_name}">
    		</div>

@@ -20,8 +20,13 @@ public class CartDetailDAO {
 	}
 	
 	// 장바구니 전체 조회
-	public List<CartDetailVO> cart_select_list() {
-		return sqlSession.selectList("cd.cart_select_list");
+	public List<CartDetailVO> cart_select_list(int m_idx) {
+		return sqlSession.selectList("cd.cart_select_list", m_idx);
+	}
+	
+	// 장바구니 개수 변경
+	public int cart_item_count_change(Map<String, Integer> map) {
+		return sqlSession.update("cd.cart_item_count_change", map);
 	}
 
 }
