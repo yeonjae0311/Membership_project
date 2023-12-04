@@ -68,13 +68,21 @@
 	</head>
 	<body>
 		story
-		<input type="button" value="home" onclick="location.href='/membership/'">
-		
-		<input type="button" value="LEFT" onclick="left()">
-		<div id="story_photo"><img id="gallery" src="${pageContext.request.contextPath}/resources/img/newjeans1.jpg" title="" alt="이미지없음"></div>
-		<input type="button" value="RIGHT" onclick="right()">
-		
+		<div id="content">
+			<img src="${pageContext.request.contextPath}/resources/upload/story/${svo.s_filename}" alt="이미지 유실">
+		</div>
+		<div id="liked">
+			${svo.sl_isliked}
+		</div>
+		<input type="button" value="LEFT" onclick="left()">	
+		<input type="button" value="RIGHT" onclick="right()">	
 		<input type="button" value="LIKE" onclick="like()">
+		<%-- <input type="button" value="home" onclick="location.href='/membership/'">
+		
+		
+		<div id="story_photo"><img id="gallery" src="${pageContext.request.contextPath}/resources/img/newjeans1.jpg" title="" alt="이미지없음"></div>
+		
+		
 		<!-- 이 윗부분을 jsp include로 해야할듯? -->
 	
 		<div id="comment_form">
@@ -83,13 +91,13 @@
 					<th></th>
 					<th></th>
 				</tr>
-				<%-- <c:forEach var="r" items="${list}">
+				<c:forEach var="r" items="${list}">
 					<tr>
 						<td></td>
 						<td></td>
 					</tr>
-				</c:forEach> --%>
+				</c:forEach>
 			</table>
-		</div>
+		</div> --%>
 	</body>
 </html>

@@ -21,6 +21,7 @@
 		<mapper resource="config/mybatis/mapper/pmember.xml" />
 		<mapper resource="config/mybatis/mapper/cart.xml" />
 		<mapper resource="config/mybatis/mapper/reply.xml" />
+		<mapper resource="config/mybatis/mapper/story.xml" />
 	</mappers>
 	
 </configuration>

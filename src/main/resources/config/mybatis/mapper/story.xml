@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="s">
+	
+	<insert id="story_post_insert" parameterType="vo.StoryVO">
+		insert into story values(
+			seq_story_idx.nextval,
+			#{m_idx},
+			NULL,
+			#{s_content},
+			#{s_filename},
+			sysdate,
+			sysdate+1
+		)
+	</insert>
+	
+	<select id="select_story_one" parameterType="java.util.HashMap" resultType="vo.StoryVO">
+		select * from story_story_is_liked_join_view
+		where s_idx=#{s_idx} and m_idx=#{m_idx}
+	</select>
+	
+	<select id="select_story_one_by_s_idx" parameterType="String" resultType="vo.StoryVO">
+		select * from story
+		where s_idx=#{s_idx}
+	</select>
+	
+	<select id="check_isliked" parameterType="java.util.HashMap" resultType="vo.StoryLikedVO">
+		SELECT * FROM STORY_ISLIKED
+		where s_idx=#{s_idx} and m_idx=#{m_idx}
+	</select>
+</mapper>

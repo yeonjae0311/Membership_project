@@ -1,5 +1,7 @@
 package vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,5 +13,7 @@ public class StoryVO {
     private String s_content,
     			   s_postedDate,
     			   s_title,
-    			   s_filename;
+    			   s_filename,
+    			   sl_isliked;
+    private MultipartFile s_file;
 }

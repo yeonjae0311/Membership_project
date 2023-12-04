@@ -14,12 +14,14 @@ import com.korea.membership.BoardController;
 import com.korea.membership.MainController;
 import com.korea.membership.MemberController;
 import com.korea.membership.ShopController;
+import com.korea.membership.StoryController;
 
 import dao.BoardDAO;
 import dao.CartDetailDAO;
 import dao.ItemDAO;
 import dao.PMemberDAO;
 import dao.ReplyDAO;
+import dao.StoryDAO;
 
 @Configuration
 @EnableWebMvc
@@ -48,6 +50,11 @@ public class ServletContext implements WebMvcConfigurer {
 	@Bean
 	public BoardController board_controller(BoardDAO board_dao,ReplyDAO reply_dao) {
 		return new BoardController(board_dao,reply_dao);
+	}
+	
+	@Bean
+	public StoryController story_controller(StoryDAO story_dao) {
+		return new StoryController(story_dao);
 	}
 
 	@Bean
