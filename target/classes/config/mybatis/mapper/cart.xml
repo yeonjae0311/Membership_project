@@ -10,12 +10,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  <result column="i_price" property="i_price" jdbcType="VARCHAR"/>
 	  <result column="i_color" property="i_color" jdbcType="VARCHAR"/>
 	  <result column="i_photo_name" property="i_photo_name" jdbcType="VARCHAR"/>
+	  <result column="cd_count" property="cd_count"/>
 	</resultMap>
 
 	<!-- 장바구니에 상품 추가 -->
-	<insert id="cart_insert" parameterType="int">
-		insert into cart_detail values(#{m_idx}, #{i_idx}, 1)
-	</insert>
+	<update id="cart_insert" parameterType="java.util.HashMap">
+		MERGE INTO CART_DETAIL cd 
+		USING DUAL
+		   ON (i_idx = #{i_idx} AND m_idx = #{m_idx})
+		WHEN MATCHED THEN
+			UPDATE SET cd_count = cd_count+1
+		WHEN NOT MATCHED THEN
+		  	 insert (m_idx, i_idx, cd_count) values(#{m_idx}, #{i_idx}, 1)
+	</update>
 	
 	<!-- 장바구니 전체 조회 -->
 	<select id="cart_select_list" resultMap="cart_list">

@@ -4,12 +4,12 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
-	<head>
+<head>
 	<meta charset="UTF-8">
 	<title>NewJeans Membership</title>
 	<link rel="stylesheet" href="resources/css/item_insert.css">
 	<script>
-
+	
 		/* // 옵션 추가
 		function add(){
 			 let element = document.createElement("input");
@@ -17,9 +17,13 @@
 		     document.getElementById("option").appendChild(element);
 		} 
 		 */
+<<<<<<< HEAD
 		 function upload(){
-
+	
 			 const item_upload = document.getElementById(item_upload);
+=======
+		 function upload(item_upload){
+>>>>>>> 9527fe2989bdf30e59bcf9165b2f8dc7fb02f821
 			 
 			 if(item_upload.i_name.value == ''){
 				alert('상품명을 입력하세요');
@@ -29,8 +33,24 @@
 			 
 			 item_upload.submit();
 		 }
-		 
 	</script>
+<<<<<<< HEAD
+</head>
+<body>
+	<form id="item_upload" action="item_insert_upload" method="POST" enctype="multipart/form-data">
+		상품 이름 : <input name="i_name"><br>		
+		상품 가격 : <input name="i_price">원<br>
+		상품 색상 : <input name="i_color"><br>
+		재고 수량 : <input type="number" name="i_amount" min="1" max="99"><br>
+		상품 이미지 : <input type="file" name="i_photo"><br> 
+   		상품 상세 이미지 : <input type="file" name="i_detail_photo"><br>	
+    	<div id=button_bar>
+    		<input type="button" value="등록하기" onclick="upload()">
+    		<input type="button" value="취소하기" onclick="location.href='shop'">
+    	</div>
+   	</form>
+</body>
+=======
 	</head>
 	<body>
 		<form id="item_upload" action="item_insert_upload" method="POST" enctype="multipart/form-data">
@@ -41,11 +61,12 @@
 			상품 이미지 : <input type="file" name="i_photo"><br> 
     		상품 상세 이미지 : <input type="file" name="i_detail_photo"><br>	
 	    	<div id=button_bar>
-	    		<input type="button" value="등록하기" onclick="upload()">
+	    		<input type="button" value="등록하기" onclick="upload(this.form)">
 	    		<input type="button" value="취소하기" onclick="location.href='shop'">
 	    	</div>
     	</form>
 	</body>
+>>>>>>> 9527fe2989bdf30e59bcf9165b2f8dc7fb02f821
 </html>
 
 

@@ -3,43 +3,32 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-	<head>
+<head>
 	<meta charset="UTF-8">
 	<title>user_info_form</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
 	<script>
-	function modify(f){
-		f.action('user_info_modify_form');
-		f.method('post');
-		f.submit();
-	}
-	
-	 function leave(f){
-		if(!confirm("정말 탈퇴하시겠습니까?")) {
-			return;
+		function modify(f){
+			f.action="user_info_modify_form";
+			f.method="POST";
+			f.submit();
 		}
-		
-		let url = "del";
-		let param = "m_idx"+${id.m_idx};
-		
-		sendRequest(url,param,del_check,"POST");
-		
-	 }
-	 
-	 function del_check(){
-		 if(xhr.readyState == 4 && xhr.status == 200){
-				let data = xhr.responseText;
-				//"[{'param':'yes'}]" 문자열 형태로 데이터를 받아옴
-				
-				let json = (new Function('return'+data))();
-				
-				if(json[0].param == 'yes'){
-					alert("탈퇴 성공");
-					location.href="logout";
-				} else {
-					alert("탈퇴 실패");
-				}
+	
+		function leave(f){
+			if(!confirm("정말 탈퇴하시겠습니까?")) {
+				return;
 			}
+		
+			let url = "del";
+			let param = "m_idx="+${id.m_idx};
+			
+			sendRequest(url,param,del_check,"POST");
+	 	}
+		
+	 	function del_check(){
+			let res = args[0].param;
+				
+			let form = document.getElementsByTagName("form")[0];
 		} 
 	</script>
 	</head>
@@ -50,8 +39,9 @@
 			<div> 연락처 : ${id.m_tel }		</div>
 			<div> 생년월일 : ${id.m_date_of_birth } </div>		
 			<div> 이메일 : ${id.m_email }		</div>
+			<input type="hidden" name="m_idx" value="${id.m_idx }">
+			<input type="button" name="modify_form" value="수정하기" onclick="modify(this.form)">
+			<input type="button" value="회원탈퇴" onclick="leave(this.form)">
 		</form>
-		<input type="button" name="modify_form" value="수정하기" onclick="modify(this.form)">
-		<input type="button" value="회원탈퇴" onclick="leave(this.form)">
 	</body>
 </html>

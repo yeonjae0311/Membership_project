@@ -1,5 +1,6 @@
 package com.korea.membership;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -133,11 +134,21 @@ public class MemberController {
 
 		return "[{'res':'no'}]";
 	}
+	
+	@RequestMapping("member_insert")
+	public String insert_member(PMemberVO vo) {
+		int res = pmember_dao.insert(vo);
+		if(res>0) {
+			session.setAttribute("id", vo);
+			return "redirect:/";
+		}
+		return null;
+	}
 
 	@RequestMapping("del")
 	@ResponseBody
-	public String del(int idx) {
-		PMemberVO basevo = pmember_dao.select_one(idx);
+	public String del(int m_idx) {
+		PMemberVO basevo = pmember_dao.select_one(m_idx);
 
 		int res = pmember_dao.del_update(basevo);
 
@@ -224,7 +235,6 @@ public class MemberController {
 	
 	@RequestMapping("register_modify_id")
 	public String register_modify_id(String id) {
-		
 		int res = pmember_dao.id_update(id);
 		
 		if (res > 0) {
@@ -238,7 +248,7 @@ public class MemberController {
 	@RequestMapping("register_modify_password")
 	public String register_modify_password(String password) {
 		int res = pmember_dao.password_update(password);
-		
+
 		if (res > 0) {
 			return "redirect:register_modify_password";
 		} else {
@@ -250,19 +260,51 @@ public class MemberController {
 	@RequestMapping("kakao_pay")
 	public String kakao_pay() {
 		return Path.LoginPath.make_path("kakao_pay");
-		
 	}
 
 	@RequestMapping("user_info_modify_form")
-	public String user_modify_form(Model model, int idx) {
-		PMemberVO vo = pmember_dao.select_one(idx);
+	public String user_modify_form(Model model, int m_idx) {
+		PMemberVO vo = pmember_dao.select_one(m_idx);
 		model.addAttribute("vo", vo);
 		return Path.UserPath.make_path("user_info_modify_form");
 	}
 
 	@RequestMapping("user_info_modify")
 	public String user_modify(PMemberVO vo) {
-		int res = pmember_dao.update(vo);
+		int res = pmember_dao.user_info_update(vo);
+		PMemberVO basevo = (PMemberVO) session.getAttribute("id");
+		basevo.setM_name(vo.getM_name());
+		basevo.setM_tel(vo.getM_tel());
+		basevo.setM_email(vo.getM_email());
+		session.setAttribute("id", basevo);
 		return "redirect:user_info_form";
+	}
+	
+	@RequestMapping("photo_upload")
+	public String photo_upload(PMemberVO vo, int m_idx) {
+		String m_photo_name = vo.getM_photo_name();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("m_idx", m_idx);
+		map.put("m_photo_name", m_photo_name);
+		
+		PMemberVO basevo = (PMemberVO) session.getAttribute("id");
+		
+		basevo.setM_photo_name(vo.getM_photo_name());
+		session.setAttribute("id", basevo);
+		
+		return "redirect:user_edit_profile";
+	}
+	
+	@RequestMapping("user_profile_modify")
+	public String user_profile_update(PMemberVO vo) {
+		int res = pmember_dao.user_profile_update(vo);
+		PMemberVO basevo = (PMemberVO) session.getAttribute("id");
+		basevo.setM_photo_name(vo.getM_photo_name());
+		System.out.println(vo.getM_photo_name());
+		basevo.setM_name(vo.getM_name());
+		basevo.setM_username(vo.getM_username());
+		session.setAttribute("id", basevo);
+		return "redirect:user_edit";
 	}
 }

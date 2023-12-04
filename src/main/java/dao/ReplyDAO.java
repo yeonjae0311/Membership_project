@@ -21,5 +21,4 @@ public class ReplyDAO {
 	public List<BoardPMemberReplyViewVO> select_reply_list(int b_idx){
 		return sqlSession.selectList("r.select_reply_list",b_idx);
 	}
-	
 }

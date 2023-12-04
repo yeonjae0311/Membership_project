@@ -13,6 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.korea.membership.BoardController;
 import com.korea.membership.MainController;
 import com.korea.membership.MemberController;
+import com.korea.membership.ReplyConroller;
 import com.korea.membership.ShopController;
 import com.korea.membership.StoryController;
 
@@ -53,8 +54,13 @@ public class ServletContext implements WebMvcConfigurer {
 	}
 	
 	@Bean
+<<<<<<< HEAD
 	public StoryController story_controller(StoryDAO story_dao) {
 		return new StoryController(story_dao);
+=======
+	public ReplyConroller reply_controller(ReplyDAO reply_dao) {
+		return new ReplyConroller(reply_dao);
+>>>>>>> 머지시도새브랜치
 	}
 
 	@Bean

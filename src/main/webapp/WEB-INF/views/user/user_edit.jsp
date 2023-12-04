@@ -3,14 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="${pageContext.request.contextPath}/resources/css/user_edit.css" rel="stylesheet" type="text/css">
-<script>
-	function send(e){
-		location.href=e.target.parentElement.id
-	}
-</script>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link href="${pageContext.request.contextPath}/resources/css/user_edit.css" rel="stylesheet" type="text/css">
+	<script>
+		function send(e){
+			location.href=e.target.parentElement.id
+		}
+	</script>
 </head>
 <body>
 	<header>
