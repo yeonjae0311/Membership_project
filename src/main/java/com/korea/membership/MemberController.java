@@ -1,5 +1,7 @@
 package com.korea.membership;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -92,20 +94,20 @@ public class MemberController {
 	
 	@RequestMapping("check_email") // 이메일 중복체크
 	@ResponseBody
-	public String check_email(@RequestBody String body) {
+	public String check_email(@RequestBody String body) throws UnsupportedEncodingException {
 		
 		ObjectMapper om = new ObjectMapper();
-		
+
 		Map<String, String> data = null;
-		
+
 		try {
 			data = om.readValue(body, new TypeReference<Map<String, String>>() {
 			});
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		String m_email = data.get("m_email");
+
+		String m_email = URLDecoder.decode(data.get("m_email"), "utf-8");
 		
 		int res = pmember_dao.email_check(m_email);
 		
@@ -228,26 +230,92 @@ public class MemberController {
 		return num; // String 타입으로 변환 후 반환
 	}
 	
-	@RequestMapping("register_find_id")
-	public String register_find_id() {
+	@RequestMapping("find_id")
+	public String find_id() {
 		return Path.LoginPath.make_path("register_find_id");
+	}
+	
+	@RequestMapping("register_find_id")
+	@ResponseBody
+	public String register_find_id(@RequestBody String body) throws UnsupportedEncodingException {
+		
+		ObjectMapper om = new ObjectMapper();
+
+		Map<String, String> data = null;
+
+		try {
+			data = om.readValue(body, new TypeReference<Map<String, String>>() {
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		String m_email = URLDecoder.decode(data.get("m_email"), "utf-8");
+		String m_name = URLDecoder.decode(data.get("m_name"), "utf-8");
+
+		PMemberVO vo = pmember_dao.id_find(m_email);
+
+		if (vo == null) {
+			return "{\"param\": \"no m_email\"}";
+		}
+
+		if (!vo.getM_name().equals(m_name)) {
+			return "{\"param\": \"no m_name\"}";
+		}
+
+		session.setAttribute("id", vo);
+		return "{\"param\": \"success\"}";
+	}
+	
+	@RequestMapping("id")
+	public String id() {
+		return Path.LoginPath.make_path("id");
+	}
+	
+	@RequestMapping("find_password")
+	public String find_password(@RequestBody String body) throws UnsupportedEncodingException {
+		
+		ObjectMapper om = new ObjectMapper();
+
+		Map<String, String> data = null;
+
+		try {
+			data = om.readValue(body, new TypeReference<Map<String, String>>() {
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		String m_email = URLDecoder.decode(data.get("m_email"), "utf-8");
+		String m_mail = URLDecoder.decode(data.get("m_mail"), "utf-8");
+		String m_id = URLDecoder.decode(data.get("m_id"), "utf-8");
+		
+		int res = pmember_dao.password_update(m_mail);
+
+		PMemberVO vo = pmember_dao.id_find(m_email);
+		System.out.println(vo);
+		if (vo == null) {
+			return "{\"param\": \"no m_email\"}";
+		}
+
+		if (!vo.getM_id().equals(m_id)) {
+			return "{\"param\": \"no m_id\"}";
+		}
+		
+		session.setAttribute("id", vo);
+		
+		return "{\"param\": \"success\"}";
+		
+	}
+	
+	@RequestMapping("password")
+	public String password() {
+		return Path.LoginPath.make_path("password");
 	}
 	
 	@RequestMapping("register_find_password")
 	public String register_find_password() {
 		return Path.LoginPath.make_path("register_find_password");
-	}
-	
-	@RequestMapping("register_modify_id")
-	public String register_modify_id(String id) {
-		int res = pmember_dao.id_update(id);
-		
-		if (res > 0) {
-			return "redirect:register_modify_id";
-		} else {
-			System.out.println("추가 에러");
-			return null;
-		}
 	}
 	
 	@RequestMapping("register_modify_password")

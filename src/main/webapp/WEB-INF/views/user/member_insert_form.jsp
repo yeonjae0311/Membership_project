@@ -74,6 +74,25 @@
 		function change(){
 			b_id_check = false;
 		}
+		
+		// '출생 연도' 셀렉트 박스 option 목록 동적 생성
+		const birthYearEl = document.querySelector('#birth-year')
+		// option 목록 생성 여부 확인
+		isYearOptionExisted = false;
+		birthYearEl.addEventListener('focus', function () {
+		  // year 목록 생성되지 않았을 때 (최초 클릭 시)
+		  if(!isYearOptionExisted) {
+		    isYearOptionExisted = true
+		    for(var i = 1940; i <= 2022; i++) {
+		      // option element 생성
+		      const YearOption = document.createElement('option')
+		      YearOption.setAttribute('value', i)
+		      YearOption.innerText = i
+		      // birthYearEl의 자식 요소로 추가
+		      this.appendChild(YearOption);
+		    }
+		  }
+		});
 	</script>
 </head>
 <body>
@@ -126,10 +145,17 @@
 				</td>
 			</tr>
 			<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/login_js/email.js"></script>
-			<tr>
-				<th>프로필사진 등록</th>
-				<td><input type="file" name="m_photo_name" id="m_photo_name"></td>
-			</tr>
+			<div class="info" id="info__birth">
+			  <select class="box" id="birth-year">
+			    <option disabled selected>출생 연도</option>
+			  </select>
+			  <select class="box" id="birth-month">
+			    <option disabled selected>월</option>
+			  </select>
+			  <select class="box" id="birth-day">
+			    <option disabled selected>일</option>
+			  </select>
+			</div>
 			<tr>
 				<td colspan="2" align="center">
 					<input type="button" value="가입" onclick="send(this.form)"> 

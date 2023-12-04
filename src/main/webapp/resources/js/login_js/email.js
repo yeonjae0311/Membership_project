@@ -1,4 +1,4 @@
-	let code = "";  /*인증번호 저장할 곳*/
+	let code = "num";  /*인증번호 저장할 곳*/
 
 			$('#auth_btn').click(function() {
 				let m_email = $('#m_email').val();  /*입력한 이메일*/

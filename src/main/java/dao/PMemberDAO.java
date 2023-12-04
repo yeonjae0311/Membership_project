@@ -51,14 +51,14 @@ public class PMemberDAO {
 		return sqlSession.update("pm.del_update", vo);
 	}
 	
-	// 아이디 수정
-	public int id_update(String m_id) {
-		return sqlSession.update("pm.modify_id", m_id);
+	// 아이디 찾기
+	public PMemberVO id_find(String m_email) {
+		return sqlSession.selectOne("pm.id_find", m_email);
 	}
 	
 	// 비밀번호 수정
 	public int password_update(String m_password) {
-		return sqlSession.update("pm.modify_password", m_password);
+		return sqlSession.update("pm.password_update", m_password);
 	}
 
 	//수정하기

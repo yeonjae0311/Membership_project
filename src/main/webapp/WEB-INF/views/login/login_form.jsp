@@ -72,7 +72,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="button" value="아이디 찾기" onclick="location.href='register_find_id'">
+					<input type="button" value="아이디 찾기" onclick="location.href='find_id'">
 					<input type="button" value="비밀번호 찾기" onclick="location.href='register_find_password'">
 					<input type="button" value="결제" onclick="location.href='kakao_pay'">
 				</td>
