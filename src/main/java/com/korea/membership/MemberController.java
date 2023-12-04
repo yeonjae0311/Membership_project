@@ -1,9 +1,6 @@
 package com.korea.membership;
 
-<<<<<<< HEAD
 import java.util.HashMap;
-=======
->>>>>>> 9527fe2989bdf30e59bcf9165b2f8dc7fb02f821
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -155,13 +152,8 @@ public class MemberController {
 
 	@RequestMapping("del")
 	@ResponseBody
-<<<<<<< HEAD
 	public String del(int m_idx) {
 		PMemberVO basevo = pmember_dao.select_one(m_idx);
-=======
-	public String del(int idx) {
-		PMemberVO basevo = pmember_dao.select_one(idx);
->>>>>>> 9527fe2989bdf30e59bcf9165b2f8dc7fb02f821
 
 		int res = pmember_dao.del_update(basevo);
 
@@ -248,13 +240,8 @@ public class MemberController {
 	
 	@RequestMapping("register_modify_id")
 	public String register_modify_id(String id) {
-<<<<<<< HEAD
-		int res = pmember_dao.id_update(id);
-=======
-		
 		int res = pmember_dao.id_update(id);
 		
->>>>>>> 9527fe2989bdf30e59bcf9165b2f8dc7fb02f821
 		if (res > 0) {
 			return "redirect:register_modify_id";
 		} else {
@@ -266,10 +253,7 @@ public class MemberController {
 	@RequestMapping("register_modify_password")
 	public String register_modify_password(String password) {
 		int res = pmember_dao.password_update(password);
-<<<<<<< HEAD
-=======
-		
->>>>>>> 9527fe2989bdf30e59bcf9165b2f8dc7fb02f821
+
 		if (res > 0) {
 			return "redirect:register_modify_password";
 		} else {
@@ -281,27 +265,17 @@ public class MemberController {
 	@RequestMapping("kakao_pay")
 	public String kakao_pay() {
 		return Path.LoginPath.make_path("kakao_pay");
-<<<<<<< HEAD
 	}
 
 	@RequestMapping("user_info_modify_form")
 	public String user_modify_form(Model model, int m_idx) {
 		PMemberVO vo = pmember_dao.select_one(m_idx);
-=======
-		
-	}
-
-	@RequestMapping("user_info_modify_form")
-	public String user_modify_form(Model model, int idx) {
-		PMemberVO vo = pmember_dao.select_one(idx);
->>>>>>> 9527fe2989bdf30e59bcf9165b2f8dc7fb02f821
 		model.addAttribute("vo", vo);
 		return Path.UserPath.make_path("user_info_modify_form");
 	}
 
 	@RequestMapping("user_info_modify")
 	public String user_modify(PMemberVO vo) {
-<<<<<<< HEAD
 		int res = pmember_dao.user_info_update(vo);
 		PMemberVO basevo = (PMemberVO) session.getAttribute("id");
 		basevo.setM_name(vo.getM_name());
@@ -338,9 +312,4 @@ public class MemberController {
 		session.setAttribute("id", basevo);
 		return "redirect:user_edit";
 	}
-=======
-		int res = pmember_dao.update(vo);
-		return "redirect:user_info_form";
-	}
->>>>>>> 9527fe2989bdf30e59bcf9165b2f8dc7fb02f821
 }
