@@ -62,7 +62,6 @@
 		function return_page(...args){
 			let res = args[0].param;
 
-<<<<<<< HEAD
 			if(res == 'yes'){
 				if(confirm("상품이 추가되었습니다.\n장바구니로 이동하시겠습니까?")){
 					location.href='shopping_cart' ;	
@@ -97,16 +96,6 @@
    		</div>
 	</form>
 </body>
-=======
-				if(res == 'yes'){
-					if(confirm("상품이 추가되었습니다.\n장바구니로 이동하시겠습니까?")){
-						location.href='shopping_cart' ;	
-					} else{
-						return;
-					}	
-				} 
-			}
-		</script>
 	</head>
 	<body>	
 		<form name="selected_item" action="shopping_cart_insert" method="POST">
@@ -132,5 +121,4 @@
     		</div>
 		</form>
 	</body>
->>>>>>> 9527fe2989bdf30e59bcf9165b2f8dc7fb02f821
 </html>

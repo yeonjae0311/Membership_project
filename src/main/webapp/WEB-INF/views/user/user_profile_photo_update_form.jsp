@@ -14,10 +14,10 @@
 	</script>
 	</head>
 	<body>
-		<form>
-			사진 업로드 : 
-			<input ${id.m_photo_name }>
-			<input type="button" value="업로드 완료" onclick="photo_upload(this.form)">
-		</form>
+		<form method="post" enctype="multipart/form-data">
+		사진 : <input type="file" name="m_photo_name"><br>
+		<input type="hidden" name="m_idx">
+		<input type="button" value="프로필 사진 변경" onclick="photo_upload(this.form)">
+	</form>
 	</body>
 </html>

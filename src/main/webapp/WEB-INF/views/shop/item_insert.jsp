@@ -17,13 +17,10 @@
 		     document.getElementById("option").appendChild(element);
 		} 
 		 */
-<<<<<<< HEAD
 		 function upload(){
 	
 			 const item_upload = document.getElementById(item_upload);
-=======
 		 function upload(item_upload){
->>>>>>> 9527fe2989bdf30e59bcf9165b2f8dc7fb02f821
 			 
 			 if(item_upload.i_name.value == ''){
 				alert('상품명을 입력하세요');
@@ -34,7 +31,6 @@
 			 item_upload.submit();
 		 }
 	</script>
-<<<<<<< HEAD
 </head>
 <body>
 	<form id="item_upload" action="item_insert_upload" method="POST" enctype="multipart/form-data">
@@ -50,7 +46,6 @@
     	</div>
    	</form>
 </body>
-=======
 	</head>
 	<body>
 		<form id="item_upload" action="item_insert_upload" method="POST" enctype="multipart/form-data">
@@ -66,7 +61,6 @@
 	    	</div>
     	</form>
 	</body>
->>>>>>> 9527fe2989bdf30e59bcf9165b2f8dc7fb02f821
 </html>
 
 

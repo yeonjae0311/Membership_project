@@ -1,14 +1,12 @@
 package dao;
 
-import java.util.HashMap;
-
 import org.apache.ibatis.session.SqlSession;
 
 import vo.PMemberVO;
 
 public class PMemberDAO {
 	SqlSession sqlSession;
-	
+
 	public PMemberDAO(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
@@ -22,7 +20,7 @@ public class PMemberDAO {
 	public int id_check(String m_id) {
 		return sqlSession.selectOne("pm.id_check", m_id);
 	}
-	
+
 	// 이메일 중복 체크
 	public int email_check(String m_email) {
 		return sqlSession.selectOne("pm.email_check", m_email);
@@ -47,31 +45,31 @@ public class PMemberDAO {
 	}
 
 	// 탈퇴하기
-	public int del_update(PMemberVO vo) {
-		return sqlSession.update("pm.del_update", vo);
+	public int delete_update(PMemberVO vo) {
+		return sqlSession.update("pm.delete_update", vo);
 	}
-	
+
 	// 아이디 수정
 	public int id_update(String m_id) {
 		return sqlSession.update("pm.modify_id", m_id);
 	}
-	
+
 	// 비밀번호 수정
 	public int password_update(String m_password) {
 		return sqlSession.update("pm.modify_password", m_password);
 	}
 
-	//수정하기
+	// 수정하기
 	public int user_info_update(PMemberVO vo) {
 		return sqlSession.update("pm.user_info_update", vo);
 	}
-	
-	//프로필 사진 수정하기
-	public int photo_upload(HashMap<String, Object> map) {
-		return sqlSession.update("pm.photo_upload", map);
+
+	// 프로필 사진 수정하기
+	public int photo_upload(PMemberVO vo) {
+		return sqlSession.update("pm.photo_upload", vo);
 	}
-	
-	//프로필 수정
+
+	// 프로필 수정
 	public int user_profile_update(PMemberVO vo) {
 		return sqlSession.update("pm.user_profile_update", vo);
 	}

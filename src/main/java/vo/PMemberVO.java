@@ -1,5 +1,7 @@
 	package vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,5 +23,6 @@ public class PMemberVO {
 	               m_addr2,
 	               m_addr3,
 	               m_date_of_birth;
+	private MultipartFile m_photo;
 }
 

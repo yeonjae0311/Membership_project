@@ -47,8 +47,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from p_member where m_email=#{m_email}
 	</select>
 	
-	<!-- del => delete -->
-	<update id="del_update" parameterType="pmember">
+	<update id="delete_update" parameterType="pmember">
 		update p_member set m_id='del'||#{m_id} where m_idx=#{m_idx}
 	</update>
 	
@@ -68,13 +67,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 							where m_idx=#{m_idx}
 	</update>
 	
-	<update id="photo_upload" parameterType="java.util.HashMap">
+	<update id="photo_upload" parameterType="pmember">
 		update p_member set m_photo_name=#{m_photo_name} where m_idx=#{m_idx}
 	</update>
 	
 	<update id="user_profile_update" parameterType="pmember">
-		update p_member set m_name=#{m_name},
-							m_username=#{m_username},
+		update p_member set m_username=#{m_username},
 							m_photo_name=#{m_photo_name}
 							where m_idx=#{m_idx}
 	</update>

@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>user_info_form</title>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
 	<script>
 		function modify(f){
 			f.action="user_info_modify_form";
@@ -19,25 +19,31 @@
 				return;
 			}
 		
-			let url = "del";
+			let url = "delete_update";
 			let param = "m_idx="+${id.m_idx};
 			
-			sendRequest(url,param,del_check,"POST");
+			sendRequest(url,param,delelte_check,"POST");
 	 	}
 		
-	 	function del_check(){
+	 	function delelte_check(){
 			let res = args[0].param;
 				
 			let form = document.getElementsByTagName("form")[0];
+			
+			if(res == 'no'){
+				alert("탈퇴할 수 없습니다.")
+			} else{
+	 			alert("탈퇴 성공")
+				location.href="logout";
+			}
 		} 
 	</script>
 	</head>
 	<body> <!-- a태그와 location.href를 통해 깔끔하게 바꿀 예정 -->
 		<form>
 			<div> 이름 : ${id.m_name }		</div>
-			<div> 아이디 : ${id.m_id }		</div>
 			<div> 연락처 : ${id.m_tel }		</div>
-			<div> 생년월일 : ${id.m_date_of_birth } </div>		
+			<div> 생년월일 : ${id.m_date_of_birth } </div>
 			<div> 이메일 : ${id.m_email }		</div>
 			<input type="hidden" name="m_idx" value="${id.m_idx }">
 			<input type="button" name="modify_form" value="수정하기" onclick="modify(this.form)">
