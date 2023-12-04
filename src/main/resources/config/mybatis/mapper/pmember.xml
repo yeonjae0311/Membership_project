@@ -16,11 +16,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insert" parameterType="pmember">
 		insert into p_member values(
 		seq_member_idx.nextval,
-		${m_nsername},
+		#{m_username},
 		#{m_password},
 		#{m_id},
 		#{m_name},
-		#{m_username},
 		#{m_tel},
 		#{m_email},
 		#{m_photo_name},
@@ -69,6 +68,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="photo_upload" parameterType="java.util.HashMap">
 		update p_member set m_photo_name=#{m_photo_name} where m_idx=#{m_idx}
+	</update>
+	
+	<update id="user_profile_update" parameterType="pmember">
+		update p_member set m_name=#{m_name},
+							m_username=#{m_username},
+							m_photo_name=#{m_photo_name}
+							where m_idx=#{m_idx}
 	</update>
 	
 </mapper>

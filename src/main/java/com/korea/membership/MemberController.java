@@ -290,9 +290,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping("user_profile_modify")
-	public String photo_upload(PMemberVO vo) {
-		int res = pmember_dao.user_info_update(vo);
+	public String user_profile_update(PMemberVO vo) {
+		int res = pmember_dao.user_profile_update(vo);
 		PMemberVO basevo = (PMemberVO) session.getAttribute("id");
+		basevo.setM_photo_name(vo.getM_photo_name());
+		System.out.println(vo.getM_photo_name());
 		basevo.setM_name(vo.getM_name());
 		basevo.setM_username(vo.getM_username());
 		session.setAttribute("id", basevo);

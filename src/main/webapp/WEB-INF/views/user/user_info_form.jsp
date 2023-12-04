@@ -29,9 +29,6 @@
 		let res = args[0].param;
 			
 		let form = document.getElementsByTagName("form")[0];
-		
-		
-		 
 		} 
 	</script>
 	</head>
