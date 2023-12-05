@@ -31,3 +31,5 @@ let footer = document.createElement("div");
 footer.innerHTML = "membership page(newjeans)";
 
 document.getElementById("footer_bar").appendChild(footer);
+
+//
