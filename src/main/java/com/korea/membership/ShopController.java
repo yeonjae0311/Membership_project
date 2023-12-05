@@ -140,9 +140,8 @@ public class ShopController {
 	@RequestMapping("item_insert_upload")
 	public String item_insert_upload(ItemVO vo) {
 		
-		String webPath = "/resources/upload/";
+		String webPath = "/resources/upload/shop/";
 		String savePath= request.getServletContext().getRealPath(webPath);
-		System.out.println(savePath);
 
 		MultipartFile i_photo = vo.getI_photo();
 		String i_photo_name = "no_file";
