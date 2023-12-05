@@ -58,7 +58,7 @@
 			</div>
 		
 		<div>
-			<input type="button" value="가입" onclick="send(this.form)"> 
+			<input type="button" value="가입" onclick="javascript:send(this.form)"> 
 			<input type="button" value="취소" onclick="location.href='main'">
 		</div>
 				

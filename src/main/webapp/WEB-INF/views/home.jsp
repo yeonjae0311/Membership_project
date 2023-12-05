@@ -39,6 +39,7 @@
 		</c:when>
 	</c:choose>
 	<input type="button" value="결제" onclick="location.href='kakao_pay'">
+	<input type="button" value="결제하기" onclick="location.href='shop_payment'">
 	
 	<div>
 		<svg id="svg_test"

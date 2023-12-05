@@ -161,7 +161,7 @@ public class MemberController {
 		int res = pmember_dao.insert(vo);
 		if(res>0) {
 			session.setAttribute("id", vo);
-			return "redirect:/";
+			return "redirect:congratulations_register";
 		}
 		return null;
 	}
@@ -391,5 +391,15 @@ public class MemberController {
 		basevo.setM_username(vo.getM_username());
 		session.setAttribute("id", basevo);
 		return "redirect:user_edit";
+	}
+	
+	@RequestMapping("shop_payment")
+	public String shop_payment() {
+		return Path.ShopPath.make_path("shop_payment");
+	}
+	
+	@RequestMapping("congratulations_register")
+	public String congratulations_register() {
+		return Path.LoginPath.make_path("congratulations_register");
 	}
 }

@@ -12,17 +12,12 @@ function send(f){
 	let m_email = document.getElementById("m_email");	
 	let mail_check_input = document.getElementById("mail_check_input");	
 	
-	let reg_tel = /^(01[016789]{1})[0-9]{3,4}[0-9]{4}$/;
+	let reg_tel = /01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}/;
 	let reg_email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 	let reg_birth = /^(?:[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1,2][0-9]|3[0,1]))$/;
 	
 	if(m_id.value == ''){
 		alert('아이디를 입력하세요');
-		return;
-	}
-	
-	if(!b_id_check){
-		alert('아이디 중복체크를 하세요');
 		return;
 	}
 	
@@ -46,7 +41,7 @@ function send(f){
 		return;
 	}
 	
-	if(!reg_tel.test(m_tel)){
+	if(!reg_tel.test(m_tel.value)){
 		alert('전화번호 형식을 맞춰서 써주세요');
 		return;
 	}
@@ -66,8 +61,14 @@ function send(f){
 		return;
 	}
 	
-	if(code != mail_check_input) {
+	if(code != mail_check_input.value) {
+		alert(code);
 		alert('인증번호를 확인해주세요');
+		return;
+	}
+	
+	if(!b_id_check){
+		alert('아이디 중복체크를 하세요');
 		return;
 	}
 	
