@@ -12,6 +12,14 @@
 			f.action = "shop_item_select";
 			f.submit();
 		}
+		
+		window.onload = function(){
+			let is_master = ${is_master};
+	
+			if(is_master == 0){
+				document.getElementById("item_insert_form").style.display = "none"
+			}
+		}
 	</script>
 	<style>
 		.item_one_img_div{
@@ -27,7 +35,7 @@
 </head>
 <body>	
 	<div>
-		<input type="button" value="상품 등록하기" onclick="location.href='item_insert'">
+		<input type="button" id="item_insert_form" value="상품 등록하기" onclick="location.href='item_insert'">
 	</div>
 	<div>
 		<c:forEach var="vo" items="${list}" varStatus="number">
