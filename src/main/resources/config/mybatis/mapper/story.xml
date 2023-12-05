@@ -26,8 +26,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where s_idx=#{s_idx}
 	</select>
 	
-	<select id="check_isliked" parameterType="java.util.HashMap" resultType="vo.StoryLikedVO">
-		SELECT * FROM STORY_ISLIKED
+	<select id="check_is_liked" parameterType="java.util.HashMap" resultType="int">
+		SELECT count(*) FROM STORY_ISLIKED
 		where s_idx=#{s_idx} and m_idx=#{m_idx}
 	</select>
 	
@@ -37,4 +37,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM story s LEFT JOIN(SELECT * FROM STORY_ISLIKED WHERE m_idx=#{m_idx}) sl
 		ON (s.s_IDX =sl.s_IDX)
 	</select>
+	
+	<insert id="insert_like" parameterType="java.util.HashMap">
+		insert into STORY_ISLIKED values (
+		#{s_idx},
+		#{m_idx},
+		'1'
+		)
+	</insert>
+	
+	<delete id="delete_to_unlike" parameterType="java.util.HashMap">
+		DELETE STORY_ISLIKED
+		WHERE s_idx=#{s_idx} AND m_idx=#{m_idx}
+	</delete>
 </mapper>

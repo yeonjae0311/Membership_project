@@ -27,12 +27,19 @@ public class StoryDAO {
 		return sqlSession.selectOne("s.select_story_one_by_s_idx",s_idx);
 	}
 	
-	public StoryLikedVO check_isliked(HashMap<String, Object> map) {
-		return sqlSession.selectOne("s.check_isliked",map);
+	public int check_is_liked(HashMap<String, Object> map) {
+		return sqlSession.selectOne("s.check_is_liked",map);
 	}
 	
 	public List<StoryVO> select_story_list(int m_idx){
 		return sqlSession.selectList("s.select_story_list_with_m_idx",m_idx);
 	}
 	
+	public int insert_like(HashMap<String, Object> map) {
+		return sqlSession.insert("s.insert_like",map);
+	}
+	
+	public int delete_to_unlike(HashMap<String, Object> map) {
+		return sqlSession.delete("s.delete_to_unlike",map);
+	}
 }

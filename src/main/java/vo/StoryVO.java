@@ -11,8 +11,8 @@ public class StoryVO {
 	private int s_idx,
 				m_idx;
     private String s_content,
-    			   s_postedDate,
-    			   s_title,
+    			   s_posted_date,
+    			   s_expected_expiration_time,
     			   s_filename,
     			   sl_isliked;
     private MultipartFile s_file;
