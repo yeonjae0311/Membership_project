@@ -135,7 +135,7 @@
 		<div id=item_info_div>
 		
 			<div class=item_img_div>
-				<img id=item_img src="${pageContext.request.contextPath}/resources/upload/${vo.i_photo_name}"><br>
+				<img id=item_img src="${pageContext.request.contextPath}/resources/upload/shop/${vo.i_photo_name}"><br>
 			</div>
 			
 			<div>

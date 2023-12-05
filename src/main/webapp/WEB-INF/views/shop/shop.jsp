@@ -43,7 +43,7 @@
 				<div onclick="shop_item_select(document.getElementById('shop_item_one_${number.current}'))" style="cursor:pointer;">
 					
 					<div class="item_one_img_div">
-						<img id="item_one" src="${pageContext.request.contextPath}/resources/upload/${vo.i_detail_photo_name}">
+						<img id="item_one" src="${pageContext.request.contextPath}/resources/upload/shop/${vo.i_detail_photo_name}">
 					</div>
 					
 					<div>
