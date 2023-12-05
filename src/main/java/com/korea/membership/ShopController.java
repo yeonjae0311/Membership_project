@@ -33,6 +33,9 @@ import vo.PMemberVO;
 public class ShopController {
 	
 	@Autowired
+	HttpSession session;
+	
+	@Autowired
 	HttpServletRequest request;
 	 
 	ItemDAO item_dao;
@@ -69,8 +72,9 @@ public class ShopController {
 		
 		String i_color = data.get("i_color");	
 		String i_name = URLDecoder.decode(data.get("i_name"), "utf-8");
+		int cd_count = Integer.parseInt(data.get("cd_count"));
 		
-		HttpSession session = request.getSession();
+		session = request.getSession();
 		PMemberVO p_member_vo = (PMemberVO) session.getAttribute("id");
 		
 		// i_name과 i_color로 i_idx를 조회
@@ -85,6 +89,7 @@ public class ShopController {
 		HashMap<String, Integer> idx_map = new HashMap<String,Integer>();
 		idx_map.put("i_idx", i_idx);
 		idx_map.put("m_idx", m_idx);
+		idx_map.put("cd_count", cd_count);
 		
 		int res = cart_detail_dao.cart_insert(idx_map);
 		
@@ -98,7 +103,7 @@ public class ShopController {
 	@RequestMapping("shopping_cart")
 	public String shopping_cart(Model model) {
 		
-		HttpSession session = request.getSession();
+		session = request.getSession();
 		PMemberVO p_member_vo = (PMemberVO) session.getAttribute("id");
 		int m_idx = p_member_vo.getM_idx();
 		
@@ -226,7 +231,7 @@ public class ShopController {
 		int cd_count = Integer.parseInt(data.get("item_count"));
 		int i_idx = Integer.parseInt(data.get("i_idx"));
 		
-		HttpSession session = request.getSession();
+		session = request.getSession();
 		PMemberVO p_member_vo = (PMemberVO) session.getAttribute("id");		
 		int m_idx = p_member_vo.getM_idx();
 		
@@ -245,6 +250,7 @@ public class ShopController {
 		}
 	}
 
+	
 	@RequestMapping("shop_payment")
 	public String shop_payment() {
 		return Path.ShopPath.make_path("shop_payment");

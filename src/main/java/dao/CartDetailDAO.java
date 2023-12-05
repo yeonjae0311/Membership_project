@@ -28,5 +28,7 @@ public class CartDetailDAO {
 	public int cart_item_count_change(Map<String, Integer> map) {
 		return sqlSession.update("cd.cart_item_count_change", map);
 	}
+	
+	// shop_item 페이지
 
 }

@@ -20,9 +20,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		USING DUAL
 		   ON (i_idx = #{i_idx} AND m_idx = #{m_idx})
 		WHEN MATCHED THEN
-			UPDATE SET cd_count = cd_count+1
+			UPDATE SET cd_count = cd_count+#{cd_count}
 		WHEN NOT MATCHED THEN
-		  	 insert (m_idx, i_idx, cd_count) values(#{m_idx}, #{i_idx}, 1)
+		  	 insert (m_idx, i_idx, cd_count) values(#{m_idx}, #{i_idx}, #{cd_count})
 	</update>
 	
 	<!-- 장바구니 전체 조회 -->

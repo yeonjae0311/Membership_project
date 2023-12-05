@@ -48,12 +48,14 @@
 				
 			const i_name = f.i_name.value.trim();
 			const i_color = f.i_color.value.trim();
+			const cd_count = f.cd_count.value.trim();
 			
 			const url = "shopping_cart_insert";
 			
 			const param = {
 				"i_name": encodeURIComponent(i_name),
-				"i_color": encodeURIComponent(i_color)
+				"i_color": encodeURIComponent(i_color),
+				"cd_count": encodeURIComponent(cd_count)
 			};
 				
 			sendRequest(url, param, return_page, "post");
@@ -70,6 +72,34 @@
 				}	
 			} 
 		}
+		
+		/* document.getElementById("cd_count").value = 
+					Integer.parseInt(document.getElementById("cd_count").value) + 1; 
+		*/
+		
+		function item_amount(amount_button_id){
+						
+			let amount_button_value = 
+				document.getElementById(amount_button_id).value.trim();
+			
+			let cd_count = document.getElementById("cd_count").value;
+			let i_amount = '${vo.i_amount}';
+			console.log(i_amount);
+			
+			if(amount_button_value == "+" && i_amount > cd_count){
+				document.getElementById("cd_count").value = 
+					parseInt(document.getElementById("cd_count").value) + 1;
+			} else if(amount_button_value == "+" && i_amount <= cd_count){
+				alert("최대주문가능 수에 도달하였습니다.");
+			}
+			
+			if((amount_button_value == "-") && (cd_count > 1)){	
+				document.getElementById("cd_count").value = 
+					parseInt(document.getElementById("cd_count").value) - 1;
+			}
+		}
+		
+
 	</script>
 </head>
 <body>	
@@ -85,11 +115,14 @@
 			    <c:forEach var="colors" items="${colors}">
 			    	<option value="${colors}">${colors}</option>
 			    </c:forEach>	   
-			</select>
+			</select><br>
+			<input type="button" id="button_plus" value=" + " onclick="item_amount(this.id)">
+			<input id="cd_count" value="1" readonly="readonly">
+			<input type="button" id="button_minus" value=" - " onclick="item_amount(this.id)">
    		</div>
-   		<br><br><br>
+   		<br><br><br><br>
    		<div class=item_detail_img_div>		
-   			<img id=item_detail_img src="${pageContext.request.contextPath}/resources/upload/${vo.i_detail_photo_name}">
+   			<%-- <img id=item_detail_img src="${pageContext.request.contextPath}/resources/upload/${vo.i_detail_photo_name}"> --%>
    		</div>
    		<div id=shop_button_bar>
    			<input type="button" value="장바구니" onclick="send_shopping_cart(this.form)">
