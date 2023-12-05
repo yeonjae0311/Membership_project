@@ -6,6 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- cart_detail 테이블과 item 테이블을 조인한 결과를 매핑해주기 -->
 	<resultMap type="vo.ItemVO" id="cart_list">
+	  <result column="i_idx" property="i_idx"/>
 	  <result column="i_name" property="i_name" jdbcType="VARCHAR"/>
 	  <result column="i_price" property="i_price" jdbcType="VARCHAR"/>
 	  <result column="i_color" property="i_color" jdbcType="VARCHAR"/>
@@ -25,8 +26,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 장바구니 전체 조회 -->
-	<select id="cart_select_list" resultMap="cart_list">
-		SELECT * FROM item i, CART_DETAIL cd WHERE i.I_IDX = cd.I_IDX
+	<select id="cart_select_list" resultMap="cart_list" parameterType="int">
+		SELECT * FROM item i, CART_DETAIL cd WHERE i.I_IDX = cd.I_IDX and m_idx=#{m_idx}
 	</select>
+	
+	<!-- 장바구니 개수 변경 -->
+	<update id="cart_item_count_change" parameterType="java.util.HashMap">
+		UPDATE CART_DETAIL SET CD_COUNT = #{cd_count} 
+		WHERE I_IDX = #{i_idx} and m_idx=#{m_idx}
+	</update>
 	
 </mapper>

@@ -97,8 +97,13 @@ public class ShopController {
 		
 	@RequestMapping("shopping_cart")
 	public String shopping_cart(Model model) {
+		
+		HttpSession session = request.getSession();
+		PMemberVO p_member_vo = (PMemberVO) session.getAttribute("id");
+		int m_idx = p_member_vo.getM_idx();
+		
 		// 장바구니 테이블을 전체 조회해서 바인딩
-		List<CartDetailVO> list = cart_detail_dao.cart_select_list();
+		List<CartDetailVO> list = cart_detail_dao.cart_select_list(m_idx);
 				
 		model.addAttribute("list", list);
 		
@@ -165,6 +170,7 @@ public class ShopController {
 	
 	@RequestMapping("shop_item_select")
 	public String shop_item_select(int i_idx, String i_name, Model model) {
+		
 		ItemVO vo = item_dao.item_select_one(i_idx);
 		List<String> colors = item_dao.item_select_color(i_name);
 
@@ -199,11 +205,49 @@ public class ShopController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		
-//		model.addAttribute("colors", colors);
 		
 		return jsonArray;
+	}
+	
+	@RequestMapping("item_count_change")
+	@ResponseBody
+	public String item_count_change(@RequestBody String body){
+		ObjectMapper om = new ObjectMapper();
+			
+		Map<String, String> data = null;
+		
+		try {
+			data = om.readValue(body, new TypeReference<Map<String, String>>() {
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		int cd_count = Integer.parseInt(data.get("item_count"));
+		int i_idx = Integer.parseInt(data.get("i_idx"));
+		
+		HttpSession session = request.getSession();
+		PMemberVO p_member_vo = (PMemberVO) session.getAttribute("id");		
+		int m_idx = p_member_vo.getM_idx();
+		
+		// i_dx와 m_idx에 알맞은 cd_count를 변경
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("i_idx", i_idx);
+		map.put("m_idx", m_idx);
+		map.put("cd_count", cd_count);
+		
+		int res = cart_detail_dao.cart_item_count_change(map);
+
+		if(res > 0) {
+			return "{\"param\": \"yes\"}";
+		} else {
+			return "{\"param\": \"no\"}";
+		}
+	}
+
+	@RequestMapping("shop_payment")
+	public String shop_payment() {
+		return Path.ShopPath.make_path("shop_payment");
 	}
 }
 
