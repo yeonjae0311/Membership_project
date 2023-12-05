@@ -49,7 +49,7 @@
 			<tr>
 				<td colspan="2" width="500px" height="200px">
 					<c:if test="${not empty vo.b_filename and vo.b_filename ne 'no_file'}">
-						<img src="${pageContext.request.contextPath}/resources/upload/${vo.b_filename}" width="200">
+						<img src="${pageContext.request.contextPath}/resources/upload/board/${vo.b_filename}" width="200">
 						<br>
 					</c:if>
 					${vo.b_content }
@@ -85,7 +85,7 @@
 			<div class="reply_div">
 				<div class="user_info_div">
 					<div class="user_photo">
-						<img src="${pageContext.request.contextPath}/resources/upload/${i.m_photo_name}" alt="이미지 유실">
+						<img src="${pageContext.request.contextPath}/resources/upload/user${i.m_photo_name}" alt="이미지 유실">
 					</div>
 					<div>${i.m_username}</div>
 					<div>${i.r_date}</div>

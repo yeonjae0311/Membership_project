@@ -62,12 +62,11 @@ public class BoardController {
 	@RequestMapping("board_post_insert")
 	public String board_post_insert(BoardVO vo) {
 		vo.setB_ip(request.getRemoteAddr());
-		String webPath = "/resources/upload";
+		String webPath = "/resources/upload/board";
 		String savePath = request.getServletContext().getRealPath(webPath);
 		System.out.println(savePath);
 		PMemberVO Logined_vo = (PMemberVO)session.getAttribute("id");
 		vo.setM_idx(Logined_vo.getM_idx());
-		vo.setB_isfixed("0");
 		
 		System.out.println(vo);
 		MultipartFile file = vo.getB_file();
