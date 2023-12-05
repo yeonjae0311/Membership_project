@@ -40,7 +40,7 @@ function check(...args){
 		form.m_email.focus();
 		return;	
 	} else if(res == 'no_m_id'){
-		alert('아이디가 존재하지 않습니다.');
+		alert('아이디와 이메일이 일치하지 않습니다.');
 		form.m_id.focus();
 		return;
 	} else {

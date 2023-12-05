@@ -31,11 +31,11 @@ function myCheck(...args){
 //	localStorage.setItem("test", res);
 //	console.log(localStorage)
 	
-	if(res == 'no m_id'){
+	if(res == 'no_m_id'){
 		alert('아이디가 존재하지 않습니다.');
 		form.m_id.focus();
 		return;
-	} else if(res == 'no m_password'){
+	} else if(res == 'no_m_password'){
 		alert('비밀번호가 일치하지 않습니다');
 		form.m_password.focus();
 		return;
