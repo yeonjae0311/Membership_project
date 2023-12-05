@@ -1,4 +1,4 @@
-	let code = "";  /*인증번호 저장할 곳*/
+	let code = "num";  /*인증번호 저장할 곳*/
 
 			$('#auth_btn').click(function() {
 				let m_email = $('#m_email').val();  /*입력한 이메일*/
@@ -14,6 +14,7 @@
 						checkInput.attr('disabled', false); /*데이터가 성공적으로 들어오면 인증번호 입력란이 활성화되도록*/
 						code = data;
 						alert('인증번호가 전송되었습니다.')
+						
 						return;
 					}
 					
