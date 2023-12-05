@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import vo.CartDetailVO;
+import vo.ItemVO;
 
 public class CartDetailDAO {
 	SqlSession sqlSession;
@@ -20,7 +20,7 @@ public class CartDetailDAO {
 	}
 	
 	// 장바구니 전체 조회
-	public List<CartDetailVO> cart_select_list(int m_idx) {
+	public List<ItemVO> cart_select_list(int m_idx) {
 		return sqlSession.selectList("cd.cart_select_list", m_idx);
 	}
 	

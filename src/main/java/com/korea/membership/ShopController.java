@@ -25,7 +25,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import dao.CartDetailDAO;
 import dao.ItemDAO;
 import util.Path;
-import vo.CartDetailVO;
 import vo.ItemVO;
 import vo.PMemberVO;
 
@@ -34,6 +33,9 @@ public class ShopController {
 	
 	@Autowired
 	HttpServletRequest request;
+	
+	@Autowired
+	HttpSession session;
 	 
 	ItemDAO item_dao;
 	CartDetailDAO cart_detail_dao;
@@ -99,15 +101,37 @@ public class ShopController {
 	public String shopping_cart(Model model) {
 		
 		HttpSession session = request.getSession();
-		PMemberVO p_member_vo = (PMemberVO) session.getAttribute("id");
-		int m_idx = p_member_vo.getM_idx();
+		PMemberVO pmember_vo = (PMemberVO) session.getAttribute("id");
+		int m_idx = pmember_vo.getM_idx();
 		
 		// 장바구니 테이블을 전체 조회해서 바인딩
-		List<CartDetailVO> list = cart_detail_dao.cart_select_list(m_idx);
+		List<ItemVO> list = cart_detail_dao.cart_select_list(m_idx);
 				
 		model.addAttribute("list", list);
 		
 		return Path.ShopPath.make_path("shopping_cart");
+	}
+	
+	@RequestMapping(value="shopping_cart_list", produces="application/text; charset=UTF-8")
+	@ResponseBody
+	public String shopping_cart_list() throws UnsupportedEncodingException {
+		ObjectMapper om = new ObjectMapper();
+		
+		PMemberVO pmember_vo = (PMemberVO) session.getAttribute("id");
+		
+		int m_idx = pmember_vo.getM_idx();
+		
+		List<ItemVO> list = cart_detail_dao.cart_select_list(m_idx);
+		
+		String jsonArray = null;
+		
+		try {
+			jsonArray = om.writeValueAsString(list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return jsonArray;
 	}
 	
 	@RequestMapping("item_insert")
