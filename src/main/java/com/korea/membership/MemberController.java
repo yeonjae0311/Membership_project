@@ -158,15 +158,29 @@ public class MemberController {
 
 	@RequestMapping("delete_update")
 	@ResponseBody
-	public String delete_update(int m_idx) {
+	public String delete_update(@RequestBody String body) {
+		ObjectMapper om = new ObjectMapper();
+
+		Map<String, String> data = null;
+
+		try {
+			data = om.readValue(body, new TypeReference<Map<String, String>>() {
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		int m_idx = Integer.parseInt(data.get("m_idx"));
 		PMemberVO basevo = pmember_dao.select_one(m_idx);
 
 		int res = pmember_dao.delete_update(basevo);
+		
+		System.out.println(res);
 
 		if (res == 1) {
-			return "[{'result':'yes']}";
+			return "{\"param\": \"success\"}";
 		} else {
-			return "[{'result':'no'}]";
+			return "{\"param\": \"fail\"}";
 		}
 	}
 
@@ -292,8 +306,19 @@ public class MemberController {
 	}
 
 	@RequestMapping("photo_upload")
-	public String photo_upload(PMemberVO vo) {
+	@ResponseBody
+	public String photo_upload(@RequestBody String body) {
+		ObjectMapper om = new ObjectMapper();
 
+		Map<String, String> data = null;
+
+		try {
+			data = om.readValue(body, new TypeReference<Map<String, String>>() {
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		String webPath = "/resources/upload/user/";
 		String savePath = request.getServletContext().getRealPath(webPath);
 		System.out.println(savePath);

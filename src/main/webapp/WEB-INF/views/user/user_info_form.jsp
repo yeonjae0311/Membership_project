@@ -14,29 +14,34 @@
 			f.submit();
 		}
 	
-		function leave(f){
+		function delete_leave(f){
 			if(!confirm("정말 탈퇴하시겠습니까?")) {
 				return;
 			}
 		
 			let url = "delete_update";
-			let param = "m_idx="+${id.m_idx};
+			let param = {
+					"m_idx": f.m_idx.value
+			}
 			
-			sendRequest(url,param,delelte_check,"POST");
+			sendRequest(url, param, delete_check, "POST");
 	 	}
 		
-	 	function delelte_check(){
-			let res = args[0].param;
-				
-			let form = document.getElementsByTagName("form")[0];
-			
-			if(res == 'no'){
+	 	function delete_check(...args){
+	 		
+	 		console.log("here")
+	 		
+	 		console.log(args)
+	 		
+			let res = args[0]["param"];
+	 		
+			if(res == 'fail'){
 				alert("탈퇴할 수 없습니다.")
 			} else{
 	 			alert("탈퇴 성공")
 				location.href="logout";
 			}
-		} 
+		}
 	</script>
 	</head>
 	<body> <!-- a태그와 location.href를 통해 깔끔하게 바꿀 예정 -->
@@ -47,7 +52,7 @@
 			<div> 이메일 : ${id.m_email }		</div>
 			<input type="hidden" name="m_idx" value="${id.m_idx }">
 			<input type="button" name="modify_form" value="수정하기" onclick="modify(this.form)">
-			<input type="button" value="회원탈퇴" onclick="leave(this.form)">
+			<input type="button" value="회원탈퇴" onclick="delete_leave(this.form)">
 		</form>
 	</body>
 </html>
