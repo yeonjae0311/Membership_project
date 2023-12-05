@@ -9,6 +9,7 @@ import dao.CartDetailDAO;
 import dao.ItemDAO;
 import dao.PMemberDAO;
 import dao.ReplyDAO;
+import dao.StoryDAO;
 
 @Configuration
 public class Context_3_dao {
@@ -36,5 +37,10 @@ public class Context_3_dao {
 	@Bean
 	public ReplyDAO reply_DAO(SqlSession sqlSession) {
 		return new ReplyDAO(sqlSession);
+	}
+	
+	@Bean
+	public StoryDAO story_DAO(SqlSession sqlSession) {
+		return new StoryDAO(sqlSession);
 	}
 }

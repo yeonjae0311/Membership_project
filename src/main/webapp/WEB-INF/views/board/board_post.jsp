@@ -18,6 +18,7 @@
 				break;
 			case "0":
 				isfixed.value = "1";
+				alert(isfixed.value);
 				fixoption.value = "일반글로 작성하기";
 				break;
 			}
@@ -38,7 +39,6 @@
 			f.action = "board_post_insert";
 			f.submit();
 		}
-		
 	</script>
 </head>
 <body>

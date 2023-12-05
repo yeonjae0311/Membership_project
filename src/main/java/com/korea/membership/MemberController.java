@@ -46,11 +46,6 @@ public class MemberController {
 		this.board_dao = board_dao;
 	}
 
-	@RequestMapping("story")
-	public String story() {
-		return Path.StoryPath.make_path("story");
-	}
-
 	@RequestMapping("login_form")
 	public String login_form() {
 		return Path.LoginPath.make_path("login_form");

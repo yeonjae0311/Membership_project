@@ -12,7 +12,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		sysdate,
 		#{b_idx},
 		#{m_idx},
-		#{r_ip}
+		#{r_ip},
+		0
 		)
 	</insert>
 
@@ -22,5 +23,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND r_idx IS NOT null
 		ORDER BY R_DATE DESC
 	</select>
+	
+	<delete id="delete_replys_by_b_idx" parameterType="int">
+		delete reply where b_idx=#{b_idx}
+	</delete>
 
 </mapper>
