@@ -58,6 +58,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete board where b_idx=#{b_idx}
 	</delete>
 	
+	<update id="plus_board_read_hit" parameterType="int">
+		update board set b_read_hit=b_read_hit+1;
+		where b_idx=#{b_idx}
+	</update>
+	
 
 </mapper>
 

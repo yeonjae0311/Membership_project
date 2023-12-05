@@ -144,6 +144,15 @@ public class BoardController {
 		//게시물 한건 조회
 		BoardPMemberViewVO vo = board_dao.board_selectOne(b_idx);
 		
+		//최근에 본 것 조회
+		String board_post_viewed = (String)session.getAttribute("post_viewed");
+		//조회수 증가
+		if(vo!=null && (board_post_viewed==null || !board_post_viewed.equals(b_idx+""))) {			
+			board_dao.plus_board_read_hit(b_idx);
+			session.setAttribute("board_post_viewed", b_idx+"");
+		}
+		
+		
 		model.addAttribute("vo",vo);
 		
 		List<BoardPMemberReplyViewVO> reply_list = reply_dao.select_reply_list(b_idx);
