@@ -61,6 +61,8 @@
 		function resultFn(...args){
 			let res = args[0];
 			
+			console.log(res)
+			
 			let parent = document.getElementById("color");
 			
 			for(let index in res){

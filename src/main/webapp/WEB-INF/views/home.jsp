@@ -7,6 +7,7 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link href="${pageContext.request.contextPath}/resources/css/home.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script>
 		let isFilled = true;
 		
@@ -24,6 +25,7 @@
 	</script>
 </head>
 <body>
+	<div id="header_bar"></div>
 	<input type="button" value="story" onclick="location.href='story'">
 	<input type="button" value="board" onclick="location.href='board'">
 	<input type="button" value="shop" onclick="location.href='shop'">
@@ -58,5 +60,6 @@
 				  	0 4 1.794 4 4s-.7 3.412-3.5 6.5Z"/>
 		</svg>
 	</div>
+	<div id="footer_bar"></div>
 </body>
 </html>
