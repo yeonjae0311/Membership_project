@@ -192,9 +192,18 @@ public class ShopController {
 		
 		List<String> colors = item_dao.item_select_color(i_name);
 		
-		model.addAttribute("colors", colors);
+		String jsonArray = null;
 		
-		return "{\"param\": \"yes\"}";
+		try {
+			jsonArray = om.writeValueAsString(colors);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		
+//		model.addAttribute("colors", colors);
+		
+		return jsonArray;
 	}
 }
 
