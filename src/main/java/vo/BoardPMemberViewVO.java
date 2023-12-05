@@ -18,5 +18,6 @@ public class BoardPMemberViewVO {
 				   b_filename,
 				   m_username,
 				   m_photo_name,
-				   m_ismaster;
+				   m_ismaster,
+				   b_isliked;
 }

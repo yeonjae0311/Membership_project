@@ -145,14 +145,22 @@ public class BoardController {
 		//게시물 한건 조회
 		BoardPMemberViewVO vo = board_dao.board_selectOne(b_idx);
 		
-		//최근에 본 것 조회
-		String board_post_viewed = (String)session.getAttribute("post_viewed");
+		//해당 게시물 좋아요 했는지를 조회하기 위한 매개변수 map 세팅
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("b_idx", b_idx);
+		PMemberVO uservo = (PMemberVO) session.getAttribute("id");
+		map.put("m_idx", uservo.getM_idx());
+		
+		
+		
+		//최근에 본 것 (세션으로부터) 조회
+		String board_post_viewed = (String)session.getAttribute("board_post_viewed");
+		
 		//조회수 증가
 		if(vo!=null && (board_post_viewed==null || !board_post_viewed.equals(b_idx+""))) {			
 			board_dao.plus_board_read_hit(b_idx);
 			session.setAttribute("board_post_viewed", b_idx+"");
 		}
-		
 		
 		model.addAttribute("vo",vo);
 		

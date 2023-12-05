@@ -51,4 +51,8 @@ public class BoardDAO {
 	public int plus_board_read_hit(int b_idx) {
 		return sqlSession.update("b.plus_board_read_hit",b_idx);
 	}
+	
+	public int check_like_board(HashMap<String, Object> map) {
+		return 0;
+	}
 }
