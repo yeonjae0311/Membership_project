@@ -8,11 +8,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into story values(
 			seq_story_idx.nextval,
 			#{m_idx},
-			NULL,
 			#{s_content},
 			#{s_filename},
 			sysdate,
-			sysdate+1
+			sysdate+1,
+			0,
+			0
 		)
 	</insert>
 	
