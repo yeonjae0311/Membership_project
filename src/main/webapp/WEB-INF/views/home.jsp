@@ -21,12 +21,14 @@
 				event.target.style.fill = "white";
 			}
 		}
+		
+
 	</script>
 </head>
 <body>
-	<input type="button" value="story" onclick="location.href='story'">
-	<input type="button" value="board" onclick="location.href='board'">
-	<input type="button" value="shop" onclick="location.href='shop'">
+	<input type="button" id="story" value="story" onclick="location.href='story'">
+	<input type="button" id="board" value="board" onclick="location.href='board'">
+	<input type="button" id="shop" value="shop" onclick="location.href='shop'">
 	<c:choose>
 		<c:when test="${empty id}">
 			<input type="button" value="로그인" onclick="location.href='login_form'">

@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.CartDetailDAO;
 import dao.ItemDAO;
+import dao.PMemberDAO;
 import util.Path;
 import vo.CartDetailVO;
 import vo.ItemVO;
@@ -40,14 +41,22 @@ public class ShopController {
 	 
 	ItemDAO item_dao;
 	CartDetailDAO cart_detail_dao;
+	PMemberDAO pmember_dao;
 
-	public ShopController(ItemDAO item_dao, CartDetailDAO cart_detail_dao) {
+	public ShopController(ItemDAO item_dao, CartDetailDAO cart_detail_dao, PMemberDAO pmember_dao) {
 		this.item_dao = item_dao;
 		this.cart_detail_dao = cart_detail_dao;
+		this.pmember_dao = pmember_dao;
 	}
 	
 	@RequestMapping("shop")
 	public String shop(Model model) {
+		
+		PMemberVO vo = (PMemberVO) session.getAttribute("id");
+		int m_idx = vo.getM_idx();
+		
+		// idx로 마스터 계정인지 판별하는 메서드 자리(이미 만든거 가져다 쓰기)
+		// 반환된 int를 model에 바인딩해서 해당 값으로 shop의 상품 등록하기 버튼 숨기기
 		
 		List<ItemVO> list = item_dao.item_list_select();
 		
@@ -82,7 +91,8 @@ public class ShopController {
 		i_map.put("i_name", i_name);
 		i_map.put("i_color", i_color);
 		
-		int i_idx = item_dao.item_find_idx(i_map);
+		ItemVO item_vo = item_dao.item_find_idx(i_map);
+		int i_idx = item_vo.getI_idx();
 		int m_idx = p_member_vo.getM_idx();
 
 		// i_idx와 m_idx를 map으로 묶어 cart_detail table에 insert 하기		
@@ -91,12 +101,19 @@ public class ShopController {
 		idx_map.put("m_idx", m_idx);
 		idx_map.put("cd_count", cd_count);
 		
-		int res = cart_detail_dao.cart_insert(idx_map);
+		int insert = cart_detail_dao.cart_insert(idx_map);
+		
+		// i_amount를 가져와서 update문 한번 수행
+		// --> 수행이 되었으면(update) 페이지 이돟 후 alert로 '구매가능최대수량으로 변경되었습니다.'
+		// --> 수행이 안되었으면 페이지 이동
+		
+		int i_amount = item_vo.getI_amount();
+		int res = cart_detail_dao.cd_count_check(i_amount);
 		
 		if(res > 0) {
-			return "{\"param\": \"yes\"}";
+			return "{\"param\": \"success\"}";
 		} else {
-			return "{\"param\": \"no\"}";
+			return "{\"param\": \"fail\"}";
 		}
 	}
 		

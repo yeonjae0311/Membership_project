@@ -36,4 +36,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE I_IDX = #{i_idx} and m_idx=#{m_idx}
 	</update>
 	
+	<!-- cd_count를 i_amount에 맞게 변경 -->
+	<update id="cd_count_check" parameterType="int">
+		UPDATE CART_DETAIL SET CD_COUNT = 
+		CASE
+		WHEN CD_COUNT >= 8 
+		THEN 8
+		ELSE CD_COUNT 
+		END
+	</update>
+	
 </mapper>

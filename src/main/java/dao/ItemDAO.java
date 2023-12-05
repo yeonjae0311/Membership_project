@@ -35,8 +35,9 @@ public class ItemDAO {
 		return sqlSession.selectList("i.item_select_color", i_name);
 	}
 	
-	// 선택한 item의 idx 조회
-	public int item_find_idx(Map<String, String> i_map) {
+	// 선택한 item의 i_idx, i_amount 조회
+	public ItemVO item_find_idx(Map<String, String> i_map) {
 		return sqlSession.selectOne("i.item_find_idx", i_map);
 	}
+	
 }
