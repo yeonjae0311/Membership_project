@@ -12,7 +12,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		sysdate,
 		#{b_idx},
 		#{m_idx},
-		#{r_ip}
+		#{r_ip},
+		0
 		)
 	</insert>
 

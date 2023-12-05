@@ -34,7 +34,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="select_story_list_with_m_idx" parameterType="int" resultType="vo.StoryVO">
 		SELECT s.S_IDX,s.S_CONTENT,s.S_FILENAME,s.S_POSTED_DATE,s.S_EXPECTED_EXPIRATION_TIME,
-		nvl(sl.M_IDX,#{m_idx}) M_IDX, nvl(sl.SL_ISLIKED,0) SL_ISLIKED 
+		nvl(sl.M_IDX,#{m_idx}) M_IDX, nvl(sl.SL_ISLIKED,0) SL_ISLIKED ,
+		s.s_read_hit,s.s_like_count
 		FROM story s LEFT JOIN(SELECT * FROM STORY_ISLIKED WHERE m_idx=#{m_idx}) sl
 		ON (s.s_IDX =sl.s_IDX)
 	</select>

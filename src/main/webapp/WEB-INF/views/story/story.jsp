@@ -81,6 +81,14 @@
 					<textarea readonly>${svo.s_content }</textarea>
 				</div>
 			
+				<div class="s_read_hit">					
+					${svo.s_read_hit}
+				</div>
+				
+				<div class="like_count">					
+					${svo.s_like_count}
+				</div>
+			
 				<div class="liked">					
 					${svo.sl_isliked}
 				</div>

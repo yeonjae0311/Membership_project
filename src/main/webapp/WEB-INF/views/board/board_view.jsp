@@ -63,6 +63,14 @@
 				<th>작성일</th>
 				<td>${vo.b_posted_date}</td>
 			</tr>
+			<tr>
+				<th>조회수</th>
+				<td>${vo.b_read_hit}</td>
+			</tr>
+			<tr>
+				<th>좋아요 !</th>
+				<td>${vo.b_like_count}</td>
+			</tr>
 			<!-- 관리자계정일 경우만 ip가 보이게 -->
 			<c:if test="${id.m_ismaster eq '1'}">
 				<tr>

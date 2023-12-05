@@ -60,6 +60,7 @@ public class StoryController {
 			}else {
 				vo.setSl_isliked("1");
 			}
+			//여기서 만료된 스토리 삭제하는 코드 구현
 		}
 		model.addAttribute("svo_list",svo_list);
 		

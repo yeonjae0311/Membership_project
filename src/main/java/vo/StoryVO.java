@@ -9,7 +9,9 @@ import lombok.Setter;
 @Getter
 public class StoryVO {
 	private int s_idx,
-				m_idx;
+				m_idx,
+				s_read_hit,
+				s_like_count;
     private String s_content,
     			   s_posted_date,
     			   s_expected_expiration_time,

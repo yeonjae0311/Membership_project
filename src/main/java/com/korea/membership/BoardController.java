@@ -49,6 +49,7 @@ public class BoardController {
 	
 	@RequestMapping("board")
 	public String board(Model model) {
+		session.removeAttribute("board_post_viewed");
 
 		List<BoardPMemberViewVO> fixed_list =  board_dao.fixed_board_list();
 		List<BoardPMemberViewVO> unfixed_master_list =  board_dao.unfixed_master_board_list();
@@ -213,6 +214,4 @@ public class BoardController {
 			return "{\"res\": \"fail\"}";	
 		}
 	}
-
-
 }
