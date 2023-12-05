@@ -53,6 +53,6 @@ public class BoardDAO {
 	}
 	
 	public int check_like_board(HashMap<String, Object> map) {
-		return 0;
+		return sqlSession.selectOne("b.check_like_board", map);
 	}
 }

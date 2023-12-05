@@ -65,6 +65,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where b_idx=#{b_idx}
 	</update>
 	
+	<select id="check_like_board" parameterType="java.util.HashMap" resultType="int">
+		select count(*) from board_isliked
+		where b_idx=#{b_idx} and m_idx=#{m_idx}
+	</select>
+	
 
 </mapper>
 

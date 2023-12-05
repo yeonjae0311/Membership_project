@@ -151,7 +151,13 @@ public class BoardController {
 		PMemberVO uservo = (PMemberVO) session.getAttribute("id");
 		map.put("m_idx", uservo.getM_idx());
 		
+		int res = board_dao.check_like_board(map);
 		
+		if(res==0) {
+			vo.setB_isliked("0");
+		}else {
+			vo.setB_isliked("1");
+		}
 		
 		//최근에 본 것 (세션으로부터) 조회
 		String board_post_viewed = (String)session.getAttribute("board_post_viewed");
@@ -213,7 +219,7 @@ public class BoardController {
 		
 		if(is_need_to_delete_replys) {
 			//cascade도 있지만 이중검증
-			reply_dao.delete_replys_by_b_idx(b_idx);			
+			reply_dao.delete_replys_by_b_idx(b_idx);
 		}
 		
 		if(result!=null) {
