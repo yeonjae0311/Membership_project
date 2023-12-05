@@ -193,7 +193,11 @@ public class MemberController {
 	}
 
 	@RequestMapping("user_edit_profile")
-	public String user_edit_profile() {
+	public String user_edit_profile(Model model, int m_idx) {
+		PMemberVO vo = pmember_dao.select_one(m_idx);
+		
+		model.addAttribute("vo", vo);
+		
 		return Path.UserPath.make_path("user_edit_profile");
 	}
 
@@ -293,19 +297,17 @@ public class MemberController {
 	}
 
 	@RequestMapping("user_info_modify")
-	public String user_modify(PMemberVO vo) {
+	public String user_modify(PMemberVO vo, Model model) {
 		int res = pmember_dao.user_info_update(vo);
-		PMemberVO basevo = (PMemberVO) session.getAttribute("id");
-		basevo.setM_name(vo.getM_name());
-		basevo.setM_tel(vo.getM_tel());
-		basevo.setM_email(vo.getM_email());
-		session.setAttribute("id", basevo);
+		
+		
+		
 		return "redirect:user_info_form";
 	}
 
 	@RequestMapping("photo_upload")
 	@ResponseBody
-	public String photo_upload(@RequestBody String body, PMemberVO vo) {
+	public String photo_upload(@RequestBody String body, Model model) {
 		ObjectMapper om = new ObjectMapper();
 
 		Map<String, String> data = null;
@@ -318,38 +320,32 @@ public class MemberController {
 		}
 
 		int m_idx = Integer.parseInt(data.get("m_idx"));
+		PMemberVO vo = pmember_dao.select_one(m_idx);
+		String origin_m_photo_name = vo.getM_photo_name();
 
-		PMemberVO origin_m_photo_name = pmember_dao.select_one(m_idx);
-//		System.out.println("origin_m_photo_name"+origin_m_photo_name.getM_photo_name());
 		String new_m_photo_name = data.get("new_m_photo_name");
-		System.out.println("new_name:" + new_m_photo_name);
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		if (!origin_m_photo_name.equals(new_m_photo_name)) {
 			String m_photo_name = new_m_photo_name;
 			map.put("m_idx", m_idx);
 			map.put("m_photo_name", m_photo_name);
-			System.out.println(map);
 		}
-			int res = pmember_dao.photo_upload(map);
+		int res = pmember_dao.photo_upload(map);
 
-			System.out.println(res);
+		model.addAttribute("map", map);
 
-			if (res == 1) {
-				return "{\"param\": \"success\"}";
-			} else {
-				return "{\"param\": \"fail\"}";
-			}
-
+		if (res == 1) {
+			return "{\"param\": \"success\"}";
+		} else {
+			return "{\"param\": \"fail\"}";
+		}
 	}
 
 	@RequestMapping("user_profile_modify")
-	public String user_profile_update(PMemberVO vo) {
+	public String user_profile_update(PMemberVO vo, Model model) {
 		int res = pmember_dao.user_profile_update(vo);
-		PMemberVO basevo = (PMemberVO) session.getAttribute("id");
-		basevo.setM_photo_name(vo.getM_photo_name());
-		basevo.setM_username(vo.getM_username());
-		session.setAttribute("id", basevo);
+		model.addAttribute("vo", vo);
 		return "redirect:user_edit";
 	}
 

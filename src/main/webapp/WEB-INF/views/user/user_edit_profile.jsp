@@ -10,8 +10,6 @@
 	<script type="text/javascript">
 	
 	function photo_upload(f){
-		//let origin_m_photo_name = f.querySelector('[name="m_photo_name"]').value;
-		//origin_m_photo_name = origin_m_photo_name.split('/').pop();
 		
 		let new_m_photo_name = f.new_m_photo_name.value;
 		
@@ -27,15 +25,10 @@
 	}
 	
 	function photo_check(...args){
-		
-		console.log("here");
-		
-		console.log(args);
-		
 		let res = args[0]["param"];
  		
 		if(res == 'success'){
-			alert("사진 변경에 성공");
+			
 		} 
 	}
 	
@@ -52,6 +45,7 @@
 </head>
 	<body>
 	<form enctype="multipart/form-data" align="center" name="myForm">
+		<c:forEach var="vo" items=${vo }>
         <div id="m_photo_name">
             <img id="m_profile" src="${pageContext.request.contextPath}/resources/upload/user/${id.m_photo_name}">
             <input type="hidden" name="m_photo_name" value="${id.m_photo_name}">
@@ -63,6 +57,7 @@
         닉네임: <input name="m_username" value="${id.m_username}">
         <input type="hidden" name="m_idx" value="${id.m_idx}">
         <input type="button" value="수정완료" onclick="modify(this.form)">
+        </c:forEach>
     </form>
 	</body>
 </html>

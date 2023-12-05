@@ -18,20 +18,14 @@
 	<form>
 		<table>
 			<tr>
-				<td> <input name="m_name"> </td>
+				<td> 이름 : <input value="${vo.m_name }" > </td>
 			</tr>
 			<tr>
-				<td> <input name="m_tel"> </td>
+				<td> 연락처 :  <input value="${vo.m_tel }" > </td>
 			</tr>
 			<tr>
 				<td>
-					<input name="m_date_of_birth">
-				</td>
-			</tr>
-			<tr>
-				<th>이메일</th>
-				<td>
-					<input name="m_email" id="m_email" >
+					이메일<input name="m_email" value="${vo.m_email }" >
 				</td>
 			</tr>
 			<tr>
