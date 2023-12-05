@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -57,8 +58,8 @@ public class PMemberDAO {
 	}
 	
 	// 비밀번호 수정
-	public int password_update(String m_password) {
-		return sqlSession.update("pm.password_update", m_password);
+	public int password_update(Map<String, String> m_map) {
+		return sqlSession.update("pm.password_update", m_map);
 	}
 
 	//수정하기

@@ -22,7 +22,7 @@
 			<label class="control_label" for="m_email">이메일</label>
 			<input name="m_email" id="m_email"  >
 			<button id="auth_btn" type="button">이메일 인증하기</button>
-			<input class="mail_check_input" id="m_mail" placeholder="인증번호를 적어주세요">
+			<input class="mail_check_input" id="m_code" placeholder="인증번호를 적어주세요">
 			<div id="mail_check_input_info" ></div>
 			<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/login_js/email.js"></script>
 		</div>

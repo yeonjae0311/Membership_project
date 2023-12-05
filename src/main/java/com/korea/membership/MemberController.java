@@ -273,6 +273,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("find_password")
+	@ResponseBody
 	public String find_password(@RequestBody String body) throws UnsupportedEncodingException {
 		
 		ObjectMapper om = new ObjectMapper();
@@ -287,12 +288,17 @@ public class MemberController {
 		}
 
 		String m_email = URLDecoder.decode(data.get("m_email"), "utf-8");
-		String m_mail = URLDecoder.decode(data.get("m_mail"), "utf-8");
+		String m_code = URLDecoder.decode(data.get("m_code"), "utf-8");
 		String m_id = URLDecoder.decode(data.get("m_id"), "utf-8");
 		
-		int res = pmember_dao.password_update(m_mail);
+		HashMap<String, String> m_map = new HashMap<String, String>();
+		m_map.put("m_email", m_email);
+		m_map.put("m_code", m_code);
+		
+		System.out.println(m_code);
 
 		PMemberVO vo = pmember_dao.id_find(m_email);
+		
 		System.out.println(vo);
 		if (vo == null) {
 			return "{\"param\": \"no m_email\"}";
@@ -301,6 +307,8 @@ public class MemberController {
 		if (!vo.getM_id().equals(m_id)) {
 			return "{\"param\": \"no m_id\"}";
 		}
+		
+		int res = pmember_dao.password_update(m_map);
 		
 		session.setAttribute("id", vo);
 		
@@ -316,18 +324,6 @@ public class MemberController {
 	@RequestMapping("register_find_password")
 	public String register_find_password() {
 		return Path.LoginPath.make_path("register_find_password");
-	}
-	
-	@RequestMapping("register_modify_password")
-	public String register_modify_password(String password) {
-		int res = pmember_dao.password_update(password);
-
-		if (res > 0) {
-			return "redirect:register_modify_password";
-		} else {
-			System.out.println("추가 에러");
-			return null;
-		}
 	}
 	
 	@RequestMapping("kakao_pay")

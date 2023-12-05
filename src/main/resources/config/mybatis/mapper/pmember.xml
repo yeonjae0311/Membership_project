@@ -15,14 +15,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="insert" parameterType="pmember">
 		insert into p_member values(
-			seq_member_idx.nextval,
+			seq_p_member_m_idx.nextval,
 			#{m_username},
 			#{m_password},
 			#{m_id},
 			#{m_name},
 			#{m_tel},
 			#{m_email},
-			null,
+			'basic',
 			0, 
 			0,
 			sysdate,
@@ -56,8 +56,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from p_member where m_email=#{m_email}
 	</select>
 	
-	<update id="password_update" parameterType="pmember">
-		update p_member set m_password=#{m_mail} where m_email=#{m_email}
+	<update id="password_update" parameterType="java.util.HashMap" >
+		update p_member set m_password=#{m_code} where m_email=#{m_email}
 	</update>
 	
 	<update id="user_info_update" parameterType="pmember">

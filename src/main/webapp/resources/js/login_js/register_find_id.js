@@ -1,7 +1,7 @@
 function send_id(f){
 	let m_name = document.getElementById("m_name").value;
 	let m_email = document.getElementById("m_email").value;
-	let m_mail = document.getElementById("m_mail").value;
+	let m_code = document.getElementById("m_code").value;
 	
 	if(m_name == ''){
 		alert('이름을 입력해주세요');
@@ -13,7 +13,7 @@ function send_id(f){
 		return;
 	}
 	
-	if(m_mail != code){
+	if(m_code != code){
 		alert('인증번호를 확인해주세요');
 		return;
 	}

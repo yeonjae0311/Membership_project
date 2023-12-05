@@ -8,6 +8,7 @@
 	<title>Insert title here</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script src="resources/js/httpRequest.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/login_js/check_email.js"></script>
 	<script type="text/javascript">
 	
 		let b_id_check = false;
@@ -17,9 +18,24 @@
 			let m_id = document.getElementById("m_id");	
 			let m_password = document.getElementById("m_password");
 			let m_check_password = document.getElementById("m_check_password");
+			let m_date_of_birth = document.getElementById("m_date_of_birth");
+			let m_name = document.getElementById("m_name");	
+			let m_username = document.getElementById("m_username");	
+			let m_tel = document.getElementById("m_tel");	
+			let m_email = document.getElementById("m_email");	
+			let mail_check_input = document.getElementById("mail_check_input");	
+			
+			let check_tel = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+			let check_email = /^[A-z0-9]{2,20}+@[A-z]{2,20}+\.[a-z]{2,3}$/;
+			let check_birth = /^(?:[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1,2][0-9]|3[0,1]))$/;
 			
 			if(m_id.value == ''){
 				alert('아이디를 입력하세요');
+				return;
+			}
+			
+			if(!b_id_check){
+				alert('아이디 중복체크를 하세요');
 				return;
 			}
 			
@@ -33,8 +49,38 @@
 				return;
 			}
 			
-			if(!b_id_check){
-				alert('아이디 중복체크를 하세요');
+			if(m_name.value == ''){
+				alert('이름을 입력하세요');
+				return;
+			}
+			
+			if(m_username.value == ''){
+				alert('닉네임을 입력하세요');
+				return;
+			}
+			
+			if(!check_tel.test(m_tel)){
+				alert('전화번호 형식을 맞춰서 써주세요');
+				return;
+			}
+			
+			if(!check_email.test(m_email.value)){
+				alert('이메일 형식을 맞춰서 써주세요');
+				return;
+			}
+			
+			if(mail_check_input.value == ''){
+				alert('인증번호를 입력하세요');
+				return;
+			}
+			
+			if(!check_birth.test(m_date_of_birth.value)) {
+				alert('생년월일 형식을 맞춰서 써주세요');
+				return;
+			}
+			
+			if(code != mail_check_input) {
+				alert('인증번호를 확인해주세요');
 				return;
 			}
 			
@@ -75,94 +121,63 @@
 			b_id_check = false;
 		}
 		
-		// '출생 연도' 셀렉트 박스 option 목록 동적 생성
-		const birthYearEl = document.querySelector('#birth-year')
-		// option 목록 생성 여부 확인
-		isYearOptionExisted = false;
-		birthYearEl.addEventListener('focus', function () {
-		  // year 목록 생성되지 않았을 때 (최초 클릭 시)
-		  if(!isYearOptionExisted) {
-		    isYearOptionExisted = true
-		    for(var i = 1940; i <= 2022; i++) {
-		      // option element 생성
-		      const YearOption = document.createElement('option')
-		      YearOption.setAttribute('value', i)
-		      YearOption.innerText = i
-		      // birthYearEl의 자식 요소로 추가
-		      this.appendChild(YearOption);
-		    }
-		  }
-		});
+		
+		
 	</script>
 </head>
 <body>
 	<form>
-		<table border="1" align="center">
-			<caption>:::회원가입:::</caption>
-			<tr>
-				<th>아이디</th>
-				<td>
-					<input name="m_id" id="m_id" onchange="change()">
-					<input type="button" value="중복체크" onclick="check_id()">
-				</td>
-			</tr>
-			<tr>
-				<th>비밀번호</th>
-				<td>
-					<input name="m_password" id="m_password" type="password">
-				</td>
-			</tr>
-			<tr>
-				<th>비밀번호 확인</th>
-				<td>
-					<input name="m_check_password" id="m_check_password" type="password">
-				</td>
-			</tr>
-			<tr>
-				<th>이름</th>
-				<td>
-					<input name="m_name" id="m_name">
-				</td>
-			</tr> 
-			<tr>
-				<th>닉네임</th>
-				<td>
-					<input name="m_username" id="m_username">
-				</td>
-			</tr> 
-			<tr>
-				<th>전화번호</th>
-				<td>
-					<input name="m_tel" id="m_tel">
-				</td>
-			</tr> 
-			<tr>
-				<th>이메일</th>
-				<td><input name="m_email" id="m_email">
-				<button id="auth_btn" type="button">이메일 인증하기</button><br>
-				<input class="mail_check_input" disabled placeholder="인증번호를 적어주세요"><br>
-				<div id="mail_check_input_info" ></div>
-				</td>
-			</tr>
-			<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/login_js/email.js"></script>
-			<div class="info" id="info__birth">
-			  <select class="box" id="birth-year">
-			    <option disabled selected>출생 연도</option>
-			  </select>
-			  <select class="box" id="birth-month">
-			    <option disabled selected>월</option>
-			  </select>
-			  <select class="box" id="birth-day">
-			    <option disabled selected>일</option>
-			  </select>
+		<div>아이디</div>
+			<div>
+				<input name="m_id" id="m_id" onchange="change()">
+				<input type="button" value="중복체크" onclick="check_id()">
 			</div>
-			<tr>
-				<td colspan="2" align="center">
-					<input type="button" value="가입" onclick="send(this.form)"> 
-					<input type="button" value="취소" onclick="location.href='main'">
-				</td>
-			</tr>
-		</table>
+			
+		<div>비밀번호</div>
+			<div>
+				<input name="m_password" id="m_password" type="password">
+			</div>
+		
+		<div>비밀번호 확인</div>
+			<div>
+				<input name="m_check_password" id="m_check_password" type="password">
+			</div>
+			
+		<div>이름</div>
+			<div>
+				<input name="m_name" id="m_name">
+			</div>
+			
+		<div>닉네임</div>
+			<div>
+				<input name="m_username" id="m_username">
+			</div>
+			
+		<div>전화번호</div>
+			<div>
+				<input name="m_tel" id="m_tel" placeholder="010-1234-5678">
+			</div>
+			
+		<div>이메일</div>
+			<div>
+				<input name="m_email" id="m_email" onchange="change()">
+				<input type="button" value="중복체크" onclick="check_email()">
+				<input class="mail_check_input" id="mail_check_input" disabled placeholder="인증번호를 적어주세요">
+				<button id="auth_btn" type="button">이메일 인증하기</button><br>
+				<div id="mail_check_input_info" ></div>
+				<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/login_js/email.js"></script>
+			</div>
+			
+		<div>생년월일</div>
+			<div>
+				<input name="m_date_of_birth" id="m_date_of_birth" placeholder="YYMMDD 형식으로 넣어주세요">
+			</div>
+		
+		<div>
+			<input type="button" value="가입" onclick="send(this.form)"> 
+			<input type="button" value="취소" onclick="location.href='main'">
+		</div>
+				
 	</form>
 </body>
 </html>

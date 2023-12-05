@@ -1,7 +1,7 @@
 function send_password(f){
 	let m_id = document.getElementById("m_id").value;
 	let m_email = document.getElementById("m_email").value;
-	let m_mail = document.getElementById("m_mail").value;
+	let m_code = document.getElementById("m_code").value;
 	
 	if(m_id == ''){
 		alert('아이디를 입력해주세요');
@@ -13,7 +13,7 @@ function send_password(f){
 		return;
 	}
 	
-	if(m_mail != code){
+	if(m_code != code){
 		alert('인증번호를 확인해주세요');
 		return;
 	}
@@ -24,7 +24,7 @@ function send_password(f){
 	let param = {
 		"m_id": encodeURIComponent(m_id),
 		"m_email": encodeURIComponent(m_email),
-		"m_mail": encodeURIComponent(m_mail)
+		"m_code": encodeURIComponent(m_code)
 	};
 
 	sendRequest(url, param, check, "post");
@@ -38,7 +38,7 @@ function check(...args){
 	if(res == 'no m_email'){
 		alert('이메일이 일치하지 않습니다');
 		form.m_email.focus();
-		return;
+		return;	
 	} else if(res == 'no m_id'){
 		alert('아이디가 존재하지 않습니다.');
 		form.m_id.focus();
