@@ -1,7 +1,11 @@
 package com.korea.membership;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -9,8 +13,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.BoardDAO;
 import dao.ReplyDAO;
@@ -70,8 +79,7 @@ public class BoardController {
 		
 		System.out.println(vo);
 		MultipartFile file = vo.getB_file();
-		String filename = "no_file";
-		
+		String filename = "no_file";		
 		//파일처리
 		//db에도 넣어야함
 		//
@@ -145,9 +153,57 @@ public class BoardController {
 		return Path.BoardPath.make_path("board_view");
 	}
 	
+	@RequestMapping("delete_board_post")
+	@ResponseBody
+	public String delete_board_post(@RequestBody String body) throws UnsupportedEncodingException{
+		ObjectMapper om = new ObjectMapper();
 
-	
-	
+	    Map<String, String> data = null;
+	    
+	    try {
+	    	data = om.readValue(body, new TypeReference<Map<String, String>>() {});
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+	    
+	    int m_idx = Integer.parseInt(data.get("m_idx"));
+	    int b_idx = Integer.parseInt(data.get("b_idx"));
+        System.out.println();
+	        
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("m_idx", m_idx);
+		map.put("b_idx", b_idx);
+		String result = null;
+		
+		boolean is_need_to_delete_replys = false;
+		int res = board_dao.delete_board_post(map);
+		
+		if(res!=0) {
+			is_need_to_delete_replys = true;
+			result = "delete_by_user";
+			//삭제가 됐다면 reply도 삭제
+		}else {
+			//작성자는 아니지만 마스터라면 삭제할수 있어야함
+			int ismaster = board_dao.is_master(m_idx);
+			if(ismaster == 1) //마스터계정이면 해당글 삭제 성공
+			{
+				board_dao.delete_board_post_by_master(m_idx);
+				is_need_to_delete_replys = true;
+				result = "delete_by_master";
+			}
+		}
+		
+		if(is_need_to_delete_replys) {
+			//cascade도 있지만 이중검증
+			reply_dao.delete_replys_by_b_idx(b_idx);			
+		}
+		
+		if(result!=null) {
+			return "{\"res\": \"success\"}";			
+		}else {
+			return "{\"res\": \"fail\"}";	
+		}
+	}
 
 
 }

@@ -44,6 +44,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where b_idx=#{b_idx}
 	</select>
 	
+	<!-- 일반적인 경우 작성자가 삭제하는 경우 -->
+	<delete id="delete_board_post" parameterType="java.util.HashMap">
+		delete board where b_idx=#{b_idx} and m_idx=#{m_idx}
+	</delete>
+	
+	<select id="is_master" parameterType="int" resultType="int">
+		select count(*) cnt from P_MEMBER
+		where m_idx = #{m_idx} AND M_ISMASTER='1'
+	</select>
+	
+	<delete id="delete_board_post_by_master" parameterType="int">
+		delete board where b_idx=#{b_idx}
+	</delete>
 	
 
 </mapper>

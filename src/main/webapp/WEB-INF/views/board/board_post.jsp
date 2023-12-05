@@ -39,7 +39,6 @@
 			f.action = "board_post_insert";
 			f.submit();
 		}
-		
 	</script>
 </head>
 <body>
