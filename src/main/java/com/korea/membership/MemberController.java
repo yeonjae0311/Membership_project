@@ -1,7 +1,6 @@
 package com.korea.membership;
 
-import java.io.File;
-import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -169,12 +167,12 @@ public class MemberController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		int m_idx = Integer.parseInt(data.get("m_idx"));
 		PMemberVO basevo = pmember_dao.select_one(m_idx);
 
 		int res = pmember_dao.delete_update(basevo);
-		
+
 		System.out.println(res);
 
 		if (res == 1) {
@@ -307,7 +305,7 @@ public class MemberController {
 
 	@RequestMapping("photo_upload")
 	@ResponseBody
-	public String photo_upload(@RequestBody String body) {
+	public String photo_upload(@RequestBody String body, PMemberVO vo) {
 		ObjectMapper om = new ObjectMapper();
 
 		Map<String, String> data = null;
@@ -318,43 +316,31 @@ public class MemberController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		String webPath = "/resources/upload/user/";
-		String savePath = request.getServletContext().getRealPath(webPath);
-		System.out.println(savePath);
 
-		MultipartFile m_photo = vo.getM_photo();
-		String m_photo_name = "no_file";
+		int m_idx = Integer.parseInt(data.get("m_idx"));
 
-		if (!m_photo.isEmpty()) {
-			m_photo_name = m_photo.getOriginalFilename();
+		PMemberVO origin_m_photo_name = pmember_dao.select_one(m_idx);
+//		System.out.println("origin_m_photo_name"+origin_m_photo_name.getM_photo_name());
+		String new_m_photo_name = data.get("new_m_photo_name");
+		System.out.println("new_name:" + new_m_photo_name);
 
-			File saveFile_photo = new File(savePath, m_photo_name);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		if (!origin_m_photo_name.equals(new_m_photo_name)) {
+			String m_photo_name = new_m_photo_name;
+			map.put("m_idx", m_idx);
+			map.put("m_photo_name", m_photo_name);
+			System.out.println(map);
+		}
+			int res = pmember_dao.photo_upload(map);
 
-			if (!saveFile_photo.exists()) {
-				saveFile_photo.mkdirs();
+			System.out.println(res);
+
+			if (res == 1) {
+				return "{\"param\": \"success\"}";
 			} else {
-				long time = System.currentTimeMillis();
-				m_photo_name = String.format("%d_%s", time, m_photo_name);
-				saveFile_photo = new File(savePath, m_photo_name);
+				return "{\"param\": \"fail\"}";
 			}
-			try {
-				m_photo.transferTo(saveFile_photo);
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		vo.setM_photo_name(m_photo_name);
-		System.out.println(vo.getM_photo_name());
 
-		int res = pmember_dao.photo_upload(vo);
-
-		if (res > 0) {
-			return "redirect:user_edit_profile";
-		}
-		return null;
 	}
 
 	@RequestMapping("user_profile_modify")

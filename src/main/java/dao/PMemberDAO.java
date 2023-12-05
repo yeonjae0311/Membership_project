@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.HashMap;
+
 import org.apache.ibatis.session.SqlSession;
 
 import vo.PMemberVO;
@@ -24,7 +26,6 @@ public class PMemberDAO {
 	// 이메일 중복 체크
 	public int email_check(String m_email) {
 		return sqlSession.selectOne("pm.email_check", m_email);
-
 	}
 
 	// 회원가입하기
@@ -65,8 +66,8 @@ public class PMemberDAO {
 	}
 
 	// 프로필 사진 수정하기
-	public int photo_upload(PMemberVO vo) {
-		return sqlSession.update("pm.photo_upload", vo);
+	public int photo_upload(HashMap<String, Object> map) {
+		return sqlSession.update("pm.photo_upload", map);
 	}
 
 	// 프로필 수정

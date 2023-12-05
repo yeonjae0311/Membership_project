@@ -10,22 +10,33 @@
 	<script type="text/javascript">
 	
 	function photo_upload(f){
-		let m_photo_name = f.querySelector('[name="m_photo_name"]').value;
-		m_photo_name = m_photo_name.split('/').pop();
+		//let origin_m_photo_name = f.querySelector('[name="m_photo_name"]').value;
+		//origin_m_photo_name = origin_m_photo_name.split('/').pop();
+		
+		let new_m_photo_name = f.new_m_photo_name.value;
+		
+		console.log('name : ' + new_m_photo_name.split('\\')[2]);
 		
 		let url = "photo_upload";
-		let param = "m_photo_name="+m_photo_name;
+		let param = {
+				"new_m_photo_name" : new_m_photo_name.split('\\')[2], 
+				"m_idx": ${id.m_idx}
+		}
 		
 		sendRequest(url, param, photo_check, "POST");
 	}
 	
 	function photo_check(...args){
 		
+		console.log("here");
+		
+		console.log(args);
+		
 		let res = args[0]["param"];
-		
-		
-		
-		
+ 		
+		if(res == 'success'){
+			alert("사진 변경에 성공");
+		} 
 	}
 	
 	function modify(f) {
@@ -42,10 +53,10 @@
 	<body>
 	<form enctype="multipart/form-data" align="center" name="myForm">
         <div id="m_photo_name">
-            <!-- 이미지의 파일 이름을 m_photo_name에 설정 -->
             <img id="m_profile" src="${pageContext.request.contextPath}/resources/upload/user/${id.m_photo_name}">
             <input type="hidden" name="m_photo_name" value="${id.m_photo_name}">
-            <input type="file" value="사진 변경" onclick="photo_upload(this.form)">
+            <input type="file" name="new_m_photo_name"	 value="사진 변경">
+            <input type="button" value="사진 미리보기" onclick="photo_upload(this.form)">
             <input type="hidden" name="m_idx" value="${id.m_idx}">
         </div>
         이름: "${id.m_name}"<br>
