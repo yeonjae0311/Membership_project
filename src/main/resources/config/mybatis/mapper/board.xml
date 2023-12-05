@@ -34,7 +34,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{b_filename},
 			sysdate,
 			#{b_isfixed},
-			#{b_ip}
+			#{b_ip},
+			0,
+			0
 		)
 	</insert>
 	
