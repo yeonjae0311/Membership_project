@@ -29,6 +29,10 @@
  			width: 100%;
  			object-fit: contain;
  		}
+ 		
+ 		.option_div{
+ 			display: none;
+ 		}
 	</style>
 	<script>
 		function select_all(select_all)  {
@@ -39,23 +43,38 @@
 			});
 		}
 		
-		function select_option_fn(f){
+		function select_option_fn(f, count){
+			
+			document.getElementById("option_div_" + count).style.display = "block";
+			
 			const i_name = f.i_name.value.trim();
 			const url = "select_option";
 			
 			const param = {
 				"i_name": encodeURIComponent(i_name),
 			};
+			
 				
 			sendRequest(url, param, resultFn, "post");
 		}
 		
 		function resultFn(...args){
-			let res = args[0].param;
-
-			if(res == 'yes'){
-				alert("옵션 선택 가능")
-			} 
+			let res = args[0];
+			
+			let parent = document.getElementById("color");
+			
+			for(let index in res){
+				let option = document.createElement("option");
+				option.value = res[index];
+				option.innerHTML = res[index];
+				
+				console.log(option)
+				console.log(parent)
+				
+				parent.appendChild(option);
+			}
+			
+						
 		}
 	</script>
 </head>
@@ -73,16 +92,18 @@
 					<div id=shopping_cart_item_img_div>
 						<img id=shopping_cart_item_img src="${pageContext.request.contextPath}/resources/upload/${vo.i_photo_name}"><br>
 					</div>
-					<input type="hidden" name=i_name value="${vo.i_name}">
+					<input type="hidden" name="i_name" value="${vo.i_name}">
 					${vo.i_name}<br>
 					${vo.i_price}<br>
 					<input type="button" name="select_option" value="옵션 변경" 
-							onclick="select_option_fn(document.getElementById('shopping_cart_item_${count.current}'))">
-					<select class="color_option" id="color" name="i_color" required>
-					    <c:forEach var="colors" items="${colors}">
-					    	<option value="${colors}">${colors}</option>
-					    </c:forEach>	   
-					</select>
+							onclick="select_option_fn(document.getElementById('shopping_cart_item_${count.current}'), '${count.current}')">
+					<div class="option_div" id="option_div_${count.current}">
+						<select class="color_option" id="color" name="i_color" required>
+						    <c:forEach var="colors" items="${colors}">
+						    	<option value="${colors}">${colors}</option>
+						    </c:forEach>	   
+						</select>
+					</div>
 					옵션 : ${vo.i_color}<br>
 					수량 : <input type="number" name="od_count" value="1" min="1" max="99">
 				</div>
