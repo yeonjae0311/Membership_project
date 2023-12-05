@@ -14,6 +14,7 @@
 						checkInput.attr('disabled', false); /*데이터가 성공적으로 들어오면 인증번호 입력란이 활성화되도록*/
 						code = data;
 						alert('인증번호가 전송되었습니다.')
+						
 						return;
 					}
 					

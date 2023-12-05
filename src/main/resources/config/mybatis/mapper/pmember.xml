@@ -9,8 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="id_check" resultType="int" parameterType="String">
-		select
-		count(*) from p_member where m_id=#{m_id}
+		select count(*) from p_member where m_id=#{m_id}
 	</select>
 
 	<insert id="insert" parameterType="pmember">

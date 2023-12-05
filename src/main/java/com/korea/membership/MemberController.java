@@ -132,14 +132,28 @@ public class MemberController {
 
 	@RequestMapping("check_id")
 	@ResponseBody
-	public String check_id(String m_id) {
-		int res = pmember_dao.id_check(m_id);
+	public String check_id(@RequestBody String body) throws UnsupportedEncodingException {
+		
+		ObjectMapper om = new ObjectMapper();
 
+		Map<String, String> data = null;
+
+		try {
+			data = om.readValue(body, new TypeReference<Map<String, String>>() {
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String m_id = URLDecoder.decode(data.get("m_id"), "utf-8");
+		
+		int res = pmember_dao.id_check(m_id);
+		
 		if (res == 0) {
-			return "[{'res':'yes'}]";
+			return "{\"param\": \"ok_m_id\"}";
 		}
 
-		return "[{'res':'no'}]";
+		return "{\"param\": \"fail\"}";
 	}
 	
 	@RequestMapping("member_insert")
@@ -256,11 +270,11 @@ public class MemberController {
 		PMemberVO vo = pmember_dao.id_find(m_email);
 
 		if (vo == null) {
-			return "{\"param\": \"no m_email\"}";
+			return "{\"param\": \"no_m_email\"}";
 		}
 
 		if (!vo.getM_name().equals(m_name)) {
-			return "{\"param\": \"no m_name\"}";
+			return "{\"param\": \"no_m_name\"}";
 		}
 
 		session.setAttribute("id", vo);
@@ -295,16 +309,18 @@ public class MemberController {
 		m_map.put("m_email", m_email);
 		m_map.put("m_code", m_code);
 		
-		System.out.println(m_code);
+		System.out.println("code = " + m_code);
 
 		PMemberVO vo = pmember_dao.id_find(m_email);
 		
-		System.out.println(vo);
+		System.out.println("vo : " + vo);
 		if (vo == null) {
+			System.out.println("vo있음");
 			return "{\"param\": \"no m_email\"}";
 		}
 
 		if (!vo.getM_id().equals(m_id)) {
+			System.out.println("m_id있음");
 			return "{\"param\": \"no m_id\"}";
 		}
 		

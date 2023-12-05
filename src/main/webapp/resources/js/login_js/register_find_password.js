@@ -35,11 +35,11 @@ function check(...args){
 	
 	let form = document.getElementsByTagName("form")[0];
 	
-	if(res == 'no m_email'){
+	if(res == 'no_m_email'){
 		alert('이메일이 일치하지 않습니다');
 		form.m_email.focus();
 		return;	
-	} else if(res == 'no m_id'){
+	} else if(res == 'no_m_id'){
 		alert('아이디가 존재하지 않습니다.');
 		form.m_id.focus();
 		return;
