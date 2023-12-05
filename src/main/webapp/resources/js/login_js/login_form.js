@@ -28,8 +28,12 @@ function myCheck(...args){
 	
 	let form = document.getElementsByTagName("form")[0];
 
-//	localStorage.setItem("test", res);
-//	console.log(localStorage)
+	let res2 = args[0].m_idx;
+
+	console.log(res2)
+
+	localStorage.setItem("id", res2);
+	console.log(localStorage)
 	
 	if(res == 'no_m_id'){
 		alert('아이디가 존재하지 않습니다.');
@@ -40,7 +44,7 @@ function myCheck(...args){
 		form.m_password.focus();
 		return;
 	} else {
-		alert('로그인 성공');
-		location.href='main';
+		// alert('로그인 성공');
+		// location.href='main';
 	}
 }

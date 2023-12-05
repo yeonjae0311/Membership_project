@@ -7,7 +7,9 @@ import lombok.Setter;
 @Setter
 public class BoardPMemberViewVO {
 	private int b_idx,
-				m_idx;
+				m_idx,
+				b_read_hit,
+				b_like_count;
 	private String b_content,
 				   b_posted_date,
 				   b_title,
@@ -16,5 +18,6 @@ public class BoardPMemberViewVO {
 				   b_filename,
 				   m_username,
 				   m_photo_name,
-				   m_ismaster;
+				   m_ismaster,
+				   b_isliked;
 }

@@ -27,7 +27,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="button" value="로그인" onclick="javascript:send(this.form)">
+					<input type="button" value="로그인" onclick="send(this.form)">
 					<input type="button" value="회원가입" onclick="location.href='member_insert_form'">
 					<input type="button" value="취소" onclick="location.href='main'">
 				</td>

@@ -7,6 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
+	<script src="${pageContext.request.contextPath}/resources/js/http_request.js"> </script>
 	<script>
 		function send_reply(f){
 			let r_content = f.r_content.value.trim();
@@ -20,7 +21,30 @@
 			f.action="board_reply";
 			f.submit();
 		}
-	</script>
+		
+		function delete_board_post(){
+			let m_idx = '${id.m_idx}';
+			let b_idx = '${vo.b_idx}';
+			
+			let url = "delete_board_post";
+			
+		   	const param = {
+                "m_idx": encodeURIComponent(m_idx),
+                "b_idx": encodeURIComponent(b_idx)
+            };			
+			
+			sendRequest(url,param,resultFn,'post');
+		}
+		function resultFn(...args){
+			let res = args[0].res;
+			if(res == 'success'){
+				alert('게시글 삭제 성공');
+				location.href='board';
+			}else{
+				alert('글 삭제 권한이 없습니다.');
+			}
+		}
+	    </script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/login_check.jsp" />
@@ -39,6 +63,14 @@
 				<th>작성일</th>
 				<td>${vo.b_posted_date}</td>
 			</tr>
+			<tr>
+				<th>조회수</th>
+				<td>${vo.b_read_hit}</td>
+			</tr>
+			<tr>
+				<th>좋아요 !</th>
+				<td>${vo.b_like_count}</td>
+			</tr>
 			<!-- 관리자계정일 경우만 ip가 보이게 -->
 			<c:if test="${id.m_ismaster eq '1'}">
 				<tr>
@@ -49,7 +81,7 @@
 			<tr>
 				<td colspan="2" width="500px" height="200px">
 					<c:if test="${not empty vo.b_filename and vo.b_filename ne 'no_file'}">
-						<img src="${pageContext.request.contextPath}/resources/upload/${vo.b_filename}" width="200">
+						<img src="${pageContext.request.contextPath}/resources/upload/board/${vo.b_filename}" width="200">
 						<br>
 					</c:if>
 					${vo.b_content }
@@ -60,9 +92,9 @@
 					<!-- 목록으로 -->
 					<img src="resources/img2/btn_list.gif" onclick="location.href='board'">
 					<!-- 답변 -->
-					<img src="resources/img2/btn_reply.gif" onclick="location.href='board_reply&b_idx='${vo.b_idx}">
+					<%-- <img src="resources/img2/btn_reply.gif" onclick="location.href='board_reply&b_idx='${vo.b_idx}"> --%>
 					<!-- 삭제 -->
-					<img src="resources/img2/btn_delete.gif" onclick="del();">
+					<img src="resources/img2/btn_delete.gif" onclick="delete_board_post();">
 				</td>
 			</tr>
 		</table>
@@ -85,7 +117,7 @@
 			<div class="reply_div">
 				<div class="user_info_div">
 					<div class="user_photo">
-						<img src="${pageContext.request.contextPath}/resources/upload/${i.m_photo_name}" alt="이미지 유실">
+						<img src="${pageContext.request.contextPath}/resources/upload/user${i.m_photo_name}" alt="이미지 유실">
 					</div>
 					<div>${i.m_username}</div>
 					<div>${i.r_date}</div>

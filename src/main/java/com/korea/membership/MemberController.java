@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -44,11 +45,6 @@ public class MemberController {
 	public MemberController(PMemberDAO pmember_dao, BoardDAO board_dao) {
 		this.pmember_dao = pmember_dao;
 		this.board_dao = board_dao;
-	}
-
-	@RequestMapping("story")
-	public String story() {
-		return Path.StoryPath.make_path("story");
 	}
 
 	@RequestMapping("login_form")
@@ -84,12 +80,21 @@ public class MemberController {
 		if (!vo.getM_password().equals(m_password)) {
 			return "{\"param\": \"no_m_password\"}";
 		}
+		
+		String localStorage = null;
+		
+		try {
+			localStorage = om.writeValueAsString(vo);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		// 아이디와 비밀번호 체크에 문제가 없다면 세션에 바인딩 한다.
 		session.setAttribute("id", vo);
 
 		// 로그인에 성공한 경우
-		return "{\"param\": \"success\"}";
+		return localStorage;
 	}
 	
 	@RequestMapping("check_email") // 이메일 중복체크
@@ -388,11 +393,6 @@ public class MemberController {
 		basevo.setM_username(vo.getM_username());
 		session.setAttribute("id", basevo);
 		return "redirect:user_edit";
-	}
-	
-	@RequestMapping("shop_payment")
-	public String shop_payment() {
-		return Path.ShopPath.make_path("shop_payment");
 	}
 	
 	@RequestMapping("congratulations_register")

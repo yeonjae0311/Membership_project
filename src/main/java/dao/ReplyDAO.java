@@ -21,4 +21,8 @@ public class ReplyDAO {
 	public List<BoardPMemberReplyViewVO> select_reply_list(int b_idx){
 		return sqlSession.selectList("r.select_reply_list",b_idx);
 	}
+	
+	public int delete_replys_by_b_idx(int b_idx) {
+		return sqlSession.delete("r.delete_replys_by_b_idx",b_idx);
+	}
 }

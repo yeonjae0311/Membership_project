@@ -48,7 +48,7 @@
 		<input type="button" value="유저버튼" onclick="userfunc()">	
 	</div>
 	
-	<div id="fixed_list" style="background-color: gray">
+	<div id="fixed_list">
 		<table border="1" class="b_list">
 			<tr>
 				<th>번호</th>

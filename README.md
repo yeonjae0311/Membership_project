@@ -29,3 +29,20 @@ CART_DETAIL TABLE
 -I_IDX
 
 -CD_COUNT
+
+
+## flow
+login
+	register -> login
+
+home
+	shop
+		shop item
+		shopping cart
+	board
+		board view
+		board post
+	story
+		story view
+	mypage
+		profile edit

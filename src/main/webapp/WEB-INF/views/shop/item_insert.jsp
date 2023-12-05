@@ -8,22 +8,8 @@
 	<meta charset="UTF-8">
 	<title>NewJeans Membership</title>
 	<link rel="stylesheet" href="resources/css/item_insert.css">
-	<script>
-	
-		/* // 옵션 추가
-		function add(){
-			 let element = document.createElement("input");
-			 element.setAttribute("name","i_color")  
-		     document.getElementById("option").appendChild(element);
-		} 
-		 */
-<<<<<<< HEAD
-		 function upload(){
-	
-			 const item_upload = document.getElementById(item_upload);
-=======
+	<script>	
 		 function upload(item_upload){
->>>>>>> 9527fe2989bdf30e59bcf9165b2f8dc7fb02f821
 			 
 			 if(item_upload.i_name.value == ''){
 				alert('상품명을 입력하세요');
@@ -31,42 +17,71 @@
 				return;
 			 }
 			 
+			 if(item_upload.i_price.value == ''){
+				alert('상품 가격을 입력하세요');
+				item_upload.i_price.focus();
+				return;
+			 }
+			 
+			 if(item_upload.i_color.value == ''){
+				alert('상품 색상을 입력하세요');
+				item_upload.i_color.focus();
+				return;
+			 }
+			 
+			 if(item_upload.i_amount.value == ''){
+				alert('재고 수량을 입력하세요');
+				return;
+			 }
+			 
+			 if(item_upload.i_photo.value == ''){
+				alert('상품이미지를 등록하세요');
+				return;
+			 }
+			 
+			 if(item_upload.i_detail_photo.value == ''){
+				alert('상품 상세 이미지를 등록하세요');
+				return;
+			 }
+			 
 			 item_upload.submit();
 		 }
 	</script>
-<<<<<<< HEAD
 </head>
 <body>
 	<form id="item_upload" action="item_insert_upload" method="POST" enctype="multipart/form-data">
-		상품 이름 : <input name="i_name"><br>		
-		상품 가격 : <input name="i_price">원<br>
-		상품 색상 : <input name="i_color"><br>
-		재고 수량 : <input type="number" name="i_amount" min="1" max="99"><br>
-		상품 이미지 : <input type="file" name="i_photo"><br> 
-   		상품 상세 이미지 : <input type="file" name="i_detail_photo"><br>	
-    	<div id=button_bar>
-    		<input type="button" value="등록하기" onclick="upload()">
-    		<input type="button" value="취소하기" onclick="location.href='shop'">
-    	</div>
-   	</form>
-</body>
-=======
-	</head>
-	<body>
-		<form id="item_upload" action="item_insert_upload" method="POST" enctype="multipart/form-data">
-			상품 이름 : <input name="i_name"><br>		
-			상품 가격 : <input name="i_price">원<br>
-			상품 색상 : <input name="i_color"><br>
-			재고 수량 : <input type="number" name="i_amount" min="1" max="99"><br>
-			상품 이미지 : <input type="file" name="i_photo"><br> 
-    		상품 상세 이미지 : <input type="file" name="i_detail_photo"><br>	
-	    	<div id=button_bar>
-	    		<input type="button" value="등록하기" onclick="upload(this.form)">
-	    		<input type="button" value="취소하기" onclick="location.href='shop'">
+		<div>
+			<div>
+				상품 이름 : <input name="i_name"><br>	
+			</div>
+			
+			<div>
+				상품 가격 : <input name="i_price">원<br>
+			</div>
+			
+			<div>
+				상품 색상 : <input name="i_color"><br>
+			</div>
+			
+			<div>
+				재고 수량 : <input type="number" name="i_amount" min="1" max="99"><br>
+			</div>
+			
+			<div>
+				상품 이미지 : <input type="file" name="i_photo"><br> 
+			</div>
+			
+			<div>
+	    		상품 상세 이미지 : <input type="file" name="i_detail_photo"><br>	
 	    	</div>
-    	</form>
-	</body>
->>>>>>> 9527fe2989bdf30e59bcf9165b2f8dc7fb02f821
+	    	
+		    <div id=button_bar>
+		    	<input type="button" value="등록하기" onclick="upload(this.form)">
+		    	<input type="button" value="취소하기" onclick="location.href='shop'">
+		    </div>
+		 </div>
+    </form>
+</body>
 </html>
 
 

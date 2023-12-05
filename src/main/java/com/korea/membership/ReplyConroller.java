@@ -25,5 +25,4 @@ public class ReplyConroller {
 	public ReplyConroller(ReplyDAO reply_dao) {
 		this.reply_dao = reply_dao;
 	}
-	
 }

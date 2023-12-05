@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="s">
+	
+	<insert id="story_post_insert" parameterType="vo.StoryVO">
+		insert into story values(
+			seq_story_idx.nextval,
+			#{m_idx},
+			#{s_content},
+			#{s_filename},
+			sysdate,
+			sysdate+1,
+			0,
+			0
+		)
+	</insert>
+	
+	<select id="select_story_one" parameterType="java.util.HashMap" resultType="vo.StoryVO">
+		select * from story_story_is_liked_join_view
+		where s_idx=#{s_idx} and m_idx=#{m_idx}
+	</select>
+	
+	<select id="select_story_one_by_s_idx" parameterType="String" resultType="vo.StoryVO">
+		select * from story
+		where s_idx=#{s_idx}
+	</select>
+	
+	<select id="check_is_liked" parameterType="java.util.HashMap" resultType="int">
+		SELECT count(*) FROM STORY_ISLIKED
+		where s_idx=#{s_idx} and m_idx=#{m_idx}
+	</select>
+	
+	<select id="select_story_list_with_m_idx" parameterType="int" resultType="vo.StoryVO">
+		SELECT s.S_IDX,s.S_CONTENT,s.S_FILENAME,s.S_POSTED_DATE,s.S_EXPECTED_EXPIRATION_TIME,
+		nvl(sl.M_IDX,#{m_idx}) M_IDX, nvl(sl.SL_ISLIKED,0) SL_ISLIKED ,
+		s.s_read_hit,s.s_like_count
+		FROM story s LEFT JOIN(SELECT * FROM STORY_ISLIKED WHERE m_idx=#{m_idx}) sl
+		ON (s.s_IDX =sl.s_IDX)
+	</select>
+	
+	<insert id="insert_like" parameterType="java.util.HashMap">
+		insert into STORY_ISLIKED values (
+		#{s_idx},
+		#{m_idx},
+		'1'
+		)
+	</insert>
+	
+	<delete id="delete_to_unlike" parameterType="java.util.HashMap">
+		DELETE STORY_ISLIKED
+		WHERE s_idx=#{s_idx} AND m_idx=#{m_idx}
+	</delete>
+</mapper>
