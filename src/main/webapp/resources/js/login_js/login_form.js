@@ -24,27 +24,29 @@ function send(f){
 }
 
 function myCheck(...args){
-	let res = args[0].param
+	let res = args[0];
 	
 	let form = document.getElementsByTagName("form")[0];
 
-	let res2 = args[0].m_idx;
+	console.log(res)
 
-	console.log(res2)
+	localStorage.setItem("idx", res.m_idx);
+	localStorage.setItem("id", res.m_id);
+	localStorage.setItem("password", res.m_password);
+	localStorage.setItem("isMaster", res.m_ismaster);
 
-	localStorage.setItem("id", res2);
-	console.log(localStorage)
+	sessionStorage.setItem("session", true);
 	
-	if(res == 'no m_id'){
+	if(res.param == 'no m_id'){
 		alert('아이디가 존재하지 않습니다.');
 		form.m_id.focus();
 		return;
-	} else if(res == 'no m_password'){
+	} else if(res.param == 'no m_password'){
 		alert('비밀번호가 일치하지 않습니다');
 		form.m_password.focus();
 		return;
 	} else {
 		// alert('로그인 성공');
-		// location.href='main';
+		location.href='main';
 	}
 }
