@@ -28,5 +28,12 @@ public class CartDetailDAO {
 	public int cart_item_count_change(Map<String, Integer> map) {
 		return sqlSession.update("cd.cart_item_count_change", map);
 	}
+	
+	// i_amount보다 cd_count가 큰 경우 수정
+	public int cd_count_check(int i_amount) {
+		return sqlSession.update("cd.cd_count_check", i_amount);
+	}
+	
+	// shop_item 페이지
 
 }

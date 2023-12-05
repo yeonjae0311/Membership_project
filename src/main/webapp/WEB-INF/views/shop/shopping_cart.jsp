@@ -67,7 +67,8 @@
 			</form>
 		</c:forEach>	
 	</div> <br>
-	<form id=total action="post">
+	
+	<form id=total method="post">
 		<div>
 			<input id="od_count" value="0">
 			총가격 : <input id="total_price" value="0" readonly="readonly"> 
@@ -140,7 +141,7 @@
 		}
 		
 		function go_to_shop_payment(f){
-			
+			f.action = "shop_payment"
 			f.submit();
 			
 		}

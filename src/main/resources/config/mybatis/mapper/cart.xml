@@ -20,9 +20,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		USING DUAL
 		   ON (i_idx = #{i_idx} AND m_idx = #{m_idx})
 		WHEN MATCHED THEN
-			UPDATE SET cd_count = cd_count+1
+			UPDATE SET cd_count = cd_count+#{cd_count}
 		WHEN NOT MATCHED THEN
-		  	 insert (m_idx, i_idx, cd_count) values(#{m_idx}, #{i_idx}, 1)
+		  	 insert (m_idx, i_idx, cd_count) values(#{m_idx}, #{i_idx}, #{cd_count})
 	</update>
 	
 	<!-- 장바구니 전체 조회 -->
@@ -34,6 +34,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="cart_item_count_change" parameterType="java.util.HashMap">
 		UPDATE CART_DETAIL SET CD_COUNT = #{cd_count} 
 		WHERE I_IDX = #{i_idx} and m_idx=#{m_idx}
+	</update>
+	
+	<!-- cd_count를 i_amount에 맞게 변경 -->
+	<update id="cd_count_check" parameterType="int">
+		UPDATE CART_DETAIL SET CD_COUNT = 
+		CASE
+		WHEN CD_COUNT >= 8 
+		THEN 8
+		ELSE CD_COUNT 
+		END
 	</update>
 	
 </mapper>
