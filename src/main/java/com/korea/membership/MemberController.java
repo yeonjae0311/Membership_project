@@ -73,12 +73,12 @@ public class MemberController {
 
 		// 아이디가 없는 경우
 		if (vo == null) {
-			return "{\"param\": \"no m_id\"}";
+			return "{\"param\": \"no_m_id\"}";
 		}
 
 		// 비밀번호가 일치하지 않는 경우
 		if (!vo.getM_password().equals(m_password)) {
-			return "{\"param\": \"no m_password\"}";
+			return "{\"param\": \"no_m_password\"}";
 		}
 		
 		String localStorage = null;
@@ -249,14 +249,14 @@ public class MemberController {
 		return num; // String 타입으로 변환 후 반환
 	}
 	
-	@RequestMapping("find_id")
-	public String find_id() {
+	@RequestMapping("register_find_id")
+	public String register_find_id() {
 		return Path.LoginPath.make_path("register_find_id");
 	}
 	
-	@RequestMapping("register_find_id")
+	@RequestMapping("find_id")
 	@ResponseBody
-	public String register_find_id(@RequestBody String body) throws UnsupportedEncodingException {
+	public String find_id(@RequestBody String body) throws UnsupportedEncodingException {
 		
 		ObjectMapper om = new ObjectMapper();
 
@@ -318,15 +318,12 @@ public class MemberController {
 
 		PMemberVO vo = pmember_dao.id_find(m_email);
 		
-		System.out.println("vo : " + vo);
 		if (vo == null) {
-			System.out.println("vo있음");
-			return "{\"param\": \"no m_email\"}";
+			return "{\"param\": \"no_m_email\"}";
 		}
 
 		if (!vo.getM_id().equals(m_id)) {
-			System.out.println("m_id있음");
-			return "{\"param\": \"no m_id\"}";
+			return "{\"param\": \"no_m_id\"}";
 		}
 		
 		int res = pmember_dao.password_update(m_map);

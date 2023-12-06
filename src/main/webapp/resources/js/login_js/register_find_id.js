@@ -1,3 +1,4 @@
+let b_email_check = false;
 function send_id(f){
 	let m_name = document.getElementById("m_name").value;
 	let m_email = document.getElementById("m_email").value;
@@ -18,8 +19,13 @@ function send_id(f){
 		return;
 	}
 	
+	if(!b_email_check){
+		alert('이메일 인증을 해주세요');
+		return;
+	}
 	
-	let url = "register_find_id";
+	
+	let url = "find_id";
 
 	let param = {
 		"m_name": encodeURIComponent(m_name),
@@ -34,16 +40,20 @@ function check(...args){
 	
 	let form = document.getElementsByTagName("form")[0];
 	
-	if(res == 'no m_email'){
+	if(res == 'no_m_email'){
 		alert('이메일이 일치하지 않습니다');
 		form.m_email.focus();
 		return;
-	} else if(res == 'no m_name'){
-		alert('이름이 존재하지 않습니다.');
+	} else if(res == 'no_m_name'){
+		alert('이름과 이메일이 일치하지 않습니다.');
 		form.m_name.focus();
 		return;
 	} else {
 		alert('아이디 찾기 성공');
 		location.href='id';
 	}
+}
+
+function change(){
+	b_email_check = false;
 }

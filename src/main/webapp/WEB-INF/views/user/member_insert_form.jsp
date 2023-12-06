@@ -5,7 +5,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script src="resources/js/http_request.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/login_js/member_insert_form.js"></script>
 </head>
@@ -13,7 +12,7 @@
 	<form>
 		<div>아이디</div>
 			<div>
-				<input name="m_id" id="m_id" onchange="change()">
+				<input name="m_id" id="m_id" oninput="change()">
 				<input type="button" value="중복체크" onclick="javascript:check_id(this.form)">
 			</div>
 			

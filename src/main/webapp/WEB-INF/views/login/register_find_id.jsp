@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,12 +14,12 @@
 		<div>아이디 찾기</div>
 		<div class="find_id">
 			<label class="control_label" for="m_name">성명</label>
-			<input class="form_control" type="text" id="m_name" name="m_name" />
+			<input class="form_control" type="text" id="m_name" name="m_name"/>
 		</div>
 		
 		<div class="find_id">
 			<label class="control_label" for="m_email">이메일</label>
-			<input name="m_email" id="m_email"  >
+			<input name="m_email" id="m_email" onchange="change()">
 			<button id="auth_btn" type="button">이메일 인증하기</button>
 			<input class="mail_check_input" id="m_code" placeholder="인증번호를 적어주세요">
 			<div id="mail_check_input_info" ></div>

@@ -72,6 +72,11 @@ function send(f){
 		return;
 	}
 	
+	if(!b_email_check){
+		alert('이메일 중복체크를 하세요');
+		return;
+	}
+	
 	f.action = "member_insert";
 	f.submit();
 }

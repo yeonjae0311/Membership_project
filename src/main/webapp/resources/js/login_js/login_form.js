@@ -37,16 +37,16 @@ function myCheck(...args){
 
 	sessionStorage.setItem("session", true);
 	
-	if(res.param == 'no m_id'){
+	if(res == 'no_m_id'){
 		alert('아이디가 존재하지 않습니다.');
 		form.m_id.focus();
 		return;
-	} else if(res.param == 'no m_password'){
+	} else if(res == 'no_m_password'){
 		alert('비밀번호가 일치하지 않습니다');
 		form.m_password.focus();
 		return;
 	} else {
-		// alert('로그인 성공');
+		alert('로그인 성공');
 		location.href='main';
 	}
 }
