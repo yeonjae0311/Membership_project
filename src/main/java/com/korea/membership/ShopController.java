@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import dao.BoardDAO;
 import dao.CartDetailDAO;
 import dao.ItemDAO;
 import dao.PMemberDAO;
@@ -40,11 +41,13 @@ public class ShopController {
 	 
 	ItemDAO item_dao;
 	CartDetailDAO cart_detail_dao;
+	BoardDAO board_dao;
 	PMemberDAO pmember_dao;
 
-	public ShopController(ItemDAO item_dao, CartDetailDAO cart_detail_dao, PMemberDAO pmember_dao) {
+	public ShopController(ItemDAO item_dao, CartDetailDAO cart_detail_dao, BoardDAO board_dao, PMemberDAO pmember_dao) {
 		this.item_dao = item_dao;
 		this.cart_detail_dao = cart_detail_dao;
+		this.board_dao = board_dao;
 		this.pmember_dao = pmember_dao;
 	}
 	
@@ -56,10 +59,12 @@ public class ShopController {
 		
 		// idx로 마스터 계정인지 판별하는 메서드 자리(이미 만든거 가져다 쓰기)
 		// 반환된 int를 model에 바인딩해서 해당 값으로 shop의 상품 등록하기 버튼 숨기기
+		int is_master = board_dao.is_master(m_idx);
 		
 		List<ItemVO> list = item_dao.item_list_select();
 		
 		model.addAttribute("list", list);
+		model.addAttribute("is_master", is_master);
 		
 		return Path.ShopPath.make_path("shop");
 	}
@@ -154,7 +159,7 @@ public class ShopController {
 	}
 	
 	@RequestMapping("item_insert")
-	public String item_insert(Model model) {
+	public String item_insert() {
 		return Path.ShopPath.make_path("item_insert");
 	}
 	
@@ -211,7 +216,7 @@ public class ShopController {
 	}
 	
 	@RequestMapping("shop_item_select")
-	public String shop_item_select(int i_idx, String i_name, Model model) {
+	public String shop_item_select(Model model, int i_idx, String i_name) {
 		
 		ItemVO vo = item_dao.item_select_one(i_idx);
 		List<String> colors = item_dao.item_select_color(i_name);
@@ -224,7 +229,7 @@ public class ShopController {
 	
 	@RequestMapping("select_option")
 	@ResponseBody
-	public String select_option (Model model, @RequestBody String body) throws UnsupportedEncodingException{
+	public String select_option (@RequestBody String body) throws UnsupportedEncodingException{
 		ObjectMapper om = new ObjectMapper();
 			
 		Map<String, String> data = null;
@@ -287,8 +292,46 @@ public class ShopController {
 		}
 	}
 	
+	@RequestMapping("item_delete")
+	@ResponseBody
+	public String item_delete(@RequestBody String body) throws UnsupportedEncodingException{
+		ObjectMapper om = new ObjectMapper();
+			
+		Map<String, String> data = null;
+		
+		try {
+			data = om.readValue(body, new TypeReference<Map<String, String>>() {
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String i_name = URLDecoder.decode(data.get("i_name"), "utf-8");
+		
+		int res = item_dao.item_delete(i_name);
+		
+		if(res > 0) {
+			return "{\"param\": \"success\"}";
+		} else {
+			return "{\"param\": \"fail\"}";
+		}
+	}
+	
 	@RequestMapping("shop_payment")
-	public String shop_payment() {
+	public String shop_payment(Model model) {
+		
+		// 선택한 상품 정보 받아오기
+		
+		
+		
+		// m_idx에 해당하는 유저정보 조회해서 바인딩
+		
+		int m_idx = Integer.parseInt(request.getParameter("m_idx"));
+		
+		PMemberVO vo = pmember_dao.select_one(m_idx);
+		
+		model.addAttribute("vo", vo);
+		
 		return Path.ShopPath.make_path("shop_payment");
 	}
 }

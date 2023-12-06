@@ -44,6 +44,7 @@
 		}
 	</style>
 	<script>
+		
 		function send_shopping_cart(f){
 				
 			const i_name = f.i_name.value.trim();
@@ -93,19 +94,66 @@
 			}
 		}
 		
+		function item_delete(){
+			const i_name = document.getElementById("i_name").value;
+			console.log(i_name);
+			const url = "item_delete";
+			const param = {
+				"i_name": encodeURIComponent(i_name)
+			};
+				
+			sendRequest(url, param, delete_return, "post"); 
+		}
+		
+		function test(){
+			console.log("test");
+		}
+		
+		function delete_return(...args){
+			let res = args[0].param;
 
+			if(res == 'success'){
+				alert("해당 상품이 목록에서 삭제되었습니다.");
+				location.href='shop';	
+			} else{
+				alert("상품 삭제에 오류가 발생했습니다.");
+			} 
+		}
+		
+		// 마스터 계정 확인해서 상품 삭제 버튼 숨기기 (localstorage 이용하기)
+		window.onload = function() {
+			let is_master = localStorage.getItem('isMaster');
+			console.log(localStorage)
+			if(is_master == 0){
+				document.getElementById("item_delete_id").style.display = "none"
+			}
+		}
+		
+		function send_shop_payment(){
+
+			let m_idx = localStorage.getItem('idx');
+			location.href = 'shop_payment?m_idx='+m_idx;
+				
+		}
+		
 	</script>
 </head>
 <body>	
+
 	<form name="selected_item" action="shopping_cart_insert" method="POST">
+	
+		<div>
+			<input type="button" id="item_delete_id" value="상품 삭제하기" onclick="item_delete()">
+		</div>
+		
 		<div id=item_info_div>
 		
 			<div class=item_img_div>
-				<img id=item_img src="${pageContext.request.contextPath}/resources/upload/${vo.i_photo_name}"><br>
+				<img id=item_img src="${pageContext.request.contextPath}/resources/upload/shop/${vo.i_photo_name}"><br>
 			</div>
 			
 			<div>
-				<input type="hidden" name="i_name" value="${vo.i_name}">
+				<input type="hidden" name="i_name" id="i_name" value="${vo.i_name}">
 				${vo.i_name}<br>
 			</div>
 			

@@ -50,4 +50,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="item_find_idx" parameterType="java.util.HashMap" resultMap="item_find">
 		select i_idx, i_amount from item where i_name=#{i_name} and i_color=#{i_color}
 	</select>
+	
+	<!-- 해당 이름의 상품 전체 삭제 -->
+	<delete id="item_delete" parameterType="String">
+		delete from item where i_name=#{i_name}
+	</delete>
 </mapper>

@@ -40,4 +40,9 @@ public class ItemDAO {
 		return sqlSession.selectOne("i.item_find_idx", i_map);
 	}
 	
+	// i_name으로 된 상품 전체 삭제
+	public int item_delete(String i_name) {
+		return sqlSession.delete("i.item_delete", i_name);
+	}
+	
 }
