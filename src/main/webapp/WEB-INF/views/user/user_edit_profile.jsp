@@ -7,6 +7,7 @@
 	<meta charset="UTF-8">
 	<title>user_edit_profile</title>
 	<link href="${pageContext.request.contextPath}/resources/css/user/user_edit_profile.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script type="text/javascript">
 	function modify(f){
 		f.action="user_profile_modify";

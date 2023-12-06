@@ -6,6 +6,7 @@
 <title>Insert title here</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<link href="${pageContext.request.contextPath}/resources/css/login/register_find_id.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/login_js/register_find_id.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
 </head>

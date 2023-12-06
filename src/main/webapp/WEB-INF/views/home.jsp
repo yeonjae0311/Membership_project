@@ -24,12 +24,10 @@
 				event.target.style.fill = "white";
 			}
 		}
-		
 		function logout(){
 			localStorage.clear();
 			location.href='logout';
 		}
-
 	</script>
 </head>
 <body>

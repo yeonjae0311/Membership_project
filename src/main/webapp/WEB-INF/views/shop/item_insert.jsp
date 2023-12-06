@@ -9,6 +9,7 @@
 	<title>NewJeans Membership</title>
 	<link href="${pageContext.request.contextPath}/resources/css/shop/item_insert.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/shop_js/item_insert.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 </head>
 <body>
 	<div id="header_bar"></div>

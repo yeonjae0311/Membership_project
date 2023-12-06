@@ -6,6 +6,7 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link href="${pageContext.request.contextPath}/resources/css/user/user_edit.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script>
 		function send(e){
 			location.href=e.target.parentElement.id

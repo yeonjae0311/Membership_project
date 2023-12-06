@@ -8,30 +8,8 @@
 	<title>user_info_form</title>
 	<link href="${pageContext.request.contextPath}/resources/css/user/user_info_form.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
-	<script>
-		function modify(f){
-			f.action="user_info_modify_form";
-			f.method="POST";
-			f.submit();
-		}
-	
-		function leave(f){
-			if(!confirm("정말 탈퇴하시겠습니까?")) {
-				return;
-			}
-		
-			let url = "del";
-			let param = "m_idx="+${id.m_idx};
-			
-			sendRequest(url,param,del_check,"POST");
-	 	}
-		
-	 	function del_check(){
-			let res = args[0].param;
-				
-			let form = document.getElementsByTagName("form")[0];
-		} 
-	</script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user_js/user_info_form.js"></script>
+
 </head>
 <body> <!-- a태그와 location.href를 통해 깔끔하게 바꿀 예정 -->
 	<div id="header_bar"></div>

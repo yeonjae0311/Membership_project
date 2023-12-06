@@ -8,6 +8,7 @@
 	<meta charset="UTF-8">
 	<title>MEMBERSHIP</title>
 	<link href="${pageContext.request.contextPath}/resources/css/shop/shop_item.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/shop_js/shop_item.js" defer></script>
 	<script>

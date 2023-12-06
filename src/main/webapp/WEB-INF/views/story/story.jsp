@@ -7,6 +7,7 @@
 	<meta charset="UTF-8">
 	<title>스토리~</title>
 	<link href="${pageContext.request.contextPath}/resources/css/shop/story.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/story_js/story.js"></script>
 </head>
