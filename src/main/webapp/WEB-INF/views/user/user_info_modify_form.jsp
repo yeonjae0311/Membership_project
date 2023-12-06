@@ -17,28 +17,25 @@
 </head>
 <body>
 	<form>
-		<table border=1>
-			<tr>
-				<td> 이름 : <input name="m_name" value="${vo.m_name }" > </td>
-			</tr>
-			<tr>
-				<td> 연락처 :  <input name="m_tel" value="${vo.m_tel }" > </td>
-			</tr>
-			<tr>
-				<td> 생년월일<input name="m_date_of_birth" value="${vo.m_date_of_birth }"> </td>
-			</tr>
-			<tr>
-				<td>
+		
+			<div>
+				 이름 : <input name="m_name" value="${vo.m_name }" >
+			</div>
+			<div>
+				 연락처 :  <input name="m_tel" value="${vo.m_tel }" >
+			</div>
+			<div>
+				 생년월일<input name="m_date_of_birth" value="${vo.m_date_of_birth }">
+			</div>
+			<div>
 					이메일<input name="m_email" value="${vo.m_email }" >
-				</td>
-			</tr>
-			<tr>
-				<td> <input type="hidden" name="m_idx" value="${vo.m_idx }"></td>
-			</tr>
-			<tr>
-				<td><input type="button" value="수정완료" onclick="send(this.form)"></td>
-			</tr>
-		</table>
+			</div>
+			<div>
+				 <input type="hidden" name="m_idx" value="${vo.m_idx }">
+			</div>
+			<div>
+				<input type="button" value="수정완료" onclick="send(this.form)">
+			</div>
 	</form>
 </body>
 </html>
