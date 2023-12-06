@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<script src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
 	<script>
 		let currentStoryIndex = 0;
 		
@@ -48,30 +48,44 @@
 			}
 		}
 		
-		function liked2(isLiked, s_idx){
-			console.log(isLiked)
+		function liked2(s_idx){
 			
 			const story_liked = document.getElementById("liked_" + s_idx);
 			const story_like_count = document.getElementById("like_count_" + s_idx);
 			
 			//console.log(story_liked.value)
-			
-			if(isLiked != 1){
-				story_liked.value += 1;
-				story_like_count.value += 1;
+		
+			if(story_liked.value == 0){
+				console.log(story_liked.value);
+				story_liked.value = Number(story_liked.value)+ 1;
+				story_like_count.value = Number(story_like_count.value)+1;
 				let url = "add_story_like";
 				 
 				let param={
-					"sl_isliked":encodeURIComponenet(isLiked),
+					"sl_isliked":encodeURIComponent(story_liked.value),
 					"s_idx":encodeURIComponent(s_idx)
 				}; 
 				sendRequest(url,param,resultFn,'post');		 
+			}else if(story_liked.value == 1){
+				story_liked.value = Number(story_liked.value)-1;
+				story_like_count.value = Number(story_like_count.value)-1;
+				
+				let url="delete_to_unlike";
+				 
+				let param={
+					"sl_isliked":encodeURIComponent(story_liked.value),
+					"s_idx":encodeURIComponent(s_idx)
+				}; 
+				
+				sendRequest(url,param,resultFn,'post');		
 			}else{
-				story_liked.value -= 1;
-				story_like_count.value -= 1;
-
-			 	sendRequest(url,param,resultFn,'post');
+				alert(story_liked.value);
+				console.log(story_liked.value);
 			}
+		}
+		function resultFn(...args){
+			let res = args[0].param;
+			alert(res);
 		}
 	</script>
 </head>
@@ -100,7 +114,7 @@
 					
 				<%-- <input type="hidden" value="${svo.sl_isliked}" class="liked_value"> --%>
 				
-				<input type="button" value="LIKE" onclick="liked2(${svo.sl_isliked}, ${svo.s_idx})">
+				<input type="button" value="LIKE" onclick="liked2( ${svo.s_idx})">
 				
 				<div class="right">
 					<input type="button" value="RIGHT" onclick="show_next()">	

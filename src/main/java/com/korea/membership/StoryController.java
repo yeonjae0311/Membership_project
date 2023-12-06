@@ -148,13 +148,12 @@ public class StoryController {
         
         int s_idx=Integer.parseInt(data.get("s_idx"));
         String sl_isliked = URLDecoder.decode(data.get("sl_isliked"), "utf-8");
-        
-       
+               
         PMemberVO uservo = (PMemberVO)session.getAttribute("id");
         
         //로그인 상태가 아니면 디비 반영하지않음
         if(uservo==null) {
-        	return null;
+        	return "{\"param\": \"fail\"}";
         }
         
         // 로그인 상태면 
@@ -172,9 +171,47 @@ public class StoryController {
                 
         // 전체 좋아요수 반영
         story_dao.recalculate_total_like(s_idx);
+        return "{\"param\": \"like\"}";
+	}
+	
+	@RequestMapping("delete_to_unlike")
+	@ResponseBody
+	public String delete_to_unlike(@RequestBody String body) throws UnsupportedEncodingException {
+
+		ObjectMapper om = new ObjectMapper();
+		
+        Map<String, String> data = null;
+
+        try {
+	            data = om.readValue(body, new TypeReference<Map<String, String>>() {});
+        } catch (Exception e) {
+	            e.printStackTrace();
+        }
         
+        int s_idx=Integer.parseInt(data.get("s_idx"));
+        String sl_isliked = URLDecoder.decode(data.get("sl_isliked"), "utf-8");
+               
+        PMemberVO uservo = (PMemberVO)session.getAttribute("id");
+        if(uservo==null) {
+        	return "{\"param\": \"fail\"}";
+        }
+		
+        // 로그인 상태면 
+        // db에 좋아요 취소 하기위한 맵 세팅
+        HashMap<String, Object> map = new HashMap<String, Object>();
         
-		return null;
+        int m_idx = uservo.getM_idx();
+        
+        map.put("s_idx", s_idx);
+        map.put("m_idx", m_idx);
+        
+        //db에 좋아요 취소 반영 (m_idx->s_idx)
+        story_dao.delete_to_unlike(map);
+        // STORY_ISLIKED에 pk 추가하기 
+                
+        // 전체 좋아요수 반영
+        story_dao.recalculate_total_like(s_idx);
+        return "{\"param\": \"unlike\"}";
 	}
 	
 	
