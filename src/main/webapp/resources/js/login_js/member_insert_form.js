@@ -17,12 +17,12 @@ function send(f){
 	let reg_birth = /^(?:[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1,2][0-9]|3[0,1]))$/;
 	
 	if(m_id.value == ''){
-		alert('아이디를 입력하세요');
+		alert('아이디를 입력해주세요');
 		return;
 	}
 	
 	if(m_password.value == ''){
-		alert('비밀번호를 입력하세요');
+		alert('비밀번호를 입력해주세요');
 		return;
 	}
 	
@@ -32,32 +32,32 @@ function send(f){
 	}
 	
 	if(m_name.value == ''){
-		alert('이름을 입력하세요');
+		alert('이름을 입력해주세요');
 		return;
 	}
 	
 	if(m_username.value == ''){
-		alert('닉네임을 입력하세요');
+		alert('사용하실 닉네임을 입력해주세요');
 		return;
 	}
 	
 	if(!reg_tel.test(m_tel.value)){
-		alert('전화번호 형식을 맞춰서 써주세요');
+		alert('올바른 번호 형식이 아닙니다');
 		return;
 	}
 	
 	if(!reg_email.test(m_email.value)){
-		alert('이메일 형식을 맞춰서 써주세요');
+		alert('올바른 이메일 형식이 아닙니다');
 		return;
 	}
 	
 	if(mail_check_input.value == ''){
-		alert('인증번호를 입력하세요');
+		alert('인증번호를 입력해주세요');
 		return;
 	}
 	
 	if(!reg_birth.test(m_date_of_birth.value)) {
-		alert('생년월일 형식을 맞춰서 써주세요');
+		alert('올바른 생년월일 형식이 아닙니다.');
 		return;
 	}
 	
@@ -68,12 +68,12 @@ function send(f){
 	}
 	
 	if(!b_id_check){
-		alert('아이디 중복체크를 하세요');
+		alert('아이디 중복체크를 입력해주세요');
 		return;
 	}
 	
 	if(!b_email_check){
-		alert('이메일 중복체크를 하세요');
+		alert('이메일 중복체크를 입력해주세요');
 		return;
 	}
 	
@@ -85,7 +85,7 @@ function check_id(f){
 	let m_id = document.getElementById("m_id").value.trim();
 	
 	if(m_id == ''){
-		alert('아이디를 입력하세요');
+		alert('아이디를 입력해주세요');
 		return;
 	}
 	
@@ -107,8 +107,8 @@ function i_check(...args){
 	
 	if(res == 'ok_m_id'){
 		alert('사용 가능한 아이디 입니다.');
-		b_id_check = true;
 		form.m_id.focus();
+		b_id_check = true;
 		return;	
 	} else {
 		alert('중복된 아이디가 존재합니다.');
@@ -120,9 +120,16 @@ function i_check(...args){
 function check_email(f){
 	let m_email = document.getElementById("m_email").value;
 	
+	let reg_email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+	
 	if(m_email == ''){
 		alert('이메일을 입력해주세요');
 		f.m_email.focus();
+		return;
+	}
+	
+	if(!reg_email.test(m_email)){
+		alert('올바른 이메일 형식이 아닙니다');
 		return;
 	}
 	
@@ -141,8 +148,8 @@ function e_check(...args){
 	
 	if(res == 'no m_email'){
 		alert('사용 가능한 이메일입니다.');
-		b_email_check = true;
 		form.m_email.focus();
+		b_email_check = true;
 		return;
 	} else {
 		alert('이메일이 존재합니다');

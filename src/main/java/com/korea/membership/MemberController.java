@@ -170,7 +170,7 @@ public class MemberController {
 		int res = pmember_dao.insert(vo);
 		if (res > 0) {
 			session.setAttribute("id", vo);
-			return "redirect:congratulations_register";
+			return "redirect:membership_info";
 		}
 		return null;
 	}
@@ -260,8 +260,6 @@ public class MemberController {
 		Random random = new Random();
 		int check_num = random.nextInt(888888) + 111111;
 
-		System.out.println("인증번호 :" + check_num);
-
 		// 이메일 전송 내용
 		String set_from = "chai0805123@gmail.com"; // 발신 이메일
 		String to_mail = m_email; // 받는 이메일
@@ -276,7 +274,6 @@ public class MemberController {
 			helper.setTo(to_mail);
 			helper.setSubject(title);
 			helper.setText(content, true);
-			System.out.println(content);
 			mailSender.send(message);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -285,6 +282,97 @@ public class MemberController {
 		return num; // String 타입으로 변환 후 반환
 	}
 	
+<<<<<<< HEAD
+=======
+	@RequestMapping("register_find_id")
+	public String register_find_id() {
+		return Path.LoginPath.make_path("register_find_id");
+	}
+	
+	@RequestMapping("find_id")
+	@ResponseBody
+	public String find_id(@RequestBody String body) throws UnsupportedEncodingException {
+		
+		ObjectMapper om = new ObjectMapper();
+
+		Map<String, String> data = null;
+
+		try {
+			data = om.readValue(body, new TypeReference<Map<String, String>>() {
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		String m_email = URLDecoder.decode(data.get("m_email"), "utf-8");
+		String m_name = URLDecoder.decode(data.get("m_name"), "utf-8");
+
+		PMemberVO vo = pmember_dao.id_find(m_email);
+
+		if (vo == null) {
+			return "{\"param\": \"no_m_email\"}";
+		}
+
+		if (!vo.getM_name().equals(m_name)) {
+			return "{\"param\": \"no_m_name\"}";
+		}
+
+		session.setAttribute("id", vo);
+		return "{\"param\": \"success\"}";
+	}
+	
+	@RequestMapping("id")
+	public String id() {
+		return Path.LoginPath.make_path("id");
+	}
+	
+	@RequestMapping("find_password")
+	@ResponseBody
+	public String find_password(@RequestBody String body) throws UnsupportedEncodingException {
+		
+		ObjectMapper om = new ObjectMapper();
+
+		Map<String, String> data = null;
+
+		try {
+			data = om.readValue(body, new TypeReference<Map<String, String>>() {
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		String m_email = URLDecoder.decode(data.get("m_email"), "utf-8");
+		String m_code = URLDecoder.decode(data.get("m_code"), "utf-8");
+		String m_id = URLDecoder.decode(data.get("m_id"), "utf-8");
+		
+		HashMap<String, String> m_map = new HashMap<String, String>();
+		m_map.put("m_email", m_email);
+		m_map.put("m_code", m_code);
+		
+		PMemberVO vo = pmember_dao.id_find(m_email);
+		
+		if (vo == null) {
+			return "{\"param\": \"no_m_email\"}";
+		}
+
+		if (!vo.getM_id().equals(m_id)) {
+			return "{\"param\": \"no_m_id\"}";
+		}
+		
+		int res = pmember_dao.password_update(m_map);
+		
+		session.setAttribute("id", vo);
+		
+		return "{\"param\": \"success\"}";
+		
+	}
+	
+	@RequestMapping("password")
+	public String password() {
+		return Path.LoginPath.make_path("password");
+	}
+	
+>>>>>>> origin/yeonjae
 	@RequestMapping("register_find_password")
 	public String register_find_password() {
 		return Path.LoginPath.make_path("register_find_password");
@@ -367,8 +455,8 @@ public class MemberController {
 	}
 
 	
-	@RequestMapping("congratulations_register")
+	@RequestMapping("membership_info")
 	public String congratulations_register() {
-		return Path.LoginPath.make_path("congratulations_register");
+		return Path.LoginPath.make_path("membership_info");
 	}
 }

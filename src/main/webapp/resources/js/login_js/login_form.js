@@ -24,7 +24,7 @@ function send(f){
 }
 
 function myCheck(...args){
-	let res = args[0];
+	let res = args[0].param;
 	
 	let form = document.getElementsByTagName("form")[0];
 

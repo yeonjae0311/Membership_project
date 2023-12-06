@@ -1,7 +1,7 @@
 //header 만들기
 const header_bar = document.getElementById("header_bar");
 
-const buttons = ["story", "board", "shop"];
+const buttons = ["main", "story", "board", "shop"];
 
 let left_header = document.createElement("div");
 left_header.id = "left_header";
