@@ -9,11 +9,13 @@
 	<title>Insert title here</title>
 	<script src="${pageContext.request.contextPath}/resources/js/http_request.js"> </script>
 	<script>
-		let b_isliked;
-		if('${vo.b_isliked}' == '1'){
-			b_isliked = '1';
-		}else{
-			b_isliked = '0';
+		let bl_isliked;
+		window.onload = function(){
+			if('${vo.bl_isliked}' == '1'){
+				bl_isliked = '1';
+			}else{
+				bl_isliked = '0';
+			}
 		}
 		function send_reply(f){
 			let r_content = f.r_content.value.trim();
@@ -50,12 +52,6 @@
 				alert('글 삭제 권한이 없습니다.');
 			}
 		}
-		function board_like(b_idx){
-			let b_idx = b_idx;
-		}
-		function board_dislike(b_idx){
-			
-		}
 	    </script>
 </head>
 <body>
@@ -84,10 +80,10 @@
 				<td>${vo.b_like_count}</td>
 				<td>
 					<c:choose>
-						<c:when test="${vo.b_isliked eq '0'}">
+						<c:when test="${vo.bl_isliked eq '0'}">
 							<input type="button" value="좋아요" onclick="board_like('${vo.b_idx}')">
 						</c:when>
-						<c:when test="${vo.b_isliked eq '1'}">
+						<c:when test="${vo.bl_isliked eq '1'}">
 							<input type="button" value="좋아요 해제" onclick="board_dislike('${vo.b_idx}')">
 						</c:when>
 					</c:choose>

@@ -54,7 +54,6 @@ public class BoardController {
 		List<BoardPMemberViewVO> fixed_list =  board_dao.fixed_board_list();
 		List<BoardPMemberViewVO> unfixed_master_list =  board_dao.unfixed_master_board_list();
 		List<BoardPMemberViewVO> unfixed_fan_list =  board_dao.unfixed_all_board_list();
-				
 		
 		model.addAttribute("fixed_list",fixed_list);
 		model.addAttribute("unfixed_master_list",unfixed_master_list);
@@ -143,7 +142,7 @@ public class BoardController {
 	@RequestMapping("board_view")
 	public String board_view(Model model,int b_idx) {
 		//게시물 한건 조회
-		BoardPMemberViewVO vo = board_dao.board_selectOne(b_idx);
+		
 		
 		//해당 게시물 좋아요 했는지를 조회하기 위한 매개변수 map 세팅
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -151,14 +150,7 @@ public class BoardController {
 		PMemberVO uservo = (PMemberVO) session.getAttribute("id");
 		if(uservo!=null)
 		map.put("m_idx", uservo.getM_idx());
-		
-		int res = board_dao.check_like_board(map);
-		
-		if(res==0) {
-			vo.setB_isliked("0");
-		}else {
-			vo.setB_isliked("1");
-		}
+		BoardPMemberViewVO vo = board_dao.board_select_one(map);
 		
 		//최근에 본 것 (세션으로부터) 조회
 		String board_post_viewed = (String)session.getAttribute("board_post_viewed");

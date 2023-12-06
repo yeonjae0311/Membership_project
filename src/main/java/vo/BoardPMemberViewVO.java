@@ -9,7 +9,8 @@ public class BoardPMemberViewVO {
 	private int b_idx,
 				m_idx,
 				b_read_hit,
-				b_like_count;
+				b_like_count,
+				b_reply_count;
 	private String b_content,
 				   b_posted_date,
 				   b_title,
@@ -19,5 +20,5 @@ public class BoardPMemberViewVO {
 				   m_username,
 				   m_photo_name,
 				   m_ismaster,
-				   b_isliked;
+				   bl_isliked;
 }

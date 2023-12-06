@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>스토리~</title>
 	<script src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
 	<script>
 		let currentStoryIndex = 0;
@@ -113,6 +113,19 @@
 			let res = args[0].param;
 			alert(res);
 		}
+		window.onload = function() {			
+			let beign_story_class = document.getElementsByClassName('story_idx');
+			
+			let s_idx = beign_story_class[0].value;
+			
+			let url = "story_update_read_hit";
+			
+			let param = {
+				"s_idx": encodeURIComponent(s_idx)
+			};
+			
+			sendRequest(url,param,resultFn2,'post');
+		};
 	</script>
 </head>
 <body>
@@ -152,7 +165,7 @@
 				</div>
 			</div>
 		</c:forEach>		
-	</div>	
+	</div>
 	<input type="button" value="home" onclick="location.href='/membership/'">		
 
 </body>

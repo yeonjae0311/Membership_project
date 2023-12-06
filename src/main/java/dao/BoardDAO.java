@@ -32,8 +32,8 @@ public class BoardDAO {
 	}
 	
 	// board_selectOne => board_select_one
-	public BoardPMemberViewVO board_selectOne(int b_idx) {
-		return sqlSession.selectOne("b.board_selectOne",b_idx);
+	public BoardPMemberViewVO board_select_one(HashMap<String, Object> map) {
+		return sqlSession.selectOne("b.board_select_one",map);
 	}
 	
 	public int delete_board_post(HashMap<String, Object> map) {
