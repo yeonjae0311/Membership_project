@@ -89,7 +89,7 @@ function liked2(s_idx){
 		story_liked.value = Number(story_liked.value)-1;
 		story_like_count.value = Number(story_like_count.value)-1;
 		
-		let url="delete_to_unlike";
+		let url="delete_story_to_unlike";
 		 
 		let param={
 			"sl_isliked":encodeURIComponent(story_liked.value),

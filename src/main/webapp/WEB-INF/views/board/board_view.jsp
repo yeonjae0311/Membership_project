@@ -52,6 +52,45 @@
 				alert('글 삭제 권한이 없습니다.');
 			}
 		}
+		function board_like(b_idx){
+			let like_button_class = document.getElementsByClassName('board_like_button');
+			
+			if(like_button_class[0].value == '좋아요'){
+				
+				let url ="add_board_like";
+				
+				let param={
+						"bl_isliked":encodeURIComponent("0"),
+						"b_idx":encodeURIComponent(b_idx)
+				};
+				
+				sendRequest(url,param,resultFn,'post');
+				
+				like_button_class[0].value='좋아요 해제'
+			}else{
+				let url ="delete_board_to_unlike";
+				
+				let param={
+						"bl_isliked":encodeURIComponent("1"),
+						"b_idx":encodeURIComponent(b_idx)
+				};
+				
+				sendRequest(url,param,resultFn,'post');
+				
+				like_button_class[0].value='좋아요'
+			}
+		}
+		
+		function resultFn(...args){
+			let res = args[0].param;
+			let like_count_id = document.getElementById('b_like_count');
+			if(res=='plus'){
+				like_count_id.value = Number(like_count_id.value)+1;
+			}else if(res=='minus'){
+				like_count_id.value = Number(like_count_id.value)-1;
+			}			
+			console.log(res);
+		}
 	    </script>
 </head>
 <body>
@@ -77,15 +116,18 @@
 			</tr>
 			<tr>
 				<th>좋아요 !</th>
-				<td>${vo.b_like_count}</td>
+				<td><input type="text" id="b_like_count" value="${vo.b_like_count}"></td>
 				<td>
 					<c:choose>
 						<c:when test="${vo.bl_isliked eq '0'}">
-							<input type="button" value="좋아요" onclick="board_like('${vo.b_idx}')">
+							<input type="button" class="board_like_button" value="좋아요" onclick="board_like('${vo.b_idx}')">
 						</c:when>
 						<c:when test="${vo.bl_isliked eq '1'}">
-							<input type="button" value="좋아요 해제" onclick="board_dislike('${vo.b_idx}')">
+							<input type="button" class="board_like_button" value="좋아요 해제" onclick="board_like('${vo.b_idx}')">
 						</c:when>
+						<c:otherwise>
+							${vo.bl_isliked }
+						</c:otherwise>
 					</c:choose>
 				</td>
 			</tr>
