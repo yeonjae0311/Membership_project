@@ -79,7 +79,6 @@ public class MemberController {
 		if (vo == null) {
 			return "{\"param\": \"no_m_id\"}";
 		}
-
 		// 비밀번호가 일치하지 않는 경우
 		if (!vo.getM_password().equals(m_password)) {
 			return "{\"param\": \"no_m_password\"}";
@@ -90,7 +89,6 @@ public class MemberController {
 		try {
 			localStorage = om.writeValueAsString(vo);
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -286,14 +284,11 @@ public class MemberController {
 		String num = Integer.toString(check_num); // ajax를 뷰로 반환시 데이터 타입은 String 타입만 가능
 		return num; // String 타입으로 변환 후 반환
 	}
-
-	
 	
 	@RequestMapping("register_find_password")
 	public String register_find_password() {
 		return Path.LoginPath.make_path("register_find_password");
 	}
-
 
 	@RequestMapping("register_modify_password")
 	public String register_modify_password(Map<String, String> password) {
@@ -306,7 +301,6 @@ public class MemberController {
 			return null;
 		}
 	}
-
 	
 	@RequestMapping("kakao_pay")
 	public String kakao_pay() {

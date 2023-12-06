@@ -15,8 +15,8 @@ public class PMemberDAO {
 	}
 
 	// 아이디가 DB에 존재하는지 체크
-	public PMemberVO login_check(String m_username) {
-		return sqlSession.selectOne("pm.login_check", m_username);
+	public PMemberVO login_check(String m_id) {
+		return sqlSession.selectOne("pm.login_check", m_id);
 	}
 
 	// 아이디 중복체크
