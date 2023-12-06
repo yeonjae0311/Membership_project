@@ -46,10 +46,11 @@
 	</head>
 	<body> <!-- a태그와 location.href를 통해 깔끔하게 바꿀 예정 -->
 		<form>
-			<div> 이름 : ${id.m_name }		</div>
-			<div> 연락처 : ${id.m_tel }		</div>
-			<div> 이메일 : ${id.m_email }		</div>
-			<input type="hidden" name="m_idx" value="${id.m_idx }">
+			<div> 이름 : ${vo.m_name }		</div>
+			<div> 연락처 : ${vo.m_tel }		</div>
+			<div> 생년월일 : ${vo.m_date_of_birth }</div>
+			<div> 이메일 : ${vo.m_email }		</div>
+			<input type="hidden" name="m_idx" value="${vo.m_idx }">
 			<input type="button" name="modify_form" value="수정하기" onclick="modify(this.form)">
 			<input type="button" value="회원탈퇴" onclick="delete_leave(this.form)">
 		</form>

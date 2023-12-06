@@ -63,6 +63,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="user_info_update" parameterType="pmember">
 		update p_member set m_name=#{m_name},
 							m_tel=#{m_tel},
+							m_date_of_birth=#{m_date_of_birth},
 							m_email=#{m_email}
 							where m_idx=#{m_idx}
 	</update>

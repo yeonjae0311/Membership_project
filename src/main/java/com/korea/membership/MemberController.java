@@ -89,6 +89,7 @@ public class MemberController {
 
 		// 아이디와 비밀번호 체크에 문제가 없다면 세션에 바인딩 한다.
 		session.setAttribute("id", vo);
+		session.setAttribute("m_idx", vo.getM_idx());
 
 		// 로그인에 성공한 경우
 		return "{\"param\": \"success\"}";
@@ -123,6 +124,7 @@ public class MemberController {
 	@RequestMapping("logout")
 	public String logout() {
 		session.removeAttribute("id");
+		session.removeAttribute("m_idx");
 
 		return Path.HomePath.make_path("home");
 	}
@@ -183,21 +185,35 @@ public class MemberController {
 	}
 
 	@RequestMapping("user_edit")
-	public String user_edit() {
+	public String user_edit(HttpSession session, Model model) {
+		int m_idx = (int) session.getAttribute("m_idx");
+
+		PMemberVO vo = pmember_dao.select_one(m_idx);
+
+		model.addAttribute("vo", vo);
+		
 		return Path.UserPath.make_path("user_edit");
 	}
 
 	@RequestMapping("user_info_form")
-	public String user_info_form() {
+	public String user_info_form(HttpSession session, Model model) {
+		int m_idx = (int) session.getAttribute("m_idx");
+
+		PMemberVO vo = pmember_dao.select_one(m_idx);
+
+		model.addAttribute("vo", vo);
+
 		return Path.UserPath.make_path("user_info_form");
 	}
 
 	@RequestMapping("user_edit_profile")
-	public String user_edit_profile(Model model, int m_idx) {
+	public String user_edit_profile(HttpSession session, Model model) {
+		int m_idx = (int) session.getAttribute("m_idx");
+
 		PMemberVO vo = pmember_dao.select_one(m_idx);
-		
+
 		model.addAttribute("vo", vo);
-		
+
 		return Path.UserPath.make_path("user_edit_profile");
 	}
 
@@ -299,10 +315,9 @@ public class MemberController {
 	@RequestMapping("user_info_modify")
 	public String user_modify(PMemberVO vo, Model model) {
 		int res = pmember_dao.user_info_update(vo);
-		
-		
-		
+
 		return "redirect:user_info_form";
+
 	}
 
 	@RequestMapping("photo_upload")
@@ -324,10 +339,10 @@ public class MemberController {
 		String origin_m_photo_name = vo.getM_photo_name();
 
 		String new_m_photo_name = data.get("new_m_photo_name");
-
+		String m_photo_name=null;
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		if (!origin_m_photo_name.equals(new_m_photo_name)) {
-			String m_photo_name = new_m_photo_name;
+			m_photo_name = new_m_photo_name;
 			map.put("m_idx", m_idx);
 			map.put("m_photo_name", m_photo_name);
 		}
@@ -336,7 +351,7 @@ public class MemberController {
 		model.addAttribute("map", map);
 
 		if (res == 1) {
-			return "{\"param\": \"success\"}";
+			return "{\"param\": \""+m_photo_name+"\"}";
 		} else {
 			return "{\"param\": \"fail\"}";
 		}
@@ -345,7 +360,7 @@ public class MemberController {
 	@RequestMapping("user_profile_modify")
 	public String user_profile_update(PMemberVO vo, Model model) {
 		int res = pmember_dao.user_profile_update(vo);
-		model.addAttribute("vo", vo);
+
 		return "redirect:user_edit";
 	}
 

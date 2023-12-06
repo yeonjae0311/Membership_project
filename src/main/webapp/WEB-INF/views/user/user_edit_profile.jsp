@@ -25,11 +25,21 @@
 	}
 	
 	function photo_check(...args){
-		let res = args[0]["param"];
+		let res = args[0].param;
  		
-		if(res == 'success'){
-			
-		} 
+		if(res != 'fail'){
+			alert("사진을 변경했습니다.");
+			let user_photo = document.getElementById("m_profile");
+			user_photo.src="${pageContext.request.contextPath}/resources/upload/user/"+res;
+		} else{
+			return;
+		}
+	}
+	
+	function photo_default_update(f){
+		let change_photo = document.getElementById("m_profile");
+		console.log("here");
+		change_photo.src="${pageContext.request.contextPath}/resources/upload/user/default_profile.jpg";
 	}
 	
 	function modify(f) {
@@ -45,19 +55,18 @@
 </head>
 	<body>
 	<form enctype="multipart/form-data" align="center" name="myForm">
-		<c:forEach var="vo" items=${vo }>
         <div id="m_photo_name">
-            <img id="m_profile" src="${pageContext.request.contextPath}/resources/upload/user/${id.m_photo_name}">
-            <input type="hidden" name="m_photo_name" value="${id.m_photo_name}">
+            <img id="m_profile" src="${pageContext.request.contextPath}/resources/upload/user/${vo.m_photo_name}">
+            <input type="hidden" name="m_photo_name" value="${vo.m_photo_name}">
             <input type="file" name="new_m_photo_name"	 value="사진 변경">
             <input type="button" value="사진 미리보기" onclick="photo_upload(this.form)">
+            <input type="button" value="사진 삭제하기" onclick="photo_default_update(this.form)">
             <input type="hidden" name="m_idx" value="${id.m_idx}">
         </div>
-        이름: "${id.m_name}"<br>
-        닉네임: <input name="m_username" value="${id.m_username}">
-        <input type="hidden" name="m_idx" value="${id.m_idx}">
+        이름: "${vo.m_name}"<br>
+        닉네임: <input name="m_username" value="${vo.m_username}">
+        <input type="hidden" name="m_idx" value="${vo.m_idx}">
         <input type="button" value="수정완료" onclick="modify(this.form)">
-        </c:forEach>
     </form>
 	</body>
 </html>
