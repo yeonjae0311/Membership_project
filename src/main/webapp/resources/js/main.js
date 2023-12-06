@@ -12,7 +12,7 @@ for(const element of buttons){
 	button.type = "button";
 	button.value = element;
 	button.addEventListener("click", () => {
-		send(element);
+		send_main(element);
 	});
 	
 	left_header.appendChild(button);
@@ -20,7 +20,7 @@ for(const element of buttons){
 
 header_bar.appendChild(left_header);
 
-function send(page){
+function send_main(page){
 	console.log(page);
 
 	location.href = page;

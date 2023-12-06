@@ -25,6 +25,10 @@
 			}
 		}
 		
+		function logout(){
+			localStorage.clear();
+			location.href='logout';
+		}
 
 	</script>
 </head>
@@ -37,7 +41,7 @@
 			<input type="button" value="마이페이지" onclick="location.href='login_form'">
 		</c:when>
 		<c:when test="${not empty id }">
-			<input type="button" value="로그아웃" onclick="location.href='logout'">
+			<input type="button" value="로그아웃" onclick="logout()">
 			<input type="button" value="마이페이지" onclick="location.href='user_edit'">
 		</c:when>
 	</c:choose>

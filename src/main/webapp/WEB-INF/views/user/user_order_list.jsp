@@ -11,7 +11,7 @@
 	<div id="header_bar"></div>
 	
 	<input type="button" value="user_edit" onclick="location.href='user_edit'">
-	user_order_list
+		user_order_list
 	
 	<div id="footer_bar"></div>
 </body>
