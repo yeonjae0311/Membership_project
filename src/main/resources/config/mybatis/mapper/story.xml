@@ -3,6 +3,18 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="s">
+	<resultMap type="vo.StoryVO" id="story_list">
+		<result column="s_idx" property="s_idx" jdbcType="VARCHAR"/>
+		<result column="m_idx" property="m_idx" jdbcType="VARCHAR"/>
+		<result column="s_read_hit" property="s_read_hit" jdbcType="VARCHAR"/>
+		<result column="s_like_count" property="s_like_count" jdbcType="VARCHAR"/>
+		<result column="s_content" property="s_content" jdbcType="VARCHAR"/>
+		<result column="s_posted_date" property="s_posted_date" jdbcType="VARCHAR"/>
+		<result column="s_expected_expiration_time" property="s_expected_expiration_time" jdbcType="VARCHAR"/>
+		<result column="s_filename" property="s_filename" jdbcType="VARCHAR"/>
+		<result column="sl_isliked" property="sl_isliked" jdbcType="VARCHAR"/>
+	</resultMap>
+
 	
 	<insert id="story_post_insert" parameterType="vo.StoryVO">
 		insert into story values(
@@ -52,4 +64,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE STORY_ISLIKED
 		WHERE s_idx=#{s_idx} AND m_idx=#{m_idx}
 	</delete>
+	
+	<update id="recalculate_total_like" parameterType="int">
+		UPDATE story SET S_LIKE_COUNT = (SELECT count(*) FROM STORY_ISLIKED WHERE s_idx=#{s_idx})
+		WHERE s_idx=#{s_idx};
+	</update>
 </mapper>

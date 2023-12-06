@@ -41,5 +41,9 @@ public class StoryDAO {
 	
 	public int delete_to_unlike(HashMap<String, Object> map) {
 		return sqlSession.delete("s.delete_to_unlike",map);
+	}	
+	
+	public int recalculate_total_like(int s_idx) {
+		return sqlSession.update("s.recalculate_total_like",s_idx);
 	}
 }

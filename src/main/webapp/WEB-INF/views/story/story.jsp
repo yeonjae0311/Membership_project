@@ -35,18 +35,6 @@
 		    stories[currentStoryIndex].style.display = "block";
 		}
 		
-		function like(s_idx,m_idx,sl_isliked){
-		   /*  let stories = document.querySelectorAll(".story");
-		    let classname = stories[currentStoryIndex].getElementsByClassName('liked');
-			let sl_isliked_class = classname[0].getElementsByClassName('liked_value');
-		    let sl_isliked = sl_isliked_class[0].value;
-			let url = "change_like_status";
-			let param = {
-				"sl_isliked":encodeURIComponent(sl_isliked)
-			};
-			sendRequest(url,param,revalidate,'post');*/
-		} 
-		
 		function revalidate(){
 			if(xhr.readyState==4&&xhr.status==200){
 				var data = xhr.responseText;
@@ -58,7 +46,33 @@
 				classname[0].innerHTML = json[0].sl_isliked;
 				alert('여기까지 도달')
 			}
-		} 
+		}
+		
+		function liked2(isLiked, s_idx){
+			console.log(isLiked)
+			
+			const story_liked = document.getElementById("liked_" + s_idx);
+			const story_like_count = document.getElementById("like_count_" + s_idx);
+			
+			//console.log(story_liked.value)
+			
+			if(isLiked != 1){
+				story_liked.value += 1;
+				story_like_count.value += 1;
+				let url = "add_story_like";
+				 
+				let param={
+					"sl_isliked":encodeURIComponenet(isLiked),
+					"s_idx":encodeURIComponent(s_idx)
+				}; 
+				sendRequest(url,param,resultFn,'post');		 
+			}else{
+				story_liked.value -= 1;
+				story_like_count.value -= 1;
+
+			 	sendRequest(url,param,resultFn,'post');
+			}
+		}
 	</script>
 </head>
 <body>
@@ -66,7 +80,7 @@
 	
 	<div id="storyContainer">	
 		<c:forEach var="svo" items="${svo_list}" varStatus="loop">			
-			<div class="story" style="display: ${loop.index == 0 ? 'block' : 'none'}">
+			<div id="story_${svo.s_idx}" class="story" style="display: ${loop.index == 0 ? 'block' : 'none'}">
 			
 				<div class="left">
 					<input type="button" value="LEFT" onclick="show_previous()">	
@@ -78,20 +92,15 @@
 					<textarea readonly>${svo.s_content }</textarea>
 				</div>
 			
-				<div class="s_read_hit">
-					${svo.s_read_hit}
-				</div>
+				<input class="s_read_hit" value="${svo.s_read_hit}">
+					
+				<input id="like_count_${svo.s_idx}" class="like_count" value="${svo.s_like_count}">
+					
+				<input id="liked_${svo.s_idx}" value="${svo.sl_isliked}" class="liked">
+					
+				<%-- <input type="hidden" value="${svo.sl_isliked}" class="liked_value"> --%>
 				
-				<div class="like_count">
-					${svo.s_like_count}
-				</div>
-			
-				<div class="liked">
-					${svo.sl_isliked}
-					<input type="hidden" value="${svo.sl_isliked}" class="liked_value">
-				</div>
-				
-				<input type="button" value="LIKE" onclick="like('${svo.s_idx}','${svo.m_idx}','${svo.sl_isliked }')">
+				<input type="button" value="LIKE" onclick="liked2(${svo.sl_isliked}, ${svo.s_idx})">
 				
 				<div class="right">
 					<input type="button" value="RIGHT" onclick="show_next()">	
@@ -100,12 +109,6 @@
 			</div>
 		</c:forEach>		
 	</div>	
-    <button onclick="show_next()">Next</button>
-
-    <script>
-
-    </script>
-	
 	<input type="button" value="home" onclick="location.href='/membership/'">		
 
 </body>

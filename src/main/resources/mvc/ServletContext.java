@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.korea.membership.BoardController;
 import com.korea.membership.MainController;
 import com.korea.membership.MemberController;
-import com.korea.membership.ReplyConroller;
+import com.korea.membership.ReplyController;
 import com.korea.membership.ShopController;
 import com.korea.membership.StoryController;
 
@@ -59,8 +59,8 @@ public class ServletContext implements WebMvcConfigurer {
 	}
 	
 	@Bean
-	public ReplyConroller reply_controller(ReplyDAO reply_dao) {
-		return new ReplyConroller(reply_dao);
+	public ReplyController reply_controller(ReplyDAO reply_dao) {
+		return new ReplyController(reply_dao);
 	}
 
 	@Bean
