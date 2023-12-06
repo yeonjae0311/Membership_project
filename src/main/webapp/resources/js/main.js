@@ -32,4 +32,17 @@ footer.innerHTML = "membership page(newjeans)";
 
 document.getElementById("footer_bar").appendChild(footer);
 
-//
+//localStorage login
+const m_id = localStorage.getItem("id");
+const m_password = localStorage.getItem("password");
+const session = sessionStorage.getItem("session");
+
+if(m_id != null && m_password != null && session === null){
+	let url = "login";
+
+	let param = {
+		"m_id": encodeURIComponent(m_id),
+		"m_password": encodeURIComponent(m_password)
+	};
+	sendRequest(url, param, myCheck, "post");
+}
