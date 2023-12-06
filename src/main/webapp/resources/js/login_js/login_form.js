@@ -24,18 +24,24 @@ function send(f){
 }
 
 function myCheck(...args){
-	let res = args[0].param
+	let res = args[0];
 	
 	let form = document.getElementsByTagName("form")[0];
 
-//	localStorage.setItem("test", res);
-//	console.log(localStorage)
+	console.log(res)
+
+	localStorage.setItem("idx", res.m_idx);
+	localStorage.setItem("id", res.m_id);
+	localStorage.setItem("password", res.m_password);
+	localStorage.setItem("isMaster", res.m_ismaster);
+
+	sessionStorage.setItem("session", true);
 	
-	if(res == 'no m_id'){
+	if(res == 'no_m_id'){
 		alert('아이디가 존재하지 않습니다.');
 		form.m_id.focus();
 		return;
-	} else if(res == 'no m_password'){
+	} else if(res == 'no_m_password'){
 		alert('비밀번호가 일치하지 않습니다');
 		form.m_password.focus();
 		return;

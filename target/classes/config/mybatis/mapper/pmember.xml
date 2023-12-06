@@ -9,20 +9,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="id_check" resultType="int" parameterType="String">
-		select
-		count(*) from p_member where m_id=#{m_id}
+		select count(*) from p_member where m_id=#{m_id}
 	</select>
 
 	<insert id="insert" parameterType="pmember">
 		insert into p_member values(
-			seq_member_idx.nextval,
+			seq_p_member_m_idx.nextval,
 			#{m_username},
 			#{m_password},
 			#{m_id},
 			#{m_name},
 			#{m_tel},
 			#{m_email},
-			#{m_photo_name},
+			'basic',
 			0, 
 			0,
 			sysdate,
@@ -51,13 +50,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update p_member set m_id='del'||#{m_id} where m_idx=#{m_idx}
 	</update>
 	
-	<!-- modify => update -->
-	<update id="modify_id" parameterType="pmember">
-		update p_member set m_ip=#{m_ip}
-	</update>
+	<select id="id_find" resultType="pmember" parameterType="String">
+		select * from p_member where m_email=#{m_email}
+	</select>
 	
-	<update id="modify_password" parameterType="pmember">
-		update p_member set m_password=#{m_password}
+	<update id="password_update" parameterType="java.util.HashMap" >
+		update p_member set m_password=#{m_code} where m_email=#{m_email}
 	</update>
 	
 	<update id="user_info_update" parameterType="pmember">

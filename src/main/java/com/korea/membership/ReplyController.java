@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import dao.ReplyDAO;
 
 @Controller
-public class ReplyConroller {
+public class ReplyController {
 	
 	ReplyDAO reply_dao;
 
@@ -19,11 +19,7 @@ public class ReplyConroller {
 	@Autowired
 	HttpSession session;
 	
-	public ReplyConroller(ReplyDAO reply_dao) {
+	public ReplyController(ReplyDAO reply_dao) {
 		this.reply_dao = reply_dao;
 	}
-	
-	
-	
-	
 }

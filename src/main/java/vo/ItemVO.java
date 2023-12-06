@@ -19,4 +19,3 @@ public class ItemVO {
     private MultipartFile i_photo, 
     					  i_detail_photo;
 }
-

@@ -34,16 +34,56 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{b_filename},
 			sysdate,
 			#{b_isfixed},
-			#{b_ip}
+			#{b_ip},
+			0,
+			0
 		)
 	</insert>
 	
 	<!-- board_selectOne => board_select_one -->
-	<select id="board_selectOne" parameterType="int" resultType="vo.BoardPMemberViewVO">
-		select * from board_p_member_join_view
-		where b_idx=#{b_idx}
+	<select id="board_select_one" parameterType="java.util.HashMap" resultType="vo.BoardPMemberViewVO">
+		SELECT bmjv.B_IDX ,
+		(SELECT M_USERNAME  FROM P_MEMBER WHERE M_IDX=bmjv.M_IDX) m_username,
+		bmjv.B_TITLE ,
+		bmjv.B_FILENAME,
+		bmjv.B_CONTENT,
+		bmjv.B_POSTED_DATE,
+		bmjv.B_ISFIXED ,
+		bmjv.B_IP ,
+		BMJV.B_READ_HIT ,
+		bmjv.B_LIKE_COUNT ,
+		bmjv.B_REPLY_COUNT ,
+		nvl(bl.M_IDX,#{m_idx}) M_IDX, 
+		nvl(bl.m_idx,0) bl_isliked
+		FROM board_p_member_join_view bmjv 
+		LEFT JOIN (SELECT * FROM BOARD_ISLIKED  WHERE m_idx=#{m_idx}) bl
+		ON bmjv.B_IDX =bl.B_IDX
+		WHERE BMJV.B_IDX =#{b_idx}
 	</select>
 	
+	<!-- 일반적인 경우 작성자가 삭제하는 경우 -->
+	<delete id="delete_board_post" parameterType="java.util.HashMap">
+		delete board where b_idx=#{b_idx} and m_idx=#{m_idx}
+	</delete>
+	
+	<select id="is_master" parameterType="int" resultType="int">
+		select count(*) cnt from P_MEMBER
+		where m_idx = #{m_idx} AND M_ISMASTER='1'
+	</select>
+	
+	<delete id="delete_board_post_by_master" parameterType="int">
+		delete board where b_idx=#{b_idx}
+	</delete>
+	
+	<update id="plus_board_read_hit" parameterType="int">
+		update board set b_read_hit=b_read_hit+1
+		where b_idx=#{b_idx}
+	</update>
+	
+	<select id="check_like_board" parameterType="java.util.HashMap" resultType="int">
+		select count(*) from board_isliked
+		where b_idx=#{b_idx} and m_idx=#{m_idx}
+	</select>
 	
 
 </mapper>

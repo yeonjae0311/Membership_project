@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="s">
+	<resultMap type="vo.StoryVO" id="story_list">
+		<result column="s_idx" property="s_idx" jdbcType="VARCHAR"/>
+		<result column="m_idx" property="m_idx" jdbcType="VARCHAR"/>
+		<result column="s_read_hit" property="s_read_hit" jdbcType="VARCHAR"/>
+		<result column="s_like_count" property="s_like_count" jdbcType="VARCHAR"/>
+		<result column="s_content" property="s_content" jdbcType="VARCHAR"/>
+		<result column="s_posted_date" property="s_posted_date" jdbcType="VARCHAR"/>
+		<result column="s_expected_expiration_time" property="s_expected_expiration_time" jdbcType="VARCHAR"/>
+		<result column="s_filename" property="s_filename" jdbcType="VARCHAR"/>
+		<result column="sl_isliked" property="sl_isliked" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	
+	<insert id="story_post_insert" parameterType="vo.StoryVO">
+		insert into story values(
+			seq_story_idx.nextval,
+			#{m_idx},
+			#{s_content},
+			#{s_filename},
+			sysdate,
+			sysdate+1,
+			0,
+			0
+		)
+	</insert>
+	
+	<select id="select_story_one" parameterType="java.util.HashMap" resultType="vo.StoryVO">
+		select * from story_story_is_liked_join_view
+		where s_idx=#{s_idx} and m_idx=#{m_idx}
+	</select>
+	
+	<select id="select_story_one_by_s_idx" parameterType="String" resultType="vo.StoryVO">
+		select * from story
+		where s_idx=#{s_idx}
+	</select>
+	
+	<select id="check_is_liked" parameterType="java.util.HashMap" resultType="int">
+		SELECT count(*) FROM STORY_ISLIKED
+		where s_idx=#{s_idx} and m_idx=#{m_idx}
+	</select>
+	
+	<select id="select_story_list_with_m_idx" parameterType="int" resultType="vo.StoryVO">
+		SELECT s.S_IDX,s.S_CONTENT,s.S_FILENAME,s.S_POSTED_DATE,s.S_EXPECTED_EXPIRATION_TIME,
+		nvl(sl.m_idx,#{m_idx}) m_idx,
+		CASE nvl(sl.m_idx,0) WHEN sl.m_idx THEN 1 ELSE 0 END AS SL_ISLIKED ,
+		s.s_read_hit,s.s_like_count
+		FROM story s LEFT JOIN(SELECT * FROM STORY_ISLIKED WHERE m_idx=#{m_idx}) sl
+		ON (s.s_IDX =sl.s_IDX)
+	</select>
+	
+	<insert id="insert_like" parameterType="java.util.HashMap">
+		insert into STORY_ISLIKED values (
+		#{s_idx},
+		#{m_idx},
+		'1'
+		)
+	</insert>
+	
+	<delete id="delete_to_unlike" parameterType="java.util.HashMap">
+		DELETE STORY_ISLIKED
+		WHERE s_idx=#{s_idx} AND m_idx=#{m_idx}
+	</delete>
+	
+	<update id="recalculate_total_like" parameterType="int">
+		UPDATE story 
+		SET S_LIKE_COUNT = 
+		(SELECT count(*) FROM STORY_ISLIKED WHERE s_idx=#{s_idx})
+		WHERE s_idx=#{s_idx}
+	</update>
+	
+	<update id="story_update_read_hit" parameterType="int">
+		update story
+		set s_read_hit = s_read_hit+1
+		where s_idx=#{s_idx}
+	</update>
+</mapper>

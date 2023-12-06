@@ -48,7 +48,7 @@
 		<input type="button" value="유저버튼" onclick="userfunc()">	
 	</div>
 	
-	<div id="fixed_list" style="background-color: gray">
+	<div id="fixed_list">
 		<table border="1" class="b_list">
 			<tr>
 				<th>번호</th>
@@ -59,7 +59,7 @@
 					<tr>
 						<td>${i.b_idx}</td>
 						<td>
-							<a href="board_view?b_idx=${i.b_idx}">${i.b_title}</a>
+							<a href="board_view?b_idx=${i.b_idx}">${i.b_title} [${i.b_reply_count}]</a>
 						</td>
 						<td>${i.m_username}</td>
 					</tr>
@@ -80,7 +80,9 @@
 				<c:forEach var="i" items="${unfixed_master_list}">
 					<tr>
 						<td>${i.b_idx}</td>
-						<td><a href="board_view?b_idx=${i.b_idx}">${i.b_title}</a></td>
+						<td>
+							<a href="board_view?b_idx=${i.b_idx}">${i.b_title} [${i.b_reply_count}]</a>
+						</td>
 						<td>${i.m_username}</td>
 					</tr>
 				</c:forEach> 
@@ -98,7 +100,7 @@
 					<tr>
 						<td>${i.b_idx}</td>
 						<td>
-							<a href="board_view?b_idx=${i.b_idx}">${i.b_title}</a>
+							<a href="board_view?b_idx=${i.b_idx}">${i.b_title} [${i.b_reply_count}]</a>
 						</td>
 						<td>${i.m_username}</td>
 					</tr>

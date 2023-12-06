@@ -7,6 +7,8 @@
 	<meta charset="UTF-8">
 	<title>user_edit_profile</title>
 	<script src="resources/js/http_request.js"></script>
+	<link href="${pageContext.request.contextPath}/resources/css/user/user_edit_profile.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script type="text/javascript">
 	
 	function photo_upload(f){
@@ -54,6 +56,7 @@
 	</script>
 </head>
 	<body>
+	<div id="header_bar"></div>
 	<form enctype="multipart/form-data" align="center" name="myForm">
         <div id="m_photo_name">
             <img id="m_profile" src="${pageContext.request.contextPath}/resources/upload/user/${vo.m_photo_name}">
@@ -68,5 +71,7 @@
         <input type="hidden" name="m_idx" value="${vo.m_idx}">
         <input type="button" value="수정완료" onclick="modify(this.form)">
     </form>
+	<div id="footer_bar"></div>
 	</body>
+</body>
 </html>

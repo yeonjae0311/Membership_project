@@ -7,6 +7,10 @@
 	<meta charset="UTF-8">
 	<title>user_info_form</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
+	<link href="${pageContext.request.contextPath}/resources/css/user/user_info_form.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user_js/user_info_form.js"></script>
+	
 	<script>
 		function modify(f){
 			f.action="user_info_modify_form";
@@ -45,6 +49,7 @@
 	</script>
 	</head>
 	<body> <!-- a태그와 location.href를 통해 깔끔하게 바꿀 예정 -->
+	<div id="header_bar"></div>
 		<form>
 			<div> 이름 : ${vo.m_name }		</div>
 			<div> 연락처 : ${vo.m_tel }		</div>
@@ -55,4 +60,6 @@
 			<input type="button" value="회원탈퇴" onclick="delete_leave(this.form)">
 		</form>
 	</body>
+	<div id="footer_bar"></div>
+</body>
 </html>

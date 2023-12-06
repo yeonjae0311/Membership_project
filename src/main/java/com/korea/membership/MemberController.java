@@ -1,5 +1,7 @@
 package com.korea.membership;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -48,11 +51,6 @@ public class MemberController {
 		this.board_dao = board_dao;
 	}
 
-	@RequestMapping("story")
-	public String story() {
-		return Path.StoryPath.make_path("story");
-	}
-
 	@RequestMapping("login_form")
 	public String login_form() {
 		return Path.LoginPath.make_path("login_form");
@@ -79,12 +77,21 @@ public class MemberController {
 
 		// 아이디가 없는 경우
 		if (vo == null) {
-			return "{\"param\": \"no m_id\"}";
+			return "{\"param\": \"no_m_id\"}";
 		}
 
 		// 비밀번호가 일치하지 않는 경우
 		if (!vo.getM_password().equals(m_password)) {
-			return "{\"param\": \"no m_password\"}";
+			return "{\"param\": \"no_m_password\"}";
+		}
+		
+		String localStorage = null;
+		
+		try {
+			localStorage = om.writeValueAsString(vo);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		// 아이디와 비밀번호 체크에 문제가 없다면 세션에 바인딩 한다.
@@ -92,13 +99,13 @@ public class MemberController {
 		session.setAttribute("m_idx", vo.getM_idx());
 
 		// 로그인에 성공한 경우
-		return "{\"param\": \"success\"}";
+		return localStorage;
 	}
 
 	@RequestMapping("check_email") // 이메일 중복체크
 	@ResponseBody
-	public String check_email(@RequestBody String body) {
-
+	public String check_email(@RequestBody String body) throws UnsupportedEncodingException {
+		
 		ObjectMapper om = new ObjectMapper();
 
 		Map<String, String> data = null;
@@ -110,8 +117,8 @@ public class MemberController {
 			e.printStackTrace();
 		}
 
-		String m_email = data.get("m_email");
-
+		String m_email = URLDecoder.decode(data.get("m_email"), "utf-8");
+		
 		int res = pmember_dao.email_check(m_email);
 
 		if (res == 0) {
@@ -136,14 +143,28 @@ public class MemberController {
 
 	@RequestMapping("check_id")
 	@ResponseBody
-	public String check_id(String m_id) {
-		int res = pmember_dao.id_check(m_id);
+	public String check_id(@RequestBody String body) throws UnsupportedEncodingException {
+		
+		ObjectMapper om = new ObjectMapper();
 
+		Map<String, String> data = null;
+
+		try {
+			data = om.readValue(body, new TypeReference<Map<String, String>>() {
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String m_id = URLDecoder.decode(data.get("m_id"), "utf-8");
+		
+		int res = pmember_dao.id_check(m_id);
+		
 		if (res == 0) {
-			return "[{'res':'yes'}]";
+			return "{\"param\": \"ok_m_id\"}";
 		}
 
-		return "[{'res':'no'}]";
+		return "{\"param\": \"fail\"}";
 	}
 
 	@RequestMapping("member_insert")
@@ -151,7 +172,7 @@ public class MemberController {
 		int res = pmember_dao.insert(vo);
 		if (res > 0) {
 			session.setAttribute("id", vo);
-			return "redirect:/";
+			return "redirect:congratulations_register";
 		}
 		return null;
 	}
@@ -266,30 +287,16 @@ public class MemberController {
 		return num; // String 타입으로 변환 후 반환
 	}
 
-	@RequestMapping("register_find_id")
-	public String register_find_id() {
-		return Path.LoginPath.make_path("register_find_id");
-	}
-
+	
+	
 	@RequestMapping("register_find_password")
 	public String register_find_password() {
 		return Path.LoginPath.make_path("register_find_password");
 	}
 
-	@RequestMapping("register_modify_id")
-	public String register_modify_id(String id) {
-		int res = pmember_dao.id_update(id);
-
-		if (res > 0) {
-			return "redirect:register_modify_id";
-		} else {
-			System.out.println("추가 에러");
-			return null;
-		}
-	}
 
 	@RequestMapping("register_modify_password")
-	public String register_modify_password(String password) {
+	public String register_modify_password(Map<String, String> password) {
 		int res = pmember_dao.password_update(password);
 
 		if (res > 0) {
@@ -300,6 +307,7 @@ public class MemberController {
 		}
 	}
 
+	
 	@RequestMapping("kakao_pay")
 	public String kakao_pay() {
 		return Path.LoginPath.make_path("kakao_pay");
@@ -364,4 +372,9 @@ public class MemberController {
 		return "redirect:user_edit";
 	}
 
+	
+	@RequestMapping("congratulations_register")
+	public String congratulations_register() {
+		return Path.LoginPath.make_path("congratulations_register");
+	}
 }

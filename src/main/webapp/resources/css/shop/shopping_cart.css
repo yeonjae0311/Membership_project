@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+*{
+	border: 1px solid black;
+}
+
+#cart_item_list_div{
+	width: 80%;
+	margin: auto;
+}
+
+.item_checkbox{
+	margin: 1%;
+}
+
+.shop_item_div{
+	display: flex;
+}
+
+.item_detail_photo{
+	width: 17%;
+	height: 17%;
+	margin: 4%;
+}
+
+.item_detail_div{
+	display: flex;
+}
+

@@ -1,4 +1,4 @@
-﻿var xhr = null;
+﻿/*var xhr = null;
 
 function createRequest(){
 		
@@ -47,7 +47,7 @@ function sendRequest(url, param, callBack, method){ //url 목적지 , param뭘�
 	xhr.onreadystatechange = callBack;
 	
 	xhr.send(httpMethod == 'POST'?httpParam:null);
-}
+}*/
 
 
 

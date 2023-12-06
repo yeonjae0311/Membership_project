@@ -12,6 +12,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	  	<result column="i_detail_photo_name" property="i_detail_photo_name" jdbcType="VARCHAR"/>
 	</resultMap>
 	
+	<!-- i_idx, i_amount 반환 map -->
+	<resultMap type="vo.ItemVO" id="item_find">
+		<result column="i_idx" property="i_idx"/>
+	  	<result column="i_amount" property="i_amount"/>
+	</resultMap>
+	
 	<!-- 상품 업로드 -->
 	<insert id="item_upload" parameterType="item">
 		insert into item values (seq_item_idx.nextval,
@@ -40,8 +46,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select i_color from item where i_name=#{i_name}
 	</select>
 	
-	<!-- 선택한 상품의 idx 조회 -->
-	<select id="item_find_idx" parameterType="java.util.HashMap" resultType="int">
-		select i_idx from item where i_name=#{i_name} and i_color=#{i_color}
+	<!-- 선택한 상품의 i_idx, i_amount 조회 -->
+	<select id="item_find_idx" parameterType="java.util.HashMap" resultMap="item_find">
+		select i_idx, i_amount from item where i_name=#{i_name} and i_color=#{i_color}
 	</select>
+	
+	<!-- 해당 이름의 상품 전체 삭제 -->
+	<delete id="item_delete" parameterType="String">
+		delete from item where i_name=#{i_name}
+	</delete>
 </mapper>

@@ -6,7 +6,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="${pageContext.request.contextPath}/resources/css/home.css" rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/login_js/login_form.js"></script>
 	<script>
 		let isFilled = true;
 		
@@ -21,12 +24,14 @@
 				event.target.style.fill = "white";
 			}
 		}
+		function logout(){
+			localStorage.clear();
+			location.href='logout';
+		}
 	</script>
 </head>
 <body>
-	<input type="button" value="story" onclick="location.href='story'">
-	<input type="button" value="board" onclick="location.href='board'">
-	<input type="button" value="shop" onclick="location.href='shop'">
+	<div id="header_bar"></div>
 	<c:choose>
 		<c:when test="${empty id}">
 			<input type="button" value="로그인" onclick="location.href='login_form'">
@@ -34,11 +39,10 @@
 			<input type="button" value="마이페이지" onclick="location.href='login_form'">
 		</c:when>
 		<c:when test="${not empty id }">
-			<input type="button" value="로그아웃" onclick="location.href='logout'">
+			<input type="button" value="로그아웃" onclick="logout()">
 			<input type="button" value="마이페이지" onclick="location.href='user_edit'">
 		</c:when>
 	</c:choose>
-	<input type="button" value="결제" onclick="location.href='kakao_pay'">
 	
 	<div>
 		<svg id="svg_test"
@@ -58,5 +62,6 @@
 				  	0 4 1.794 4 4s-.7 3.412-3.5 6.5Z"/>
 		</svg>
 	</div>
+	<div id="footer_bar"></div>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -31,7 +32,27 @@ public class BoardDAO {
 	}
 	
 	// board_selectOne => board_select_one
-	public BoardPMemberViewVO board_selectOne(int b_idx) {
-		return sqlSession.selectOne("b.board_selectOne",b_idx);
+	public BoardPMemberViewVO board_select_one(HashMap<String, Object> map) {
+		return sqlSession.selectOne("b.board_select_one",map);
+	}
+	
+	public int delete_board_post(HashMap<String, Object> map) {
+		return sqlSession.delete("b.delete_board_post",map);
+	}
+	
+	public int is_master(int m_idx) {
+		return sqlSession.selectOne("b.is_master",m_idx);
+	}
+	
+	public int delete_board_post_by_master(int m_idx) {
+		return sqlSession.delete("b.delete_board_post_by_master",m_idx);
+	}
+	
+	public int plus_board_read_hit(int b_idx) {
+		return sqlSession.update("b.plus_board_read_hit",b_idx);
+	}
+	
+	public int check_like_board(HashMap<String, Object> map) {
+		return sqlSession.selectOne("b.check_like_board", map);
 	}
 }

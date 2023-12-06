@@ -13,14 +13,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.korea.membership.BoardController;
 import com.korea.membership.MainController;
 import com.korea.membership.MemberController;
-import com.korea.membership.ReplyConroller;
+import com.korea.membership.ReplyController;
 import com.korea.membership.ShopController;
+import com.korea.membership.StoryController;
 
 import dao.BoardDAO;
 import dao.CartDetailDAO;
 import dao.ItemDAO;
 import dao.PMemberDAO;
 import dao.ReplyDAO;
+import dao.StoryDAO;
 
 @Configuration
 @EnableWebMvc
@@ -42,8 +44,8 @@ public class ServletContext implements WebMvcConfigurer {
 	}
 	
 	@Bean
-	public ShopController shop_controller(ItemDAO item_dao, CartDetailDAO cart_detail_dao) {
-		return new ShopController(item_dao, cart_detail_dao);
+	public ShopController shop_controller(ItemDAO item_dao, CartDetailDAO cart_detail_dao, BoardDAO board_dao, PMemberDAO pmember_dao) {
+		return new ShopController(item_dao, cart_detail_dao, board_dao, pmember_dao);
 	}
 
 	@Bean
@@ -52,8 +54,13 @@ public class ServletContext implements WebMvcConfigurer {
 	}
 	
 	@Bean
-	public ReplyConroller reply_controller(ReplyDAO reply_dao) {
-		return new ReplyConroller(reply_dao);
+	public StoryController story_controller(StoryDAO story_dao) {
+		return new StoryController(story_dao);
+	}
+	
+	@Bean
+	public ReplyController reply_controller(ReplyDAO reply_dao) {
+		return new ReplyController(reply_dao);
 	}
 
 	@Bean
