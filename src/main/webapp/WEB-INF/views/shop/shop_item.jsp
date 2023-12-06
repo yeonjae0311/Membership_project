@@ -121,6 +121,20 @@
 		}
 		
 		// 마스터 계정 확인해서 상품 삭제 버튼 숨기기 (localstorage 이용하기)
+		window.onload = function() {
+			let is_master = localStorage.getItem('isMaster');
+			console.log(localStorage)
+			if(is_master == 0){
+				document.getElementById("item_delete_id").style.display = "none"
+			}
+		}
+		
+		function send_shop_payment(){
+
+			let m_idx = localStorage.getItem('idx');
+			location.href = 'shop_payment?m_idx='+m_idx;
+				
+		}
 		
 	</script>
 </head>
