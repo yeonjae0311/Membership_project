@@ -24,8 +24,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.CartDetailDAO;
 import dao.ItemDAO;
+import dao.PMemberDAO;
 import util.Path;
-import vo.CartDetailVO;
 import vo.ItemVO;
 import vo.PMemberVO;
 
@@ -33,18 +33,29 @@ import vo.PMemberVO;
 public class ShopController {
 	
 	@Autowired
+	HttpSession session;
+	
+	@Autowired
 	HttpServletRequest request;
 	 
 	ItemDAO item_dao;
 	CartDetailDAO cart_detail_dao;
+	PMemberDAO pmember_dao;
 
-	public ShopController(ItemDAO item_dao, CartDetailDAO cart_detail_dao) {
+	public ShopController(ItemDAO item_dao, CartDetailDAO cart_detail_dao, PMemberDAO pmember_dao) {
 		this.item_dao = item_dao;
 		this.cart_detail_dao = cart_detail_dao;
+		this.pmember_dao = pmember_dao;
 	}
 	
 	@RequestMapping("shop")
 	public String shop(Model model) {
+		
+		PMemberVO vo = (PMemberVO) session.getAttribute("id");
+		int m_idx = vo.getM_idx();
+		
+		// idx로 마스터 계정인지 판별하는 메서드 자리(이미 만든거 가져다 쓰기)
+		// 반환된 int를 model에 바인딩해서 해당 값으로 shop의 상품 등록하기 버튼 숨기기
 		
 		List<ItemVO> list = item_dao.item_list_select();
 		
@@ -69,8 +80,9 @@ public class ShopController {
 		
 		String i_color = data.get("i_color");	
 		String i_name = URLDecoder.decode(data.get("i_name"), "utf-8");
+		int cd_count = Integer.parseInt(data.get("cd_count"));
 		
-		HttpSession session = request.getSession();
+		session = request.getSession();
 		PMemberVO p_member_vo = (PMemberVO) session.getAttribute("id");
 		
 		// i_name과 i_color로 i_idx를 조회
@@ -78,31 +90,67 @@ public class ShopController {
 		i_map.put("i_name", i_name);
 		i_map.put("i_color", i_color);
 		
-		int i_idx = item_dao.item_find_idx(i_map);
+		ItemVO item_vo = item_dao.item_find_idx(i_map);
+		int i_idx = item_vo.getI_idx();
 		int m_idx = p_member_vo.getM_idx();
 
 		// i_idx와 m_idx를 map으로 묶어 cart_detail table에 insert 하기		
 		HashMap<String, Integer> idx_map = new HashMap<String,Integer>();
 		idx_map.put("i_idx", i_idx);
 		idx_map.put("m_idx", m_idx);
+		idx_map.put("cd_count", cd_count);
 		
-		int res = cart_detail_dao.cart_insert(idx_map);
+		int insert = cart_detail_dao.cart_insert(idx_map);
+		
+		// i_amount를 가져와서 update문 한번 수행
+		// --> 수행이 되었으면(update) 페이지 이돟 후 alert로 '구매가능최대수량으로 변경되었습니다.'
+		// --> 수행이 안되었으면 페이지 이동
+		
+		int i_amount = item_vo.getI_amount();
+		int res = cart_detail_dao.cd_count_check(i_amount);
 		
 		if(res > 0) {
-			return "{\"param\": \"yes\"}";
+			return "{\"param\": \"success\"}";
 		} else {
-			return "{\"param\": \"no\"}";
+			return "{\"param\": \"fail\"}";
 		}
 	}
 		
 	@RequestMapping("shopping_cart")
 	public String shopping_cart(Model model) {
+		
+		session = request.getSession();
+		PMemberVO p_member_vo = (PMemberVO) session.getAttribute("id");
+		int m_idx = p_member_vo.getM_idx();
+		
 		// 장바구니 테이블을 전체 조회해서 바인딩
-		List<CartDetailVO> list = cart_detail_dao.cart_select_list();
+		List<ItemVO> list = cart_detail_dao.cart_select_list(m_idx);
 				
 		model.addAttribute("list", list);
 		
 		return Path.ShopPath.make_path("shopping_cart");
+	}
+	
+	@RequestMapping(value="shopping_cart_list", produces="application/text; charset=UTF-8")
+	@ResponseBody
+	public String shopping_cart_list() throws UnsupportedEncodingException {
+		ObjectMapper om = new ObjectMapper();
+		
+		PMemberVO pmember_vo = (PMemberVO) session.getAttribute("id");
+		
+		int m_idx = pmember_vo.getM_idx();
+		
+		List<ItemVO> list = cart_detail_dao.cart_select_list(m_idx);
+		
+		String jsonArray = null;
+		
+		try {
+			jsonArray = om.writeValueAsString(list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return jsonArray;
 	}
 	
 	@RequestMapping("item_insert")
@@ -113,9 +161,8 @@ public class ShopController {
 	@RequestMapping("item_insert_upload")
 	public String item_insert_upload(ItemVO vo) {
 		
-		String webPath = "/resources/upload/";
+		String webPath = "/resources/upload/shop/";
 		String savePath= request.getServletContext().getRealPath(webPath);
-		System.out.println(savePath);
 
 		MultipartFile i_photo = vo.getI_photo();
 		String i_photo_name = "no_file";
@@ -165,6 +212,7 @@ public class ShopController {
 	
 	@RequestMapping("shop_item_select")
 	public String shop_item_select(int i_idx, String i_name, Model model) {
+		
 		ItemVO vo = item_dao.item_select_one(i_idx);
 		List<String> colors = item_dao.item_select_color(i_name);
 
@@ -199,11 +247,49 @@ public class ShopController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		
-//		model.addAttribute("colors", colors);
 		
 		return jsonArray;
+	}
+	
+	@RequestMapping("item_count_change")
+	@ResponseBody
+	public String item_count_change(@RequestBody String body){
+		ObjectMapper om = new ObjectMapper();
+			
+		Map<String, String> data = null;
+		
+		try {
+			data = om.readValue(body, new TypeReference<Map<String, String>>() {
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		int cd_count = Integer.parseInt(data.get("item_count"));
+		int i_idx = Integer.parseInt(data.get("i_idx"));
+		
+		session = request.getSession();
+		PMemberVO p_member_vo = (PMemberVO) session.getAttribute("id");		
+		int m_idx = p_member_vo.getM_idx();
+		
+		// i_dx와 m_idx에 알맞은 cd_count를 변경
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("i_idx", i_idx);
+		map.put("m_idx", m_idx);
+		map.put("cd_count", cd_count);
+		
+		int res = cart_detail_dao.cart_item_count_change(map);
+
+		if(res > 0) {
+			return "{\"param\": \"yes\"}";
+		} else {
+			return "{\"param\": \"no\"}";
+		}
+	}
+	
+	@RequestMapping("shop_payment")
+	public String shop_payment() {
+		return Path.ShopPath.make_path("shop_payment");
 	}
 }
 

@@ -5,8 +5,8 @@ import org.springframework.web.multipart.MultipartFile;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
+@Setter
 public class StoryVO {
 	private int s_idx,
 				m_idx,
