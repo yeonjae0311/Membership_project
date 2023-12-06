@@ -165,7 +165,7 @@ public class MemberController {
 		int res = pmember_dao.insert(vo);
 		if(res>0) {
 			session.setAttribute("id", vo);
-			return "redirect:congratulations_register";
+			return "redirect:membership_info";
 		}
 		return null;
 	}
@@ -223,8 +223,6 @@ public class MemberController {
 		Random random = new Random();
 		int check_num = random.nextInt(888888) + 111111;
 
-		System.out.println("인증번호 :" + check_num);
-
 		// 이메일 전송 내용
 		String set_from = "chai0805123@gmail.com"; // 발신 이메일
 		String to_mail = m_email; // 받는 이메일
@@ -239,7 +237,6 @@ public class MemberController {
 			helper.setTo(to_mail);
 			helper.setSubject(title);
 			helper.setText(content, true);
-			System.out.println(content);
 			mailSender.send(message);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -313,8 +310,6 @@ public class MemberController {
 		m_map.put("m_email", m_email);
 		m_map.put("m_code", m_code);
 		
-		System.out.println("code = " + m_code);
-
 		PMemberVO vo = pmember_dao.id_find(m_email);
 		
 		if (vo == null) {
@@ -394,8 +389,8 @@ public class MemberController {
 		return "redirect:user_edit";
 	}
 	
-	@RequestMapping("congratulations_register")
+	@RequestMapping("membership_info")
 	public String congratulations_register() {
-		return Path.LoginPath.make_path("congratulations_register");
+		return Path.LoginPath.make_path("membership_info");
 	}
 }
