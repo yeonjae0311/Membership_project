@@ -17,7 +17,7 @@
 </head>
 <body>
 	<form>
-		<table border=1 colspan="5">
+		<table border=1>
 			<tr>
 				<td> 이름 : <input name="m_name" value="${vo.m_name }" > </td>
 			</tr>
