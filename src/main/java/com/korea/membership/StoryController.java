@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -51,6 +52,7 @@ public class StoryController {
 		
 		/////////////////////////////////////////////////////////////////
 		List<StoryVO> svo_list = story_dao.select_story_list(m_idx);
+		
 		for(StoryVO vo : svo_list) {
 			int s_idx = vo.getS_idx();
 			map.put("s_idx",s_idx);
@@ -62,6 +64,8 @@ public class StoryController {
 			}
 			//여기서 만료된 스토리 삭제하는 코드 구현
 		}
+		
+		
 		model.addAttribute("svo_list",svo_list);
 		
 		return Path.StoryPath.make_path("story");
@@ -123,32 +127,18 @@ public class StoryController {
 		return null;
 	}
 	
-	@RequestMapping("change_like_status")
-	@ResponseBody
-	public String change_like_status(@ModelAttribute List<StoryVO> svo_list,int s_idx,int m_idx, String sl_isliked) {
-		//db에 줄 매개변수를 담을 map
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("s_idx", s_idx);
-		map.put("m_idx", m_idx);
-		for(StoryVO svo:svo_list) {
-			if(svo.getS_idx()==s_idx) {
-				if(svo.getSl_isliked().equals("0")) {
-					svo.setSl_isliked("1");
-				}else {
-					svo.setSl_isliked("0");
-				}
-				break;
-			}
-		}
-		
-		int res = -1;
-		//좋아요 상태가 아니였다면 좋아요를 db에 추가
-		if(sl_isliked.equals("1")){
-			res = story_dao.insert_like(map);			
-			return "[{'sl_isliked':'1'}]";
-		}else {//좋아요 취소
-			res = story_dao.delete_to_unlike(map);
-			return "[{'sl_isliked':'0'}]";
-		}	
-	}
+	/*
+	 * @RequestMapping("change_like_status")
+	 * 
+	 * @ResponseBody public String change_like_status(@RequestBody List<StoryVO>
+	 * svo_list) { //db에 줄 매개변수를 담을 map HashMap<String, Object> map = new
+	 * HashMap<String, Object>(); map.put("s_idx", s_idx); map.put("m_idx", m_idx);
+	 * for(StoryVO svo:svo_list) { if(svo.getS_idx()==s_idx) {
+	 * if(svo.getSl_isliked().equals("0")) { svo.setSl_isliked("1"); }else {
+	 * svo.setSl_isliked("0"); } break; } }
+	 * 
+	 * int res = -1; //좋아요 상태가 아니였다면 좋아요를 db에 추가 if(sl_isliked.equals("1")){ res =
+	 * story_dao.insert_like(map); return "[{'sl_isliked':'1'}]"; }else {//좋아요 취소
+	 * res = story_dao.delete_to_unlike(map); return "[{'sl_isliked':'0'}]"; } }
+	 */
 }

@@ -149,6 +149,7 @@ public class BoardController {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("b_idx", b_idx);
 		PMemberVO uservo = (PMemberVO) session.getAttribute("id");
+		if(uservo!=null)
 		map.put("m_idx", uservo.getM_idx());
 		
 		int res = board_dao.check_like_board(map);

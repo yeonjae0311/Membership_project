@@ -10,7 +10,7 @@
 	<script>
 		let currentStoryIndex = 0;
 		
-		function showNext() {
+		function show_next() {
 		    let stories = document.querySelectorAll(".story");
 		
 		    // 현재 보여지고 있는 항목을 숨기고
@@ -21,7 +21,7 @@
 		    stories[currentStoryIndex].style.display = "block";
 		}
 		
-		function showPrevious() {
+		function show_previous() {
 		    let stories = document.querySelectorAll(".story");
 		
 		    // 현재 보여지고 있는 항목을 숨기고
@@ -36,18 +36,16 @@
 		}
 		
 		function like(s_idx,m_idx,sl_isliked){
-		    let stories = document.querySelectorAll(".story");
+		   /*  let stories = document.querySelectorAll(".story");
 		    let classname = stories[currentStoryIndex].getElementsByClassName('liked');
-			
+			let sl_isliked_class = classname[0].getElementsByClassName('liked_value');
+		    let sl_isliked = sl_isliked_class[0].value;
 			let url = "change_like_status";
-			let param = "s_idx="+s_idx+"&m_idx="+m_idx+"&sl_isliked="+sl_isliked;
-			if(sl_isliked=="0"){
-				sl_isliked="1";
-			}else{
-				sl_isliked="0";
-			}
-			sendRequest(url,param,revalidate,'post');
-		}
+			let param = {
+				"sl_isliked":encodeURIComponent(sl_isliked)
+			};
+			sendRequest(url,param,revalidate,'post');*/
+		} 
 		
 		function revalidate(){
 			if(xhr.readyState==4&&xhr.status==200){
@@ -71,7 +69,7 @@
 			<div class="story" style="display: ${loop.index == 0 ? 'block' : 'none'}">
 			
 				<div class="left">
-					<input type="button" value="LEFT" onclick="showPrevious()">	
+					<input type="button" value="LEFT" onclick="show_previous()">	
 				</div>
 			
 				<img src="${pageContext.request.contextPath}/resources/upload/story/${svo.s_filename}"  alt="이미지 유실">
@@ -90,18 +88,19 @@
 			
 				<div class="liked">
 					${svo.sl_isliked}
+					<input type="hidden" value="${svo.sl_isliked}" class="liked_value">
 				</div>
 				
 				<input type="button" value="LIKE" onclick="like('${svo.s_idx}','${svo.m_idx}','${svo.sl_isliked }')">
 				
 				<div class="right">
-					<input type="button" value="RIGHT" onclick="showNext()">	
+					<input type="button" value="RIGHT" onclick="show_next()">	
 				</div>
 				
 			</div>
 		</c:forEach>		
 	</div>	
-    <button onclick="showNext()">Next</button>
+    <button onclick="show_next()">Next</button>
 
     <script>
 
