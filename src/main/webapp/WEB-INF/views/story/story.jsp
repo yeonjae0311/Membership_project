@@ -6,6 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>스토리~</title>
+	<link href="${pageContext.request.contextPath}/resources/css/shop/story.css" rel="stylesheet" type="text/css">
 	<script src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
 	<script>
 		let currentStoryIndex = 0;
@@ -129,7 +130,10 @@
 	</script>
 </head>
 <body>
+	<div id="header_bar"></div>
+	
 	story	
+	
 	<c:if test="${not empty id }">
 		<input type="button" value="스토리 작성하기" onclick="location.href='story_post'">
 	</c:if>
@@ -166,8 +170,10 @@
 			</div>
 		</c:forEach>		
 	</div>
-	<input type="button" value="home" onclick="location.href='/membership/'">		
-
+	
+	<input type="button" value="home" onclick="location.href='/membership/'">
+			
+	<div id="footer_bar"></div>
 </body>
 
 </html>

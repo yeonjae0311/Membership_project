@@ -5,11 +5,13 @@
 <head>
 	<meta charset="UTF-8">
 	<title>login form</title>
+	<link href="${pageContext.request.contextPath}/resources/css/login/login_form.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/login_js/login_form.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
 	
 </head>
 <body>
+	<div id="header_bar"></div>
 	<form>
 	<div>:::로그인:::</div>
 		<div>
@@ -32,5 +34,6 @@
 		</div>
 			
 	</form>
+	<div id="footer_bar"></div>
 </body>
 </html>

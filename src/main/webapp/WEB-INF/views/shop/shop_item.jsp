@@ -7,6 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>MEMBERSHIP</title>
+	<link href="${pageContext.request.contextPath}/resources/css/shop/shop_item.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
 	<style>
 		#shop_button_bar{
@@ -139,7 +140,7 @@
 	</script>
 </head>
 <body>	
-
+	<div id="header_bar"></div>
 	<form name="selected_item" action="shopping_cart_insert" method="POST">
 	
 		<div>
@@ -186,5 +187,6 @@
    			<input type="button" value="결제하기" onclick="send_shop_payment()">
    		</div>
 	</form>
+	<div id="footer_bar"></div>
 </body>
 </html>

@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>NewJeans Membership</title>
-	<link rel="stylesheet" href="resources/css/item_insert.css">
+	<link href="${pageContext.request.contextPath}/resources/css/shop/item_insert.css" rel="stylesheet" type="text/css">
 	<script>	
 		 function upload(item_upload){
 			 
@@ -49,6 +49,7 @@
 	</script>
 </head>
 <body>
+	<div id="header_bar"></div>
 	<form id="item_upload" action="item_insert_upload" method="POST" enctype="multipart/form-data">
 		<div>
 			<div>
@@ -81,6 +82,7 @@
 		    </div>
 		 </div>
     </form>
+    <div id="footer_bar"></div>
 </body>
 </html>
 

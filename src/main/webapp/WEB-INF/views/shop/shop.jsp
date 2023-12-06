@@ -7,6 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Membership</title>
+	<link href="${pageContext.request.contextPath}/resources/css/shop/shop.css" rel="stylesheet" type="text/css">
 	<script>
 		function shop_item_select(f){
 			f.action = "shop_item_select";
@@ -34,6 +35,7 @@
 	</style>
 </head>
 <body>	
+	<div id="header_bar"></div>
 	<div>
 		<input type="button" id="item_insert_form" value="상품 등록하기" onclick="location.href='item_insert'">
 	</div>
@@ -57,5 +59,6 @@
 			</form>
 		</c:forEach>
 	</div>
+	<div id="footer_bar"></div>
 </body>
 </html>

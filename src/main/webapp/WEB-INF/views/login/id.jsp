@@ -3,10 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link href="${pageContext.request.contextPath}/resources/css/login/id.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-아이디 : ${id.m_id }
+	<div id="header_bar"></div>
+		아이디 : ${id.m_id }
+	<div id="footer_bar"></div>
 </body>
 </html>

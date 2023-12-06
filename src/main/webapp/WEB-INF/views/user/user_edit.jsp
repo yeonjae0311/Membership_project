@@ -5,7 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="${pageContext.request.contextPath}/resources/css/user_edit.css" rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath}/resources/css/user/user_edit.css" rel="stylesheet" type="text/css">
 	<script>
 		function send(e){
 			location.href=e.target.parentElement.id
@@ -13,6 +13,8 @@
 	</script>
 </head>
 <body>
+	<div id="header_bar"></div>
+
 	<header>
 		<input type="button" value="home" onclick="location.href='/membership/'">
 	</header>
@@ -53,5 +55,6 @@
 			</div>
 		</div>
 	</div>
+	<div id="footer_bar"></div>
 </body>
 </html>
