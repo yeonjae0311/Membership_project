@@ -54,6 +54,13 @@
 					user_post_list
 				</div>
 			</div>
+			
+			<div id="logout" class="member_info_body">
+				<img src="${pageContext.request.contextPath}/resources/img/user/logout.png" onclick="send(event)" >
+				<div onclick="send(event)">
+					logout
+				</div>
+			</div>
 		</div>
 	</div>
 	<div id="footer_bar"></div>

@@ -24,12 +24,13 @@
 				document.getElementById("cd_count").value = 
 					parseInt(document.getElementById("cd_count").value) + 1;
 			} else if(amount_button_value == "+" && i_amount <= cd_count){
-				alert("최대주문가능 수에 도달하였습니다.");
+				document.getElementById(amount_button_id).disabled = true;
 			}
 					
 			if((amount_button_value == "-") && (cd_count > 1)){	
 				document.getElementById("cd_count").value = 
 					parseInt(document.getElementById("cd_count").value) - 1;
+				document.getElementById("button_plus").disabled = false;
 			}
 		}
 	</script>

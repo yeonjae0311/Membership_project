@@ -56,10 +56,9 @@
             } else {
                 msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;
-                //실패시 이동할 페이지 
-                let m_idx = window.localstorage.getItem('idx');
-                location.href = 'shop_payment?m_idx='+m_idx;
+                //실패시 이동할 페이지            
                 alert(msg);
+                location.href="shop_payment";
             }
         });
         
