@@ -191,7 +191,7 @@ public class MemberController {
 		PMemberVO vo = pmember_dao.select_one(m_idx);
 
 		model.addAttribute("vo", vo);
-		
+
 		return Path.UserPath.make_path("user_edit");
 	}
 
@@ -339,7 +339,7 @@ public class MemberController {
 		String origin_m_photo_name = vo.getM_photo_name();
 
 		String new_m_photo_name = data.get("new_m_photo_name");
-		String m_photo_name=null;
+		String m_photo_name = null;
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		if (!origin_m_photo_name.equals(new_m_photo_name)) {
 			m_photo_name = new_m_photo_name;
@@ -351,7 +351,7 @@ public class MemberController {
 		model.addAttribute("map", map);
 
 		if (res == 1) {
-			return "{\"param\": \""+m_photo_name+"\"}";
+			return "{\"param\": \"" + m_photo_name + "\"}";
 		} else {
 			return "{\"param\": \"fail\"}";
 		}
