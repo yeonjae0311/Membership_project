@@ -5,12 +5,36 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
-	<script src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
+	<title>스토리~</title>
+	<script src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
 	<script>
 		let currentStoryIndex = 0;
 		
-		function showNext() {
+		function story_update_read_hit(storyclass){
+			let idx = storyclass.getElementsByClassName('story_idx');
+			//console.log(idx[0].value);
+			let s_idx = idx[0].value;
+			
+			let url = "story_update_read_hit";
+			let param = {
+				"s_idx": encodeURIComponent(s_idx)
+			};
+			
+			sendRequest(url,param,resultFn2,'post');
+		}
+		function resultFn2(...args){
+			let res = args[0].param;
+			let s_idx = args[0].s_idx;
+			
+			let id = document.getElementById("story_"+s_idx);
+			let s_read_hit_class = id.getElementsByClassName('s_read_hit');
+			s_read_hit_class[0].value = Number(s_read_hit_class[0].value)+1;
+			
+			console.log(s_idx+" "+res);
+		}
+		
+		
+		function show_next() {
 		    let stories = document.querySelectorAll(".story");
 		
 		    // 현재 보여지고 있는 항목을 숨기고
@@ -19,9 +43,10 @@
 		    // 다음 항목을 보여주고
 		    currentStoryIndex = (currentStoryIndex + 1) % stories.length;
 		    stories[currentStoryIndex].style.display = "block";
+		    story_update_read_hit(stories[currentStoryIndex]);
 		}
 		
-		function showPrevious() {
+		function show_previous() {
 		    let stories = document.querySelectorAll(".story");
 		
 		    // 현재 보여지고 있는 항목을 숨기고
@@ -33,20 +58,7 @@
 		    if(currentStoryIndex==-1) 
 		    	currentStoryIndex+=stories.length;
 		    stories[currentStoryIndex].style.display = "block";
-		}
-		
-		function like(s_idx,m_idx,sl_isliked){
-		    let stories = document.querySelectorAll(".story");
-		    let classname = stories[currentStoryIndex].getElementsByClassName('liked');
-			
-			let url = "change_like_status";
-			let param = "s_idx="+s_idx+"&m_idx="+m_idx+"&sl_isliked="+sl_isliked;
-			if(sl_isliked=="0"){
-				sl_isliked="1";
-			}else{
-				sl_isliked="0";
-			}
-			sendRequest(url,param,revalidate,'post');
+		    story_update_read_hit(stories[currentStoryIndex]);
 		}
 		
 		function revalidate(){
@@ -60,18 +72,74 @@
 				classname[0].innerHTML = json[0].sl_isliked;
 				alert('여기까지 도달')
 			}
-		} 
+		}
+		
+		function liked2(s_idx){
+			
+			const story_liked = document.getElementById("liked_" + s_idx);
+			const story_like_count = document.getElementById("like_count_" + s_idx);
+			
+			//console.log(story_liked.value)
+		
+			if(story_liked.value == 0){
+				console.log(story_liked.value);
+				story_liked.value = Number(story_liked.value)+ 1;
+				story_like_count.value = Number(story_like_count.value)+1;
+				let url = "add_story_like";
+				 
+				let param={
+					"sl_isliked":encodeURIComponent(story_liked.value),
+					"s_idx":encodeURIComponent(s_idx)
+				}; 
+				sendRequest(url,param,resultFn,'post');		 
+			}else if(story_liked.value == 1){
+				story_liked.value = Number(story_liked.value)-1;
+				story_like_count.value = Number(story_like_count.value)-1;
+				
+				let url="delete_to_unlike";
+				 
+				let param={
+					"sl_isliked":encodeURIComponent(story_liked.value),
+					"s_idx":encodeURIComponent(s_idx)
+				}; 
+				
+				sendRequest(url,param,resultFn,'post');		
+			}else{
+				alert(story_liked.value);
+				console.log(story_liked.value);
+			}
+		}
+		function resultFn(...args){
+			let res = args[0].param;
+			alert(res);
+		}
+		window.onload = function() {			
+			let beign_story_class = document.getElementsByClassName('story_idx');
+			
+			let s_idx = beign_story_class[0].value;
+			
+			let url = "story_update_read_hit";
+			
+			let param = {
+				"s_idx": encodeURIComponent(s_idx)
+			};
+			
+			sendRequest(url,param,resultFn2,'post');
+		};
 	</script>
 </head>
 <body>
 	story	
+	<c:if test="${not empty id }">
+		<input type="button" value="스토리 작성하기" onclick="location.href='story_post'">
+	</c:if>
 	
 	<div id="storyContainer">	
 		<c:forEach var="svo" items="${svo_list}" varStatus="loop">			
-			<div class="story" style="display: ${loop.index == 0 ? 'block' : 'none'}">
+			<div id="story_${svo.s_idx}" class="story" style="display: ${loop.index == 0 ? 'block' : 'none'}">
 			
 				<div class="left">
-					<input type="button" value="LEFT" onclick="showPrevious()">	
+					<input type="button" value="LEFT" onclick="show_previous()">	
 				</div>
 			
 				<img src="${pageContext.request.contextPath}/resources/upload/story/${svo.s_filename}"  alt="이미지 유실">
@@ -79,34 +147,25 @@
 				<div class="comment">
 					<textarea readonly>${svo.s_content }</textarea>
 				</div>
-			
-				<div class="s_read_hit">
-					${svo.s_read_hit}
-				</div>
 				
-				<div class="like_count">
-					${svo.s_like_count}
-				</div>
+				<input class="story_idx" type="hidden" value="${svo.s_idx}">
 			
-				<div class="liked">
-					${svo.sl_isliked}
-				</div>
+				<input class="s_read_hit" value="${svo.s_read_hit}">
+					
+				<input id="like_count_${svo.s_idx}" class="like_count" value="${svo.s_like_count}">
+					
+				<input id="liked_${svo.s_idx}" value="${svo.sl_isliked}" class="liked">
+					
+				<%-- <input type="hidden" value="${svo.sl_isliked}" class="liked_value"> --%>
 				
-				<input type="button" value="LIKE" onclick="like('${svo.s_idx}','${svo.m_idx}','${svo.sl_isliked }')">
+				<input type="button" value="LIKE" onclick="liked2( ${svo.s_idx})">
 				
 				<div class="right">
-					<input type="button" value="RIGHT" onclick="showNext()">	
+					<input type="button" value="RIGHT" onclick="show_next()">	
 				</div>
-				
 			</div>
 		</c:forEach>		
-	</div>	
-    <button onclick="showNext()">Next</button>
-
-    <script>
-
-    </script>
-	
+	</div>
 	<input type="button" value="home" onclick="location.href='/membership/'">		
 
 </body>

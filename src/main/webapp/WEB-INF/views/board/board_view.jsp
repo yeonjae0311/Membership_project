@@ -9,6 +9,14 @@
 	<title>Insert title here</title>
 	<script src="${pageContext.request.contextPath}/resources/js/http_request.js"> </script>
 	<script>
+		let bl_isliked;
+		window.onload = function(){
+			if('${vo.bl_isliked}' == '1'){
+				bl_isliked = '1';
+			}else{
+				bl_isliked = '0';
+			}
+		}
 		function send_reply(f){
 			let r_content = f.r_content.value.trim();
 			if(r_content==''){
@@ -70,6 +78,16 @@
 			<tr>
 				<th>좋아요 !</th>
 				<td>${vo.b_like_count}</td>
+				<td>
+					<c:choose>
+						<c:when test="${vo.bl_isliked eq '0'}">
+							<input type="button" value="좋아요" onclick="board_like('${vo.b_idx}')">
+						</c:when>
+						<c:when test="${vo.bl_isliked eq '1'}">
+							<input type="button" value="좋아요 해제" onclick="board_dislike('${vo.b_idx}')">
+						</c:when>
+					</c:choose>
+				</td>
 			</tr>
 			<!-- 관리자계정일 경우만 ip가 보이게 -->
 			<c:if test="${id.m_ismaster eq '1'}">

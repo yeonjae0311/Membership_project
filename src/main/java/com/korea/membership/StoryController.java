@@ -1,8 +1,11 @@
 package com.korea.membership;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,10 +13,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.StoryDAO;
 import util.Path;
@@ -51,17 +57,20 @@ public class StoryController {
 		
 		/////////////////////////////////////////////////////////////////
 		List<StoryVO> svo_list = story_dao.select_story_list(m_idx);
-		for(StoryVO vo : svo_list) {
-			int s_idx = vo.getS_idx();
-			map.put("s_idx",s_idx);
-			int res = story_dao.check_is_liked(map);
-			if(res==0) {
-				vo.setSl_isliked("0");
-			}else {
-				vo.setSl_isliked("1");
-			}
-			//여기서 만료된 스토리 삭제하는 코드 구현
-		}
+		
+//		for(StoryVO vo : svo_list) {
+//			int s_idx = vo.getS_idx();
+//			map.put("s_idx",s_idx);
+//			int res = story_dao.check_is_liked(map);
+//			if(res==0) {
+//				vo.setSl_isliked("0");
+//			}else {
+//				vo.setSl_isliked("1");
+//			}
+//			//여기서 만료된 스토리 삭제하는 코드 구현
+//		}
+		
+		
 		model.addAttribute("svo_list",svo_list);
 		
 		return Path.StoryPath.make_path("story");
@@ -123,32 +132,110 @@ public class StoryController {
 		return null;
 	}
 	
-	@RequestMapping("change_like_status")
+	@RequestMapping("add_story_like")
 	@ResponseBody
-	public String change_like_status(@ModelAttribute List<StoryVO> svo_list,int s_idx,int m_idx, String sl_isliked) {
-		//db에 줄 매개변수를 담을 map
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("s_idx", s_idx);
-		map.put("m_idx", m_idx);
-		for(StoryVO svo:svo_list) {
-			if(svo.getS_idx()==s_idx) {
-				if(svo.getSl_isliked().equals("0")) {
-					svo.setSl_isliked("1");
-				}else {
-					svo.setSl_isliked("0");
-				}
-				break;
-			}
-		}
+	public String add_story_like(@RequestBody String body) throws UnsupportedEncodingException {
 		
-		int res = -1;
-		//좋아요 상태가 아니였다면 좋아요를 db에 추가
-		if(sl_isliked.equals("1")){
-			res = story_dao.insert_like(map);			
-			return "[{'sl_isliked':'1'}]";
-		}else {//좋아요 취소
-			res = story_dao.delete_to_unlike(map);
-			return "[{'sl_isliked':'0'}]";
-		}	
+		ObjectMapper om = new ObjectMapper();
+		
+        Map<String, String> data = null;
+
+        try {
+	            data = om.readValue(body, new TypeReference<Map<String, String>>() {});
+        } catch (Exception e) {
+	            e.printStackTrace();
+        }
+        
+        int s_idx=Integer.parseInt(data.get("s_idx"));
+        String sl_isliked = URLDecoder.decode(data.get("sl_isliked"), "utf-8");
+               
+        PMemberVO uservo = (PMemberVO)session.getAttribute("id");
+        
+        //로그인 상태가 아니면 디비 반영하지않음
+        if(uservo==null) {
+        	return "{\"param\": \"fail\"}";
+        }
+        
+        // 로그인 상태면 
+        // db에 좋아요 추가 하기위한 맵 세팅
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        
+        int m_idx = uservo.getM_idx();
+        
+        map.put("s_idx", s_idx);
+        map.put("m_idx", m_idx);
+        
+        //db에 좋아요 반영 (m_idx->s_idx)
+        story_dao.insert_like(map);
+        // STORY_ISLIKED에 pk 추가하기 
+                
+        // 전체 좋아요수 반영
+        story_dao.recalculate_total_like(s_idx);
+        return "{\"param\": \"like\"}";
 	}
+	
+	@RequestMapping("delete_to_unlike")
+	@ResponseBody
+	public String delete_to_unlike(@RequestBody String body) throws UnsupportedEncodingException {
+
+		ObjectMapper om = new ObjectMapper();
+		
+        Map<String, String> data = null;
+
+        try {
+	            data = om.readValue(body, new TypeReference<Map<String, String>>() {});
+        } catch (Exception e) {
+	            e.printStackTrace();
+        }
+        
+        int s_idx=Integer.parseInt(data.get("s_idx"));
+        String sl_isliked = URLDecoder.decode(data.get("sl_isliked"), "utf-8");
+               
+        PMemberVO uservo = (PMemberVO)session.getAttribute("id");
+        if(uservo==null) {
+        	return "{\"param\": \"fail\"}";
+        }
+		
+        // 로그인 상태면 
+        // db에 좋아요 취소 하기위한 맵 세팅
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        
+        int m_idx = uservo.getM_idx();
+        
+        map.put("s_idx", s_idx);
+        map.put("m_idx", m_idx);
+        
+        //db에 좋아요 취소 반영 (m_idx->s_idx)
+        story_dao.delete_to_unlike(map);
+        // STORY_ISLIKED에 pk 추가하기 
+                
+        // 전체 좋아요수 반영
+        story_dao.recalculate_total_like(s_idx);
+        return "{\"param\": \"unlike\"}";
+	}
+	
+	@RequestMapping("story_update_read_hit")
+	@ResponseBody
+	public String story_update_read_hit(@RequestBody String body) throws UnsupportedEncodingException {
+		ObjectMapper om = new ObjectMapper();
+
+        Map<String, String> data = null;
+
+        try {
+            data = om.readValue(body, new TypeReference<Map<String, String>>() { });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String s_idx_str = URLDecoder.decode(data.get("s_idx"), "utf-8");
+        int s_idx = Integer.parseInt(s_idx_str);
+        
+        int res = story_dao.story_update_read_hit(s_idx);
+        if(res>0) {
+            return "{\"param\": \"sucess\",\"s_idx\":\""+s_idx+"\"}";
+        }else {
+            return "{\"param\": \"fail\",\"s_idx\":\""+s_idx+"\"}";
+        }
+	}
+	
+	
 }
