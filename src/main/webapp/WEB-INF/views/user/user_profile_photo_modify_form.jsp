@@ -6,6 +6,7 @@
 	<meta charset="UTF-8">
 	<title>프로필 사진 수정 중</title>
 	<link href="${pageContext.request.contextPath}/resources/css/user/user_profile_photo_modify_form.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script>
 	function photo_upload(f){
 		f.action="photo_upload";

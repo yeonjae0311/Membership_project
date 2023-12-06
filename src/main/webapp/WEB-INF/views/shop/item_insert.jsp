@@ -8,6 +8,7 @@
 	<meta charset="UTF-8">
 	<title>NewJeans Membership</title>
 	<link href="${pageContext.request.contextPath}/resources/css/shop/item_insert.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script>	
 		 function upload(item_upload){
 			 

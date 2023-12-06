@@ -126,7 +126,7 @@ public class MemberController {
 	@RequestMapping("logout")
 	public String logout() {
 		session.removeAttribute("id");
-
+		
 		return Path.HomePath.make_path("home");
 	}
 

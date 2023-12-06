@@ -6,6 +6,7 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link href="${pageContext.request.contextPath}/resources/css/login/id.css" rel="stylesheet" type="text/css">
+	
 </head>
 <body>
 	<div id="header_bar"></div>

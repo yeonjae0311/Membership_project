@@ -8,6 +8,7 @@
 	<meta charset="UTF-8">
 	<title>Membership</title>
 	<link href="${pageContext.request.contextPath}/resources/css/shop/shop.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script>
 		function shop_item_select(f){
 			f.action = "shop_item_select";
