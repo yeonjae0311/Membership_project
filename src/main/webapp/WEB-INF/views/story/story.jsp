@@ -91,6 +91,9 @@
 </head>
 <body>
 	story	
+	<c:if test="${not empty id }">
+		<input type="button" value="스토리 작성하기" onclick="location.href='story_post'">
+	</c:if>
 	
 	<div id="storyContainer">	
 		<c:forEach var="svo" items="${svo_list}" varStatus="loop">			
@@ -119,7 +122,6 @@
 				<div class="right">
 					<input type="button" value="RIGHT" onclick="show_next()">	
 				</div>
-				
 			</div>
 		</c:forEach>		
 	</div>	
