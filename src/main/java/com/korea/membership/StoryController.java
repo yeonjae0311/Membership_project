@@ -214,5 +214,28 @@ public class StoryController {
         return "{\"param\": \"unlike\"}";
 	}
 	
+	@RequestMapping("story_update_read_hit")
+	@ResponseBody
+	public String story_update_read_hit(@RequestBody String body) throws UnsupportedEncodingException {
+		ObjectMapper om = new ObjectMapper();
+
+        Map<String, String> data = null;
+
+        try {
+            data = om.readValue(body, new TypeReference<Map<String, String>>() { });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String s_idx_str = URLDecoder.decode(data.get("s_idx"), "utf-8");
+        int s_idx = Integer.parseInt(s_idx_str);
+        
+        int res = story_dao.story_update_read_hit(s_idx);
+        if(res>0) {
+            return "{\"param\": \"sucess\",\"s_idx\":\""+s_idx+"\"}";
+        }else {
+            return "{\"param\": \"fail\",\"s_idx\":\""+s_idx+"\"}";
+        }
+	}
+	
 	
 }

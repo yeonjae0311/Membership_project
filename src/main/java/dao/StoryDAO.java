@@ -46,4 +46,8 @@ public class StoryDAO {
 	public int recalculate_total_like(int s_idx) {
 		return sqlSession.update("s.recalculate_total_like",s_idx);
 	}
+	
+	public int story_update_read_hit(int s_idx) {
+		return sqlSession.update("s.story_update_read_hit",s_idx);
+	}
 }

@@ -10,6 +10,30 @@
 	<script>
 		let currentStoryIndex = 0;
 		
+		function story_update_read_hit(storyclass){
+			let idx = storyclass.getElementsByClassName('story_idx');
+			//console.log(idx[0].value);
+			let s_idx = idx[0].value;
+			
+			let url = "story_update_read_hit";
+			let param = {
+				"s_idx": encodeURIComponent(s_idx)
+			};
+			
+			sendRequest(url,param,resultFn2,'post');
+		}
+		function resultFn2(...args){
+			let res = args[0].param;
+			let s_idx = args[0].s_idx;
+			
+			let id = document.getElementById("story_"+s_idx);
+			let s_read_hit_class = id.getElementsByClassName('s_read_hit');
+			s_read_hit_class[0].value = Number(s_read_hit_class[0].value)+1;
+			
+			console.log(s_idx+" "+res);
+		}
+		
+		
 		function show_next() {
 		    let stories = document.querySelectorAll(".story");
 		
@@ -19,6 +43,7 @@
 		    // 다음 항목을 보여주고
 		    currentStoryIndex = (currentStoryIndex + 1) % stories.length;
 		    stories[currentStoryIndex].style.display = "block";
+		    story_update_read_hit(stories[currentStoryIndex]);
 		}
 		
 		function show_previous() {
@@ -33,6 +58,7 @@
 		    if(currentStoryIndex==-1) 
 		    	currentStoryIndex+=stories.length;
 		    stories[currentStoryIndex].style.display = "block";
+		    story_update_read_hit(stories[currentStoryIndex]);
 		}
 		
 		function revalidate(){
@@ -108,6 +134,8 @@
 				<div class="comment">
 					<textarea readonly>${svo.s_content }</textarea>
 				</div>
+				
+				<input class="story_idx" type="hidden" value="${svo.s_idx}">
 			
 				<input class="s_read_hit" value="${svo.s_read_hit}">
 					

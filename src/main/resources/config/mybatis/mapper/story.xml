@@ -72,4 +72,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(SELECT count(*) FROM STORY_ISLIKED WHERE s_idx=#{s_idx})
 		WHERE s_idx=#{s_idx}
 	</update>
+	
+	<update id="story_update_read_hit" parameterType="int">
+		update story
+		set s_read_hit = s_read_hit+1
+		where s_idx=#{s_idx}
+	</update>
 </mapper>
