@@ -44,7 +44,7 @@ function myCheck(...args){
 		form.m_password.focus();
 		return;
 	} else {
-		// alert('로그인 성공');
-		// location.href='main';
+		alert('로그인 성공');
+		location.href='main';
 	}
 }

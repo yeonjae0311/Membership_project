@@ -11,36 +11,26 @@
 </head>
 <body>
 	<form>
-		<table border="1" align="center">
-			<caption>:::로그인:::</caption>
-			<tr>
-				<th>아이디</th>
-				<td>
-					<input name="m_id">
-				</td>
-			</tr>
-			<tr>
-				<th>비밀번호</th>
-				<td>
-					<input name="m_password" type="password">
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center">
-					<input type="button" value="로그인" onclick="send(this.form)">
-					<input type="button" value="회원가입" onclick="location.href='member_insert_form'">
-					<input type="button" value="취소" onclick="location.href='main'">
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center">
-					<input type="button" value="아이디 찾기" onclick="location.href='find_id'">
-					<input type="button" value="비밀번호 찾기" onclick="location.href='register_find_password'">
-				</td>
-			</tr>
+	<div>:::로그인:::</div>
+		<div>
+			아이디 <input name="m_id">
+		</div>
+		
+		<div>
+			비밀번호 <input name="m_password" type="password">
+		</div>
+		
+		<div>
+			<input type="button" value="로그인" onclick="send(this.form)">
+			<input type="button" value="회원가입" onclick="location.href='member_insert_form'">
+			<input type="button" value="취소" onclick="location.href='main'">
+		</div>
 			
+		<div>
+			<input type="button" value="아이디 찾기" onclick="location.href='register_find_id'">
+			<input type="button" value="비밀번호 찾기" onclick="location.href='register_find_password'">
+		</div>
 			
-		</table>
 	</form>
 </body>
 </html>

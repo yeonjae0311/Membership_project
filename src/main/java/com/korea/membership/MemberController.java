@@ -249,14 +249,14 @@ public class MemberController {
 		return num; // String 타입으로 변환 후 반환
 	}
 	
-	@RequestMapping("find_id")
-	public String find_id() {
+	@RequestMapping("register_find_id")
+	public String register_find_id() {
 		return Path.LoginPath.make_path("register_find_id");
 	}
 	
-	@RequestMapping("register_find_id")
+	@RequestMapping("find_id")
 	@ResponseBody
-	public String register_find_id(@RequestBody String body) throws UnsupportedEncodingException {
+	public String find_id(@RequestBody String body) throws UnsupportedEncodingException {
 		
 		ObjectMapper om = new ObjectMapper();
 

@@ -1,3 +1,4 @@
+let b_email_check = false;
 function send_password(f){
 	let m_id = document.getElementById("m_id").value;
 	let m_email = document.getElementById("m_email").value;
@@ -15,6 +16,11 @@ function send_password(f){
 	
 	if(m_code != code){
 		alert('인증번호를 확인해주세요');
+		return;
+	}
+	
+	if(!b_email_check){
+		alert('이메일 인증을 해주세요');
 		return;
 	}
 	
@@ -47,4 +53,8 @@ function check(...args){
 		alert('비밀번호 찾기 성공');
 		location.href='password';
 	}
+}
+
+function change(){
+	b_email_check = false;
 }
