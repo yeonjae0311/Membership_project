@@ -57,7 +57,7 @@
 	        }).open();
 	    }
     	
-	    function kakao_pay(){
+	    function order_table(){
 	    	
 			let postcode =  document.getElementById('postcode').value;
 		    let address = document.getElementById("address").value;
@@ -72,7 +72,7 @@
 	    		alert("약관 동의가 필요합니다.")
 	    		return;
 	    	} else{
-	    		location.href="kakao_pay";
+	    		// ajax로 db에 insert한 후에 callback에서 카카오페이 페이지로 이동
 	    	}
 	    	  	
 	    }
@@ -138,7 +138,7 @@
 	    </div>
 	    <br>
 		<div id=button_bar>
-		    <input type="button" value="결제하기" onclick="kakao_pay()">
+		    <input type="button" value="결제하기" onclick="order_table()">
 		    <input type="button" value="취소하기" onclick="location.href='shop'">
 		</div>
 	</div>

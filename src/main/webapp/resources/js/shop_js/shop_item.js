@@ -63,7 +63,6 @@ window.onload = function() {
 
 function send_shop_payment(){
 
-	let m_idx = localStorage.getItem('idx');
-	location.href = 'shop_payment?m_idx='+m_idx;
+	location.href = 'shop_payment';
 		
 }
