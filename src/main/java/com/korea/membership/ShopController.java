@@ -319,18 +319,13 @@ public class ShopController {
 	
 	@RequestMapping("shop_payment")
 	public String shop_payment(Model model) {
-		
-		// 선택한 상품 정보 받아오기
-		
-		
-		
 		// m_idx에 해당하는 유저정보 조회해서 바인딩
 		
-//		int m_idx = Integer.parseInt(request.getParameter("m_idx"));
-//		
-//		PMemberVO vo = pmember_dao.select_one(m_idx);
-//		
-//		model.addAttribute("vo", vo);
+		int m_idx = (int) session.getAttribute("m_idx");
+		
+		PMemberVO vo = pmember_dao.select_one(m_idx);
+		
+		model.addAttribute("vo", vo);
 		
 		return Path.ShopPath.make_path("shop_payment");
 	}

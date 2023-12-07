@@ -8,7 +8,7 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script type="module" src="${pageContext.request.contextPath}/resources/js/shop_js/shop_payment.js" defer></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/shop_js/shop_payment.js" defer></script>
 	<script>
 		
 	    function addr() {
@@ -78,43 +78,41 @@
 	</script>
 </head>
 <body>
-	<div align="center">
-		<div>
-			<h1>결제하기</h1>	
-		</div>
+	<div id="shop_payment_div">
+		<h1>결제하기</h1>	
 		
-		<div>
-			주문자명 : <input value='${vo.m_name}'><br>
+		<div id="member_info_div">
+			<div>
+				주문자명 : ${vo.m_name}
+			</div>
+			<div>
+				전화번호 : ${vo.m_tel}
+			</div>
 		</div>
 			
-		<div>
-			전화번호 : <input value='${vo.m_tel}'><br>
-		</div>
+		<table>
+			<tr>
+				<td rowSpan="3">배송지</td>
+				<td>
+					<input id="postcode" placeholder="우편번호">
+				</td>
+				<td>
+					<input type="button" onclick="addr()" value="우편번호 찾기">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="text" id="address" placeholder="주소">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="text" id="detailAddress" placeholder="상세주소">
+				</td>
+			</tr>
+		</table>
 			
-		<div>
-			배송지 : <input type="text" id="postcode" placeholder="우편번호">
-			<input type="button" onclick="addr()" value="우편번호 찾기"><br>
-			<input type="text" id="address" placeholder="주소"><br>
-			<input type="text" id="detailAddress" placeholder="상세주소"><br>
-		</div>
-			
-		<div>
-	    	<h5>주문 상품</h5>
-	    	<div>
-	    		<!-- js로 수정할 예정 -->
-	    		<c:forEach var="list" items="${list}">
-	    			<div>
-		    			${list.i_name}<br>
-		    			${list.i_color}<br>
-		    			${list.i_price}<br>	
-		    			수량 : ${list.cd_count}<br>
-	    			</div>		
-	    		</c:forEach>
-	    		
-	    		<input type="button" value="상품 전체 보기" onclick="">
-	    		
-	    	</div>
-	    </div>	
+		<div id="order_item_list_div"></div>	
 			
 		<div>
 			<h5>결제 수단 선택</h5>
@@ -124,18 +122,13 @@
 				<input type="button" value="추후 추가 예정">
 			</div>		
 		</div>
-	    <br>	
-	    <div>
-	    	결제 금액 : <input><br>
-	    	할인 : 해당없음 <br>
-	   		총 결제 금액 : <input><br>
-	    </div>	    
-	    <br>
-	    <div>
-	    	<input type="checkbox" id="ToS">주문자는 개인정보 제공 약관에 모두 동의합니다.
-	    </div>
-	    <br>
+
+	    <div id="total_amount_div"></div>	    
+
 		<div id=button_bar>
+			<div>
+		    	<input type="checkbox" id="ToS">주문자는 개인정보 제공 약관에 모두 동의합니다.
+			</div>
 		    <input type="button" value="결제하기" onclick="kakao_pay()">
 		    <input type="button" value="취소하기" onclick="location.href='shop'">
 		</div>
