@@ -1,4 +1,9 @@
-sendRequest("shopping_cart_list", {}, loadPage, "post")
+sendRequest("shopping_cart_list", {}, loadPage, "post");
+
+const order_list = {
+	items: {},
+	final_amount: {}
+};
 
 function loadPage(...args){
 	let res = args[0];
@@ -8,9 +13,23 @@ function loadPage(...args){
 	const IMG_PATH = window.location.origin + "/membership/resources/";
 
 	const cart_item_list_div = document.getElementById("cart_item_list_div");
-	
+	const total_div = document.getElementById("total_div");
+
 	for(let i = 0; i < res.length; i++){
 		const item = res[i];
+
+		let order_item = order_list.items;
+
+		order_item[i] = {};
+
+		order_item = order_item[i];
+
+		order_item["i_amount"] = item.i_amount;
+		order_item["i_color"] = item.i_color;
+		order_item["i_idx"] = item.i_idx;
+		order_item["i_name"] = item.i_name;
+		order_item["i_photo_name"] = item.i_photo_name;
+		order_item["i_price"] = item.i_price;
 
 		const item_div = document.createElement("div");
 		item_div.id = i;
@@ -82,16 +101,22 @@ function loadPage(...args){
 		const item_detail_amount = document.createElement("input");
 		item_detail_amount.id = "item_detail_amount_" + i;
 		item_detail_amount.className = "item_detail_amount";
-		item_detail_amount.type = "number";
-		item_detail_amount.min = "1";
-		item_detail_amount.max = item.i_amount;
 		item_detail_amount.value = item.cd_count;
-		item_detail_amount.addEventListener("click", (event) => {
-			event.target.select();
-		});
-		item_detail_amount.addEventListener("input", (event) => {
-			input_amount(event, i);
-		});
+		item_detail_amount.readOnly = true;
+
+		// const item_detail_amount = document.createElement("input");
+		// item_detail_amount.id = "item_detail_amount_" + i;
+		// item_detail_amount.className = "item_detail_amount";
+		// item_detail_amount.type = "number";
+		// item_detail_amount.min = "1";
+		// item_detail_amount.max = item.i_amount;
+		// item_detail_amount.value = item.cd_count;
+		// item_detail_amount.addEventListener("click", (event) => {
+		// 	event.target.select();
+		// });
+		// item_detail_amount.addEventListener("input", (event) => {
+		// 	input_amount(event, i);
+		// });
 		item_detail_amount_div.appendChild(item_detail_amount);
 
 		const item_detail_amount_plus = document.createElement("input");
@@ -119,6 +144,7 @@ function loadPage(...args){
 
 		const item_total_price_div = document.createElement("div");
 		item_total_price_div.className = "item_total_price_div";
+		item_total_price_div.innerHTML = "total: ";
 
 		const item_total_price = document.createElement("input");
 		item_total_price.id = "item_total_price_" + i;
@@ -126,7 +152,6 @@ function loadPage(...args){
 		item_total_price.readOnly = true;
 		item_total_price.value = eval(item_detail_amount.value * item.i_price);
 
-		item_total_price_div.innerHTML = "total: ";
 		item_total_price_div.appendChild(item_total_price);
 
 		item_detail_change.appendChild(item_total_price_div);
@@ -139,6 +164,57 @@ function loadPage(...args){
 
 		cart_item_list_div.appendChild(item_div);
 	}
+
+	const total_amount_div = document.createElement("div");
+	total_amount_div.id = "total_amount_div";
+	total_amount_div.innerHTML = "total: ";
+
+	const total_amount = document.createElement("input");
+	total_amount.id = "total_amount";
+	total_amount.readOnly = true;
+	total_amount.value = calc_total();
+
+	total_amount_div.appendChild(total_amount);
+
+	total_div.appendChild(total_amount_div);
+
+	const final_price_div = document.createElement("div");
+	final_price_div.id = "final_price_div";
+	final_price_div.innerHTML = "total: ";
+
+	const final_price = document.createElement("input");
+	final_price.id = "final_price";
+	final_price.readOnly = true;
+	final_price.value = calc_price();
+
+	final_price_div.appendChild(final_price);
+
+	total_div.appendChild(final_price_div);
+
+	const confirm_button_bar = document.createElement("div");
+	confirm_button_bar.id = "confirm_button_bar";
+
+	const cancel_button = document.createElement("input");
+	cancel_button.id = "cancel_button";
+	cancel_button.type = "button";
+	cancel_button.value = "cancel";
+	cancel_button.addEventListener("click", () => {
+		console.log("cancel")
+	})
+
+	confirm_button_bar.appendChild(cancel_button);
+
+	const buy_button = document.createElement("input");
+	buy_button.id = "buy_button";
+	buy_button.type = "button";
+	buy_button.value = "buy";
+	buy_button.addEventListener("click", () => {
+		console.log(order_list)
+	})
+
+	confirm_button_bar.appendChild(buy_button);
+
+	total_div.appendChild(confirm_button_bar);
 }
 
 function calculate_amount(e, idx){
@@ -147,12 +223,13 @@ function calculate_amount(e, idx){
 
 	const total_amount = document.getElementById("item_detail_total_amount_" + idx).value;
 	const price = document.getElementById("item_detail_price_" + idx).value;
-	let price_input = document.getElementById("item_total_price_" + idx);
 	let current_amount = document.getElementById("item_detail_amount_" + idx)
 
 	current_amount.value = eval(`${current_amount.value} ${operation} 1`);
+	document.getElementById("item_total_price_" + idx).value = eval(current_amount.value * price);
 
-	price_input.value = eval(current_amount.value * price);
+	document.getElementById("total_amount").value = calc_total();
+	document.getElementById("final_price").value = calc_price();
 
 	if(current_amount.value <= total_amount && current_amount.value > 1){
 		document.getElementById("item_detail_amount_minus_" + idx).disabled = false;
@@ -170,29 +247,26 @@ function calculate_amount(e, idx){
 	}
 }
 
-function input_amount(e, idx){
-	let current_amount = e.target;
-	const total_amount = document.getElementById("item_detail_total_amount_" + idx).value;
-	const price = document.getElementById("item_detail_price_" + idx).value;
-	let price_input = document.getElementById("item_total_price_" + idx);
+function calc_total(){
+	let total = 0;
+	let final_total_list = document.getElementsByClassName("item_detail_amount");
 
-	if(current_amount.value < total_amount || current_amount.value > 0){
-		document.getElementById("item_detail_amount_minus_" + idx).disabled = false;
-		document.getElementById("item_detail_amount_plus_" + idx).disabled = false;
+	for(let item of final_total_list){
+		total += parseInt(item.value);
 	}
 
-
-	if(current_amount.value > total_amount){
-		document.getElementById("item_detail_amount_minus_" + idx).disabled = false;
-		
-		current_amount.value = total_amount;
-	}
-
-	if(current_amount.value < 1){
-		document.getElementById("item_detail_amount_plus_" + idx).disabled = false;
-
-		current_amount.value = 1;
-	}
-
-	price_input.value = eval(current_amount.value * price);
+	return total;
 }
+
+function calc_price(){
+	let price = 0;
+	let final_price_list = document.getElementsByClassName("item_total_price");
+
+	for(let item of final_price_list){
+		price += parseInt(item.value);
+	}
+
+	return price;
+}
+
+export {order_list};

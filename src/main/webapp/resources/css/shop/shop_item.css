@@ -1,0 +1,34 @@
+@charset "UTF-8";
+#shop_button_bar{
+			background-color: red;
+		}
+		
+		#item_img{
+			object-fit:cover;
+		}
+		
+		#item_info_div{
+			width: 200px;
+			height: 300px;
+		}
+				   	   
+		.item_img_div{
+			height:300px;
+			width: 300px;
+		}
+						  		 
+		#item_img {
+			height: 100%;
+			width: 100%;
+			object-fit: contain;
+		} 
+			        	   
+		.item_detail_img_div{
+			height:600px;
+			width: 300px;
+		}	
+						  		 
+		#item_detail_img{
+			height: 100%;
+			width: 100%;
+		}

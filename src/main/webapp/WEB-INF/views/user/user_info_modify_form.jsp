@@ -6,6 +6,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>user_info_modify_form</title>
+	<link href="${pageContext.request.contextPath}/resources/css/user/user_info_modify_form.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script>
 	function send(f){
 		f.action="user_info_modify";
@@ -15,6 +17,8 @@
 	</script>
 </head>
 <body>
+	<div id="header_bar"></div>
+	
 	<form>
 		<table>
 			<tr>
@@ -41,5 +45,7 @@
 			</tr>
 		</table>
 	</form>
+	
+	<div id="footer_bar"></div>
 </body>
 </html>

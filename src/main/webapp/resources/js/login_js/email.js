@@ -13,7 +13,6 @@ document.getElementById('auth_btn').addEventListener('click', function() {
             checkInput.disabled = false; /*데이터가 성공적으로 들어오면 인증번호 입력란이 활성화되도록*/
             code = data;
             alert('인증번호가 전송되었습니다.');
-            
         })
         .catch(error => console.error('Error:', error));
 });
@@ -28,7 +27,6 @@ document.getElementsByClassName('mail_check_input')[0].addEventListener('input',
         document.getElementsByClassName("mail_check_input")[0].style.border = "1.5px solid #3781E3";/*일치할 경우 테두리 색 변경*/
         document.getElementsByClassName("mail_check_input")[0].style.color = "#3781E3";/*일치할 경우 글자 색 변경*/
         document.getElementById("mail_check_input_info").style.color = "#3781E3";
-        b_email_check = true;
     } else {                                            
         checkResult.innerHTML = "인증번호를 다시 확인해주세요.";
         checkResult.className = "correct";

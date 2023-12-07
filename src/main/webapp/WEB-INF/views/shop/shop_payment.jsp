@@ -8,7 +8,9 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script type="module" src="${pageContext.request.contextPath}/resources/js/shop_js/shop_payment.js" defer></script>
 	<script>
+		
 	    function addr() {
 	        new daum.Postcode({
 	            oncomplete: function(data) {
@@ -16,8 +18,8 @@
 	
 	                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
 	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-	                var addr = ''; // 주소 변수
-	                var extraAddr = ''; // 참고항목 변수
+	                let addr = ''; // 주소 변수
+	                let extraAddr = ''; // 참고항목 변수
 	
 	                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
 	                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
@@ -55,8 +57,27 @@
 	        }).open();
 	    }
     	
+	    function kakao_pay(){
+	    	
+			let postcode =  document.getElementById('postcode').value;
+		    let address = document.getElementById("address").value;
+		    let detail_address = document.getElementById("detailAddress").value;
+		    
+	    	if((postcode == '') || (address == '') || (detail_address = '')){
+	    		alert("정확한 배송지를 입력해주세요")
+	    		return;
+	    	}
+	    	
+	    	if(!document.getElementById("ToS").checked){
+	    		alert("약관 동의가 필요합니다.")
+	    		return;
+	    	} else{
+	    		location.href="kakao_pay";
+	    	}
+	    	  	
+	    }
     
-</script>
+	</script>
 </head>
 <body>
 	<div align="center">
@@ -113,12 +134,12 @@
 	    </div>	    
 	    <br>
 	    <div>
-	    	<input type="checkbox">주문자는 개인정보 제공 약관에 모두 동의합니다.
+	    	<input type="checkbox" id="ToS">주문자는 개인정보 제공 약관에 모두 동의합니다.
 	    </div>
 	    <br>
 		<div id=button_bar>
-		    <input type="button" value="결제하기" onclick="location.href='kakao_pay'">
-		    <input type="button" value="취소하기" onclick="location.href='javascript:history.back()'">
+		    <input type="button" value="결제하기" onclick="kakao_pay()">
+		    <input type="button" value="취소하기" onclick="location.href='shop'">
 		</div>
 	</div>
 </body>

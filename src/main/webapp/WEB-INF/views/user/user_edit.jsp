@@ -5,7 +5,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="${pageContext.request.contextPath}/resources/css/user_edit.css" rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath}/resources/css/user/user_edit.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script>
 		function send(e){
 			location.href=e.target.parentElement.id
@@ -13,6 +14,8 @@
 	</script>
 </head>
 <body>
+	<div id="header_bar"></div>
+
 	<header>
 		<input type="button" value="home" onclick="location.href='/membership/'">
 	</header>
@@ -51,7 +54,15 @@
 					user_post_list
 				</div>
 			</div>
+			
+			<div id="logout" class="member_info_body">
+				<img src="${pageContext.request.contextPath}/resources/img/user/logout.png" onclick="send(event)" >
+				<div onclick="send(event)">
+					logout
+				</div>
+			</div>
 		</div>
 	</div>
+	<div id="footer_bar"></div>
 </body>
 </html>
