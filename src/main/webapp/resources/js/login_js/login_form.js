@@ -31,7 +31,7 @@ function myCheck(...args){
 
 	console.log(res)
 
-	localStorage.setItem("idx", res.m_idx);
+//	localStorage.setItem("idx", res.m_idx);
 	localStorage.setItem("id", res.m_id);
 	localStorage.setItem("password", res.m_password);
 	localStorage.setItem("isMaster", res.m_ismaster);

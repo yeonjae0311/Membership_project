@@ -1,11 +1,14 @@
 package com.korea.membership;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Scanner;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -83,9 +87,9 @@ public class MemberController {
 		if (!vo.getM_password().equals(m_password)) {
 			return "{\"param\": \"no_m_password\"}";
 		}
-		
+
 		String localStorage = null;
-		
+
 		try {
 			localStorage = om.writeValueAsString(vo);
 		} catch (JsonProcessingException e) {
@@ -103,7 +107,7 @@ public class MemberController {
 	@RequestMapping("check_email") // 이메일 중복체크
 	@ResponseBody
 	public String check_email(@RequestBody String body) throws UnsupportedEncodingException {
-		
+
 		ObjectMapper om = new ObjectMapper();
 
 		Map<String, String> data = null;
@@ -116,7 +120,7 @@ public class MemberController {
 		}
 
 		String m_email = URLDecoder.decode(data.get("m_email"), "utf-8");
-		
+
 		int res = pmember_dao.email_check(m_email);
 
 		if (res == 0) {
@@ -142,7 +146,7 @@ public class MemberController {
 	@RequestMapping("check_id")
 	@ResponseBody
 	public String check_id(@RequestBody String body) throws UnsupportedEncodingException {
-		
+
 		ObjectMapper om = new ObjectMapper();
 
 		Map<String, String> data = null;
@@ -153,11 +157,11 @@ public class MemberController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		String m_id = URLDecoder.decode(data.get("m_id"), "utf-8");
-		
+
 		int res = pmember_dao.id_check(m_id);
-		
+
 		if (res == 0) {
 			return "{\"param\": \"ok_m_id\"}";
 		}
@@ -281,16 +285,16 @@ public class MemberController {
 		String num = Integer.toString(check_num); // ajax를 뷰로 반환시 데이터 타입은 String 타입만 가능
 		return num; // String 타입으로 변환 후 반환
 	}
-	
+
 	@RequestMapping("register_find_id")
 	public String register_find_id() {
 		return Path.LoginPath.make_path("register_find_id");
 	}
-	
+
 	@RequestMapping("find_id")
 	@ResponseBody
 	public String find_id(@RequestBody String body) throws UnsupportedEncodingException {
-		
+
 		ObjectMapper om = new ObjectMapper();
 
 		Map<String, String> data = null;
@@ -318,16 +322,16 @@ public class MemberController {
 		session.setAttribute("id", vo);
 		return "{\"param\": \"success\"}";
 	}
-	
+
 	@RequestMapping("id")
 	public String id() {
 		return Path.LoginPath.make_path("id");
 	}
-	
+
 	@RequestMapping("find_password")
 	@ResponseBody
 	public String find_password(@RequestBody String body) throws UnsupportedEncodingException {
-		
+
 		ObjectMapper om = new ObjectMapper();
 
 		Map<String, String> data = null;
@@ -342,13 +346,13 @@ public class MemberController {
 		String m_email = URLDecoder.decode(data.get("m_email"), "utf-8");
 		String m_code = URLDecoder.decode(data.get("m_code"), "utf-8");
 		String m_id = URLDecoder.decode(data.get("m_id"), "utf-8");
-		
+
 		HashMap<String, String> m_map = new HashMap<String, String>();
 		m_map.put("m_email", m_email);
 		m_map.put("m_code", m_code);
-		
+
 		PMemberVO vo = pmember_dao.id_find(m_email);
-		
+
 		if (vo == null) {
 			return "{\"param\": \"no_m_email\"}";
 		}
@@ -356,20 +360,20 @@ public class MemberController {
 		if (!vo.getM_id().equals(m_id)) {
 			return "{\"param\": \"no_m_id\"}";
 		}
-		
+
 		int res = pmember_dao.password_update(m_map);
-		
+
 		session.setAttribute("id", vo);
-		
+
 		return "{\"param\": \"success\"}";
-		
+
 	}
-	
+
 	@RequestMapping("password")
 	public String password() {
 		return Path.LoginPath.make_path("password");
 	}
-	
+
 	@RequestMapping("register_find_password")
 	public String register_find_password() {
 		return Path.LoginPath.make_path("register_find_password");
@@ -386,7 +390,7 @@ public class MemberController {
 			return null;
 		}
 	}
-	
+
 	@RequestMapping("kakao_pay")
 	public String kakao_pay() {
 		return Path.LoginPath.make_path("kakao_pay");
@@ -404,7 +408,6 @@ public class MemberController {
 		int res = pmember_dao.user_info_update(vo);
 
 		return "redirect:user_info_form";
-
 	}
 
 	@RequestMapping("photo_upload")
@@ -421,28 +424,30 @@ public class MemberController {
 			e.printStackTrace();
 		}
 
-		
 		int m_idx = Integer.parseInt(data.get("m_idx"));
 		PMemberVO vo = pmember_dao.select_one(m_idx);
-		String origin_m_photo_name = vo.getM_photo_name();
 
+		String origin_m_photo_name = vo.getM_photo_name();
 		String new_m_photo_name = data.get("new_m_photo_name");
+
 		String m_photo_name = null;
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		if (!origin_m_photo_name.equals(new_m_photo_name)) {
 			m_photo_name = new_m_photo_name;
+			
 			map.put("m_idx", m_idx);
 			map.put("m_photo_name", m_photo_name);
+			
 		}
-		int res = pmember_dao.photo_upload(map);
+			int res = pmember_dao.photo_upload(map);
+			
 
-		model.addAttribute("map", map);
-
-		if (res == 1) {
-			return "{\"param\": \"" + m_photo_name + "\"}";
-		} else {
-			return "{\"param\": \"fail\"}";
-		}
+			if (res == 1) {
+				return "{\"param\": \"" + m_photo_name + "\"}";
+			} else {
+				return "{\"param\": \"fail\"}";
+			}
+			
 	}
 
 	@RequestMapping("user_profile_modify")
@@ -452,7 +457,6 @@ public class MemberController {
 		return "redirect:user_edit";
 	}
 
-	
 	@RequestMapping("membership_info")
 	public String congratulations_register() {
 		return Path.LoginPath.make_path("membership_info");
