@@ -13,14 +13,13 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/shop_js/shop_item.js" defer></script>
 	<script>
 		function item_amount(amount_button_id){
-			
 			const url = "shopping_cart_insert";
 			
 			const param = {
 				"i_name": encodeURIComponent(i_name),
 				"i_color": encodeURIComponent(i_color)
 			};
-				
+
 			sendRequest(url, param, return_page, "post");
 		} 
 		
@@ -58,7 +57,7 @@
 <body>	
 	<div id="header_bar"></div>
 	<form name="selected_item" action="shopping_cart_insert" method="POST">
-	
+
 		<div>
 			<input type="button" id="item_delete_id" value="상품 삭제하기" onclick="item_delete()">
 		</div>
