@@ -209,7 +209,12 @@ function loadPage(...args){
 	buy_button.type = "button";
 	buy_button.value = "buy";
 	buy_button.addEventListener("click", () => {
-		console.log(order_list)
+		let final_list = order_list.final_amount;
+
+		final_list["total_amount"] = calc_total();
+		final_list["final_price"] = calc_price();
+
+		sessionStorage.setItem("order_list", JSON.stringify(order_list));
 	})
 
 	confirm_button_bar.appendChild(buy_button);

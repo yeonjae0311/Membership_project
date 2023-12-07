@@ -58,7 +58,6 @@
 	    }
     	
 	    function kakao_pay(){
-	    	
 			let postcode =  document.getElementById('postcode').value;
 		    let address = document.getElementById("address").value;
 		    let detail_address = document.getElementById("detailAddress").value;
@@ -74,7 +73,6 @@
 	    	} else{
 	    		location.href="kakao_pay";
 	    	}
-	    	  	
 	    }
     
 	</script>
