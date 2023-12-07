@@ -91,6 +91,49 @@
 			}			
 			console.log(res);
 		}
+		
+		function reply_like(r_idx){
+			let id = document.getElementById('rl_isliked_'+r_idx);
+			
+			if(id.value=='0'){
+				console.log('up');
+				let url ="add_reply_like";
+				
+				let param={
+						"rl_isliked":encodeURIComponent("0"),
+						"r_idx":encodeURIComponent(r_idx)
+				};
+				
+				sendRequest(url,param,resultFn2,'post');
+				id.value='1';
+			}else{
+				console.log('down');
+				let url ="delete_reply_to_unlike";
+				
+				let param={
+						"rl_isliked":encodeURIComponent("1"),
+						"r_idx":encodeURIComponent(r_idx)
+				};
+				
+				sendRequest(url,param,resultFn2,'post');
+				id.value='0';
+			}
+		}
+		
+		function resultFn2(...args){
+			console.log(args[0]);
+			let res = args[0].res;
+			let r_idx = args[0].r_idx;
+			let b_like_count_id = document.getElementById('r_like_count_'+r_idx);
+			if(res == 'plus'){     
+				b_like_count_id.value= Number(b_like_count_id.value)+1;
+			}else if(res=='minus'){
+				b_like_count_id.value= Number(b_like_count_id.value)-1;				
+			}else{
+				alert('권한이 없습니다.');
+			}
+		}
+		
 	    </script>
 </head>
 <body>
@@ -183,7 +226,8 @@
 					<div>${i.r_date}</div>
 				</div>
 				${i.r_content}<br>
-				${i.rl_isliked}<br>
+				누적 좋아요 : <input id="r_like_count_${i.r_idx}" type="text" value="${i.r_like_count}"><br>
+				<input id="rl_isliked_${i.r_idx}" type="button" value="${i.rl_isliked}" onclick="reply_like(${i.r_idx})">
 			</div>
 		</c:forEach>
 	</div>
