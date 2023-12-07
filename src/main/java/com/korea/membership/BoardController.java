@@ -112,10 +112,9 @@ public class BoardController {
 		}
 		System.out.println("check");
 		vo.setB_filename(filename);
-		
 		int res = board_dao.board_insert(vo);
 		if(res>0) {
-			return "redirect:board_view?b_idx="+vo.getB_idx();
+			return "redirect:board";
 		}else {
 			System.out.println("추가 실패 에러");
 			return null;
