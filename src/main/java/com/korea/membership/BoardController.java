@@ -197,6 +197,7 @@ public class BoardController {
 		if(res!=0) {
 			is_need_to_delete_replys = true;
 			result = "delete_by_user";
+			System.out.println("board 삭제 result : "+result);
 			//삭제가 됐다면 reply도 삭제
 		}else {
 			//작성자는 아니지만 마스터라면 삭제할수 있어야함
@@ -206,6 +207,7 @@ public class BoardController {
 				board_dao.delete_board_post_by_master(m_idx);
 				is_need_to_delete_replys = true;
 				result = "delete_by_master";
+				System.out.println("board 삭제 result : "+result);
 			}
 		}
 		

@@ -41,9 +41,9 @@
                 "b_idx": encodeURIComponent(b_idx)
             };			
 			
-			sendRequest(url,param,resultFn,'post');
+			sendRequest(url,param,resultFn3,'post');
 		}
-		function resultFn(...args){
+		function resultFn3(...args){
 			let res = args[0].res;
 			if(res == 'success'){
 				alert('게시글 삭제 성공');
