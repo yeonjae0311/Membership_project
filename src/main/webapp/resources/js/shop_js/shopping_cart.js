@@ -46,6 +46,12 @@ function loadPage(...args){
 		item_detail_price.type = "hidden";
 		item_detail_price.value = item.i_price;
 		item_div.appendChild(item_detail_price);
+
+		const item_detail_index = document.createElement("div");
+		item_detail_index.id = "item_detail_index_" + i;
+		item_detail_index.type = "hidden";
+		item_detail_index.value = item.i_idx;
+		item_div.appendChild(item_detail_index);
 		
 		const checkbox = document.createElement("input");
 		checkbox.type = "checkbox";
@@ -238,13 +244,29 @@ function calculate_amount(e, idx){
 
 	if(current_amount.value >= total_amount){
 		e.target.disabled = true;
-		return;
 	}
 
 	if(current_amount.value <= 1){
 		e.target.disabled = true;
-		return;
+
 	}
+
+	const url = "item_count_change";
+
+	let item_update_amount = document.getElementById("item_detail_amount_" + idx).value;
+	let i_idx = document.getElementById("item_detail_index_" + idx).value;
+
+	let param = {
+		"item_count": encodeURIComponent(item_update_amount),
+		"i_idx": encodeURIComponent(i_idx)
+	};
+
+	sendRequest(url, param, update_callback, "post");
+
+}
+
+function update_callback(...args){
+	
 }
 
 function calc_total(){

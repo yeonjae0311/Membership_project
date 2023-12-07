@@ -334,4 +334,6 @@ public class ShopController {
 		
 		return Path.ShopPath.make_path("shop_payment");
 	}
+	
+	
 }

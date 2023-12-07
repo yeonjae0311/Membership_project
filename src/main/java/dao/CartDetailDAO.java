@@ -34,6 +34,11 @@ public class CartDetailDAO {
 		return sqlSession.update("cd.cd_count_check", i_amount);
 	}
 	
+	// 장바구니 페이지에서 아이템 수량 변경 
+	public int item_detail_amount_update(int cd_count) {
+		return sqlSession.update("cd.item_detail_amount_update", cd_count);
+	}
+	
 	// shop_item 페이지
 
 }
