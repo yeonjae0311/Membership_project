@@ -319,7 +319,7 @@ public class ShopController {
 	
 	@RequestMapping("shop_payment")
 	public String shop_payment(Model model) {
-		
+
 		// m_idx에 해당하는 유저정보 조회해서 바인딩
 		
 		int m_idx = (int) session.getAttribute("m_idx");

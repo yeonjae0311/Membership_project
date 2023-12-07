@@ -205,6 +205,8 @@ function loadPage(...args){
 		final_list["final_price"] = calc_price();
 
 		sessionStorage.setItem("order_list", JSON.stringify(order_list));
+
+		location.href = "shop_payment";
 	})
 
 	confirm_button_bar.appendChild(buy_button);
