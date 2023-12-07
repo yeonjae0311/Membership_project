@@ -140,8 +140,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping("board_view")
-	public String board_view(Model model,int b_idx) {
-		//게시물 한건 조회
+	public String board_view(Model model,int b_idx) {		//게시물 한건 조회
 		
 		
 		//해당 게시물 좋아요 했는지를 조회하기 위한 매개변수 map 세팅
@@ -160,10 +159,10 @@ public class BoardController {
 			board_dao.plus_board_read_hit(b_idx);
 			session.setAttribute("board_post_viewed", b_idx+"");
 		}
-		
+		//게시글에 대한정보를 vo로 바인딩
 		model.addAttribute("vo",vo);
-		
-		List<BoardPMemberReplyViewVO> reply_list = reply_dao.select_reply_list(b_idx);
+			
+		List<BoardPMemberReplyViewVO> reply_list = reply_dao.select_reply_list(map);
 		
 		model.addAttribute("reply_list",reply_list);
 		
@@ -220,5 +219,71 @@ public class BoardController {
 		}else {
 			return "{\"res\": \"fail\"}";	
 		}
+	}
+	
+	@RequestMapping("add_board_like")
+	@ResponseBody
+	public String add_board_like(@RequestBody String body) throws UnsupportedEncodingException{
+		ObjectMapper om = new ObjectMapper();
+
+        Map<String, String> data = null;
+
+        try {
+            data = om.readValue(body, new TypeReference<Map<String, String>>() { });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String b_idx_str = URLDecoder.decode(data.get("b_idx"), "utf-8");
+        int b_idx = Integer.parseInt(b_idx_str);
+        
+        PMemberVO uservo = (PMemberVO)session.getAttribute("id");
+        if(uservo==null) {
+            return "{\"param\": \"fail\",\"b_idx\":\""+b_idx+"\"}";
+        }
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("b_idx", b_idx);
+        map.put("m_idx", uservo.getM_idx());
+        
+        int res = board_dao.add_board_like(map);
+        
+        if(res>0) {
+        	board_dao.recalculate_total_like(b_idx);
+            return "{\"param\": \"plus\",\"b_idx\":\""+b_idx+"\"}";
+        }else {
+            return "{\"param\": \"fail\",\"b_idx\":\""+b_idx+"\"}";
+        }
+	}
+	
+	@RequestMapping("delete_board_to_unlike")
+	@ResponseBody
+	public String delete_to_unlike(@RequestBody String body) throws UnsupportedEncodingException{
+		ObjectMapper om = new ObjectMapper();
+
+        Map<String, String> data = null;
+
+        try {
+            data = om.readValue(body, new TypeReference<Map<String, String>>() { });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String b_idx_str = URLDecoder.decode(data.get("b_idx"), "utf-8");
+        int b_idx = Integer.parseInt(b_idx_str);
+        
+        PMemberVO uservo = (PMemberVO)session.getAttribute("id");
+        if(uservo==null) {
+            return "{\"param\": \"fail\",\"b_idx\":\""+b_idx+"\"}";
+        }
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("b_idx", b_idx);
+        map.put("m_idx", uservo.getM_idx());
+        
+        int res = board_dao.delete_to_unlike(map);
+        
+        if(res>0) {
+        	board_dao.recalculate_total_like(b_idx);
+            return "{\"param\": \"minus\",\"b_idx\":\""+b_idx+"\"}";
+        }else {
+            return "{\"param\": \"fail\",\"b_idx\":\""+b_idx+"\"}";
+        }
 	}
 }

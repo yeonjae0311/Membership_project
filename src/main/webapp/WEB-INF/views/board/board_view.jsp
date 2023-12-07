@@ -52,6 +52,88 @@
 				alert('글 삭제 권한이 없습니다.');
 			}
 		}
+		function board_like(b_idx){
+			let like_button_class = document.getElementsByClassName('board_like_button');
+			
+			if(like_button_class[0].value == '좋아요'){
+				
+				let url ="add_board_like";
+				
+				let param={
+						"bl_isliked":encodeURIComponent("0"),
+						"b_idx":encodeURIComponent(b_idx)
+				};
+				
+				sendRequest(url,param,resultFn,'post');
+				
+				like_button_class[0].value='좋아요 해제'
+			}else{
+				let url ="delete_board_to_unlike";
+				
+				let param={
+						"bl_isliked":encodeURIComponent("1"),
+						"b_idx":encodeURIComponent(b_idx)
+				};
+				
+				sendRequest(url,param,resultFn,'post');
+				
+				like_button_class[0].value='좋아요'
+			}
+		}
+		
+		function resultFn(...args){
+			let res = args[0].param;
+			let like_count_id = document.getElementById('b_like_count');
+			if(res=='plus'){
+				like_count_id.value = Number(like_count_id.value)+1;
+			}else if(res=='minus'){
+				like_count_id.value = Number(like_count_id.value)-1;
+			}			
+			console.log(res);
+		}
+		
+		function reply_like(r_idx){
+			let id = document.getElementById('rl_isliked_'+r_idx);
+			
+			if(id.value=='0'){
+				console.log('up');
+				let url ="add_reply_like";
+				
+				let param={
+						"rl_isliked":encodeURIComponent("0"),
+						"r_idx":encodeURIComponent(r_idx)
+				};
+				
+				sendRequest(url,param,resultFn2,'post');
+				id.value='1';
+			}else{
+				console.log('down');
+				let url ="delete_reply_to_unlike";
+				
+				let param={
+						"rl_isliked":encodeURIComponent("1"),
+						"r_idx":encodeURIComponent(r_idx)
+				};
+				
+				sendRequest(url,param,resultFn2,'post');
+				id.value='0';
+			}
+		}
+		
+		function resultFn2(...args){
+			console.log(args[0]);
+			let res = args[0].res;
+			let r_idx = args[0].r_idx;
+			let b_like_count_id = document.getElementById('r_like_count_'+r_idx);
+			if(res == 'plus'){     
+				b_like_count_id.value= Number(b_like_count_id.value)+1;
+			}else if(res=='minus'){
+				b_like_count_id.value= Number(b_like_count_id.value)-1;				
+			}else{
+				alert('권한이 없습니다.');
+			}
+		}
+		
 	    </script>
 </head>
 <body>
@@ -77,15 +159,18 @@
 			</tr>
 			<tr>
 				<th>좋아요 !</th>
-				<td>${vo.b_like_count}</td>
+				<td><input type="text" id="b_like_count" value="${vo.b_like_count}"></td>
 				<td>
 					<c:choose>
 						<c:when test="${vo.bl_isliked eq '0'}">
-							<input type="button" value="좋아요" onclick="board_like('${vo.b_idx}')">
+							<input type="button" class="board_like_button" value="좋아요" onclick="board_like('${vo.b_idx}')">
 						</c:when>
 						<c:when test="${vo.bl_isliked eq '1'}">
-							<input type="button" value="좋아요 해제" onclick="board_dislike('${vo.b_idx}')">
+							<input type="button" class="board_like_button" value="좋아요 해제" onclick="board_like('${vo.b_idx}')">
 						</c:when>
+						<c:otherwise>
+							${vo.bl_isliked }
+						</c:otherwise>
 					</c:choose>
 				</td>
 			</tr>
@@ -140,7 +225,9 @@
 					<div>${i.m_username}</div>
 					<div>${i.r_date}</div>
 				</div>
-				${i.r_content}
+				${i.r_content}<br>
+				누적 좋아요 : <input id="r_like_count_${i.r_idx}" type="text" value="${i.r_like_count}"><br>
+				<input id="rl_isliked_${i.r_idx}" type="button" value="${i.rl_isliked}" onclick="reply_like(${i.r_idx})">
 			</div>
 		</c:forEach>
 	</div>
