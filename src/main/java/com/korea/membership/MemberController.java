@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.Scanner;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
@@ -412,7 +411,7 @@ public class MemberController {
 
 	@RequestMapping("photo_upload")
 	@ResponseBody
-	public String photo_upload(@RequestBody String body, Model model) {
+	public String photo_upload(@RequestBody String body) {
 		ObjectMapper om = new ObjectMapper();
 
 		Map<String, String> data = null;
@@ -440,7 +439,6 @@ public class MemberController {
 			
 		}
 			int res = pmember_dao.photo_upload(map);
-			
 
 			if (res == 1) {
 				return "{\"param\": \"" + m_photo_name + "\"}";
@@ -450,6 +448,8 @@ public class MemberController {
 			
 	}
 
+	
+	
 	@RequestMapping("user_profile_modify")
 	public String user_profile_update(PMemberVO vo, Model model) {
 		int res = pmember_dao.user_profile_update(vo);

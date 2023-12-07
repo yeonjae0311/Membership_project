@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import vo.ItemVO;
 import vo.PMemberVO;
 
 public class PMemberDAO {
@@ -51,7 +52,6 @@ public class PMemberDAO {
 		return sqlSession.update("pm.delete_update", vo);
 	}
 
-	
 	// 아이디 찾기
 	public PMemberVO id_find(String m_email) {
 		return sqlSession.selectOne("pm.id_find", m_email);
