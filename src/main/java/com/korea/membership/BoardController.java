@@ -147,7 +147,9 @@ public class BoardController {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("b_idx", b_idx);
 		PMemberVO uservo = (PMemberVO) session.getAttribute("id");
-		if(uservo!=null)
+		if(uservo==null) {
+			return "redirect:board";
+		}
 		map.put("m_idx", uservo.getM_idx());
 		BoardPMemberViewVO vo = board_dao.board_select_one(map);
 		

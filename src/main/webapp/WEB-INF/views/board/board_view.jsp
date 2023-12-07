@@ -205,13 +205,9 @@
 	<div id="reply_form" align="center">
 		<form>
 			<input type="hidden" name="b_idx" value="${vo.b_idx}">
-			<table border="1">
-				<tr>
-					<td>
-						<textarea name="r_content" width="90%"></textarea>
-					</td>
-				</tr>
-			</table>
+		
+			<textarea name="r_content" style="display:block; width: 60%"></textarea>
+					
 			<input type="button" value="답글 작성 완료" onclick="send_reply(this.form);">
 		</form>
 		<!-- order by로 불러오기 -->
