@@ -282,8 +282,6 @@ public class MemberController {
 		return num; // String 타입으로 변환 후 반환
 	}
 	
-<<<<<<< HEAD
-=======
 	@RequestMapping("register_find_id")
 	public String register_find_id() {
 		return Path.LoginPath.make_path("register_find_id");
@@ -372,7 +370,6 @@ public class MemberController {
 		return Path.LoginPath.make_path("password");
 	}
 	
->>>>>>> origin/yeonjae
 	@RequestMapping("register_find_password")
 	public String register_find_password() {
 		return Path.LoginPath.make_path("register_find_password");

@@ -19,29 +19,35 @@
 </head>
 <body>
 	<div id="header_bar"></div>
-	
-	<form>
-		
+	<form align="center">
 			<div>
 				 이름 : <input name="m_name" value="${vo.m_name }" >
 			</div>
+			<br>
+			
 			<div>
 				 연락처 :  <input name="m_tel" value="${vo.m_tel }" >
 			</div>
+			<br>
+			
 			<div>
 				 생년월일<input name="m_date_of_birth" value="${vo.m_date_of_birth }">
 			</div>
+			<br>
+			
 			<div>
 					이메일<input name="m_email" value="${vo.m_email }" >
 			</div>
+			<br>
+			
 			<div>
 				 <input type="hidden" name="m_idx" value="${vo.m_idx }">
 			</div>
-			<div>
-				<input type="button" value="수정완료" onclick="send(this.form)">
+			
+			<div id="modify">
+				<name="modify_btn" src="${pageContext.request.contextPath}/resources/img2/btn_modify.gif" onclick="send(this.form)">
 			</div>
 	</form>
-	
 	<div id="footer_bar"></div>
 </body>
 </html>
