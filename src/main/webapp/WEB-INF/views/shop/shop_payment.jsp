@@ -71,7 +71,7 @@
 	    		alert("약관 동의가 필요합니다.")
 	    		return;
 	    	} else{
-	    		// ajax로 db에 insert한 후에 callback에서 카카오페이 페이지로 이동
+	    		location.href="kakao_pay";
 	    	}
 	    }
     
