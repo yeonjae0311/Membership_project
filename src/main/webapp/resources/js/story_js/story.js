@@ -64,7 +64,8 @@ function revalidate(){
 	}
 }
 
-function liked2(s_idx){
+function liked2(s_idx,event){
+	change(event);
 	
 	const story_liked = document.getElementById("liked_" + s_idx);
 	const story_like_count = document.getElementById("like_count_" + s_idx);
