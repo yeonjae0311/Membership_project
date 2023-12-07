@@ -24,7 +24,8 @@ function send(f){
 }
 
 function myCheck(...args){
-	let res = args[0].param;
+	console.log(args)
+	let res = args[0];
 	
 	let form = document.getElementsByTagName("form")[0];
 
@@ -46,7 +47,6 @@ function myCheck(...args){
 		form.m_password.focus();
 		return;
 	} else {
-		alert('로그인 성공');
 		location.href='main';
 	}
 }

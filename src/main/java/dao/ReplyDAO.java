@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -18,11 +19,23 @@ public class ReplyDAO {
 		return sqlSession.insert("r.insert_reply",vo);
 	}
 	
-	public List<BoardPMemberReplyViewVO> select_reply_list(int b_idx){
-		return sqlSession.selectList("r.select_reply_list",b_idx);
+	public List<BoardPMemberReplyViewVO> select_reply_list(HashMap<String, Object> map){
+		return sqlSession.selectList("r.select_reply_list",map);
 	}
 	
 	public int delete_replys_by_b_idx(int b_idx) {
 		return sqlSession.delete("r.delete_replys_by_b_idx",b_idx);
+	}
+	
+	public int add_reply_like(HashMap<String, Object> map) {
+		return sqlSession.insert("r.add_reply_like",map);
+	}
+	
+	public int delete_reply_to_unlike(HashMap<String, Object> map) {
+		return sqlSession.delete("r.delete_reply_to_unlike",map);
+	}
+	
+	public int update_reply_like_count(int r_idx) {
+		return sqlSession.update("r.update_reply_like_count",r_idx);
 	}
 }

@@ -17,15 +17,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 
-	<select id="select_reply_list" resultType="vo.BoardPMemberReplyViewVO" parameterType="int">
-		select * from board_p_member_reply_join_view
-		WHERE b_idx = #{b_idx} 
-		AND r_idx IS NOT null
-		ORDER BY R_DATE DESC
+	<select id="select_reply_list" resultType="vo.BoardPMemberReplyViewVO" parameterType="java.util.HashMap">
+		SELECT rv.*,
+		rl.m_idx,
+		CASE nvl(rl.m_idx,0) WHEN rl.m_idx THEN 1 ELSE 0 END rl_isliked
+		FROM reply_view rv LEFT JOIN (SELECT * FROM REPLY_ISLIKED rl WHERE m_idx=#{m_idx}) rl
+		ON rv.r_idx = rl.R_IDX 
+		WHERE b_idx=#{b_idx}
+		order by rv.r_idx desc
 	</select>
 	
 	<delete id="delete_replys_by_b_idx" parameterType="int">
 		delete reply where b_idx=#{b_idx}
 	</delete>
+	
+	<insert id="add_reply_like" parameterType="java.util.HashMap">
+		insert into REPLY_ISLIKED
+		values(#{r_idx},#{m_idx},'1')
+	</insert>
+	
+	<delete id="delete_reply_to_unlike" parameterType="java.util.HashMap">
+		DELETE REPLY_ISLIKED
+		WHERE r_idx=#{r_idx} and m_idx=#{m_idx}
+	</delete>
+	
+	<update id="update_reply_like_count" parameterType="int">
+		update reply
+		set r_like_count=
+		(select count(*) from REPLY_ISLIKED 
+		where r_idx=#{r_idx})
+	</update>
 
 </mapper>

@@ -51,6 +51,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		s.s_read_hit,s.s_like_count
 		FROM story s LEFT JOIN(SELECT * FROM STORY_ISLIKED WHERE m_idx=#{m_idx}) sl
 		ON (s.s_IDX =sl.s_IDX)
+		order by s_idx desc
 	</select>
 	
 	<insert id="insert_like" parameterType="java.util.HashMap">

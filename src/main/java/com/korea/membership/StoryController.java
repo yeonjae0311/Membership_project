@@ -174,7 +174,7 @@ public class StoryController {
         return "{\"param\": \"like\"}";
 	}
 	
-	@RequestMapping("delete_to_unlike")
+	@RequestMapping("delete_story_to_unlike")
 	@ResponseBody
 	public String delete_to_unlike(@RequestBody String body) throws UnsupportedEncodingException {
 

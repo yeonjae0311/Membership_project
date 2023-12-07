@@ -55,4 +55,16 @@ public class BoardDAO {
 	public int check_like_board(HashMap<String, Object> map) {
 		return sqlSession.selectOne("b.check_like_board", map);
 	}
+	
+	public int add_board_like(HashMap<String, Object> map) {
+		return sqlSession.insert("b.add_board_like",map);
+	}
+	
+	public int delete_to_unlike(HashMap<String, Object> map) {
+		return sqlSession.delete("b.delete_to_unlike",map);
+	}
+	
+	public int recalculate_total_like(int b_idx) {
+		return sqlSession.update("b.recalculate_total_like",b_idx);
+	}
 }

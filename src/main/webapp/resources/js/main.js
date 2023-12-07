@@ -1,4 +1,11 @@
-//header 만들기
+// tab icon
+const icon_link = document.createElement("link");
+icon_link.rel = "icon";
+icon_link.href = window.location.origin + "/membership/resources/img/njr.ico"
+
+document.head.appendChild(icon_link);
+
+// header 만들기
 const header_bar = document.getElementById("header_bar");
 
 const buttons = ["main", "story", "board", "shop"];
@@ -21,18 +28,16 @@ for(const element of buttons){
 header_bar.appendChild(left_header);
 
 function send_main(page){
-	console.log(page);
-
 	location.href = page;
 }
 
-//footer 만들기
+// footer 만들기
 let footer = document.createElement("div");
 footer.innerHTML = "membership page(newjeans)";
 
 document.getElementById("footer_bar").appendChild(footer);
 
-//localStorage login
+// localStorage login
 const m_id = localStorage.getItem("id");
 const m_password = localStorage.getItem("password");
 const session = sessionStorage.getItem("session");
