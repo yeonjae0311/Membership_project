@@ -56,9 +56,8 @@
 	            }
 	        }).open();
 	    }
-    	
+
 	    function order_table(){
-	    	
 			let postcode =  document.getElementById('postcode').value;
 		    let address = document.getElementById("address").value;
 		    let detail_address = document.getElementById("detailAddress").value;
@@ -74,7 +73,6 @@
 	    	} else{
 	    		// ajax로 db에 insert한 후에 callback에서 카카오페이 페이지로 이동
 	    	}
-	    	  	
 	    }
     
 	</script>
