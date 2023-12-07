@@ -114,9 +114,8 @@ public class BoardController {
 		vo.setB_filename(filename);
 		
 		int res = board_dao.board_insert(vo);
-		
 		if(res>0) {
-			return "redirect:board";
+			return "redirect:board_view?b_idx="+vo.getB_idx();
 		}else {
 			System.out.println("추가 실패 에러");
 			return null;
@@ -147,7 +146,7 @@ public class BoardController {
 		map.put("b_idx", b_idx);
 		PMemberVO uservo = (PMemberVO) session.getAttribute("id");
 		if(uservo==null) {
-			return "redirect:board";
+			return Path.HomePath.make_path("login_check");
 		}
 		map.put("m_idx", uservo.getM_idx());
 		BoardPMemberViewVO vo = board_dao.board_select_one(map);
