@@ -46,13 +46,19 @@ function loadPage(...args){
 		item_detail_price.type = "hidden";
 		item_detail_price.value = item.i_price;
 		item_div.appendChild(item_detail_price);
+
+		const item_detail_index = document.createElement("div");
+		item_detail_index.id = "item_detail_index_" + i;
+		item_detail_index.type = "hidden";
+		item_detail_index.value = item.i_idx;
+		item_div.appendChild(item_detail_index);
 		
-		const checkbox = document.createElement("input");
-		checkbox.type = "checkbox";
-		checkbox.id = "item_checkbox_" + i;
-		checkbox.className = "item_checkbox";
-		checkbox.checked = "checked";
-		item_div.appendChild(checkbox);
+		const item_delete = document.createElement("input");
+		item_delete.id = "item_delete_" + i;
+		item_delete.type = "button";
+		item_delete.className = "item_delete";
+		item_delete.value = "x";
+		item_div.appendChild(item_delete);
 
 		const shop_item_div = document.createElement("div");
 		shop_item_div.id = "shop_item_div_" + i;
@@ -95,7 +101,6 @@ function loadPage(...args){
 		item_detail_amount_minus.addEventListener("click", (event) => {
 			calculate_amount(event, i);
 		});
-
 		item_detail_amount_div.appendChild(item_detail_amount_minus);
 
 		const item_detail_amount = document.createElement("input");
@@ -103,20 +108,6 @@ function loadPage(...args){
 		item_detail_amount.className = "item_detail_amount";
 		item_detail_amount.value = item.cd_count;
 		item_detail_amount.readOnly = true;
-
-		// const item_detail_amount = document.createElement("input");
-		// item_detail_amount.id = "item_detail_amount_" + i;
-		// item_detail_amount.className = "item_detail_amount";
-		// item_detail_amount.type = "number";
-		// item_detail_amount.min = "1";
-		// item_detail_amount.max = item.i_amount;
-		// item_detail_amount.value = item.cd_count;
-		// item_detail_amount.addEventListener("click", (event) => {
-		// 	event.target.select();
-		// });
-		// item_detail_amount.addEventListener("input", (event) => {
-		// 	input_amount(event, i);
-		// });
 		item_detail_amount_div.appendChild(item_detail_amount);
 
 		const item_detail_amount_plus = document.createElement("input");
@@ -127,6 +118,7 @@ function loadPage(...args){
 		item_detail_amount_plus.addEventListener("click", (event) => {
 			calculate_amount(event, i);
 		});
+		item_detail_amount_div.appendChild(item_detail_amount_plus);
 
 		if(item.cd_count <= 0){
 			item_detail_amount.value = 1;
@@ -137,8 +129,6 @@ function loadPage(...args){
 			item_detail_amount.value = item.i_amount;
 			item_detail_amount_plus.disabled = true;
 		}
-
-		item_detail_amount_div.appendChild(item_detail_amount_plus);
 
 		item_detail_change.appendChild(item_detail_amount_div);
 
@@ -236,20 +226,35 @@ function calculate_amount(e, idx){
 	document.getElementById("total_amount").value = calc_total();
 	document.getElementById("final_price").value = calc_price();
 
-	if(current_amount.value <= total_amount && current_amount.value > 1){
+	if(current_amount.value <= total_amount && current_amount.value >= 1){
 		document.getElementById("item_detail_amount_minus_" + idx).disabled = false;
 		document.getElementById("item_detail_amount_plus_" + idx).disabled = false;
 	}
 
 	if(current_amount.value >= total_amount){
 		e.target.disabled = true;
-		return;
 	}
 
 	if(current_amount.value <= 1){
 		e.target.disabled = true;
-		return;
 	}
+
+	const url = "item_count_change";
+
+	let item_update_amount = document.getElementById("item_detail_amount_" + idx).value;
+	let i_idx = document.getElementById("item_detail_index_" + idx).value;
+
+	let param = {
+		"item_count": encodeURIComponent(item_update_amount),
+		"i_idx": encodeURIComponent(i_idx)
+	};
+
+	sendRequest(url, param, update_callback, "post");
+
+}
+
+function update_callback(...args){
+	
 }
 
 function calc_total(){
@@ -273,5 +278,3 @@ function calc_price(){
 
 	return price;
 }
-
-export {order_list};

@@ -19,7 +19,7 @@
 				"i_name": encodeURIComponent(i_name),
 				"i_color": encodeURIComponent(i_color)
 			};
-				
+
 			sendRequest(url, param, return_page, "post");
 		} 
 		
