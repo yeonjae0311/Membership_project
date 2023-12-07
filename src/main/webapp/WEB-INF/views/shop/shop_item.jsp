@@ -14,7 +14,6 @@
 	<script>
 		function item_amount(amount_button_id){
 			
-<<<<<<< HEAD
 			const url = "shopping_cart_insert";
 			
 			const param = {
@@ -106,29 +105,5 @@
 	</form>
 	<div id="footer_bar"></div>
 </body>
-	</head>
-	<body>	
-		<form name="selected_item" action="shopping_cart_insert" method="POST">
-			<div id=item_info_div>
-				<div class=item_img_div>
-					<img id=item_img src="${pageContext.request.contextPath}/resources/upload/${vo.i_photo_name}"><br>
-				</div>
-				<input type="hidden" name="i_name" value="${vo.i_name}">
-				${vo.i_name}<br>
-				${vo.i_price}<br>
-				<select class="color_option" id="color" name="i_color" required>
-				    <c:forEach var="colors" items="${colors}">
-				    	<option value="${colors}">${colors}</option>
-				    </c:forEach>	   
-				</select>
-    		</div><br><br><br>
-    		<div class=item_detail_img_div>		
-    			<img id=item_detail_img src="${pageContext.request.contextPath}/resources/upload/${vo.i_detail_photo_name}">
-    		</div>
-    		<div id=shop_button_bar>
-    			<input type="button" value="장바구니" onclick=send_shopping_cart(this.form)>
-    			<input type="button" value="결제하기" onclick=send_shop_payment()>
-    		</div>
-		</form>
-	</body>
+	
 </html>

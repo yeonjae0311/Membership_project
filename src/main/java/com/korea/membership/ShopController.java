@@ -334,4 +334,11 @@ public class ShopController {
 		
 		return Path.ShopPath.make_path("shop_payment");
 	}
+	
+	@RequestMapping("payment_completed")
+	public String payment_completed() {
+		
+		
+		return Path.ShopPath.make_path("payment_completed");
+	}
 }
