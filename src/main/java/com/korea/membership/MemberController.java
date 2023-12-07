@@ -421,6 +421,7 @@ public class MemberController {
 			e.printStackTrace();
 		}
 
+		
 		int m_idx = Integer.parseInt(data.get("m_idx"));
 		PMemberVO vo = pmember_dao.select_one(m_idx);
 		String origin_m_photo_name = vo.getM_photo_name();
