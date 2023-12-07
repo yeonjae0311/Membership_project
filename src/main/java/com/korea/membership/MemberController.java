@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,9 @@ public class MemberController {
 
 	PMemberDAO pmember_dao;
 	BoardDAO board_dao;
+
+	@Autowired
+	HttpServletRequest request;
 
 	@Autowired
 	HttpSession session;
@@ -75,7 +79,6 @@ public class MemberController {
 		if (vo == null) {
 			return "{\"param\": \"no_m_id\"}";
 		}
-
 		// 비밀번호가 일치하지 않는 경우
 		if (!vo.getM_password().equals(m_password)) {
 			return "{\"param\": \"no_m_password\"}";
@@ -86,17 +89,17 @@ public class MemberController {
 		try {
 			localStorage = om.writeValueAsString(vo);
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		// 아이디와 비밀번호 체크에 문제가 없다면 세션에 바인딩 한다.
 		session.setAttribute("id", vo);
-		
+		session.setAttribute("m_idx", vo.getM_idx());
+
 		// 로그인에 성공한 경우
 		return localStorage;
 	}
-	
+
 	@RequestMapping("check_email") // 이메일 중복체크
 	@ResponseBody
 	public String check_email(@RequestBody String body) throws UnsupportedEncodingException {
@@ -115,17 +118,19 @@ public class MemberController {
 		String m_email = URLDecoder.decode(data.get("m_email"), "utf-8");
 		
 		int res = pmember_dao.email_check(m_email);
-		
-		if(res == 0) {
+
+		if (res == 0) {
 			return "{\"param\": \"no m_email\"}";
 		}
 		return "{\"param\": \"success\"}";
-		
+
 	}
 
 	@RequestMapping("logout")
 	public String logout() {
 		session.removeAttribute("id");
+		session.removeAttribute("m_idx");
+
 		return Path.HomePath.make_path("home");
 	}
 
@@ -159,63 +164,95 @@ public class MemberController {
 
 		return "{\"param\": \"fail\"}";
 	}
-	
+
 	@RequestMapping("member_insert")
 	public String insert_member(PMemberVO vo) {
 		int res = pmember_dao.insert(vo);
-		if(res>0) {
+		if (res > 0) {
 			session.setAttribute("id", vo);
 			return "redirect:membership_info";
 		}
 		return null;
 	}
 
-	@RequestMapping("del")
+	@RequestMapping("delete_update")
 	@ResponseBody
-	public String del(int m_idx) {
+	public String delete_update(@RequestBody String body) {
+		ObjectMapper om = new ObjectMapper();
+
+		Map<String, String> data = null;
+
+		try {
+			data = om.readValue(body, new TypeReference<Map<String, String>>() {
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		int m_idx = Integer.parseInt(data.get("m_idx"));
 		PMemberVO basevo = pmember_dao.select_one(m_idx);
 
-		int res = pmember_dao.del_update(basevo);
+		int res = pmember_dao.delete_update(basevo);
+
+		System.out.println(res);
 
 		if (res == 1) {
-			return "[{'result':'yes']}";
+			return "{\"param\": \"success\"}";
 		} else {
-			return "[{'result':'no'}]";
+			return "{\"param\": \"fail\"}";
 		}
 	}
 
 	@RequestMapping("user_edit")
-	public String user_edit() {
+	public String user_edit(HttpSession session, Model model) {
+		int m_idx = (int) session.getAttribute("m_idx");
+
+		PMemberVO vo = pmember_dao.select_one(m_idx);
+
+		model.addAttribute("vo", vo);
+
 		return Path.UserPath.make_path("user_edit");
 	}
 
 	@RequestMapping("user_info_form")
-	public String user_info_form() {
+	public String user_info_form(HttpSession session, Model model) {
+		int m_idx = (int) session.getAttribute("m_idx");
+
+		PMemberVO vo = pmember_dao.select_one(m_idx);
+
+		model.addAttribute("vo", vo);
+
 		return Path.UserPath.make_path("user_info_form");
 	}
-	
+
 	@RequestMapping("user_edit_profile")
-	public String user_edit_profile() {
+	public String user_edit_profile(HttpSession session, Model model) {
+		int m_idx = (int) session.getAttribute("m_idx");
+
+		PMemberVO vo = pmember_dao.select_one(m_idx);
+
+		model.addAttribute("vo", vo);
+
 		return Path.UserPath.make_path("user_edit_profile");
 	}
-	
+
 	@RequestMapping("user_order_list")
 	public String user_order_list() {
 		return Path.UserPath.make_path("user_order_list");
 	}
-	
+
 	@RequestMapping("user_post_list")
 	public String user_post_list() {
 		PMemberVO vo = (PMemberVO) session.getAttribute("id");
-		
+
 		List<BoardPMemberViewVO> list = board_dao.fixed_board_list();
-		
+
 		session.setAttribute("list", list);
-		
+
 		return Path.UserPath.make_path("user_post_list");
 	}
-	
-	@RequestMapping(value = "mail_check", method =  RequestMethod.GET )	
+
+	@RequestMapping(value = "mail_check", method = RequestMethod.GET)
 	@ResponseBody
 	public String mailCheck(String m_email) throws Exception { // 반환값이 있기에 메서드 타입도 String
 
@@ -337,6 +374,18 @@ public class MemberController {
 	public String register_find_password() {
 		return Path.LoginPath.make_path("register_find_password");
 	}
+
+	@RequestMapping("register_modify_password")
+	public String register_modify_password(Map<String, String> password) {
+		int res = pmember_dao.password_update(password);
+
+		if (res > 0) {
+			return "redirect:register_modify_password";
+		} else {
+			System.out.println("추가 에러");
+			return null;
+		}
+	}
 	
 	@RequestMapping("kakao_pay")
 	public String kakao_pay() {
@@ -351,43 +400,57 @@ public class MemberController {
 	}
 
 	@RequestMapping("user_info_modify")
-	public String user_modify(PMemberVO vo) {
+	public String user_modify(PMemberVO vo, Model model) {
 		int res = pmember_dao.user_info_update(vo);
-		PMemberVO basevo = (PMemberVO) session.getAttribute("id");
-		basevo.setM_name(vo.getM_name());
-		basevo.setM_tel(vo.getM_tel());
-		basevo.setM_email(vo.getM_email());
-		session.setAttribute("id", basevo);
+
 		return "redirect:user_info_form";
+
 	}
-	
+
 	@RequestMapping("photo_upload")
-	public String photo_upload(PMemberVO vo, int m_idx) {
-		String m_photo_name = vo.getM_photo_name();
+	@ResponseBody
+	public String photo_upload(@RequestBody String body, Model model) {
+		ObjectMapper om = new ObjectMapper();
+
+		Map<String, String> data = null;
+
+		try {
+			data = om.readValue(body, new TypeReference<Map<String, String>>() {
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		int m_idx = Integer.parseInt(data.get("m_idx"));
+		PMemberVO vo = pmember_dao.select_one(m_idx);
+		String origin_m_photo_name = vo.getM_photo_name();
+
+		String new_m_photo_name = data.get("new_m_photo_name");
+		String m_photo_name = null;
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		
-		map.put("m_idx", m_idx);
-		map.put("m_photo_name", m_photo_name);
-		
-		PMemberVO basevo = (PMemberVO) session.getAttribute("id");
-		
-		basevo.setM_photo_name(vo.getM_photo_name());
-		session.setAttribute("id", basevo);
-		
-		return "redirect:user_edit_profile";
+		if (!origin_m_photo_name.equals(new_m_photo_name)) {
+			m_photo_name = new_m_photo_name;
+			map.put("m_idx", m_idx);
+			map.put("m_photo_name", m_photo_name);
+		}
+		int res = pmember_dao.photo_upload(map);
+
+		model.addAttribute("map", map);
+
+		if (res == 1) {
+			return "{\"param\": \"" + m_photo_name + "\"}";
+		} else {
+			return "{\"param\": \"fail\"}";
+		}
 	}
-	
+
 	@RequestMapping("user_profile_modify")
-	public String user_profile_update(PMemberVO vo) {
+	public String user_profile_update(PMemberVO vo, Model model) {
 		int res = pmember_dao.user_profile_update(vo);
-		PMemberVO basevo = (PMemberVO) session.getAttribute("id");
-		basevo.setM_photo_name(vo.getM_photo_name());
-		System.out.println(vo.getM_photo_name());
-		basevo.setM_name(vo.getM_name());
-		basevo.setM_username(vo.getM_username());
-		session.setAttribute("id", basevo);
+
 		return "redirect:user_edit";
 	}
+
 	
 	@RequestMapping("membership_info")
 	public String congratulations_register() {

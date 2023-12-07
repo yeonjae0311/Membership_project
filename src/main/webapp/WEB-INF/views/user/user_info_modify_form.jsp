@@ -6,6 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>user_info_modify_form</title>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
 	<link href="${pageContext.request.contextPath}/resources/css/user/user_info_modify_form.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script>
@@ -18,34 +19,35 @@
 </head>
 <body>
 	<div id="header_bar"></div>
-	
-	<form>
-		<table>
-			<tr>
-				<td> <input name="m_name"> </td>
-			</tr>
-			<tr>
-				<td> <input name="m_tel"> </td>
-			</tr>
-			<tr>
-				<td>
-					<input name="m_date_of_birth">
-				</td>
-			</tr>
-			<tr>
-				<th>이메일</th>
-				<td>
-					<input name="m_email" id="m_email" >
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<input type="button" value="수정완료" onclick="send(this.form)">
-				</td>
-			</tr>
-		</table>
+	<form align="center">
+			<div>
+				 이름 : <input name="m_name" value="${vo.m_name }" >
+			</div>
+			<br>
+			
+			<div>
+				 연락처 :  <input name="m_tel" value="${vo.m_tel }" >
+			</div>
+			<br>
+			
+			<div>
+				 생년월일<input name="m_date_of_birth" value="${vo.m_date_of_birth }">
+			</div>
+			<br>
+			
+			<div>
+					이메일<input name="m_email" value="${vo.m_email }" >
+			</div>
+			<br>
+			
+			<div>
+				 <input type="hidden" name="m_idx" value="${vo.m_idx }">
+			</div>
+			
+			<div id="modify">
+				<name="modify_btn" src="${pageContext.request.contextPath}/resources/img2/btn_modify.gif" onclick="send(this.form)">
+			</div>
 	</form>
-	
 	<div id="footer_bar"></div>
 </body>
 </html>

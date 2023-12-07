@@ -82,7 +82,6 @@ public class BoardController {
 		String filename = "no_file";		
 		//파일처리
 		//db에도 넣어야함
-		//
 		if(!file.isEmpty()) {
 			filename = file.getOriginalFilename();
 			

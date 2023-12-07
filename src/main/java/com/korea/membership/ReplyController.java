@@ -97,7 +97,5 @@ public class ReplyController {
 		}else {
 			return "{\"res\": \"fail\"}";	
 		}
-		
 	}
-	
 }
