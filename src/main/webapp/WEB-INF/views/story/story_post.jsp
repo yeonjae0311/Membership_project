@@ -19,6 +19,11 @@
 	</script>
 </head>
 <body>
+	
+	<c:if test="${id.m_ismaster ne '1' }">
+		<c:redirect url="logout"/>
+	</c:if>
+
 	<div id="header_bar"></div>
 	
 	<jsp:include page="/WEB-INF/views/login_check.jsp"/>

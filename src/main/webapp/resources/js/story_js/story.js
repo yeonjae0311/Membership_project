@@ -71,10 +71,10 @@ function liked2(s_idx,event){
 	const story_like_count = document.getElementById("like_count_" + s_idx);
 	
 	//console.log(story_liked.value)
-
+	
+	console.log(story_liked.value);
 	if(story_liked.value == 0){
 	
-		console.log(story_liked.value);
 		story_liked.value = Number(story_liked.value)+ 1;
 		story_like_count.value = Number(story_like_count.value)+1;
 		let url = "add_story_like";

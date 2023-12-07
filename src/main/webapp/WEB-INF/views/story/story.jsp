@@ -10,25 +10,16 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/story_js/story.js"></script>
-	<script>
-		let isFilled = true;
-		
+	<script>		
 		function change(event){
-			if(isFilled){
-				isFilled = !isFilled;
-				
+			console.log(event.target.style.fill);
+			if(event.target.style.fill=="white"){				
 				event.target.style.fill = "red";
-			}else{
-				isFilled = !isFilled;
-				
+			}else{				
 				event.target.style.fill = "white";
 			}
 		}
 		
-		window.onload = function(){
-			
-			
-		}
 	</script>
 </head>
 <body>
@@ -36,7 +27,7 @@
 	
 	story	
 	
-	<c:if test="${not empty id }">
+	<c:if test="${id.m_ismaster eq '1' }">
 		<input type="button" value="스토리 작성하기" onclick="location.href='story_post'">
 	</c:if>
 	
@@ -73,44 +64,58 @@
 					
 					<c:choose>
 						<c:when test="${svo.sl_isliked eq '0'}">
-							<c:set var="fill" value="none" />
+							<div onclick="liked2(${svo.s_idx},event)">
+								<svg id="svg_test_${svo.s_idx}"
+									 xmlns="http://www.w3.org/2000/svg"
+									 fill="white"
+									 width="24px"
+									 height="24px"
+									 viewBox="0 0 24 24"
+									 >
+									<path stroke="#121923"
+										  stroke-width="1.2"
+										  
+										  d="M17 16c-1.2 1.323-4.5 4.5-4.5 4.5S9.2 17.323 8
+										  	16c-2.8-3.088-3.5-4.294-3.5-6.5 0-2.206 1.6-4 4-4
+										  	2 0 3.2 1.324 4 2.647.8-1.323 2-2.647 4-2.647 2.4
+										  	0 4 1.794 4 4s-.7 3.412-3.5 6.5Z"/>
+								</svg>
+							</div>
+							<c:out value="${svo.s_idx }+${svo.sl_isliked}"/>
 						</c:when>
 						<c:when test="${svo.sl_isliked eq '1'}">
-							<c:set var="fill" value="red" />
-							<script type="text/javascript">
-								isFilled = false;
-							</script>
-						</c:when>
+							<div onclick="liked2(${svo.s_idx},event)">
+								<svg id="svg_test_${svo.s_idx}"
+									 xmlns="http://www.w3.org/2000/svg"
+									 fill="red"
+									 width="24px"
+									 height="24px"
+									 viewBox="0 0 24 24"
+									 >
+									<path stroke="#121923"
+										  stroke-width="1.2"
+										  
+										  d="M17 16c-1.2 1.323-4.5 4.5-4.5 4.5S9.2 17.323 8
+										  	16c-2.8-3.088-3.5-4.294-3.5-6.5 0-2.206 1.6-4 4-4
+										  	2 0 3.2 1.324 4 2.647.8-1.323 2-2.647 4-2.647 2.4
+										  	0 4 1.794 4 4s-.7 3.412-3.5 6.5Z"/>
+								</svg>
+							</div>
+							<c:out value="${svo.s_idx }+${svo.sl_isliked}"/>
+						</c:when>					
+						<c:otherwise>
+							<script>
+							</script>						
+						</c:otherwise>
 					</c:choose>
 					
-					<svg id="svg_test_${svo.s_idx}"
-						 onclick="liked2(${svo.s_idx},event)"
-						 xmlns="http://www.w3.org/2000/svg"
-						 fill="${fill}"
-						 width="24px"
-						 height="24px"
-						 viewBox="0 0 24 24"
-						 >
-						<path stroke="#121923"
-							  stroke-width="1.2"
-							  
-							  d="M17 16c-1.2 1.323-4.5 4.5-4.5 4.5S9.2 17.323 8
-							  	16c-2.8-3.088-3.5-4.294-3.5-6.5 0-2.206 1.6-4 4-4
-							  	2 0 3.2 1.324 4 2.647.8-1.323 2-2.647 4-2.647 2.4
-							  	0 4 1.794 4 4s-.7 3.412-3.5 6.5Z"/>
-					</svg>
+					
 									
 				</div>
 				
 				<%-- <input type="hidden" value="${svo.sl_isliked}" class="liked_value"> --%>
 				
-				
-				
-				
-				
 			</div>
-			
-			
 		</c:forEach>		
 	</div>
 	
