@@ -17,11 +17,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 
-	<select id="select_reply_list" resultType="vo.BoardPMemberReplyViewVO" parameterType="int">
-		select * from board_p_member_reply_join_view
-		WHERE b_idx = #{b_idx} 
-		AND r_idx IS NOT null
-		ORDER BY R_DATE DESC
+	<select id="select_reply_list" resultType="vo.BoardPMemberReplyViewVO" parameterType="java.util.HashMap">
+		SELECT rv.*,
+		rl.m_idx,
+		CASE nvl(rl.m_idx,0) WHEN rl.m_idx THEN 1 ELSE 0 END rl_isliked
+		FROM reply_view rv LEFT JOIN (SELECT * FROM REPLY_ISLIKED rl WHERE m_idx=#{m_idx}) rl
+		ON rv.r_idx = rl.R_IDX 
+		WHERE b_idx=#{b_idx}
+		order by rv.r_idx desc
 	</select>
 	
 	<delete id="delete_replys_by_b_idx" parameterType="int">

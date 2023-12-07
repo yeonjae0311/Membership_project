@@ -25,4 +25,6 @@ public class ReplyController {
 	public ReplyController(ReplyDAO reply_dao) {
 		this.reply_dao = reply_dao;
 	}
+	
+	
 }

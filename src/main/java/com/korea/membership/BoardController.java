@@ -159,10 +159,10 @@ public class BoardController {
 			board_dao.plus_board_read_hit(b_idx);
 			session.setAttribute("board_post_viewed", b_idx+"");
 		}
-		
+		//게시글에 대한정보를 vo로 바인딩
 		model.addAttribute("vo",vo);
-		
-		List<BoardPMemberReplyViewVO> reply_list = reply_dao.select_reply_list(b_idx);
+			
+		List<BoardPMemberReplyViewVO> reply_list = reply_dao.select_reply_list(map);
 		
 		model.addAttribute("reply_list",reply_list);
 		

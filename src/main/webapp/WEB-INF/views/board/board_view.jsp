@@ -182,7 +182,8 @@
 					<div>${i.m_username}</div>
 					<div>${i.r_date}</div>
 				</div>
-				${i.r_content}
+				${i.r_content}<br>
+				${i.rl_isliked}<br>
 			</div>
 		</c:forEach>
 	</div>

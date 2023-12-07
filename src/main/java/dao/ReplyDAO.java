@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -18,8 +19,8 @@ public class ReplyDAO {
 		return sqlSession.insert("r.insert_reply",vo);
 	}
 	
-	public List<BoardPMemberReplyViewVO> select_reply_list(int b_idx){
-		return sqlSession.selectList("r.select_reply_list",b_idx);
+	public List<BoardPMemberReplyViewVO> select_reply_list(HashMap<String, Object> map){
+		return sqlSession.selectList("r.select_reply_list",map);
 	}
 	
 	public int delete_replys_by_b_idx(int b_idx) {
