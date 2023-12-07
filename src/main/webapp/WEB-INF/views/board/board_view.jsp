@@ -7,6 +7,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
+	<link href="${pageContext.request.contextPath}/resources/css/board/board_view.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script src="${pageContext.request.contextPath}/resources/js/http_request.js"> </script>
 	<script>
 		let bl_isliked;
@@ -137,6 +139,7 @@
 	    </script>
 </head>
 <body>
+	<div id="header_bar"></div>
 	<jsp:include page="/WEB-INF/views/login_check.jsp" />
 	<div id="id1">
 		<table border="1" align="center">
@@ -231,5 +234,6 @@
 			</div>
 		</c:forEach>
 	</div>
+	<div id="footer_bar"></div>
 </body>
 </html>

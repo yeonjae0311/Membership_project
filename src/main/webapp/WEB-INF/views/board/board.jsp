@@ -6,6 +6,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Board</title>
+	<link href="${pageContext.request.contextPath}/resources/css/board/board.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<style>
 		.b_list{
 			margin:0 auto;
@@ -40,6 +42,7 @@
 	</script>
 </head>
 <body>
+	<div id="header_bar"></div>
 	board
 	<input type="button" value="home" onclick="location.href='/membership/'">
 	<br>
@@ -108,5 +111,6 @@
 			</table>
 		</div>
 		<input type="button" value="글쓰기" onclick="location.href='board_post';">
+		<div id="footer_bar"></div>
 	</body>
 </html>
