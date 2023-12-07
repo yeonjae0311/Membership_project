@@ -331,5 +331,33 @@ public class ShopController {
 		return Path.ShopPath.make_path("shop_payment");
 	}
 	
-	
+	@RequestMapping("cart_delete")
+	@ResponseBody
+	public String cart_delete(@RequestBody String body) {
+		ObjectMapper om = new ObjectMapper();
+			
+		Map<String, String> data = null;
+		
+		try {
+			data = om.readValue(body, new TypeReference<Map<String, String>>() {
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		int i_idx = Integer.parseInt(data.get("i_idx"));
+		int m_idx = (int) session.getAttribute("m_idx");
+		
+		HashMap<String, Integer> idx_map = new HashMap<String,Integer>();
+		idx_map.put("i_idx", i_idx);
+		idx_map.put("m_idx", m_idx);
+		
+		int res = cart_detail_dao.cart_delete(idx_map);
+		
+		if(res > 0) {
+			return "{\"param\": \"success\"}";
+		} else {
+			return "{\"param\": \"fail\"}";
+		}
+	}
 }

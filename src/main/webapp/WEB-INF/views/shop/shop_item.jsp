@@ -13,26 +13,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/shop_js/shop_item.js" defer></script>
 	<script>
 		function item_amount(amount_button_id){
-			const url = "shopping_cart_insert";
-			
-			const param = {
-				"i_name": encodeURIComponent(i_name),
-				"i_color": encodeURIComponent(i_color)
-			};
 
-			sendRequest(url, param, return_page, "post");
-		} 
-		
-		function return_page(...args){
-			let res = args[0].param;
-
-			if(res == 'yes'){
-				if(confirm("상품이 추가되었습니다.\n장바구니로 이동하시겠습니까?")){
-					location.href='shopping_cart' ;	
-				} else{
-					return;
-				}	
-			} 
 			let amount_button_value = 
 				document.getElementById(amount_button_id).value.trim();
 					

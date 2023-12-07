@@ -66,3 +66,4 @@ function send_shop_payment(){
 	location.href = 'shop_payment';
 		
 }
+

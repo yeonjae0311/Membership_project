@@ -58,6 +58,9 @@ function loadPage(...args){
 		item_delete.type = "button";
 		item_delete.className = "item_delete";
 		item_delete.value = "x";
+		item_delete.addEventListener("click", (event) => {
+			cart_delete(i);
+		});
 		item_div.appendChild(item_delete);
 
 		const shop_item_div = document.createElement("div");
@@ -279,4 +282,22 @@ function calc_price(){
 	}
 
 	return price;
+}
+
+function cart_delete(idx){
+
+	const url = "cart_delete";
+
+	let i_idx = document.getElementById("item_detail_index_" + idx).value;
+
+	let param = {
+		"i_idx": encodeURIComponent(i_idx)
+	};
+
+	sendRequest(url, param, delete_callback, "post");
+	
+}
+
+function delete_callback(...args){
+	location.href = "shopping_cart";
 }
