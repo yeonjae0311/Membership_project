@@ -44,8 +44,8 @@ public class BoardDAO {
 		return sqlSession.selectOne("b.is_master",m_idx);
 	}
 	
-	public int delete_board_post_by_master(int m_idx) {
-		return sqlSession.delete("b.delete_board_post_by_master",m_idx);
+	public int delete_board_post_by_master(int b_idx) {
+		return sqlSession.delete("b.delete_board_post_by_master",b_idx);
 	}
 	
 	public int plus_board_read_hit(int b_idx) {

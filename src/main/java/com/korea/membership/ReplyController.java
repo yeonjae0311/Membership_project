@@ -138,8 +138,10 @@ public class ReplyController {
 	    
 	    int ismaster = board_dao.is_master(m_idx);
 	    if(ismaster==1) {
-	    	reply_dao.delete_replys_by_master(r_idx);
-	    	return "{\"res\": \"success\",\"r_idx\":\""+r_idx+"\"}";	
+	    	int res2 = reply_dao.delete_reply_by_master(r_idx);
+	    	if(res2>0) {
+		    	return "{\"res\": \"success\",\"r_idx\":\""+r_idx+"\"}";
+	    	}
 	    }
 	    
 		return "{\"res\": \"fail\"}";

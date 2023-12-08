@@ -43,7 +43,7 @@ public class ReplyDAO {
 		return sqlSession.delete("r.delete_reply_by_writer",map);
 	}
 	
-	public int delete_replys_by_master(int r_idx) {
-		return sqlSession.delete("r.delete_replys_by_master",r_idx);
+	public int delete_reply_by_master(int r_idx) {
+		return sqlSession.delete("r.delete_reply_by_master",r_idx);
 	}
 }
