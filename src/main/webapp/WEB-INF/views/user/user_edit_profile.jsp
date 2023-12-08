@@ -40,26 +40,13 @@
 	<script type="text/javascript">
 	
 	function photo_default_update(f){
-		url = "photo_default_upload";
-		param = {
-				"m_idx" : ${vo.m_idx}
-		}
-		sendRequest(url, param, default_update_check, "POST");
+		
+		f.action="photo_default_upload";
+		f.method="POST";
+		f.submit();
+		
 	}
 		
-	function default_update_check(...args) {
-		let res = args[0].param;
-		
-		if(res == 'fail'){
-			alert("사진을 바꾸는 것에 실패하였습니다.")
-			return;
-		} else{
-			alert("사진을 변경했습니다.");
-			let user_photo = document.getElementById("m_profile");
-			user_photo.src="${pageContext.request.contextPath}/resources/upload/user/"+res;
-		}
-	}
-	
 	function modify(f) {
             f.action = "user_profile_modify";
             f.method = "POST";

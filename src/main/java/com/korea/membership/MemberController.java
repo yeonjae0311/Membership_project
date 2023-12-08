@@ -458,35 +458,43 @@ public class MemberController {
 	}
 
 	@RequestMapping("photo_default_upload")
-	@ResponseBody
-	public String photo_default_upload(@RequestBody String body, Model model) {
-		ObjectMapper om = new ObjectMapper();
+	public String photo_default_upload(PMemberVO vo, Model model) {
 
-		Map<String, String> data = null;
+		String webPath = "/resources/upload/user/";
+		String savePath = request.getServletContext().getRealPath(webPath);
 
-		try {
-			data = om.readValue(body, new TypeReference<Map<String, String>>() {
-			});
-		} catch (Exception e) {
-			e.printStackTrace();
+		MultipartFile photo = vo.getM_photo();
+		String filename = "no_file_name";
+
+		if (!photo.isEmpty()) {
+			filename = photo.getOriginalFilename();
+
+			File saveFile = new File(savePath, filename);
+
+			if (!saveFile.exists()) {
+				saveFile.mkdirs();
+			} else {
+				long time = System.currentTimeMillis();
+				filename = String.format("%d_%s", time, filename);
+				saveFile = new File(savePath, filename);
+			}
+
+			try {
+				photo.transferTo(saveFile);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 
-		int m_idx = Integer.parseInt(data.get("m_idx"));
-		String m_photo_name = "default_profile.jpg";
+		vo.setM_photo_name("default_profile.jpg");
 
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("m_idx", m_idx);
-		map.put("m_photo_name", m_photo_name);
+		request.setAttribute("vo", vo);
 
-		int res = pmember_dao.default_photo_name(map);
+		pmember_dao.user_profile_update(vo);
 
-		model.addAttribute("map", map);
-
-		if (res == 1) {
-			return "{\"param\": \"" + m_photo_name + "\"}";
-		} else {
-			return "{\"param\": \"fail\"}";
-		}
+		return "redirect:user_edit";
 	}
 
 	@RequestMapping("membership_info")
