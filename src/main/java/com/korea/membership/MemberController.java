@@ -472,9 +472,7 @@ public class MemberController {
 		}
 
 		int m_idx = Integer.parseInt(data.get("m_idx"));
-		System.out.println(m_idx);
 		String m_photo_name = "default_profile.jpg";
-		System.out.println(m_photo_name);
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("m_idx", m_idx);
