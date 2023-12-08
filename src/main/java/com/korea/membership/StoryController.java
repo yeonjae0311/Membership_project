@@ -55,21 +55,7 @@ public class StoryController {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("m_idx",m_idx);
 		
-		/////////////////////////////////////////////////////////////////
-		List<StoryVO> svo_list = story_dao.select_story_list(m_idx);
-		
-//		for(StoryVO vo : svo_list) {
-//			int s_idx = vo.getS_idx();
-//			map.put("s_idx",s_idx);
-//			int res = story_dao.check_is_liked(map);
-//			if(res==0) {
-//				vo.setSl_isliked("0");
-//			}else {
-//				vo.setSl_isliked("1");
-//			}
-//			//여기서 만료된 스토리 삭제하는 코드 구현
-//		}
-		
+		List<StoryVO> svo_list = story_dao.select_story_list(m_idx);		
 		
 		model.addAttribute("svo_list",svo_list);
 		
@@ -83,28 +69,26 @@ public class StoryController {
 
 	@RequestMapping("story_post_insert")
 	public String story_post_insert(StoryVO vo) {
-		
-		//여기에 vo에 속성값 더추가해줘야함
+				
 		PMemberVO uservo = (PMemberVO)session.getAttribute("id");
 		vo.setM_idx(uservo.getM_idx());
 		
-		//이미지 업로드 코드가 필요
+		//이미지 업로드
 		String webPath = "/resources/upload/story";
 		String savePath = request.getServletContext().getRealPath(webPath);
-		System.out.println(savePath);
 		
 		MultipartFile file = vo.getS_file();
 		String filename = "no_file";
 		
 		//파일처리
-		//db에도 넣어야함
-		//
 		if(!file.isEmpty()) {
 			filename = file.getOriginalFilename();
 			
 			File saveFile = new File(savePath,filename);
-			if(!saveFile.exists()) {
+			
+			if(!saveFile.exists()) {				
 				saveFile.mkdirs();
+				
 			}else {
 				//동일파일명 방지
 				long time = System.currentTimeMillis();
@@ -122,10 +106,11 @@ public class StoryController {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}		
-		//mapper에있는 insert 코드 추가/수정필요		
+		}
+		
 		vo.setS_filename(filename);
 		int res = story_dao.story_post_insert(vo);
+		
 		if(res>0) {
 			return "redirect:story";
 		}		
@@ -147,7 +132,6 @@ public class StoryController {
         }
         
         int s_idx=Integer.parseInt(data.get("s_idx"));
-        String sl_isliked = URLDecoder.decode(data.get("sl_isliked"), "utf-8");
                
         PMemberVO uservo = (PMemberVO)session.getAttribute("id");
         
@@ -167,7 +151,6 @@ public class StoryController {
         
         //db에 좋아요 반영 (m_idx->s_idx)
         story_dao.insert_like(map);
-        // STORY_ISLIKED에 pk 추가하기 
                 
         // 전체 좋아요수 반영
         story_dao.recalculate_total_like(s_idx);
@@ -189,7 +172,6 @@ public class StoryController {
         }
         
         int s_idx=Integer.parseInt(data.get("s_idx"));
-        String sl_isliked = URLDecoder.decode(data.get("sl_isliked"), "utf-8");
                
         PMemberVO uservo = (PMemberVO)session.getAttribute("id");
         if(uservo==null) {
@@ -207,7 +189,6 @@ public class StoryController {
         
         //db에 좋아요 취소 반영 (m_idx->s_idx)
         story_dao.delete_to_unlike(map);
-        // STORY_ISLIKED에 pk 추가하기 
                 
         // 전체 좋아요수 반영
         story_dao.recalculate_total_like(s_idx);
@@ -230,12 +211,11 @@ public class StoryController {
         int s_idx = Integer.parseInt(s_idx_str);
         
         int res = story_dao.story_update_read_hit(s_idx);
+        
         if(res>0) {
             return "{\"param\": \"sucess\",\"s_idx\":\""+s_idx+"\"}";
         }else {
             return "{\"param\": \"fail\",\"s_idx\":\""+s_idx+"\"}";
         }
 	}
-	
-	
 }

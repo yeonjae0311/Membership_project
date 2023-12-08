@@ -12,14 +12,12 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/story_js/story.js"></script>
 	<script>		
 		function change(event){
-			console.log(event.target.style.fill);
 			if(event.target.style.fill=="white"){				
 				event.target.style.fill = "red";
 			}else{				
 				event.target.style.fill = "white";
 			}
 		}
-		
 	</script>
 </head>
 <body>
@@ -83,6 +81,7 @@
 							</div>
 							<c:out value="${svo.s_idx }+${svo.sl_isliked}"/>
 						</c:when>
+						
 						<c:when test="${svo.sl_isliked eq '1'}">
 							<div onclick="liked2(${svo.s_idx},event)">
 								<svg id="svg_test_${svo.s_idx}"
@@ -101,20 +100,9 @@
 										  	0 4 1.794 4 4s-.7 3.412-3.5 6.5Z"/>
 								</svg>
 							</div>
-							<c:out value="${svo.s_idx }+${svo.sl_isliked}"/>
-						</c:when>					
-						<c:otherwise>
-							<script>
-							</script>						
-						</c:otherwise>
-					</c:choose>
-					
-					
-									
-				</div>
-				
-				<%-- <input type="hidden" value="${svo.sl_isliked}" class="liked_value"> --%>
-				
+						</c:when>
+					</c:choose>	
+				</div>				
 			</div>
 		</c:forEach>		
 	</div>
@@ -123,5 +111,4 @@
 			
 	<div id="footer_bar"></div>
 </body>
-
 </html>

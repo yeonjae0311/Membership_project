@@ -64,35 +64,31 @@ public class BoardController {
 	
 	@RequestMapping("board_post")
 	public String board_post() {
-		System.out.println("board_post진입");
 		return Path.BoardPath.make_path("board_post");
 	}
 	
 	@RequestMapping("board_post_insert")
 	public String board_post_insert(BoardVO vo) {
+		
 		vo.setB_ip(request.getRemoteAddr());
+		
 		String webPath = "/resources/upload/board";
 		String savePath = request.getServletContext().getRealPath(webPath);
-		System.out.println(savePath);
+		
 		PMemberVO Logined_vo = (PMemberVO)session.getAttribute("id");
 		vo.setM_idx(Logined_vo.getM_idx());
-		System.out.println(Logined_vo.getM_idx());
 		
-		System.out.println(vo);
 		MultipartFile file = vo.getB_file();
-		String filename = "no_file";		
+		String filename = "no_file";
+		
 		//파일처리
-		//db에도 넣어야함
 		if(!file.isEmpty()) {
 			filename = file.getOriginalFilename();
 			
 			File saveFile = new File(savePath,filename);
 			if(!saveFile.exists()) {
-				System.out.println("1");
 				saveFile.mkdirs();
-				System.out.println("2");
 			}else {
-				System.out.println("3");
 				//동일파일명 방지
 				long time = System.currentTimeMillis();
 				
@@ -103,7 +99,6 @@ public class BoardController {
 				filename = String.format("%s_%d",filename, time)+b;
 				
 				saveFile = new File(savePath,filename);
-				System.out.println("4");
 			}
 			try {
 				file.transferTo(saveFile);
@@ -111,21 +106,20 @@ public class BoardController {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("check");
 		vo.setB_filename(filename);
-		System.out.println(vo);
 		int res = board_dao.board_insert(vo);
 		if(res>0) {
 			return "redirect:board";
 		}else {
-			System.out.println("추가 실패 에러");
 			return null;
 		}		
 	}
 	
 	@RequestMapping("board_reply")
 	public String board_reply(ReplyVO vo) {
+		
 		vo.setR_ip(request.getRemoteAddr());
+		
 		PMemberVO pm_vo=(PMemberVO)session.getAttribute("id");
 		vo.setM_idx(pm_vo.getM_idx());
 		
@@ -145,11 +139,14 @@ public class BoardController {
 		//해당 게시물 좋아요 했는지를 조회하기 위한 매개변수 map 세팅
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("b_idx", b_idx);
+		
 		PMemberVO uservo = (PMemberVO) session.getAttribute("id");
 		if(uservo==null) {
 			return Path.HomePath.make_path("login_check");
 		}
+		
 		map.put("m_idx", uservo.getM_idx());
+		
 		BoardPMemberViewVO vo = board_dao.board_select_one(map);
 		
 		//최근에 본 것 (세션으로부터) 조회
@@ -160,7 +157,7 @@ public class BoardController {
 			board_dao.plus_board_read_hit(b_idx);
 			session.setAttribute("board_post_viewed", b_idx+"");
 		}
-		//게시글에 대한정보를 vo로 바인딩
+		
 		model.addAttribute("vo",vo);
 			
 		List<BoardPMemberReplyViewVO> reply_list = reply_dao.select_reply_list(map);
@@ -197,12 +194,11 @@ public class BoardController {
 		if(res>0) {//작성자 본인이면 삭제
 			is_need_to_delete_replys = true;
 			result = "delete_by_user";
-			System.out.println("board 삭제 result : "+result);
 			//삭제가 됐다면 reply도 삭제
 		}else {
 			//작성자는 아니지만 마스터라면 삭제할수 있어야함
 			int ismaster = board_dao.is_master(m_idx);
-			if(ismaster == 1) //마스터계정이면 해당글 삭제 성공
+			if(ismaster == 1)
 			{
 				int res2 = board_dao.delete_board_post_by_master(b_idx);
 				if(res2>0) {
@@ -211,9 +207,7 @@ public class BoardController {
 				}
 			}
 		}
-		System.out.println("board 삭제 result : "+result);
 		if(is_need_to_delete_replys) {
-			//cascade도 있지만 이중검증
 			reply_dao.delete_replys_by_b_idx(b_idx);
 		}
 		
@@ -236,6 +230,7 @@ public class BoardController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
         String b_idx_str = URLDecoder.decode(data.get("b_idx"), "utf-8");
         int b_idx = Integer.parseInt(b_idx_str);
         
@@ -243,6 +238,7 @@ public class BoardController {
         if(uservo==null) {
             return "{\"param\": \"fail\",\"b_idx\":\""+b_idx+"\"}";
         }
+        
         HashMap<String, Object> map = new HashMap<String, Object>();
         map.put("b_idx", b_idx);
         map.put("m_idx", uservo.getM_idx());
@@ -269,6 +265,7 @@ public class BoardController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
         String b_idx_str = URLDecoder.decode(data.get("b_idx"), "utf-8");
         int b_idx = Integer.parseInt(b_idx_str);
         
@@ -276,6 +273,7 @@ public class BoardController {
         if(uservo==null) {
             return "{\"param\": \"fail\",\"b_idx\":\""+b_idx+"\"}";
         }
+        
         HashMap<String, Object> map = new HashMap<String, Object>();
         map.put("b_idx", b_idx);
         map.put("m_idx", uservo.getM_idx());

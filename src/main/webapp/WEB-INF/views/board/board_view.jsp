@@ -91,8 +91,7 @@
 				like_count_id.value = Number(like_count_id.value)+1;
 			}else if(res=='minus'){
 				like_count_id.value = Number(like_count_id.value)-1;
-			}			
-			console.log(res);
+			}
 		}
 		
 		function reply_like(r_idx){
@@ -152,7 +151,6 @@
 			let res = args[0].res;
 			if(res=='success'){
 				alert('댓글 삭제');
-				alert('board_view?b_idx='+b_idx);
 				location.href='board_view?b_idx='+b_idx;
 			}else if(res=='fail'){
 				alert('댓글 삭제 권한이 없습니다.');
@@ -173,14 +171,17 @@
 				<th>제목</th>
 				<td>${vo.b_title}</td>
 			</tr>
+			
 			<tr>
 				<th>작성자</th>
 				<td>${vo.m_username}</td>
 			</tr>
+			
 			<tr>
 				<th>작성일</th>
 				<td>${vo.b_posted_date}</td>
 			</tr>
+			
 			<tr>
 				<th>조회수</th>
 				<td>${vo.b_read_hit}</td>
@@ -193,22 +194,25 @@
 						<c:when test="${vo.bl_isliked eq '0'}">
 							<input type="button" class="board_like_button" value="좋아요" onclick="board_like('${vo.b_idx}')">
 						</c:when>
+						
 						<c:when test="${vo.bl_isliked eq '1'}">
 							<input type="button" class="board_like_button" value="좋아요 해제" onclick="board_like('${vo.b_idx}')">
 						</c:when>
+						
 						<c:otherwise>
 							${vo.bl_isliked }
 						</c:otherwise>
 					</c:choose>
 				</td>
 			</tr>
-			<!-- 관리자계정일 경우만 ip가 보이게 -->
+			
 			<c:if test="${id.m_ismaster eq '1'}">
 				<tr>
 					<th>ip</th>
 					<td>${vo.b_ip}</td>
 				</tr>
 			</c:if>
+			
 			<tr>
 				<td colspan="2" width="500px" height="200px">
 					<c:if test="${not empty vo.b_filename and vo.b_filename ne 'no_file'}">
@@ -222,8 +226,6 @@
 				<td colspan="3">
 					<!-- 목록으로 -->
 					<img src="resources/img2/btn_list.gif" onclick="location.href='board'">
-					<!-- 답변 -->
-					<%-- <img src="resources/img2/btn_reply.gif" onclick="location.href='board_reply&b_idx='${vo.b_idx}"> --%>
 					<!-- 삭제 -->
 					<img src="resources/img2/btn_delete.gif" onclick="delete_board_post();">
 				</td>
@@ -238,7 +240,6 @@
 					
 			<input type="button" value="답글 작성 완료" onclick="send_reply(this.form);">
 		</form>
-		<!-- order by로 불러오기 -->
 
 		<c:forEach var="i" items="${reply_list}">
 			<div class="reply_div">
@@ -246,12 +247,18 @@
 					<div class="user_photo">
 						<img src="${pageContext.request.contextPath}/resources/upload/user${i.m_photo_name}" alt="이미지 유실">
 					</div>
+					
 					<div>${i.m_username}</div>
+					
 					<div>${i.r_date}</div>
 				</div>
+				
 				${i.r_content}<br>
+				
 				누적 좋아요 : <input id="r_like_count_${i.r_idx}" type="text" value="${i.r_like_count}"><br>
+				
 				<input id="rl_isliked_${i.r_idx}" type="button" value="${i.rl_isliked}" onclick="reply_like(${i.r_idx})">
+				
 				<input id="r_del_button_${i.r_idx}" type="button" value="댓글 삭제" onclick="delete_reply(${i.r_idx})">
 			</div>
 		</c:forEach>
