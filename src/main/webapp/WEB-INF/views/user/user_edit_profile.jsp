@@ -11,20 +11,23 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script type="text/javascript">
 	function changeimg(){
-		const fileInput = document.getElementById("photo_file_id");
-		const imagePreview = document.getElementById("m_profile");
+		const img_file_id = document.getElementById("photo_file_id");
+		const image_preview = document.getElementById("m_profile");
 		
-		const file = fileInput.files[0];
+		const img = img_file_id.files[0];
+		let allowed_files = ["img/.gif", "img/.jpg","img/png","img/BMP"];
 		
-		 if (file) {
+		
+		 if (img) {
 	            const reader = new FileReader();
 
 	            reader.onload = function(e) {
 	                // 파일 내용을 읽어와서 이미지 소스로 설정
-	                imagePreview.src = e.target.result;
+	                image_preview.src = e.target.result;
+	                if(img)
 	            };
 	            // 파일을 읽어옴
-	            reader.readAsDataURL(file);
+	            reader.readAsDataURL(img);
 	        }
 	}
 	</script>
@@ -45,7 +48,7 @@
 </head>
 	<body>
 	<div id="header_bar"></div>
-	<form enctype="multipart/form-data" align="center" name="myForm">
+	<form enctype="multipart/form-data" name="myForm">
         <div id="m_photo_name">
             <img id="m_profile" src="${pageContext.request.contextPath}/resources/upload/user/${vo.m_photo_name}">
             <input type="hidden" name="new_m_photo_name" value="${vo.m_photo_name}">

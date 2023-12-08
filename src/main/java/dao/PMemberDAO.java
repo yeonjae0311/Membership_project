@@ -48,8 +48,8 @@ public class PMemberDAO {
 	}
 
 	// 탈퇴하기
-	public int delete_update(PMemberVO vo) {
-		return sqlSession.update("pm.delete_update", vo);
+	public int delete_update(PMemberVO basevo) {
+		return sqlSession.update("pm.delete_update", basevo);
 	}
 
 	// 아이디 찾기
