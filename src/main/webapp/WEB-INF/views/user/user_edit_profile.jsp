@@ -6,36 +6,30 @@
 <head>
 	<meta charset="UTF-8">
 	<title>user_edit_profile</title>
-	<script src="resources/js/http_request.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
 	<link href="${pageContext.request.contextPath}/resources/css/user/user_edit_profile.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script type="text/javascript">
-	
-	function photo_upload(f){
+
+	function changeimg(){
+		const fileInput = document.getElementById("photo_file_id");
+		const imagePreview = document.getElementById("m_profile");
 		
-		let new_m_photo_name = f.new_m_photo_name.value;
-		let new_photo = 
+		const file = fileInput.files[0];
 		
-		let url = "photo_upload";
-		let param = {
-				"new_m_photo_name" : new_m_photo_name.split('\\')[2], 
-				"m_idx": ${id.m_idx}
-				"new_photo" : new_m_photo
-		}
-		
-		sendRequest(url, param, photo_check, "POST");
+		 if (file) {
+	            const reader = new FileReader();
+
+	            reader.onload = function(e) {
+	                // 파일 내용을 읽어와서 이미지 소스로 설정
+	                imagePreview.src = e.target.result;
+	            };
+	            // 파일을 읽어옴
+	            reader.readAsDataURL(file);
+	        }
 	}
-	function photo_check(...args){
-		let res = args[0].param;
- 		
-		if(res != 'fail'){
-			alert("사진을 변경했습니다.");
-			let user_photo = document.getElementById("m_profile");
-			user_photo.src="${pageContext.request.contextPath}/resources/upload/user/"+res;
-		} else{
-			alert("올바른 형식의 파일이 아닙니다");
-		}
-	}
+	</script>
+	<script type="text/javascript">
 	
 	function photo_default_update(f){
 		let change_photo = document.getElementById("m_profile");
@@ -44,13 +38,9 @@
 	}
 	
 	function modify(f) {
-        let m_photo_name = f.querySelector('[name="m_photo_name"]').value;
-            m_photo_name = m_photo_name.split('/').pop();
-            
             f.action = "user_profile_modify";
             f.method = "POST";
             f.submit();
-        
 	}
 	</script>
 </head>
@@ -59,20 +49,17 @@
 	<form enctype="multipart/form-data" align="center" name="myForm">
         <div id="m_photo_name">
             <img id="m_profile" src="${pageContext.request.contextPath}/resources/upload/user/${vo.m_photo_name}">
-            <input type="hidden" name="m_photo_name" value="${vo.m_photo_name}">
-            <input type="file" name="new_m_photo_name" value="사진 변경"
-            accept =""
-            >
-            <input type="button" value="사진 미리보기" onclick="photo_upload(this.form)">
-            <input type="button" value="사진 삭제하기" onclick="photo_default_update(this.form)">
-            <input type="hidden" name="m_idx" value="${id.m_idx}">
+            <input type="hidden" name="new_m_photo_name" value="${vo.m_photo_name}">
+            <!-- 확장자 제한 기능 추가(완), 로컬저장소에 이미지 파일이 없을 경우 파일 생성하도록 추가 중 -->
+            <input type="file" id="photo_file_id" name="m_photo" accept=".gif, .jpg, .png, .BMP"
+             onchange="changeimg()" >
+            <input type="button" value="기본프로필 사진으로 변경" onclick="photo_default_update(this.form)">
         </div>
-        이름: "${vo.m_name}"<br>
+        이름: <input name="m_name" value="${vo.m_name}" readonly><br>
         닉네임: <input name="m_username" value="${vo.m_username}">
         <input type="hidden" name="m_idx" value="${vo.m_idx}">
         <input type="button" value="수정완료" onclick="modify(this.form)">
     </form>
 	<div id="footer_bar"></div>
 	</body>
-</body>
 </html>
