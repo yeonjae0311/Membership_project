@@ -35,6 +35,7 @@ function myCheck(...args){
 	localStorage.setItem("id", res.m_id);
 	localStorage.setItem("password", res.m_password);
 	localStorage.setItem("isMaster", res.m_ismaster);
+	localStorage.setItem("isMembership", res.m_ismembership);
 
 	sessionStorage.setItem("session", true);
 	

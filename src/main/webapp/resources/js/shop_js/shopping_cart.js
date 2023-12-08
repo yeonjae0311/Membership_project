@@ -190,7 +190,7 @@ function loadPage(...args){
 	cancel_button.type = "button";
 	cancel_button.value = "cancel";
 	cancel_button.addEventListener("click", () => {
-		console.log("cancel")
+		location.href = "main";
 	})
 
 	confirm_button_bar.appendChild(cancel_button);

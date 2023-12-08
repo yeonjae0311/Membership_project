@@ -8,6 +8,7 @@ import dao.BoardDAO;
 import dao.CartDetailDAO;
 import dao.ItemDAO;
 import dao.PMemberDAO;
+import dao.POrderDAO;
 import dao.ReplyDAO;
 import dao.StoryDAO;
 
@@ -42,5 +43,10 @@ public class Context_3_dao {
 	@Bean
 	public StoryDAO story_DAO(SqlSession sqlSession) {
 		return new StoryDAO(sqlSession);
+	}
+	
+	@Bean
+	public POrderDAO porder_DAO(SqlSession sqlSession) {
+		return new POrderDAO(sqlSession);
 	}
 }

@@ -26,6 +26,7 @@ import dao.BoardDAO;
 import dao.CartDetailDAO;
 import dao.ItemDAO;
 import dao.PMemberDAO;
+import dao.POrderDAO;
 import util.Path;
 import vo.ItemVO;
 import vo.PMemberVO;
@@ -43,12 +44,17 @@ public class ShopController {
 	CartDetailDAO cart_detail_dao;
 	BoardDAO board_dao;
 	PMemberDAO pmember_dao;
+	POrderDAO porder_dao;
 
-	public ShopController(ItemDAO item_dao, CartDetailDAO cart_detail_dao, BoardDAO board_dao, PMemberDAO pmember_dao) {
+	public ShopController(ItemDAO item_dao, CartDetailDAO cart_detail_dao, 
+						  BoardDAO board_dao, PMemberDAO pmember_dao,
+						  POrderDAO porder_dao) {
+		
 		this.item_dao = item_dao;
 		this.cart_detail_dao = cart_detail_dao;
 		this.board_dao = board_dao;
 		this.pmember_dao = pmember_dao;
+		this.porder_dao = porder_dao;
 	}
 
 	@RequestMapping("shop")
@@ -367,4 +373,16 @@ public class ShopController {
 			return "{\"param\": \"fail\"}";
 		}
 	}
+
+/*
+ * @RequestMapping("order_insert") public String order_insert() {
+ * 
+ * // 주문 테이블에 등록 int m_idx = (int) session.getAttribute("m_idx");
+ * 
+ * porder_dao.order_insert(m_idx);
+ * 
+ * // 주문 상세 테이블에 등록
+ * 
+ * return ""; }
+ */
 }

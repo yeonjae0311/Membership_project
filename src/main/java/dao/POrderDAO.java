@@ -9,4 +9,7 @@ public class POrderDAO {
 		this.sqlSession = sqlSession;
 	}
 	
+	public int order_insert(int m_idx) {
+		return sqlSession.insert("o.porder_insert", m_idx);
+	}
 }
