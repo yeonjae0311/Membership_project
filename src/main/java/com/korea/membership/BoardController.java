@@ -76,6 +76,7 @@ public class BoardController {
 		System.out.println(savePath);
 		PMemberVO Logined_vo = (PMemberVO)session.getAttribute("id");
 		vo.setM_idx(Logined_vo.getM_idx());
+		System.out.println(Logined_vo.getM_idx());
 		
 		System.out.println(vo);
 		MultipartFile file = vo.getB_file();
@@ -112,6 +113,7 @@ public class BoardController {
 		}
 		System.out.println("check");
 		vo.setB_filename(filename);
+		System.out.println(vo);
 		int res = board_dao.board_insert(vo);
 		if(res>0) {
 			return "redirect:board";

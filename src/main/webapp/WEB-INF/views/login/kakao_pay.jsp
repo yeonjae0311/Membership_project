@@ -16,25 +16,32 @@
         var msg;
 
         IMP.request_pay({
-            pg : 'kakaopay',
-            pay_method : 'card',
-            merchant_uid : 'merchant_' + new Date().getTime(),
-            name : 'membership 1개월',
-            amount : 9900,
-            buyer_email : '${id.m_email}', 
-            buyer_name : '${id.m_name}',
-            buyer_tel : '${id.m_tel}',
-            buyer_addr : '${id.m_addr1}',
-            buyer_postcode: "01181"        }, function(rsp) {
-            if ( rsp.success ) {
-                //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
-                jQuery.ajax({
-                    url: "/membership/payment_completed", //cross-domain error가 발생하지 않도록 주의
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        imp_uid : rsp.imp_uid
-                        //기타 필요한 데이터가 있으면 추가 전달
+            pg: 'kakaopay',
+            pay_method: 'card',
+            merchant_uid: 'merchant_' + new Date().getTime(),
+            name: 'membership 1개월 외' ,
+            amount: 9900,
+            buyer_email: '${id.m_email}',
+            buyer_name: '${id.m_name}',
+            buyer_tel: '${id.m_tel}',
+            buyer_addr: '${id.m_addr1}',
+            buyer_postcode: "01181"
+        }, function (rsp) {
+            if (rsp.success) {
+                // 서버단에서 결제정보 조회를 위해 fetch로 imp_uid 전달하기
+                fetch('/membership/payment_completed', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json;charset=UTF-8'
+                    },
+                    body: JSON.stringify({
+                        imp_uid: rsp.imp_uid
+                        // 기타 필요한 데이터가 있으면 추가 전달
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
                     }
                     return response.json();
                 })

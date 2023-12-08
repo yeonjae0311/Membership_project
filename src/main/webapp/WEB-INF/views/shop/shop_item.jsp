@@ -18,7 +18,7 @@
 				document.getElementById(amount_button_id).value.trim();
 					
 			let cd_count = document.getElementById("cd_count").value;
-			let i_amount = '${vo.i_amount}';
+			let i_amount = parseInt('${vo.i_amount}');
 					
 			if(amount_button_value == "+" && i_amount > cd_count){
 				document.getElementById("cd_count").value = 
