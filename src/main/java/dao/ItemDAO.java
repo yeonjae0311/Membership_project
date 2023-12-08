@@ -45,12 +45,12 @@ public class ItemDAO {
 		return sqlSession.delete("i.item_delete", i_name);
 	}
 	
-	// 멤버쉽 유효기간 늘리기
+	// membership 유효기간 늘리기
 	public int membership_buy(int idx) {
 		return sqlSession.update("i.membership_buy", idx);
 	}
 	
-	// 멤버쉽 유효기간 늘리기
+	// 로그인시 membership 확인
 	public int membership_check(int idx) {
 		return sqlSession.update("i.membership_check", idx);
 	}
