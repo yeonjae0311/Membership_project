@@ -33,7 +33,7 @@ function send_main(page){
 
 // footer 만들기
 let footer = document.createElement("div");
-footer.innerHTML = "membership page(newjeans)";
+footer.innerHTML = "membership page(newjeans)" + <br/> + "https://github.com/kyh012412/Membership_project" + <br/>;
 
 document.getElementById("footer_bar").appendChild(footer);
 
