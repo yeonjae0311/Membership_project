@@ -81,7 +81,7 @@
 </head>
 <body>
 	<div id="header_bar"></div>
-	<div align="center">
+	<div>
 		<div>
 			<h1>결제하기</h1>	
 		</div>
@@ -130,13 +130,7 @@
 
 	    <div id="total_amount_div"></div>	    
 
-		<div id=button_bar>
-			<div>
-		    	<input type="checkbox" id="ToS">주문자는 개인정보 제공 약관에 모두 동의합니다.
-			</div>
-		    <input type="button" value="결제하기" onclick="kakao_pay()">
-		    <input type="button" value="취소하기" onclick="location.href='shop'">
-		</div>
+		<div id="button_bar_div"></div>
 	</div>
 	<div id="footer_bar"></div>
 </body>

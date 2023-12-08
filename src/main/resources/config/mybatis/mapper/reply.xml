@@ -52,5 +52,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete reply
 		where r_idx=#{r_idx} and m_idx=#{m_idx}
 	</delete>
+	
+	<delete id="delete_reply_by_master" parameterType="int">
+		delete reply
+		where r_idx=#{r_idx}
+	</delete>
 
 </mapper>

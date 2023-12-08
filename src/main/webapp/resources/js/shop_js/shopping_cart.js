@@ -1,8 +1,8 @@
 sendRequest("shopping_cart_list", {}, loadPage, "post");
 
 const order_list = {
-	items: {},
-	final_amount: {}
+	"items": {},
+	"final_amount": {}
 };
 
 function loadPage(...args){
@@ -24,12 +24,10 @@ function loadPage(...args){
 
 		order_item = order_item[i];
 
-		order_item["i_amount"] = item.i_amount;
-		order_item["i_color"] = item.i_color;
 		order_item["i_idx"] = item.i_idx;
 		order_item["i_name"] = item.i_name;
+		order_item["i_color"] = item.i_color;
 		order_item["i_photo_name"] = item.i_photo_name;
-		order_item["i_price"] = item.i_price;
 
 		const item_div = document.createElement("div");
 		item_div.id = i;
@@ -192,7 +190,7 @@ function loadPage(...args){
 	cancel_button.type = "button";
 	cancel_button.value = "cancel";
 	cancel_button.addEventListener("click", () => {
-		console.log("cancel")
+		location.href = "main";
 	})
 
 	confirm_button_bar.appendChild(cancel_button);
@@ -202,6 +200,13 @@ function loadPage(...args){
 	buy_button.type = "button";
 	buy_button.value = "buy";
 	buy_button.addEventListener("click", () => {
+		[...document.getElementsByClassName("item_div")].forEach((element, index) => {
+			let total_amounts = element.lastChild.lastChild.lastChild;
+			
+			order_list.items[element.id]["cd_amount"] = total_amounts.firstChild.querySelector(".item_detail_amount").value;
+			order_list.items[element.id]["total_price"] = total_amounts.lastChild.querySelector(".item_total_price").value;
+		});
+
 		let final_list = order_list.final_amount;
 
 		final_list["total_amount"] = calc_total();
