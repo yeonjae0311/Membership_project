@@ -105,7 +105,7 @@ public class MemberController {
 	public String check_email(@RequestBody String body) throws UnsupportedEncodingException {
 
 		ObjectMapper om = new ObjectMapper();
-
+		
 		Map<String, String> data = null;
 
 		try {
@@ -120,9 +120,9 @@ public class MemberController {
 		int res = pmember_dao.email_check(m_email);
 
 		if (res == 0) {
-			return "{\"param\": \"no m_email\"}";
+			return "{\"param\": \"ok_m_email\"}";
 		}
-		return "{\"param\": \"success\"}";
+		return "{\"param\": \"fail\"}";
 
 	}
 
@@ -167,8 +167,9 @@ public class MemberController {
 
 	@RequestMapping("member_insert")
 	public String insert_member(PMemberVO vo) {
-		int res = pmember_dao.insert(vo);
+		int res = pmember_dao.insert(vo);	
 		if (res > 0) {
+			vo = pmember_dao.get_m_idx(vo.getM_email());
 			session.setAttribute("id", vo);
 			return "redirect:membership_info";
 		}

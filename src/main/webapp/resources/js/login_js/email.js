@@ -27,11 +27,13 @@ document.getElementsByClassName('mail_check_input')[0].addEventListener('input',
         document.getElementsByClassName("mail_check_input")[0].style.border = "1.5px solid #3781E3";/*일치할 경우 테두리 색 변경*/
         document.getElementsByClassName("mail_check_input")[0].style.color = "#3781E3";/*일치할 경우 글자 색 변경*/
         document.getElementById("mail_check_input_info").style.color = "#3781E3";
+        b_email_auth = true;
     } else {                                            
         checkResult.innerHTML = "인증번호를 다시 확인해주세요.";
         checkResult.className = "correct";
         document.getElementsByClassName("mail_check_input")[0].style.border = "1.5px solid red";
         document.getElementsByClassName("mail_check_input")[0].style.color = "red";
         document.getElementById("mail_check_input_info").style.color = "red";
+        b_email_auth = false;
     }
 });
