@@ -68,7 +68,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 							where m_idx=#{m_idx}
 	</update>
 	
-	<update id="default_photo_name" parameterType="java.util.HashMap()">
+	<update id="default_photo_name" parameterType="java.util.HashMap">
 		update p_member set m_photo_name=#{m_photo_name} where m_idx=#{m_idx}
 	</update>
 	
