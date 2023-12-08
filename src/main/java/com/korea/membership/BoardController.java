@@ -185,7 +185,6 @@ public class BoardController {
 	    
 	    int m_idx = Integer.parseInt(data.get("m_idx"));
 	    int b_idx = Integer.parseInt(data.get("b_idx"));
-        System.out.println();
 	        
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("m_idx", m_idx);
@@ -195,7 +194,7 @@ public class BoardController {
 		boolean is_need_to_delete_replys = false;
 		int res = board_dao.delete_board_post(map);
 		
-		if(res!=0) {
+		if(res>0) {//작성자 본인이면 삭제
 			is_need_to_delete_replys = true;
 			result = "delete_by_user";
 			System.out.println("board 삭제 result : "+result);
@@ -205,13 +204,14 @@ public class BoardController {
 			int ismaster = board_dao.is_master(m_idx);
 			if(ismaster == 1) //마스터계정이면 해당글 삭제 성공
 			{
-				board_dao.delete_board_post_by_master(m_idx);
-				is_need_to_delete_replys = true;
-				result = "delete_by_master";
-				System.out.println("board 삭제 result : "+result);
+				int res2 = board_dao.delete_board_post_by_master(b_idx);
+				if(res2>0) {
+					is_need_to_delete_replys = true;
+					result = "delete_by_master";
+				}
 			}
 		}
-		
+		System.out.println("board 삭제 result : "+result);
 		if(is_need_to_delete_replys) {
 			//cascade도 있지만 이중검증
 			reply_dao.delete_replys_by_b_idx(b_idx);
