@@ -1,5 +1,7 @@
 package com.korea.membership;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.HashMap;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -405,61 +408,57 @@ public class MemberController {
 
 		return "redirect:user_info_form";
 	}
-
-	@RequestMapping("photo_upload")
-	@ResponseBody
-	public String photo_upload(@RequestBody String body) {
-		
-		System.out.println("inside");
-		
-		System.out.println(body);
-		
-		ObjectMapper om = new ObjectMapper();
-
-		Map<String, String> data = null;
-
-		try {
-			data = om.readValue(body, new TypeReference<Map<String, String>>() {
-			});
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		System.out.println(data.get("new_m_photo_name"));
-		System.out.println(data.get("m_idx"));
-		System.out.println(data.get("new_photo"));
-		
-		return null;
-//
-//		int m_idx = Integer.parseInt(data.get("m_idx"));
-//		PMemberVO vo = pmember_dao.select_one(m_idx);
-//
-//		String origin_m_photo_name = vo.getM_photo_name();
-//		String new_m_photo_name = data.get("new_m_photo_name");
-//
-//		String m_photo_name = null;
-//		HashMap<String, Object> map = new HashMap<String, Object>();
-//		if (!origin_m_photo_name.equals(new_m_photo_name)) {
-//			m_photo_name = new_m_photo_name;
-//			
-//			map.put("m_idx", m_idx);
-//			map.put("m_photo_name", m_photo_name);
-//			
-//		}
-//		
-//		int res = pmember_dao.photo_upload(map);
-//
-//		if (res == 1) {
-//			return "{\"param\": \"" + m_photo_name + "\"}";
-//		} else {
-//			return "{\"param\": \"fail\"}";
-//		}
-	}
-
-	
 	
 	@RequestMapping("user_profile_modify")
-	public String user_profile_update(PMemberVO vo, Model model) {
+	public String user_profile_update(PMemberVO vo) {
+		String webPath = "/resources/upload/user/";
+		String savePath= request.getServletContext().getRealPath(webPath);
+		
+		int m_idx = vo.getM_idx();
+		String m_userName = vo.getM_username();
+		
+		//콘솔에 절대경로가 잘 출력되는지 보고 절대경로가서 이미지파일이 있는지 확인해보자
+
+		//업로드된 파일의 정보
+		//MultipartRequest 클래스가 없어서 MultipartFile가 받는다.
+		MultipartFile photo = vo.getM_photo();
+		String filename = "no_file";
+
+		//!photo.isEmpty() 내용이 뭐라도 들어있다.
+		if(!photo.isEmpty()) {
+			//photo.getOriginalFilename() : 업로드된 실제 파일명
+			filename=photo.getOriginalFilename();
+
+			//파일을 저장할 경로 지정
+			File saveFile = new File(savePath, filename);
+
+			if(!saveFile.exists()) {//경로가 없다면...
+				//폴더를 만들어라
+				saveFile.mkdirs();
+			} else {
+				//동일한 이름의 파일일 경우 폴더형태로 변환이 불가하므로
+				//업로드 시간을 붙여서 이름이 중복되는 것을 방지
+				//currentTimeMillis 메서드는 자바가 만들어진 1970년부터 2022년 현재까지의 시간을 100분의 1초로 저장하고 있다.
+
+				long time = System.currentTimeMillis();
+				filename = String.format("%d_%s",time,filename);
+				saveFile = new File(savePath, filename);
+			}
+
+			//물리적으로 파일을 업로드 하는 코드
+			try {
+				photo.transferTo(saveFile);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		vo.setM_photo_name(filename);
+		
+		request.setAttribute("vo", vo);
+		
 		int res = pmember_dao.user_profile_update(vo);
 
 		return "redirect:user_edit";
