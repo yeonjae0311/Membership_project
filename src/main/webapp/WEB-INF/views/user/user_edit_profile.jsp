@@ -40,10 +40,30 @@
 	<script type="text/javascript">
 	
 	function photo_default_update(f){
-		let change_photo = document.getElementById("m_profile");
-		console.log("here");
+		/* let change_photo = document.getElementById("m_profile");
 		change_photo.src="${pageContext.request.contextPath}/resources/upload/user/default_profile.jpg";
+		console.log(change_photo.file); */
+		
+		
+		url = "photo_default_upload";
+		param = {
+				"m_idx" : m_idx
+		}
+		sendRequest(url, param, default_update_check, "POST");
 	}
+		
+	function default_update_check(...args) {
+		let res = args[0].param;
+		
+		if(res == 'fail'){
+			alert("탈퇴할 수 없습니다.")
+		} else{
+ 			alert("탈퇴 성공")
+			location.href="logout";
+		}
+		
+	}
+	
 	
 	function modify(f) {
             f.action = "user_profile_modify";
@@ -57,7 +77,7 @@
 	<form enctype="multipart/form-data" name="myForm">
         <div id="m_photo_name">
             <img id="m_profile" src="${pageContext.request.contextPath}/resources/upload/user/${vo.m_photo_name}">
-            <input type="hidden" name="new_m_photo_name" value="${vo.m_photo_name}">
+            <input type="hidden" name="m_photo_name" value="${vo.m_photo_name}">
             <!-- 확장자 제한 기능 추가(완), 로컬저장소에 이미지 파일이 없을 경우 파일 생성하도록 추가 중 -->
             <input type="file" id="photo_file_id" name="m_photo" accept=".gif, .jpg, .png, .BMP"
              onchange="change_img()" >
