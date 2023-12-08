@@ -1,7 +1,5 @@
 package com.korea.membership;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.HashMap;
@@ -22,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -412,6 +409,11 @@ public class MemberController {
 	@RequestMapping("photo_upload")
 	@ResponseBody
 	public String photo_upload(@RequestBody String body) {
+		
+		System.out.println("inside");
+		
+		System.out.println(body);
+		
 		ObjectMapper om = new ObjectMapper();
 
 		Map<String, String> data = null;
@@ -422,30 +424,36 @@ public class MemberController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		int m_idx = Integer.parseInt(data.get("m_idx"));
-		PMemberVO vo = pmember_dao.select_one(m_idx);
-
-		String origin_m_photo_name = vo.getM_photo_name();
-		String new_m_photo_name = data.get("new_m_photo_name");
-
-		String m_photo_name = null;
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		if (!origin_m_photo_name.equals(new_m_photo_name)) {
-			m_photo_name = new_m_photo_name;
-			
-			map.put("m_idx", m_idx);
-			map.put("m_photo_name", m_photo_name);
-			
-		}
-			int res = pmember_dao.photo_upload(map);
-
-			if (res == 1) {
-				return "{\"param\": \"" + m_photo_name + "\"}";
-			} else {
-				return "{\"param\": \"fail\"}";
-			}
-			
+		
+		System.out.println(data.get("new_m_photo_name"));
+		System.out.println(data.get("m_idx"));
+		System.out.println(data.get("new_photo"));
+		
+		return null;
+//
+//		int m_idx = Integer.parseInt(data.get("m_idx"));
+//		PMemberVO vo = pmember_dao.select_one(m_idx);
+//
+//		String origin_m_photo_name = vo.getM_photo_name();
+//		String new_m_photo_name = data.get("new_m_photo_name");
+//
+//		String m_photo_name = null;
+//		HashMap<String, Object> map = new HashMap<String, Object>();
+//		if (!origin_m_photo_name.equals(new_m_photo_name)) {
+//			m_photo_name = new_m_photo_name;
+//			
+//			map.put("m_idx", m_idx);
+//			map.put("m_photo_name", m_photo_name);
+//			
+//		}
+//		
+//		int res = pmember_dao.photo_upload(map);
+//
+//		if (res == 1) {
+//			return "{\"param\": \"" + m_photo_name + "\"}";
+//		} else {
+//			return "{\"param\": \"fail\"}";
+//		}
 	}
 
 	
