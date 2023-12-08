@@ -33,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="add_reply_like" parameterType="java.util.HashMap">
 		insert into REPLY_ISLIKED
-		values(#{r_idx},#{m_idx},'1')
+		values(#{r_idx},#{m_idx})
 	</insert>
 	
 	<delete id="delete_reply_to_unlike" parameterType="java.util.HashMap">
