@@ -10,25 +10,31 @@
 	<link href="${pageContext.request.contextPath}/resources/css/user/user_edit_profile.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script type="text/javascript">
-	function changeimg(){
-		const img_file_id = document.getElementById("photo_file_id");
-		const image_preview = document.getElementById("m_profile");
-		
-		const img = img_file_id.files[0];
-		let allowed_files = ["img/.gif", "img/.jpg","img/png","img/BMP"];
-		
-		
-		 if (img) {
-	            const reader = new FileReader();
+	function change_img() {
+	    const img_file_id = document.getElementById("photo_file_id");
+	    const image_id = document.getElementById("m_profile");
 
-	            reader.onload = function(e) {
-	                // 파일 내용을 읽어와서 이미지 소스로 설정
-	                image_preview.src = e.target.result;
-	                if(img)
-	            };
+	    const img = img_file_id.files[0];
+	    let allowed_extensions = [".gif", ".jpg", ".png", ".bmp"];
+
+	    if (img) {
+	        const reader = new FileReader();
+
+	        reader.onload = function(e) {
+	            // 파일 내용을 읽어와서 이미지 소스로 설정
+	            image_id.src = e.target.result;
+	        };
+
+	        // 파일의 확장자를 체크하여 허용된 확장자인 경우에만 이미지를 설정
+	        let file_extension = img.name.split('.').pop().toLowerCase();
+	        if (allowed_extensions.includes("." + file_extension)) {
 	            // 파일을 읽어옴
 	            reader.readAsDataURL(img);
+	        } else {
+	            alert("허용된 확장자가 아닙니다. GIF, JPG, PNG, BMP 파일만 업로드 가능합니다.");
+	            img_file_id.value = ""; // 파일 선택 창 비우기
 	        }
+	    }
 	}
 	</script>
 	<script type="text/javascript">
@@ -54,7 +60,7 @@
             <input type="hidden" name="new_m_photo_name" value="${vo.m_photo_name}">
             <!-- 확장자 제한 기능 추가(완), 로컬저장소에 이미지 파일이 없을 경우 파일 생성하도록 추가 중 -->
             <input type="file" id="photo_file_id" name="m_photo" accept=".gif, .jpg, .png, .BMP"
-             onchange="changeimg()" >
+             onchange="change_img()" >
             <input type="button" value="기본프로필 사진으로 변경" onclick="photo_default_update(this.form)">
         </div>
         이름: <input name="m_name" value="${vo.m_name}" readonly><br>
