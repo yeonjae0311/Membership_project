@@ -88,8 +88,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="add_board_like" parameterType="java.util.HashMap">
 		insert into BOARD_ISLIKED values (
 		#{b_idx},
-		#{m_idx},
-		'1')	
+		#{m_idx}
+		)	
 	</insert>
 	
 	<delete id="delete_to_unlike" parameterType="java.util.HashMap">
