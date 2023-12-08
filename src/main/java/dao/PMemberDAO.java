@@ -81,4 +81,7 @@ public class PMemberDAO {
 	public int user_profile_update(PMemberVO vo) {
 		return sqlSession.update("pm.user_profile_update", vo);
 	}
+	
+	
+	
 }

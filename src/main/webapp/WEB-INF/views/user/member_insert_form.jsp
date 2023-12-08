@@ -25,7 +25,7 @@
 			
 		<div>비밀번호</div>
 			<div>
-				<input name="m_password" id="m_password" type="password" oninput="password_check(this.form)">
+				<input name="m_password" id="m_password" type="password" oninput="password_check(this.form)" placeholder= "영어와 숫자를 조합한 8자리 이상">
 			</div>
 			
 		<div>
@@ -53,7 +53,10 @@
 			
 		<div>전화번호</div>
 			<div>
-				<input name="m_tel" id="m_tel" placeholder="010-1234-5678">
+				<input name="m_tel" id="m_tel" placeholder="01012345678" oninput="tel_check(this.form)">
+			</div>
+			<div>
+				<div id="tel_check_alert"></div>
 			</div>
 			
 		<div>이메일</div>
@@ -70,7 +73,10 @@
 			
 		<div>생년월일</div>
 			<div>
-				<input name="m_date_of_birth" id="m_date_of_birth" placeholder="YYMMDD 형식으로 넣어주세요">
+				<input name="m_date_of_birth" id="m_date_of_birth" placeholder="YYYYMMDD 형식으로 넣어주세요" oninput="birth_check(this.form)">
+			</div>
+			<div>
+				<div id="birth_check_alert"></div>
 			</div>
 		
 		<div>
