@@ -59,8 +59,8 @@ public class ServletContext implements WebMvcConfigurer {
 	}
 	
 	@Bean
-	public ReplyController reply_controller(ReplyDAO reply_dao) {
-		return new ReplyController(reply_dao);
+	public ReplyController reply_controller(ReplyDAO reply_dao,BoardDAO board_dao) {
+		return new ReplyController(reply_dao,board_dao);
 	}
 
 	@Bean

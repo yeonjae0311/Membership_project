@@ -47,5 +47,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(select count(*) from REPLY_ISLIKED 
 		where r_idx=#{r_idx})
 	</update>
+	
+	<delete id="delete_reply_by_writer" parameterType="java.util.HashMap">
+		delete reply
+		where r_idx=#{r_idx} and m_idx=#{m_idx}
+	</delete>
 
 </mapper>

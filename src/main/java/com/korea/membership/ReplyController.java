@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import dao.BoardDAO;
 import dao.ReplyDAO;
 import vo.PMemberVO;
 
@@ -23,6 +24,7 @@ import vo.PMemberVO;
 public class ReplyController {
 	
 	ReplyDAO reply_dao;
+	BoardDAO board_dao;
 
 	@Autowired
 	HttpServletRequest request;	
@@ -30,8 +32,9 @@ public class ReplyController {
 	@Autowired
 	HttpSession session;
 	
-	public ReplyController(ReplyDAO reply_dao) {
+	public ReplyController(ReplyDAO reply_dao,BoardDAO board_dao) {
 		this.reply_dao = reply_dao;
+		this.board_dao = board_dao;
 	}
 	
 	@RequestMapping("add_reply_like")
@@ -97,5 +100,48 @@ public class ReplyController {
 		}else {
 			return "{\"res\": \"fail\"}";	
 		}
+	}
+	
+	@RequestMapping("delete_reply")
+	@ResponseBody
+	public String after_delete_reply(@RequestBody String body) throws UnsupportedEncodingException{
+		ObjectMapper om = new ObjectMapper();
+
+	    Map<String, String> data = null;
+	    
+	    try {
+	    	data = om.readValue(body, new TypeReference<Map<String, String>>() {});
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+	    int r_idx = Integer.parseInt(data.get("r_idx"));
+	    PMemberVO uservo = (PMemberVO)session.getAttribute("id");
+
+    	//로그인 되어있지 않으면 fail 반환
+	    if(uservo==null) {
+			return "{\"res\": \"fail\"}";	
+	    }
+	    
+	    int m_idx = uservo.getM_idx();
+	    
+	    HashMap<String, Object> map = new HashMap<String, Object>();
+	    map.put("r_idx", r_idx);
+	    map.put("m_idx", m_idx);
+	    
+	    //댓글의 작성자가 본인인지 확인하는 코드 (본인일시 삭제후 1리턴)
+	    int res = reply_dao.delete_reply_by_writer(map);
+	    
+	    if(res>0) {
+	    	return "{\"res\": \"success\",\"r_idx\":\""+r_idx+"\"}";	
+		}
+	    
+	    int ismaster = board_dao.is_master(m_idx);
+	    if(ismaster==1) {
+	    	reply_dao.delete_replys_by_master(r_idx);
+	    	return "{\"res\": \"success\",\"r_idx\":\""+r_idx+"\"}";	
+	    }
+	    
+		return "{\"res\": \"fail\"}";
 	}
 }

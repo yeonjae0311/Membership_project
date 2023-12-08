@@ -10,6 +10,7 @@
 	<script src="${pageContext.request.contextPath}/resources/js/http_request.js"> </script>
 	<script>
 		let bl_isliked;
+		let b_idx='${vo.b_idx}';
 		window.onload = function(){
 			if('${vo.bl_isliked}' == '1'){
 				bl_isliked = '1';
@@ -134,6 +135,30 @@
 			}
 		}
 		
+		function delete_reply(r_idx){
+			
+			let url='delete_reply';
+			let param = {
+				"r_idx":encodeURIComponent(r_idx)
+			}
+			
+			sendRequest(url,param,after_delete_reply,'post');
+		}
+		
+		function after_delete_reply(...args){
+			console.log(args[0]);
+			let res = args[0].res;
+			if(res=='success'){
+				alert('댓글 삭제');
+				alert('board_view?b_idx='+b_idx);
+				location.href='board_view?b_idx='+b_idx;
+			}else if(res=='fail'){
+				alert('댓글 삭제 권한이 없습니다.');
+			}else{
+				alert('예외 발생 res값 : '+res);
+			}
+		}
+		
 	    </script>
 </head>
 <body>
@@ -224,6 +249,7 @@
 				${i.r_content}<br>
 				누적 좋아요 : <input id="r_like_count_${i.r_idx}" type="text" value="${i.r_like_count}"><br>
 				<input id="rl_isliked_${i.r_idx}" type="button" value="${i.rl_isliked}" onclick="reply_like(${i.r_idx})">
+				<input id="r_del_button_${i.r_idx}" type="button" value="댓글 삭제" onclick="delete_reply(${i.r_idx})">
 			</div>
 		</c:forEach>
 	</div>
