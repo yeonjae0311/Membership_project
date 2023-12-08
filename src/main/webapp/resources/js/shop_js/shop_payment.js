@@ -1,10 +1,17 @@
 const order_item_list_obj = JSON.parse(sessionStorage.getItem("order_list"));
 
+sessionStorage.removeItem("order_list");
+
 const order_item_list = order_item_list_obj["items"];
 const totals = order_item_list_obj["final_amount"];
+const final_info = {
+    "total_count": {...totals},
+    "items": {}
+};
 
 const order_item_list_div = document.getElementById("order_item_list_div");
 const total_amount_div = document.getElementById("total_amount_div");
+const button_bar_div = document.getElementById("button_bar_div");
 
 const IMG_PATH = window.location.origin + "/membership/resources/";
 
@@ -41,13 +48,13 @@ for(const key in order_item_list){
     item_info.appendChild(item_info_left);
 
     const item_amount = document.createElement("div");
-    item_amount.className = "item_amount";
-    item_amount.innerHTML = item["i_amount"];
+    item_amount.className = "cd_amount";
+    item_amount.innerHTML = item["cd_amount"];
     item_info_right.appendChild(item_amount);
 
     const item_price = document.createElement("div");
-    item_price.className = "item_price";
-    item_price.innerHTML = item["i_price"];
+    item_price.className = "total_price";
+    item_price.innerHTML = item["total_price"];
     item_info_right.appendChild(item_price);
 
     item_info.appendChild(item_info_right);
@@ -64,6 +71,55 @@ for(const key in totals){
 
     total_amount_div.appendChild(total_amount);
 }
+
+const tos_checkbox_div = document.createElement("div");
+
+const tos_checkbox = document.createElement("input");
+tos_checkbox.id = "tos_checkbox";
+tos_checkbox.type = "checkbox";
+
+tos_checkbox_div.appendChild(tos_checkbox);
+tos_checkbox_div.innerHTML = "주문자는 개인정보 제공 약관에 모두 동의합니다.";
+
+button_bar_div.appendChild(tos_checkbox_div);
+
+const payment_button = document.createElement("input");
+payment_button.type = "button";
+payment_button.value = "결제하기";
+payment_button.addEventListener("click", () => {
+    const item_list_obj = final_info["items"];
+
+    for(const key in order_item_list){
+        item_list_obj[key] = {};
+        const final_item_info = item_list_obj[key];
+        const item_info_obj = order_item_list[key];
+
+        final_item_info["i_idx"] = item_info_obj["i_idx"]
+        final_item_info["cd_amount"] = item_info_obj["cd_amount"]
+        final_item_info["total_price"] = item_info_obj["total_price"]
+    }
+
+    console.log(final_info);
+});
+
+button_bar_div.appendChild(payment_button);
+
+const cancel_button = document.createElement("input");
+cancel_button.type = "button";
+cancel_button.value = "취소하기";
+cancel_button.addEventListener("click", () => {
+    location.href = "shop";
+})
+
+button_bar_div.appendChild(cancel_button)
+
+/*
+<div>
+    <input type="checkbox" id="ToS">주문자는 개인정보 제공 약관에 모두 동의합니다.
+</div>
+<input type="button" value="결제하기" onclick="kakao_pay()">
+<input type="button" value="취소하기" onclick="location.href='shop'"></input>
+*/
 
 console.log(order_item_list);
 console.log(totals);
