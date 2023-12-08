@@ -195,9 +195,17 @@ public class MemberController {
 		int m_idx = Integer.parseInt(data.get("m_idx"));
 		PMemberVO basevo = pmember_dao.select_one(m_idx);
 
-		int res = pmember_dao.delete_update(basevo);
+		// 탈퇴시 아이디랑 메일에 랜덤한 수 넣기
+		Random random = new Random();
+		int check_num = random.nextInt(888888) + 111111;
 
-		System.out.println(res);
+		String m_id = basevo.getM_id() + (int) check_num;
+		String m_email = basevo.getM_email() + (int) check_num;
+
+		basevo.setM_id(m_id);
+		basevo.setM_email(m_email);
+
+		int res = pmember_dao.delete_update(basevo);
 
 		if (res == 1) {
 			return "{\"param\": \"success\"}";
@@ -360,7 +368,7 @@ public class MemberController {
 			return "{\"param\": \"no_m_id\"}";
 		}
 
-		int res = pmember_dao.password_update(m_map);
+		pmember_dao.password_update(m_map);
 
 		session.setAttribute("id", vo);
 
@@ -403,49 +411,34 @@ public class MemberController {
 	}
 
 	@RequestMapping("user_info_modify")
-	public String user_modify(PMemberVO vo, Model model) {
-		int res = pmember_dao.user_info_update(vo);
+	public String user_modify(PMemberVO vo) {
+		pmember_dao.user_info_update(vo);
 
 		return "redirect:user_info_form";
 	}
-	
+
 	@RequestMapping("user_profile_modify")
 	public String user_profile_update(PMemberVO vo) {
+
 		String webPath = "/resources/upload/user/";
-		String savePath= request.getServletContext().getRealPath(webPath);
-		
-		int m_idx = vo.getM_idx();
-		String m_userName = vo.getM_username();
-		
-		//콘솔에 절대경로가 잘 출력되는지 보고 절대경로가서 이미지파일이 있는지 확인해보자
+		String savePath = request.getServletContext().getRealPath(webPath);
 
-		//업로드된 파일의 정보
-		//MultipartRequest 클래스가 없어서 MultipartFile가 받는다.
 		MultipartFile photo = vo.getM_photo();
-		String filename = "no_file";
+		String filename = vo.getM_photo_name();
 
-		//!photo.isEmpty() 내용이 뭐라도 들어있다.
-		if(!photo.isEmpty()) {
-			//photo.getOriginalFilename() : 업로드된 실제 파일명
-			filename=photo.getOriginalFilename();
+		if (!photo.isEmpty()) {
+			filename = photo.getOriginalFilename();
 
-			//파일을 저장할 경로 지정
 			File saveFile = new File(savePath, filename);
 
-			if(!saveFile.exists()) {//경로가 없다면...
-				//폴더를 만들어라
+			if (!saveFile.exists()) {
 				saveFile.mkdirs();
 			} else {
-				//동일한 이름의 파일일 경우 폴더형태로 변환이 불가하므로
-				//업로드 시간을 붙여서 이름이 중복되는 것을 방지
-				//currentTimeMillis 메서드는 자바가 만들어진 1970년부터 2022년 현재까지의 시간을 100분의 1초로 저장하고 있다.
-
 				long time = System.currentTimeMillis();
-				filename = String.format("%d_%s",time,filename);
+				filename = String.format("%d_%s", time, filename);
 				saveFile = new File(savePath, filename);
 			}
 
-			//물리적으로 파일을 업로드 하는 코드
 			try {
 				photo.transferTo(saveFile);
 			} catch (IllegalStateException e) {
@@ -456,10 +449,50 @@ public class MemberController {
 		}
 
 		vo.setM_photo_name(filename);
-		
+
 		request.setAttribute("vo", vo);
-		
-		int res = pmember_dao.user_profile_update(vo);
+
+		pmember_dao.user_profile_update(vo);
+
+		return "redirect:user_edit";
+	}
+
+	@RequestMapping("photo_default_upload")
+	public String photo_default_upload(PMemberVO vo, Model model) {
+
+		String webPath = "/resources/upload/user/";
+		String savePath = request.getServletContext().getRealPath(webPath);
+
+		MultipartFile photo = vo.getM_photo();
+		String filename = "no_file_name";
+
+		if (!photo.isEmpty()) {
+			filename = photo.getOriginalFilename();
+
+			File saveFile = new File(savePath, filename);
+
+			if (!saveFile.exists()) {
+				saveFile.mkdirs();
+			} else {
+				long time = System.currentTimeMillis();
+				filename = String.format("%d_%s", time, filename);
+				saveFile = new File(savePath, filename);
+			}
+
+			try {
+				photo.transferTo(saveFile);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		vo.setM_photo_name("default_profile.jpg");
+
+		request.setAttribute("vo", vo);
+
+		pmember_dao.user_profile_update(vo);
 
 		return "redirect:user_edit";
 	}

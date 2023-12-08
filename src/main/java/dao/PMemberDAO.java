@@ -48,8 +48,8 @@ public class PMemberDAO {
 	}
 
 	// 탈퇴하기
-	public int delete_update(PMemberVO vo) {
-		return sqlSession.update("pm.delete_update", vo);
+	public int delete_update(PMemberVO basevo) {
+		return sqlSession.update("pm.delete_update", basevo);
 	}
 
 	// 아이디 찾기
@@ -67,9 +67,9 @@ public class PMemberDAO {
 		return sqlSession.update("pm.user_info_update", vo);
 	}
 
-	// 프로필 사진 수정하기
-	public int photo_upload(HashMap<String, Object> map) {
-		return sqlSession.update("pm.photo_upload", map);
+	// 기본 프로필로 사진 수정하기
+	public int default_photo_name(HashMap<String, Object> map) {
+		return sqlSession.update("pm.default_photo_name", map);
 	}
 
 	// 프로필 수정

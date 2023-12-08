@@ -19,7 +19,7 @@
 </head>
 <body>
 	<div id="header_bar"></div>
-	<form align="center">
+	<form>
 			<div>
 				 이름 : <input name="m_name" value="${vo.m_name }" >
 			</div>

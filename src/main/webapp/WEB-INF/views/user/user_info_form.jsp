@@ -34,10 +34,6 @@
 		
 	 	function delete_check(...args){
 	 		
-	 		console.log("here")
-	 		
-	 		console.log(args)
-	 		
 			let res = args[0]["param"];
 	 		
 			if(res == 'fail'){
@@ -49,7 +45,7 @@
 		}
 	</script>
 	</head>
-	<body> <!-- a태그와 location.href를 통해 깔끔하게 바꿀 예정 -->
+	<body>
 	<div id="header_bar"></div>
 		<form>
 			<div> 이름 : ${vo.m_name }		</div>
@@ -57,6 +53,7 @@
 			<div> 생년월일 : ${vo.m_date_of_birth }</div>
 			<div> 이메일 : ${vo.m_email }		</div>
 			<input type="hidden" name="m_idx" value="${vo.m_idx }">
+			<input type="hidden" name="m_id" value="${vo.m_id }">
 			<input type="button" name="modify_form" value="수정하기" onclick="modify(this.form)">
 			<input type="button" value="회원탈퇴" onclick="delete_leave(this.form)">
 		</form>
