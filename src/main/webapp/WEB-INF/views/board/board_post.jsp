@@ -7,6 +7,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
+	<link href="${pageContext.request.contextPath}/resources/css/board/board_post.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script>
 		function check_fix(){
 			let isfixed = document.getElementById('isfixed');
@@ -42,6 +44,7 @@
 	</script>
 </head>
 <body>
+	<div id="header_bar"></div>
 	<jsp:include page="/WEB-INF/views/login_check.jsp"/>
 	<%-- <jsp:include page="../login_check.jsp"/> 이렇게 써도 ok--%>		
 	<%-- <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/login_check.jsp"/> 
@@ -92,6 +95,7 @@
 			</table>
 		</form>
 	</div>
+	<div id="footer_bar"></div>
 </body>
 <!-- 로그인 회원가입 비밀번호찾기 멤버십결제 -->
 </html>

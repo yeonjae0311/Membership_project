@@ -29,7 +29,7 @@ public class CartDetailDAO {
 		return sqlSession.update("cd.cart_item_count_change", map);
 	}
 	
-	// i_amount보다 cd_count가 큰 경우 수정
+	// i_amount보다 cd_count가 큰 경우 cd_count--> i_amount
 	public int cd_count_check(int i_amount) {
 		return sqlSession.update("cd.cd_count_check", i_amount);
 	}
@@ -39,6 +39,9 @@ public class CartDetailDAO {
 		return sqlSession.update("cd.item_detail_amount_update", cd_count);
 	}
 	
-	// shop_item 페이지
+	// 장바구니 페이지에서 아이템 삭제
+	public int cart_delete(Map<String, Integer> idx_map) {
+		return sqlSession.delete("cd.cart_delete", idx_map);
+	}
 
 }

@@ -45,10 +45,11 @@
 	</c:choose>
 	
 	<div>
+		<!-- 바꿔야 할것 id, onclick에 붙은 메서드 -->
 		<svg id="svg_test"
 			 onclick="change(event)"
 			 xmlns="http://www.w3.org/2000/svg"
-			 fill="none"
+			 fill="blue"
 			 width="24px"
 			 height="24px"
 			 viewBox="0 0 24 24"

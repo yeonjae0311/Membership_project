@@ -105,7 +105,7 @@ public class ShopController {
 		idx_map.put("m_idx", m_idx);
 		idx_map.put("cd_count", cd_count);
 
-		int insert = cart_detail_dao.cart_insert(idx_map);
+		cart_detail_dao.cart_insert(idx_map);
 
 		// i_amount를 가져와서 update문 한번 수행
 		// --> 수행이 되었으면(update) 페이지 이돟 후 alert로 '구매가능최대수량으로 변경되었습니다.'
@@ -319,6 +319,7 @@ public class ShopController {
 
 	@RequestMapping("shop_payment")
 	public String shop_payment(Model model) {
+
 		// m_idx에 해당하는 유저정보 조회해서 바인딩
 
 		int m_idx = (int) session.getAttribute("m_idx");
@@ -329,5 +330,41 @@ public class ShopController {
 
 		return Path.ShopPath.make_path("shop_payment");
 	}
-
+	
+	@RequestMapping("payment_completed")
+	public String payment_completed() {
+		
+		
+		return Path.ShopPath.make_path("payment_completed");
+	}
+	
+	@RequestMapping("cart_delete")
+	@ResponseBody
+	public String cart_delete(@RequestBody String body) {
+		ObjectMapper om = new ObjectMapper();
+			
+		Map<String, String> data = null;
+		
+		try {
+			data = om.readValue(body, new TypeReference<Map<String, String>>() {
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		int i_idx = Integer.parseInt(data.get("i_idx"));
+		int m_idx = (int) session.getAttribute("m_idx");
+		
+		HashMap<String, Integer> idx_map = new HashMap<String,Integer>();
+		idx_map.put("i_idx", i_idx);
+		idx_map.put("m_idx", m_idx);
+		
+		int res = cart_detail_dao.cart_delete(idx_map);
+		
+		if(res > 0) {
+			return "{\"param\": \"success\"}";
+		} else {
+			return "{\"param\": \"fail\"}";
+		}
+	}
 }

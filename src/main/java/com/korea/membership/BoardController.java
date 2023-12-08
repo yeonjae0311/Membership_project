@@ -112,9 +112,7 @@ public class BoardController {
 		}
 		System.out.println("check");
 		vo.setB_filename(filename);
-		
 		int res = board_dao.board_insert(vo);
-		
 		if(res>0) {
 			return "redirect:board";
 		}else {
@@ -146,7 +144,9 @@ public class BoardController {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("b_idx", b_idx);
 		PMemberVO uservo = (PMemberVO) session.getAttribute("id");
-		if(uservo!=null)
+		if(uservo==null) {
+			return Path.HomePath.make_path("login_check");
+		}
 		map.put("m_idx", uservo.getM_idx());
 		BoardPMemberViewVO vo = board_dao.board_select_one(map);
 		
@@ -196,6 +196,7 @@ public class BoardController {
 		if(res!=0) {
 			is_need_to_delete_replys = true;
 			result = "delete_by_user";
+			System.out.println("board 삭제 result : "+result);
 			//삭제가 됐다면 reply도 삭제
 		}else {
 			//작성자는 아니지만 마스터라면 삭제할수 있어야함
@@ -205,6 +206,7 @@ public class BoardController {
 				board_dao.delete_board_post_by_master(m_idx);
 				is_need_to_delete_replys = true;
 				result = "delete_by_master";
+				System.out.println("board 삭제 result : "+result);
 			}
 		}
 		

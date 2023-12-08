@@ -408,59 +408,6 @@ public class MemberController {
 
 		return "redirect:user_info_form";
 	}
-
-	@RequestMapping("photo_upload")
-	@ResponseBody
-	public String photoUpload(@RequestBody String body) throws UnsupportedEncodingException  {
-//        try {
-//            System.out.println("File Name: " + new_m_photo.getOriginalFilename());
-//            System.out.println("File Size: " + new_m_photo.getSize());
-//
-//            // 여기서 파일 처리 로직을 수행하면 됩니다.
-//
-//            return "File uploaded successfully";
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return "Error uploading file";
-//        }
-
-		ObjectMapper om = new ObjectMapper();
-
-		Map<String, String> data = null;
-
-		try {
-			data = om.readValue(body, new TypeReference<Map<String, String>>() {
-			});
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		int m_idx = Integer.parseInt(data.get("m_idx"));
-		PMemberVO vo = pmember_dao.select_one(m_idx);
-
-		String origin_m_photo_name = vo.getM_photo_name();
-		String new_m_photo_name = data.get("new_m_photo_name");
-
-		String m_photo_name = null;
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		if (!origin_m_photo_name.equals(new_m_photo_name)) {
-			m_photo_name = new_m_photo_name;
-			
-			map.put("m_idx", m_idx);
-			map.put("m_photo_name", m_photo_name);
-			
-		}
-			int res = pmember_dao.photo_upload(map);
-
-			if (res == 1) {
-				return "{\"param\": \"" + m_photo_name + "\"}";
-			} else {
-				return "{\"param\": \"fail\"}";
-			}
-			
-	}
-
-	
 	
 	@RequestMapping("user_profile_modify")
 	public String user_profile_update(PMemberVO vo) {

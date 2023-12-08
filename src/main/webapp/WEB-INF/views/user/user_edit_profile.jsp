@@ -10,7 +10,6 @@
 	<link href="${pageContext.request.contextPath}/resources/css/user/user_edit_profile.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script type="text/javascript">
-
 	function changeimg(){
 		const fileInput = document.getElementById("photo_file_id");
 		const imagePreview = document.getElementById("m_profile");

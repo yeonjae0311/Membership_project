@@ -1,1 +1,41 @@
 @charset "UTF-8";
+
+#storyContainer{
+	width:80%;
+	overflow: auto;
+	 margin: 0 auto;
+}
+
+.story{	
+ 	/* justify-content: center; 가로 중앙 정렬 */
+  	align-items: center;/* 세로 중앙 정렬 */
+	display:inline;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.left{
+	display:inline;
+	width:10%;
+}
+
+.story_img{
+	display:inline;
+	width:80%;
+}
+
+
+.right{
+	display:inline;
+	width:10%;
+}
+
+.comment textarea {
+	width:50%; 
+	height:15%;
+}
+
+.valuebox{
+	border: none;
+  	width: min-content;
+}

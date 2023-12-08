@@ -7,9 +7,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
+	<link href="${pageContext.request.contextPath}/resources/css/board/board_view.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script src="${pageContext.request.contextPath}/resources/js/http_request.js"> </script>
 	<script>
 		let bl_isliked;
+		let b_idx='${vo.b_idx}';
 		window.onload = function(){
 			if('${vo.bl_isliked}' == '1'){
 				bl_isliked = '1';
@@ -41,9 +44,9 @@
                 "b_idx": encodeURIComponent(b_idx)
             };			
 			
-			sendRequest(url,param,resultFn,'post');
+			sendRequest(url,param,resultFn3,'post');
 		}
-		function resultFn(...args){
+		function resultFn3(...args){
 			let res = args[0].res;
 			if(res == 'success'){
 				alert('게시글 삭제 성공');
@@ -134,9 +137,34 @@
 			}
 		}
 		
+		function delete_reply(r_idx){
+			
+			let url='delete_reply';
+			let param = {
+				"r_idx":encodeURIComponent(r_idx)
+			}
+			
+			sendRequest(url,param,after_delete_reply,'post');
+		}
+		
+		function after_delete_reply(...args){
+			console.log(args[0]);
+			let res = args[0].res;
+			if(res=='success'){
+				alert('댓글 삭제');
+				alert('board_view?b_idx='+b_idx);
+				location.href='board_view?b_idx='+b_idx;
+			}else if(res=='fail'){
+				alert('댓글 삭제 권한이 없습니다.');
+			}else{
+				alert('예외 발생 res값 : '+res);
+			}
+		}
+		
 	    </script>
 </head>
 <body>
+	<div id="header_bar"></div>
 	<jsp:include page="/WEB-INF/views/login_check.jsp" />
 	<div id="id1">
 		<table border="1" align="center">
@@ -205,13 +233,9 @@
 	<div id="reply_form" align="center">
 		<form>
 			<input type="hidden" name="b_idx" value="${vo.b_idx}">
-			<table border="1">
-				<tr>
-					<td>
-						<textarea name="r_content" width="90%"></textarea>
-					</td>
-				</tr>
-			</table>
+		
+			<textarea name="r_content" style="display:block; width: 60%"></textarea>
+					
 			<input type="button" value="답글 작성 완료" onclick="send_reply(this.form);">
 		</form>
 		<!-- order by로 불러오기 -->
@@ -228,8 +252,10 @@
 				${i.r_content}<br>
 				누적 좋아요 : <input id="r_like_count_${i.r_idx}" type="text" value="${i.r_like_count}"><br>
 				<input id="rl_isliked_${i.r_idx}" type="button" value="${i.rl_isliked}" onclick="reply_like(${i.r_idx})">
+				<input id="r_del_button_${i.r_idx}" type="button" value="댓글 삭제" onclick="delete_reply(${i.r_idx})">
 			</div>
 		</c:forEach>
 	</div>
+	<div id="footer_bar"></div>
 </body>
 </html>

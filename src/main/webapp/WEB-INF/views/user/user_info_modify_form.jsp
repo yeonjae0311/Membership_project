@@ -45,7 +45,7 @@
 			</div>
 			
 			<div id="modify">
-				<name="modify_btn" src="${pageContext.request.contextPath}/resources/img2/btn_modify.gif" onclick="send(this.form)">
+				<input type="button" value="수정완료" onclick="send(this.form)">
 			</div>
 	</form>
 	<div id="footer_bar"></div>

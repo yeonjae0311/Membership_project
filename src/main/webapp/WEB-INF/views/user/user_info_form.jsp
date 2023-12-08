@@ -7,6 +7,7 @@
 	<meta charset="UTF-8">
 	<title>user_info_form</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<link href="${pageContext.request.contextPath}/resources/css/user/user_info_form.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user_js/user_info_form.js"></script>

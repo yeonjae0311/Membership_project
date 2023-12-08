@@ -57,8 +57,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insert_like" parameterType="java.util.HashMap">
 		insert into STORY_ISLIKED values (
 		#{s_idx},
-		#{m_idx},
-		'1'
+		#{m_idx}
 		)
 	</insert>
 	
