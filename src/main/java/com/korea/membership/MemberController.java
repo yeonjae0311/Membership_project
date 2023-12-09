@@ -29,6 +29,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.BoardDAO;
+import dao.ItemDAO;
 import dao.PMemberDAO;
 import util.Path;
 import vo.BoardPMemberViewVO;
@@ -39,6 +40,7 @@ public class MemberController {
 
 	PMemberDAO pmember_dao;
 	BoardDAO board_dao;
+	ItemDAO item_dao;
 
 	@Autowired
 	HttpServletRequest request;
@@ -49,9 +51,10 @@ public class MemberController {
 	@Autowired
 	JavaMailSender mailSender;
 
-	public MemberController(PMemberDAO pmember_dao, BoardDAO board_dao) {
+	public MemberController(PMemberDAO pmember_dao, BoardDAO board_dao, ItemDAO item_dao) {
 		this.pmember_dao = pmember_dao;
 		this.board_dao = board_dao;
+		this.item_dao = item_dao;
 	}
 
 	@RequestMapping("login_form")
@@ -98,6 +101,9 @@ public class MemberController {
 		// 아이디와 비밀번호 체크에 문제가 없다면 세션에 바인딩 한다.
 		session.setAttribute("id", vo);
 		session.setAttribute("m_idx", vo.getM_idx());
+		
+		// 로그인할 때 멤버쉽 기간이 지났는지 안 지났는지 확인
+		item_dao.membership_check(vo.getM_idx());
 
 		// 로그인에 성공한 경우
 		return localStorage;
@@ -108,7 +114,7 @@ public class MemberController {
 	public String check_email(@RequestBody String body) throws UnsupportedEncodingException {
 
 		ObjectMapper om = new ObjectMapper();
-
+		
 		Map<String, String> data = null;
 
 		try {
@@ -123,9 +129,9 @@ public class MemberController {
 		int res = pmember_dao.email_check(m_email);
 
 		if (res == 0) {
-			return "{\"param\": \"no m_email\"}";
+			return "{\"param\": \"ok_m_email\"}";
 		}
-		return "{\"param\": \"success\"}";
+		return "{\"param\": \"fail\"}";
 
 	}
 
@@ -170,8 +176,9 @@ public class MemberController {
 
 	@RequestMapping("member_insert")
 	public String insert_member(PMemberVO vo) {
-		int res = pmember_dao.insert(vo);
+		int res = pmember_dao.insert(vo);	
 		if (res > 0) {
+			vo = pmember_dao.get_m_idx(vo.getM_email());
 			session.setAttribute("id", vo);
 			return "redirect:membership_info";
 		}

@@ -11,6 +11,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="id_check" resultType="int" parameterType="String">
 		select count(*) from p_member where m_id=#{m_id}
 	</select>
+	
+	<select id="get_m_idx" resultType="pmember"
+		parameterType="String">
+		select * from p_member where m_email=#{m_email}
+	</select>
 
 	<insert id="insert" parameterType="pmember">
 		insert into p_member values(
@@ -77,6 +82,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 							m_photo_name=#{m_photo_name}
 							where m_idx=#{m_idx}
 	</update>
+	
+	
 </mapper>
 
 

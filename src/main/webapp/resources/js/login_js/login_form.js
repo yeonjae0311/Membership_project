@@ -24,21 +24,18 @@ function send(f){
 }
 
 function myCheck(...args){
-	console.log(args)
-	let res = args[0];
+	let res = args[0].param;
 	
 	let form = document.getElementsByTagName("form")[0];
-
-	console.log(res)
-
-//	localStorage.setItem("idx", res.m_idx);
+	
+	localStorage.setItem("idx", res.m_idx);
 	localStorage.setItem("id", res.m_id);
 	localStorage.setItem("password", res.m_password);
 	localStorage.setItem("isMaster", res.m_ismaster);
 	localStorage.setItem("isMembership", res.m_ismembership);
 
 	sessionStorage.setItem("session", true);
-	
+
 	if(res == 'no_m_id'){
 		alert('아이디가 존재하지 않습니다.');
 		form.m_id.focus();
@@ -48,6 +45,7 @@ function myCheck(...args){
 		form.m_password.focus();
 		return;
 	} else {
+		
 		location.href='main';
 	}
 }

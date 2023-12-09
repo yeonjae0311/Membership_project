@@ -55,4 +55,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="item_delete" parameterType="String">
 		delete from item where i_name=#{i_name}
 	</delete>
+	
+	<!-- membership 구매 -->
+	<update id="membership_buy" parameterType="int">
+	 	<![CDATA[
+		update p_member
+		set m_valid_date = case
+	    when sysdate < m_valid_date then add_months(m_valid_date, 1)
+	    else add_months(sysdate, 1) end,
+		m_ismembership = '1'
+		where m_idx = #{m_idx}
+		]]>
+	</update>
+	
+	<!-- 로그인시 membership 확인 -->
+	<update id="membership_check" parameterType="int">
+	 	<![CDATA[
+		update p_member 
+		set m_ismembership= case when (sysdate < m_valid_date) then '1' else '0' end
+		where m_idx = #{m_idx}
+		]]>
+	</update>
+	
 </mapper>
