@@ -6,8 +6,9 @@ const order_item_list = order_item_list_obj["items"];
 const totals = order_item_list_obj["final_amount"];
 const final_info = {
     "total_count": {...totals},
-    "items": {}
+    "items": [{}]
 };
+
 
 const order_item_list_div = document.getElementById("order_item_list_div");
 const total_amount_div = document.getElementById("total_amount_div");
@@ -87,19 +88,7 @@ const payment_button = document.createElement("input");
 payment_button.type = "button";
 payment_button.value = "결제하기";
 payment_button.addEventListener("click", () => {
-    const item_list_obj = final_info["items"];
-
-    for(const key in order_item_list){
-        item_list_obj[key] = {};
-        const final_item_info = item_list_obj[key];
-        const item_info_obj = order_item_list[key];
-
-        final_item_info["i_idx"] = item_info_obj["i_idx"]
-        final_item_info["cd_amount"] = item_info_obj["cd_amount"]
-        final_item_info["total_price"] = item_info_obj["total_price"]
-    }
-
-    console.log(final_info);
+    order_insert_Fn();
 });
 
 button_bar_div.appendChild(payment_button);
@@ -123,3 +112,33 @@ button_bar_div.appendChild(cancel_button)
 
 console.log(order_item_list);
 console.log(totals);
+
+function order_insert_Fn(){
+
+    const item_list_obj = final_info["items"];
+
+    for(const key in order_item_list){
+        item_list_obj[key] = {};
+        const final_item_info = item_list_obj[key];
+        const item_info_obj = order_item_list[key];
+
+        final_item_info["i_idx"] = item_info_obj["i_idx"]
+        final_item_info["od_count"] = item_info_obj["cd_amount"]
+        final_item_info["od_sum"] = item_info_obj["total_price"]
+    }
+    
+    console.log(final_info);
+    console.log(final_info.items[0]);
+
+    const url = "order_insert";
+
+    let param = final_info;
+
+    sendRequest(url, param, go_to_payment, "post");
+}
+
+function go_to_payment(...args) {
+
+    location.href = "kakao_pay";
+
+}

@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import dao.BoardDAO;
 import dao.CartDetailDAO;
 import dao.ItemDAO;
+import dao.OrderDetailDAO;
 import dao.PMemberDAO;
 import dao.POrderDAO;
 import dao.ReplyDAO;
@@ -48,5 +49,10 @@ public class Context_3_dao {
 	@Bean
 	public POrderDAO porder_DAO(SqlSession sqlSession) {
 		return new POrderDAO(sqlSession);
+	}
+	
+	@Bean
+	public OrderDetailDAO order_detail_DAO(SqlSession sqlSession) {
+		return new OrderDetailDAO(sqlSession);
 	}
 }

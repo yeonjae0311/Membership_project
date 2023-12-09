@@ -3,17 +3,35 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="o">
-
+	
 	<!-- p_order 테이블에 주문내역 생성 -->
-	<insert id="porder_insert" parameterType="int">
+	<insert id="porder_insert" parameterType="java.util.HashMap">
 		insert into p_order values(CONCAT(TO_CHAR(sysdate,'YYYYMMDD'),
-								   TO_CHAR(SEQ_p_order_IDX.nextval)), #{m_idx))	
+								   TO_CHAR(SEQ_p_order_IDX.nextval)), 
+								   #{m_idx}, 
+								   #{o_sum},
+								   #{o_count})	
 	</insert>
 	
 	<!-- order_detail 테이블에 상세 주문내역 생성 -->
-	<insert id="order_detail_insert">
-		insert into order_detail values(SEQ_ORDER_DETAIL_IDX.nextval, 
+	<insert id="order_detail_insert" parameterType="java.util.List">
+	    INSERT INTO order_detail
+	    (
+	        od_idx, o_idx, i_idx, od_count, od_sum
+	    )
+	    VALUES
+	    (
+	    <foreach collection="map_detail" item="item" separator=",">
+	        SEQ_order_detail_IDX.nextval
+	        , CONCAT(TO_CHAR(sysdate,'YYYYMMDD'),
+			  TO_CHAR(SEQ_p_order_IDX.currentval))
+	        , #{item.i_idx}
+	        , #{item.od_count}
+	        , #{item.od_sum}
+   		</foreach>
+    	)
 	</insert>
+		
 
 </mapper>
 

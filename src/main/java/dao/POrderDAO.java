@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 
 public class POrderDAO {
@@ -9,7 +11,7 @@ public class POrderDAO {
 		this.sqlSession = sqlSession;
 	}
 	
-	public int order_insert(int m_idx) {
-		return sqlSession.insert("o.porder_insert", m_idx);
+	public int order_insert(Map<String, Object> map_order) {
+		return sqlSession.insert("o.porder_insert", map_order);
 	}
 }

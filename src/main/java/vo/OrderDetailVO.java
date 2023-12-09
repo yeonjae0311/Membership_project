@@ -10,6 +10,7 @@ public class OrderDetailVO {
 				o_idx,
 				i_idx;
     private int od_count,
-    			od_sum;
+    			od_sum
+    			;
 }
 
