@@ -44,6 +44,12 @@
 		</c:when>
 	</c:choose>
 	
+	<div id="photo_gallery">
+		 <id = "m_photo_gallery" {>
+	
+	
+	</div>
+	
 	<div>
 		<!-- 바꿔야 할것 id, onclick에 붙은 메서드 -->
 		<svg id="svg_test"

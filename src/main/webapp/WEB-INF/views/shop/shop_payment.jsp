@@ -12,7 +12,6 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script type="module" src="${pageContext.request.contextPath}/resources/js/shop_js/shop_payment.js" defer></script>
 	<script>
-		
 	    function addr() {
 	        new daum.Postcode({
 	            oncomplete: function(data) {
@@ -76,7 +75,6 @@
 	    		location.href="kakao_pay";
 	    	}
 	    }
-    
 	</script>
 </head>
 <body>
