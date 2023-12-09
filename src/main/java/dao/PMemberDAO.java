@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import vo.ItemVO;
 import vo.PMemberVO;
 
 public class PMemberDAO {

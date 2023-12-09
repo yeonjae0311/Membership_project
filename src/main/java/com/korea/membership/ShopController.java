@@ -374,15 +374,4 @@ public class ShopController {
 		}
 	}
 
-/*
- * @RequestMapping("order_insert") public String order_insert() {
- * 
- * // 주문 테이블에 등록 int m_idx = (int) session.getAttribute("m_idx");
- * 
- * porder_dao.order_insert(m_idx);
- * 
- * // 주문 상세 테이블에 등록
- * 
- * return ""; }
- */
 }
