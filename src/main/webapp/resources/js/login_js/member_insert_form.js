@@ -1,33 +1,37 @@
 let b_id_check = false;
+let b_password_check = false;
 let b_email_check = false;
+let b_email_auth = false;
+let b_birth_check = false;
+let b_tel_check = false;
 
 function send(f){
-	let m_id = document.getElementById("m_id");	
-	let m_password = document.getElementById("m_password");
-	let m_check_password = document.getElementById("m_check_password");
-	let m_date_of_birth = document.getElementById("m_date_of_birth");
+
 	let m_name = document.getElementById("m_name");	
 	let m_username = document.getElementById("m_username");	
-	let m_tel = document.getElementById("m_tel");	
-	let m_email = document.getElementById("m_email");	
-	let mail_check_input = document.getElementById("mail_check_input");	
 	
-	let reg_tel = /01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}/;
-	let reg_email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-	let reg_birth = /^(?:[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1,2][0-9]|3[0,1]))$/;
-	
-	if(m_id.value == ''){
-		alert('아이디를 입력해주세요');
+	if(!b_id_check){
+		alert('아이디 중복체크를 해주세요')
 		return;
 	}
 	
-	if(m_password.value == ''){
-		alert('비밀번호를 입력해주세요');
+	if(!b_password_check){
+		alert('비밀번호를 동일하게 맞춰주세요')
 		return;
 	}
 	
-	if(m_password.value != m_check_password.value) {
-		alert("입력한 비밀번호를 다시 확인해주세요.");
+	if(!b_email_check){
+		alert('이메일 중복체크를 해주세요');
+		return;
+	}
+	
+	if(!b_email_auth){
+		alert('이메일 인증을 해주세요');
+		return;
+	}
+	
+	if(!b_birth_check){
+		alert('생년월일을 형식에 맞게 써주세요');
 		return;
 	}
 	
@@ -41,42 +45,9 @@ function send(f){
 		return;
 	}
 	
-	if(!reg_tel.test(m_tel.value)){
-		alert('올바른 번호 형식이 아닙니다');
-		return;
-	}
 	
-	if(!reg_email.test(m_email.value)){
-		alert('올바른 이메일 형식이 아닙니다');
-		return;
-	}
 	
-	if(mail_check_input.value == ''){
-		alert('인증번호를 입력해주세요');
-		return;
-	}
-	
-	if(!reg_birth.test(m_date_of_birth.value)) {
-		alert('올바른 생년월일 형식이 아닙니다.');
-		return;
-	}
-	
-	if(code != mail_check_input.value) {
-		alert(code);
-		alert('인증번호를 확인해주세요');
-		return;
-	}
-	
-	if(!b_id_check){
-		alert('아이디 중복체크를 입력해주세요');
-		return;
-	}
-	
-	if(!b_email_check){
-		alert('이메일 중복체크를 입력해주세요');
-		return;
-	}
-	
+	f.method = "post";
 	f.action = "member_insert";
 	f.submit();
 }
@@ -85,7 +56,9 @@ function check_id(f){
 	let m_id = document.getElementById("m_id").value.trim();
 	
 	if(m_id == ''){
-		alert('아이디를 입력해주세요');
+		id_check_alert.innerText = '아이디를 입력해주세요';
+		id_check_alert.style.color = 'red';
+		b_id_check = false;
 		return;
 	}
 	
@@ -100,22 +73,65 @@ function check_id(f){
 }
 
 function i_check(...args){
-
+	
 	let res = args[0].param
 	
 	let form = document.getElementsByTagName("form")[0];
 	
 	if(res == 'ok_m_id'){
-		alert('사용 가능한 아이디 입니다.');
+		id_check_alert.innerText = "사용가능한 아이디입니다.";
+		id_check_alert.style.color = "#3781E3";
 		form.m_id.focus();
 		b_id_check = true;
 		return;	
 	} else {
-		alert('중복된 아이디가 존재합니다.');
-			
+		id_check_alert.innerText = "이미 사용중인 아이디입니다.";
+		id_check_alert.style.color = 'red';
+		b_id_check = false;
 	}
 }
 
+function password_check(f) {
+	let password_check_alert = document.getElementById("password_check_alert");
+	let reg_password = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/;
+	
+	let m_password = f.m_password.value;
+	if(m_password == ''){
+		password_check_alert.innerText = "비밀번호를 입력하세요";
+		password_check_alert.style.color = 'red';
+		return;
+	}else if(!reg_password.test(m_password)){
+		password_check_alert.innerText = "올바른 비밀번호 형식이 아닙니다";
+		password_check_alert.style.color = 'red';
+		return;
+	} else {
+		password_check_alert.innerText = "비밀번호를 입력하셨습니다.";
+		password_check_alert.style.color = "#3781E3";
+	}
+}
+function re_password_check(f) {
+	let password_check_alert = document.getElementById("password_check_alert");
+	let re_password_check_alert = document.getElementById("re_password_check_alert");
+	
+	let m_password = document.getElementById("m_password").value.trim();
+	let m_re_password = document.getElementById("m_re_password").value.trim();
+	
+	if(m_re_password == ''){
+		re_password_check_alert.innerText = "비밀번호를 다시 입력하세요.";
+		re_password_check_alert.style.color = 'red';
+		b_password_check = false;
+		return;
+	}else if(m_password != m_re_password){
+		re_password_check_alert.innerText = "비밀번호가 다릅니다.";
+		re_password_check_alert.style.color = 'red';
+		b_password_check = false;
+		return;	
+	}else{
+		re_password_check_alert.innerText = "비밀번호가 같습니다.";
+		re_password_check_alert.style.color = "#3781E3";
+		b_password_check = true;
+	}
+}
 
 function check_email(f){
 	let m_email = document.getElementById("m_email").value;
@@ -123,13 +139,18 @@ function check_email(f){
 	let reg_email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 	
 	if(m_email == ''){
-		alert('이메일을 입력해주세요');
-		f.m_email.focus();
+		email_check_alert.innerText = '이메일을 입력하세요';
+		email_check_alert.style.color = 'red';
+		b_email_check = false;
+		b_email_auth = false;
 		return;
 	}
 	
 	if(!reg_email.test(m_email)){
-		alert('올바른 이메일 형식이 아닙니다');
+		email_check_alert.innerText = '올바른 이메일 형식이 아닙니다';
+		email_check_alert.style.color = 'red';
+		b_emai_check = false;
+		b_email_auth = false;
 		return;
 	}
 	
@@ -146,18 +167,76 @@ function e_check(...args){
 	
 	let form = document.getElementsByTagName("form")[0];
 	
-	if(res == 'no m_email'){
-		alert('사용 가능한 이메일입니다.');
-		form.m_email.focus();
+	if(res == 'ok_m_email'){
+		email_check_alert.innerText = "사용가능한 이메일입니다.";
+		email_check_alert.style.color = "#3781E3";
 		b_email_check = true;
+		b_email_auth = false;
+		form.m_email.focus();
 		return;
 	} else {
-		alert('이메일이 존재합니다');
+		email_check_alert.innerText = "이미 사용중인 이메일입니다.";
+		email_check_alert.style.color = 'red';
+		b_emailCheck = false;
+		return;
 	}
 }
 
+function birth_check(f) {
+    let birth_check_alert = document.getElementById("birth_check_alert");
+    let m_date_of_birth = document.getElementById("m_date_of_birth");
+    let year = Number(m_date_of_birth.value.substr(0, 4));
+    let month = Number(m_date_of_birth.value.substr(4, 2));
+    let day = Number(m_date_of_birth.value.substr(6, 2));
+    let today = new Date();
+    let yearNow = today.getFullYear();
+    let result;
 
-function change(){
-	b_id_check = false;
-	b_email_check = false;
+    if (m_date_of_birth.value.length <= 8) {
+
+    if (1900 > year || year > yearNow || month < 1 || month > 12 || day < 1 || day > 31 || ((month == 4 || month == 6 || month == 9 || month == 11) && day == 31) || (month == 2 && (day > 29 || (day == 29 && !(year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)))))) {
+        result = false;
+    } else if (new Date(year, month - 1, day) > today) {
+        // 추가된 부분: 생년월일이 오늘보다 미래인 경우
+        result = false;
+    } else {
+        result = true;
+    }
+} else {
+    result = false;
+}
+
+    if (result) {
+        birth_check_alert.innerText = "올바른 형식입니다";
+        birth_check_alert.style.color = "#3781E3";
+        b_birth_check = true;
+        return;
+    } else {
+        birth_check_alert.innerText = "생년월일 형식에 맞게 입력해주세요";
+        birth_check_alert.style.color = 'red';
+        b_birth_check = false;
+        return;
+    }
+}
+
+function tel_check(f) {
+	let tel_check_alert = document.getElementById("tel_check_alert");
+	let reg_tel = /^010[0-9]{8}$/;
+	
+	let m_tel = f.m_tel.value;
+	if(m_password == ''){
+		tel_check_alert.innerText = "전화번호를 입력하세요";
+		tel_check_alert.style.color = 'red';
+		let b_tel_check = false;
+		return;
+	}else if(!reg_tel.test(m_tel)){
+		tel_check_alert.innerText = "올바른 전화번호 형식이 아닙니다";
+		tel_check_alert.style.color = 'red';
+		let b_tel_check = false;
+		return;
+	} else {
+		tel_check_alert.innerText = "올바른 전화번호 형식입니다";
+		tel_check_alert.style.color = "#3781E3";
+		let b_tel_check = true;
+	}
 }

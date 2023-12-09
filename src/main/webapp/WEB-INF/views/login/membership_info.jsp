@@ -27,7 +27,7 @@
 	</div>
 	
 	<div>
-		<input type="button" value="가입하기" onclick="location.href='shop_payment'">
+		<input type="button" value="가입하기" onclick="location.href='membership_shop_payment'">
 		<input type="button" value="홈으로" onclick="location.href='main'">
 	</div>
 	

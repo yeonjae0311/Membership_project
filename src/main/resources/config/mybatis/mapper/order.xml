@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="order_detail_insert">
 		insert into order_detail values(SEQ_ORDER_DETAIL_IDX.nextval, 
 	</insert>
-
+	
 </mapper>
 
 

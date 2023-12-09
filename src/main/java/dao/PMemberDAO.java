@@ -19,6 +19,11 @@ public class PMemberDAO {
 	public PMemberVO login_check(String m_id) {
 		return sqlSession.selectOne("pm.login_check", m_id);
 	}
+	
+	// m_idx 가져오기
+	public PMemberVO get_m_idx(String m_email) {
+		return sqlSession.selectOne("pm.get_m_idx", m_email);
+	}
 
 	// 아이디 중복체크
 	public int id_check(String m_id) {
@@ -76,4 +81,7 @@ public class PMemberDAO {
 	public int user_profile_update(PMemberVO vo) {
 		return sqlSession.update("pm.user_profile_update", vo);
 	}
+	
+	
+	
 }

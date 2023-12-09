@@ -15,7 +15,7 @@ function leave(f){
 	sendRequest(url,param,del_check,"POST");
 }
 
-function del_check(){
+function del_check(){ 
 	let res = args[0].param;
 		
 	let form = document.getElementsByTagName("form")[0];

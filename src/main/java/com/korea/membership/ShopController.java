@@ -25,6 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import dao.BoardDAO;
 import dao.CartDetailDAO;
 import dao.ItemDAO;
+import dao.OrderDetailDAO;
 import dao.PMemberDAO;
 import dao.POrderDAO;
 import util.Path;
@@ -337,12 +338,6 @@ public class ShopController {
 		return Path.ShopPath.make_path("shop_payment");
 	}
 	
-	@RequestMapping("payment_completed")
-	public String payment_completed() {
-		
-		
-		return Path.ShopPath.make_path("payment_completed");
-	}
 	
 	@RequestMapping("cart_delete")
 	@ResponseBody
@@ -373,16 +368,27 @@ public class ShopController {
 			return "{\"param\": \"fail\"}";
 		}
 	}
+	
+	@RequestMapping("payment_completed")
+	public String payment_completed() {
+		
+		PMemberVO userVo = (PMemberVO) session.getAttribute("id");
+		
+		int m_idx = userVo.getM_idx();
+		item_dao.membership_buy(m_idx);
+		
+		return Path.ShopPath.make_path("payment_completed");
+	}
+	
+	@RequestMapping("membership_shop_payment")
+	public String membership_shop_payment() {
 
-/*
- * @RequestMapping("order_insert") public String order_insert() {
- * 
- * // 주문 테이블에 등록 int m_idx = (int) session.getAttribute("m_idx");
- * 
- * porder_dao.order_insert(m_idx);
- * 
- * // 주문 상세 테이블에 등록
- * 
- * return ""; }
- */
+		return Path.ShopPath.make_path("membership_shop_payment");
+	}
+	
+	@RequestMapping("membership_kakao_pay")
+	public String membership_kakao_pay() {
+
+		return Path.ShopPath.make_path("membership_kakao_pay");
+	}
 }
