@@ -72,7 +72,6 @@ body > div:nth-child(2){
 
 input[type="button"]{
 	background: #bcecff;
-	color: #082a90;
 	height: 3em;
 	width: 6em;
 	outline: none;
@@ -83,10 +82,36 @@ input[type="button"]{
 	border-radius: 20px;
 }
 
+input[type="file"]::file-selector-button{
+	background: #bcecff;
+	height: 3em;
+	width: 8em;
+	outline: none;
+	border: none;
+	padding: 0;
+	margin: 1%;
+	box-sizing: border-box;
+	border-radius: 20px;
+}
+
+textarea{
+	border: none;
+	overflow: auto;
+	outline: none;
+	resize: none;
+	margin: 1% auto;
+	padding: 2%;
+	width: 30em;
+	height: 7em;
+	box-shadow: 6px 6px 1px 1px #bcecff;
+	border: 2px solid #ffbbe3;
+}
+
 #header_bar{
 	display: flex;
 	justify-content: space-between;
-	/* background: #ffbbe3; */
+	background: rgb(255,255,255);
+	/* background: linear-gradient(0deg, #ffffff 0%, #082a90 100%); */
 }
 
 #left_header{
@@ -116,6 +141,7 @@ input[type="button"]{
 	display: flex;
 	justify-content: flex-end;
 	margin: 3% 0;
+	padding-right: 2%;
 }
 
 #footer_bar{

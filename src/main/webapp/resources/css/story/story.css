@@ -1,41 +1,75 @@
 @charset "UTF-8";
 
+#create_story{
+	margin: 2% 0;
+	width: 100vw;
+}
+
+#create_story > input{
+	width: 11em;
+	display: block;
+	margin-left: auto;
+	margin-right: 5%;
+}
+
 #storyContainer{
-	width:80%;
-	overflow: auto;
-	 margin: 0 auto;
+	margin-top: 5%;
 }
 
-.story{	
- 	/* justify-content: center; 가로 중앙 정렬 */
-  	align-items: center;/* 세로 중앙 정렬 */
-	display:inline;
-	margin: 0 auto;
-	text-align: center;
+.story > div{
+	display: flex;
+	width: 80vw;
+	margin: auto;
 }
 
-.left{
-	display:inline;
-	width:10%;
+.left, .right{
+	margin: auto;
+	padding: 0 3%;
+}
+
+.img_class{
+	width: 100%;
 }
 
 .story_img{
-	display:inline;
-	width:80%;
+	width: 100%;
 }
 
-
-.right{
-	display:inline;
-	width:10%;
+.story_info_div > div{
+	margin: 2% auto;
+	display: flex;
 }
 
-.comment textarea {
-	width:50%; 
-	height:15%;
+.count_info_div{
+	display: flex;
+	font-size: 1.1em;
 }
 
-.valuebox{
+.count_info_div > input{
+	width: 5em;
 	border: none;
-  	width: min-content;
+}
+
+.count_info_view, .count_info_like{
+    height: 2em;
+	line-height: 2em;
+	padding: 4%;
+}
+
+.count_info_view{
+	width: 4em;
+}
+
+.count_info_like{
+	width: 6.5em;
+}
+
+.like_button_div{
+	display: flex;
+    align-items: center;
+}
+
+.like_button{
+	height: 2em;
+	width: 2em;
 }

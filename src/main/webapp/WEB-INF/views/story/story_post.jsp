@@ -8,21 +8,28 @@
 	<title>Insert title here</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_css.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_js.js"></script>
+	<jsp:include page="/WEB-INF/views/login_check.jsp"/>
 </head>
 <body>
 	<div id="header_bar"></div>
 	
-	<jsp:include page="/WEB-INF/views/login_check.jsp"/>
-	
-	<div>
-		<form method="post" enctype="multipart/form-data">
-		
-			파일 업로드 : <input type="file" name="s_file"><br>
+	<div id="story_post_div">
+		<form id="story_post_form" method="post" enctype="multipart/form-data">
+			<div id="file_upload_div">
+				<p>
+					파일 업로드:
+				</p>
+				
+				<input type="file" name="s_file">
+			</div>
 			
-			<textarea name="s_content" ></textarea>
+			<div id="caption">
+				<textarea name="s_content" ></textarea>
+			</div>
 			
-			<input type="button" value="스토리 쓰기" onclick="send(this.form)">
-			
+			<div>
+				<input type="button" value="스토리 쓰기" onclick="send(this.form)">
+			</div>			
 		</form>
 	</div>
 	
