@@ -97,8 +97,7 @@
 	    }
 
 	    function callback_addr(...args){
-	    	let res = args[0].m_addr1;
-	    	console.log(res);
+	    	alert("배송지가 등록되었습니다.")
 
 	    }
     
