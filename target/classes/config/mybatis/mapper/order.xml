@@ -15,6 +15,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into order_detail values(SEQ_ORDER_DETAIL_IDX.nextval, 
 	</insert>
 	
+	<select id="select_order_detail_list" parameterType="int" resultType="vo.OrderDetailVO">
+		select * from order_detail_view
+		where o_idx=#{o_idx}
+	</select>
+	
 </mapper>
 
 

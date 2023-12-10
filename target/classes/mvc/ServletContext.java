@@ -20,6 +20,7 @@ import com.korea.membership.StoryController;
 import dao.BoardDAO;
 import dao.CartDetailDAO;
 import dao.ItemDAO;
+import dao.OrderDetailDAO;
 import dao.PMemberDAO;
 import dao.POrderDAO;
 import dao.ReplyDAO;
@@ -40,8 +41,8 @@ public class ServletContext implements WebMvcConfigurer {
 	}
 
 	@Bean
-	public MemberController member_controller(PMemberDAO member_dao, BoardDAO board_dao, ItemDAO item_dao) {
-		return new MemberController(member_dao, board_dao, item_dao);
+	public MemberController member_controller(PMemberDAO member_dao, BoardDAO board_dao, ItemDAO item_dao,OrderDetailDAO order_detail_dao) {
+		return new MemberController(member_dao, board_dao, item_dao,order_detail_dao);
 	}
 	
 	@Bean

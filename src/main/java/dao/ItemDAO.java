@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import vo.ItemVO;
+import vo.POrderVO;
 
 public class ItemDAO {
 	
@@ -53,6 +54,11 @@ public class ItemDAO {
 	// 로그인시 membership 확인
 	public int membership_check(int idx) {
 		return sqlSession.update("i.membership_check", idx);
+	}
+	
+	//유저번호로 주문 목록 조회
+	public List<POrderVO> select_order_list(int m_idx){
+		return sqlSession.selectList("i.select_order_list",m_idx);
 	}
 	
 }
