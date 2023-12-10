@@ -4,10 +4,10 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
-<head>
+<head data-id="shop">
 	<meta charset="UTF-8">
 	<title>NewJeans Membership</title>
-	<link rel="stylesheet" href="resources/css/item_insert.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default.js" defer></script>
 	<script>
 	
 		/* // 옵션 추가
@@ -17,26 +17,24 @@
 		     document.getElementById("option").appendChild(element);
 		} 
 		 */
-		 function upload(){
+		/*  function upload(){
 	
 			 const item_upload = document.getElementById(item_upload);
-		 function upload(item_upload){
-			 
-			 if(item_upload.i_name.value == ''){
-				alert('상품명을 입력하세요');
-				item_upload.i_name.focus();
-				return;
-			 }
-			 
-			 item_upload.submit();
-		 }
+			 function upload(item_upload){
+				 
+				 if(item_upload.i_name.value == ''){
+					alert('상품명을 입력하세요');
+					item_upload.i_name.focus();
+					return;
+				 }
+				 
+				 item_upload.submit();
+			 } */
 	</script>
-	<link href="${pageContext.request.contextPath}/resources/css/shop/item_insert.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/shop_js/item_insert.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 </head>
 <body>
 	<div id="header_bar"></div>
+	
 	<form id="item_upload" action="item_insert_upload" method="POST" enctype="multipart/form-data">
 		상품 이름 : <input name="i_name"><br>		
 		상품 가격 : <input name="i_price">원<br>
@@ -49,5 +47,7 @@
     		<input type="button" value="취소하기" onclick="location.href='shop'">
     	</div>
    	</form>
+   	
+   	<div id="footer_bar"></div>
 </body>
 </html>

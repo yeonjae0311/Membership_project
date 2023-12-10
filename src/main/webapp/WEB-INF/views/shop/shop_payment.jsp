@@ -4,13 +4,11 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
-<head>
+<head data-id="shop">
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="${pageContext.request.contextPath}/resources/css/shop/shop_payment.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default.js" defer></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
-	<script type="module" src="${pageContext.request.contextPath}/resources/js/shop_js/shop_payment.js" defer></script>
 	<script>
 	    function addr() {
 	        new daum.Postcode({

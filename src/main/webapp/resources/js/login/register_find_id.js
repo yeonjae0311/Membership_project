@@ -1,4 +1,5 @@
 let b_email_check = false;
+
 function send_id(f){
 	let m_name = document.getElementById("m_name").value;
 	let m_email = document.getElementById("m_email").value;
@@ -32,7 +33,7 @@ function send_id(f){
 		"m_email": encodeURIComponent(m_email)
 	};
 
-	sendRequest(url, param, check, "post");
+	send_request(url, param, check, "post");
 }
 
 function check(...args){

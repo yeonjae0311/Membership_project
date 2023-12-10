@@ -4,39 +4,14 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
-<head>
+<head data-id="shop">
 	<meta charset="UTF-8">
 	<title>MEMBERSHIP</title>
-	<link href="${pageContext.request.contextPath}/resources/css/shop/shop_item.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/shop_js/shop_item.js" defer></script>
-	<script>
-		function item_amount(amount_button_id){
-
-			let amount_button_value = 
-				document.getElementById(amount_button_id).value.trim();
-					
-			let cd_count = document.getElementById("cd_count").value;
-			let i_amount = parseInt('${vo.i_amount}');
-					
-			if(amount_button_value == "+" && i_amount > cd_count){
-				document.getElementById("cd_count").value = 
-					parseInt(document.getElementById("cd_count").value) + 1;
-			} else if(amount_button_value == "+" && i_amount <= cd_count){
-				document.getElementById(amount_button_id).disabled = true;
-			}
-					
-			if((amount_button_value == "-") && (cd_count > 1)){	
-				document.getElementById("cd_count").value = 
-					parseInt(document.getElementById("cd_count").value) - 1;
-				document.getElementById("button_plus").disabled = false;
-			}
-		}
-	</script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default.js" defer></script>
 </head>
 <body>	
 	<div id="header_bar"></div>
+	
 	<form name="selected_item" action="shopping_cart_insert" method="POST">
 
 		<div>
@@ -63,7 +38,7 @@
 				    <c:forEach var="colors" items="${colors}">
 				    	<option value="${colors}">${colors}</option>
 				    </c:forEach>	   
-				</select><br>
+				</select>
 			</div>
 			
 			<div>
@@ -83,6 +58,7 @@
    			<input type="button" value="결제하기" onclick="send_shop_payment()">
    		</div>
 	</form>
+	
 	<div id="footer_bar"></div>
 </body>
 </html>

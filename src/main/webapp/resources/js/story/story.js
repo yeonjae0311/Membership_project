@@ -9,7 +9,7 @@ function story_update_read_hit(storyclass){
 		"s_idx": encodeURIComponent(s_idx)
 	};
 	
-	sendRequest(url,param,resultFn2,'post');
+	send_request(url,param,resultFn2,'post');
 }
 
 function resultFn2(...args){
@@ -72,7 +72,7 @@ function liked2(s_idx,event){
 			"s_idx":encodeURIComponent(s_idx)
 		}; 
 		
-		sendRequest(url,param,resultFn,'post');	
+		send_request(url,param,resultFn,'post');	
 			 
 	} else if(story_liked.value == 1){
 		story_liked.value = Number(story_liked.value)-1;
@@ -85,7 +85,7 @@ function liked2(s_idx,event){
 			"s_idx":encodeURIComponent(s_idx)
 		}; 
 		
-		sendRequest(url,param,resultFn,'post');	
+		send_request(url,param,resultFn,'post');	
 			
 	} else{
 	}
@@ -107,5 +107,13 @@ window.onload = function() {
 		"s_idx": encodeURIComponent(s_idx)
 	};
 	
-	sendRequest(url,param,resultFn2,'post');
+	send_request(url,param,resultFn2,'post');
 };
+
+function change(event){
+	if(event.target.style.fill=="white"){				
+		event.target.style.fill = "red";
+	}else{				
+		event.target.style.fill = "white";
+	}
+}

@@ -1,4 +1,4 @@
-sendRequest("shopping_cart_list", {}, loadPage, "post");
+send_request("shopping_cart_list", {}, loadPage, "post");
 
 const order_list = {
 	"items": {},
@@ -259,7 +259,7 @@ function calculate_amount(e, idx){
 		"i_idx": encodeURIComponent(i_idx)
 	};
 
-	sendRequest(url, param, update_callback, "post");
+	send_request(url, param, update_callback, "post");
 
 }
 
@@ -299,7 +299,7 @@ function cart_delete(idx){
 		"i_idx": encodeURIComponent(i_idx)
 	};
 
-	sendRequest(url, param, delete_callback, "post");
+	send_request(url, param, delete_callback, "post");
 	
 }
 

@@ -1,0 +1,617 @@
+--------------------------------------------------------------------------------
+---------------------------------SEQUENCES
+--------------------------------------------------------------------------------
+
+CREATE SEQUENCE seq_board_idx
+START WITH 1
+INCREMENT BY 1
+NOCACHE;
+
+CREATE SEQUENCE seq_reply_idx
+START WITH 1
+INCREMENT BY 1
+NOCACHE;
+
+CREATE SEQUENCE seq_story_idx
+START WITH 1
+INCREMENT BY 1
+NOCACHE;
+
+CREATE SEQUENCE SEQ_P_MEMBER_M_IDX
+START WITH 1
+INCREMENT BY 1
+NOCACHE;
+
+-- item table 시퀀스
+CREATE SEQUENCE SEQ_ITEM_IDX
+INCREMENT BY 1 --증감숫자가 양수면 증가 음수면 감소 디폴트는 1
+START WITH 1;
+
+-- p_order table 시퀀스 
+CREATE SEQUENCE SEQ_p_order_IDX
+INCREMENT BY 1 --증감숫자가 양수면 증가 음수면 감소 디폴트는 1
+START WITH 1;
+
+-- order_detail 시퀀스
+CREATE SEQUENCE SEQ_order_detail_IDX
+INCREMENT BY 1 --증감숫자가 양수면 증가 음수면 감소 디폴트는 1
+START WITH 1;
+
+--------------------------------------------------------------------------------
+---------------------------------TABLES
+--------------------------------------------------------------------------------
+
+CREATE TABLE p_member (
+	m_idx	number		NOT NULL,
+	m_username	varchar2(30)		NOT NULL,
+	m_password	varchar2(30)		NOT NULL,
+	m_id	varchar2(48)		NOT NULL,
+	m_name	varchar2(30)		NOT NULL,
+	m_tel	varchar2(36)		NOT NULL,
+	m_email	varchar2(60)		NOT NULL,
+	m_photo_name	varchar2(50)		NULL,
+	m_isMaster	varchar2(1)		NOT NULL,
+	m_isMembership	varchar2(1)		NOT NULL,
+	m_valid_date	date		NULL,
+	m_addr1	varchar2(100)		NULL,
+	m_addr2	varchar2(100)		NULL,
+	m_addr3	varchar2(100)		NULL,
+	m_date_of_birth	varchar2(100)		NULL
+);
+
+COMMENT ON COLUMN p_member.m_password IS '비밀번호';
+
+COMMENT ON COLUMN p_member.m_name IS '실명';
+
+COMMENT ON COLUMN p_member.m_photo_name IS '유저사진';
+
+COMMENT ON COLUMN p_member.m_isMaster IS 'boolean은 0, 1 로 구분';
+
+COMMENT ON COLUMN p_member.m_isMembership IS '0,1로 불린체크';
+
+COMMENT ON COLUMN p_member.m_addr2 IS '숫자클수록 상세주소';
+
+COMMENT ON COLUMN p_member.m_date_of_birth IS 'date_of_birth';
+
+CREATE TABLE item (
+	i_idx	number		NULL,
+	i_name	varchar2(100)		NOT NULL,
+	i_price	number		NOT NULL,
+	i_color	varchar2(100)		NOT NULL,
+	i_amount	number		NOT NULL,
+	i_photo_name	varchar2(50)		NOT NULL,
+	i_detail_photo_name	varchar2(50)		NOT NULL
+);
+
+CREATE TABLE board (
+	b_idx	number		NOT NULL,
+	m_idx	number		NOT NULL,
+	b_title	varchar2(100)		NOT NULL,
+	b_content	clob		NOT NULL,
+	b_filename	varchar2(100)		NULL,
+	b_posted_date	date		NOT NULL,
+	b_isFixed	varchar2(1)	DEFAULT 0	NOT NULL,
+	b_ip	varchar2(45)		NOT NULL,
+	b_read_hit	number	DEFAULT 0	NOT NULL,
+	b_like_count	number	DEFAULT 0	NOT NULL
+);
+
+COMMENT ON COLUMN board.b_isFixed IS '1 = 공지사항
+0 = 일반 게시물';
+
+CREATE TABLE reply (
+	r_idx	number		NOT NULL,
+	r_content	clob		NOT NULL,
+	r_date	date		NOT NULL,
+	b_idx	number		NOT NULL,
+	m_idx	number		NOT NULL,
+	r_ip	varchar2(45)		NOT NULL,
+	r_like_count	number	DEFAULT 0	NOT NULL
+);
+
+CREATE TABLE order_detail (
+	od_idx	number		NOT NULL,
+	o_idx	number		NOT NULL,
+	i_idx	number		NULL,
+	od_count	number		NOT NULL,
+	od_sum	number		NULL
+);
+
+COMMENT ON COLUMN order_detail.od_count IS '아이템 주문 수량';
+
+CREATE TABLE cart_detail (
+	m_idx	number		NOT NULL,
+	i_idx	number		NULL,
+	cd_count	number		NOT NULL
+);
+
+CREATE TABLE story (
+	s_idx	NUMBER		NOT NULL,
+	m_idx	number		NOT NULL,
+	s_content	Clob		NULL,
+	s_filename	varchar2(100)		NULL,
+	s_posted_date	date		NOT NULL,
+	s_expected_expiration_time	date		NOT NULL,
+	s_read_hit	number	DEFAULT 0	NOT NULL,
+	s_like_count	number	DEFAULT 0	NOT NULL
+);
+
+COMMENT ON COLUMN story.s_expected_expiration_time IS '이시간이 경과된후 최초 조회까지만 가능
+최초 조회시 스토리삭제';
+
+CREATE TABLE destination (
+	d_addr1	varchar2(30)		NOT NULL,
+	d_addr2	varchar2(30)		NOT NULL,
+	d_addr3	varchar2(100)		NOT NULL,
+	m_idx	number		NOT NULL
+);
+
+COMMENT ON COLUMN destination.d_addr3 IS '상세주소';
+
+CREATE TABLE story_isLiked (
+	s_idx	NUMBER		NOT NULL,
+	m_idx	number		NOT NULL
+);
+
+COMMENT ON COLUMN story_isLiked.s_idx IS 'alter table story_like add constraint sl_pk primary key(s_idx,m_idx);';
+
+CREATE TABLE board_isLiked (
+	b_idx	number		NOT NULL,
+	m_idx	number		NOT NULL
+);
+
+CREATE TABLE reply_isLiked (
+	r_idx	number		NOT NULL,
+	m_idx	number		NOT NULL
+);
+
+CREATE TABLE p_order (
+	o_idx	number		NOT NULL,
+	m_idx	number		NOT NULL
+);
+
+ALTER TABLE p_member ADD CONSTRAINT PK_P_MEMBER PRIMARY KEY (
+	m_idx
+);
+
+ALTER TABLE item ADD CONSTRAINT PK_ITEM PRIMARY KEY (
+	i_idx
+);
+
+ALTER TABLE board ADD CONSTRAINT PK_BOARD PRIMARY KEY (
+	b_idx
+);
+
+ALTER TABLE reply ADD CONSTRAINT PK_REPLY PRIMARY KEY (
+	r_idx
+);
+
+ALTER TABLE order_detail ADD CONSTRAINT PK_ORDER_DETAIL PRIMARY KEY (
+	od_idx
+);
+
+ALTER TABLE story ADD CONSTRAINT PK_STORY PRIMARY KEY (
+	s_idx
+);
+
+ALTER TABLE p_order ADD CONSTRAINT PK_P_ORDER PRIMARY KEY (
+	o_idx
+);
+
+ALTER TABLE board ADD CONSTRAINT FK_p_member_TO_board_1 FOREIGN KEY (
+	m_idx
+)
+REFERENCES p_member (
+	m_idx
+);
+
+ALTER TABLE reply ADD CONSTRAINT FK_board_TO_reply_1 FOREIGN KEY (
+	b_idx
+)
+REFERENCES board (
+	b_idx
+);
+
+ALTER TABLE reply ADD CONSTRAINT FK_p_member_TO_reply_1 FOREIGN KEY (
+	m_idx
+)
+REFERENCES p_member (
+	m_idx
+);
+
+ALTER TABLE order_detail ADD CONSTRAINT FK_p_order_TO_order_detail_1 FOREIGN KEY (
+	o_idx
+)
+REFERENCES p_order (
+	o_idx
+);
+
+ALTER TABLE order_detail ADD CONSTRAINT FK_item_TO_order_detail_1 FOREIGN KEY (
+	i_idx
+)
+REFERENCES item (
+	i_idx
+)
+on delete cascade;
+
+ALTER TABLE cart_detail ADD CONSTRAINT FK_p_member_TO_cart_detail_1 FOREIGN KEY (
+	m_idx
+)
+REFERENCES p_member (
+	m_idx
+);
+
+ALTER TABLE cart_detail ADD CONSTRAINT FK_item_TO_cart_detail_1 FOREIGN KEY (
+	i_idx
+)
+REFERENCES item (
+	i_idx
+)
+on delete cascade;
+
+ALTER TABLE story ADD CONSTRAINT FK_p_member_TO_story_1 FOREIGN KEY (
+	m_idx
+)
+REFERENCES p_member (
+	m_idx
+);
+
+ALTER TABLE destination ADD CONSTRAINT FK_p_member_TO_destination_1 FOREIGN KEY (
+	m_idx
+)
+REFERENCES p_member (
+	m_idx
+);
+
+ALTER TABLE story_isLiked ADD CONSTRAINT FK_story_TO_story_isLiked_1 FOREIGN KEY (
+	s_idx
+)
+REFERENCES story (
+	s_idx
+);
+
+ALTER TABLE story_isLiked ADD CONSTRAINT FK_p_member_TO_story_isLiked_1 FOREIGN KEY (
+	m_idx
+)
+REFERENCES p_member (
+	m_idx
+);
+
+ALTER TABLE board_isLiked ADD CONSTRAINT FK_board_TO_board_isLiked_1 FOREIGN KEY (
+	b_idx
+)
+REFERENCES board (
+	b_idx
+);
+
+ALTER TABLE board_isLiked ADD CONSTRAINT FK_p_member_TO_board_isLiked_1 FOREIGN KEY (
+	m_idx
+)
+REFERENCES p_member (
+	m_idx
+);
+
+ALTER TABLE reply_isLiked ADD CONSTRAINT FK_reply_TO_reply_isLiked_1 FOREIGN KEY (
+	r_idx
+)
+REFERENCES reply (
+	r_idx
+);
+
+ALTER TABLE reply_isLiked ADD CONSTRAINT FK_p_member_TO_reply_isLiked_1 FOREIGN KEY (
+	m_idx
+)
+REFERENCES p_member (
+	m_idx
+);
+
+ALTER TABLE p_order ADD CONSTRAINT FK_p_member_TO_p_order_1 FOREIGN KEY (
+	m_idx
+)
+REFERENCES p_member (
+	m_idx
+);
+
+ALTER TABLE MEMBERSHIP_PROJECT.REPLY_ISLIKED DROP CONSTRAINT FK_REPLY_TO_REPLY_ISLIKED_1;
+
+ALTER TABLE reply_isliked
+ADD CONSTRAINT fk_reply_isliked_reply
+FOREIGN KEY (r_idx) REFERENCES reply(r_idx)
+ON DELETE CASCADE;
+
+ALTER TABLE MEMBERSHIP_PROJECT.STORY_ISLIKED DROP CONSTRAINT FK_STORY_TO_STORY_ISLIKED_1;
+
+ALTER TABLE STORY_isliked
+ADD CONSTRAINT fk_story_isliked_reply
+FOREIGN KEY (s_idx) REFERENCES story(s_idx)
+ON DELETE CASCADE;
+
+ALTER TABLE MEMBERSHIP_PROJECT.BOARD_ISLIKED DROP CONSTRAINT FK_BOARD_TO_BOARD_ISLIKED_1;
+
+ALTER TABLE board_isliked
+ADD CONSTRAINT fk_board_isliked_reply
+FOREIGN KEY (b_idx) REFERENCES board(b_idx)
+ON DELETE CASCADE;
+
+ALTER TABLE STORY_ISLIKED
+ADD CONSTRAINT pk_STORY_ISLIKED
+PRIMARY key(s_idx,m_idx);
+
+ALTER TABLE board_ISLIKED
+ADD CONSTRAINT pk_board_ISLIKED
+PRIMARY key(b_idx,m_idx);
+
+ALTER TABLE REPLY_ISLIKED
+ADD CONSTRAINT pk_REPLY_ISLIKED
+PRIMARY key(r_idx,m_idx);
+
+--------------------------------------------------------------------------------
+---------------------------------VIEWS
+--------------------------------------------------------------------------------
+
+--(글조회를 위한 조인)
+CREATE OR REPLACE VIEW board_p_member_join_view as(
+	SELECT b_idx,
+	b.m_idx,
+	b.B_TITLE,
+	b_filename,
+	b.B_CONTENT,
+	b.B_POSTED_DATE,
+	b.B_ISFIXED,
+	b.B_IP ,
+	b.B_READ_HIT ,
+	b.B_LIKE_COUNT ,
+	(SELECT count(*) FROM reply r WHERE b.b_idx=r.b_idx) b_reply_count,
+	m.M_USERNAME ,
+	m.M_PHOTO_NAME,
+	m.M_ISMASTER
+	FROM board b,P_MEMBER m 
+	WHERE b.M_IDX = m.M_IDX
+);
+
+--(댓글 조회를 위한 조인)
+CREATE OR REPLACE VIEW board_p_member_reply_join_view as(
+	SELECT BMJV.B_IDX,
+	r.R_IDX,
+	r.M_IDX ,
+	(SELECT pm.M_USERNAME  FROM P_MEMBER pm WHERE pm.M_IDX=r.M_IDX) M_USERNAME  ,
+	bmjv.M_PHOTO_NAME ,
+	r.R_CONTENT ,
+	r.R_DATE ,
+	r.R_IP,
+	r.R_LIKE_COUNT 
+	FROM board_p_member_join_view bmjv LEFT JOIN reply r
+	ON r.b_idx=bmjv.b_idx
+);
+
+--(댓글 하나를 위한 실질 댓글 테이터 테이블의 뷰)
+CREATE OR REPLACE VIEW reply_view AS (
+	SELECT r.R_IDX,
+	r.R_CONTENT,
+	r.R_DATE,
+	r.b_idx,
+	r.R_IP,
+	r.R_LIKE_COUNT,
+	m.M_USERNAME , 
+	m.M_PHOTO_NAME
+	FROM reply r LEFT JOIN P_MEMBER m
+	ON r.M_IDX =m.M_IDX
+);
+
+--------------------------------------------------------------------------------
+---------------------------------DUMMY DATA
+--------------------------------------------------------------------------------
+
+INSERT INTO item VALUES (1,'아주예쁜후드티', 50000, 'red', 3,'i_photo_name','i_detail_photo_name');
+INSERT INTO item VALUES (2,'아주예쁜모자', 30000, 'white', 2,'i_photo_name','i_detail_photo_name');
+INSERT INTO item VALUES (3,'아주멋진바지', 20000, 'black', 1,'i_photo_name','i_detail_photo_name');
+
+--PMember테이블
+INSERT INTO p_member values(
+	999,--인덱스
+	'root',--유저네임
+	'1111',--비밀번호
+	'root',--아이디 (이것으로 로그인)
+	'루트실명',
+	'010-1111-1111',
+	'루트1@naver.com',
+	'루트사진이름1',--사진
+	'1',--마스터 계정 체크 1이면 마스터 0이면 일반유저
+	'1',--멤버십 계정 체크 1이면 멤버십 0이면 멤버십아님	
+	ADD_MONTHS(sysdate,1200),--유효기간 디폴트는 sysdate
+	NULL,
+	NULL,
+	NULL,
+	ADD_MONTHS(sysdate,-36)
+);
+
+INSERT INTO p_member values(
+	1001,
+	'testusername1',
+	'1111',
+	'testid1',
+	'testname1',
+	'010-1111-1111',
+	'테스트1@naver.com',
+	'유저사진이름1',
+	'0',--마스터 계정 체크 1이면 마스터 0이면 일반유저	
+	'1',--멤버십 계정 체크 1이면 멤버십 0이면 멤버십아님	
+	sysdate,--유효기간 디폴트는 sysdate
+	NULL,
+	NULL,
+	NULL,--미완성미완성미완성미완성미완성미완성미완성
+	ADD_MONTHS(sysdate,-36)
+);
+
+
+INSERT INTO p_member values(
+	1002,
+	'testusername2',
+	'1111',
+	'testid2',
+	'testname2',
+	'010-2222-2222',
+	'테스트2@naver.com',
+	'유저사진이름2',
+	'0',--마스터 계정 체크 1이면 마스터 0이면 일반유저	
+	'0',--멤버십 계정 체크 1이면 멤버십 0이면 멤버십아님	
+	ADD_MONTHS(sysdate,36),--유효기간 디폴트는 sysdate
+	NULL,
+	NULL,
+	NULL,--미완성미완성미완성미완성미완성미완성미완성
+	ADD_MONTHS(sysdate,-36)
+);
+
+--보드 더미데이터 갱신
+	INSERT INTO board VALUES (
+	9991,--게시글번호
+	999,--작성자인덱스
+	'날씨 매우 좋네요',--게시글 제목
+	'안녕하세요 여러분 오늘 날씨가 매우 좋네요 그렇죠?
+	 안녕하세요 여러분 오늘 날씨가 매우 좋네요 그렇죠?
+	 안녕하세요 여러분 오늘 날씨가 매우 좋네요 그렇죠? 
+	안녕하세요 여러분 오늘 날씨가 매우 좋네요 그렇죠? 
+	안녕하세요 여러분 오늘 날씨가 매우 좋네요 그렇죠? 
+	안녕하세요 여러분 오늘 날씨가 매우 좋네요 그렇죠? ',--글내용 clob
+	NULL,
+	sysdate,--작성시간
+	'0',
+	'127.0.0.1',
+	0,
+	0
+);
+
+INSERT INTO board VALUES (
+	9992,--게시글번호
+	999,--작성자인덱스
+	'날씨 매우 좋네요',--게시글 제목
+	'안녕하세요 여러분 오늘 날씨가 매우 좋네요 그렇죠?
+	 안녕하세요 여러분 오늘 날씨가 매우 좋네요 그렇죠?
+	 안녕하세요 여러분 오늘 날씨가 매우 좋네요 그렇죠? 
+	안녕하세요 여러분 오늘 날씨가 매우 좋네요 그렇죠? 
+	안녕하세요 여러분 오늘 날씨가 매우 좋네요 그렇죠? 
+	안녕하세요 여러분 오늘 날씨가 매우 좋네요 그렇죠? ',--글내용 clob 
+	NULL,
+	sysdate,--작성시간
+	'0',
+	'127.0.0.1',
+	0,
+	0
+);
+
+INSERT INTO board VALUES (
+	9993,--게시글번호
+	999,--작성자인덱스
+	'날씨 매우 좋네요',--게시글 제목
+	'타인을 존중하고 배려해주세요 타인을 존중하고 배려해주세요 
+	타인을 존중하고 배려해주세요 타인을 존중하고 배려해주세요 
+	타인을 존중하고 배려해주세요 타인을 존중하고 배려해주세요 
+	타인을 존중하고 배려해주세요 타인을 존중하고 배려해주세요 
+	타인을 존중하고 배려해주세요  ',--글내용 clob 
+	NULL,
+	sysdate,--작성시간
+	'1',--1이면 공지글
+	'127.0.0.3',
+	0,
+	0
+);
+
+INSERT INTO board VALUES (
+	9994,--게시글번호
+	999,--작성자인덱스
+	'공지글 테스트 제목2',--게시글 제목
+	'타인을 존중하고 배려해주세요 타인을 존중하고 배려해주세요 
+	타인을 존중하고 배려해주세요 타인을 존중하고 배려해주세요 
+	타인을 존중하고 배려해주세요 타인을 존중하고 배려해주세요 
+	타인을 존중하고 배려해주세요 타인을 존중하고 배려해주세요 
+	타인을 존중하고 배려해주세요  ',--글내용 clob 
+	NULL,
+	sysdate,--작성시간
+	'1',--1이면 공지글
+	'127.0.0.4',
+	0,
+	0
+);
+
+INSERT INTO board VALUES (
+	1001,--게시글번호
+	1001,--작성자인덱스
+	'팬클럽 테스트 제목1',--게시글 제목
+	'팬클럽 회장님 입장하십니다.
+	팬클럽 회장님 입장하십니다.
+	팬클럽 회장님 입장하십니다.
+	팬클럽 회장님 입장하십니다.
+	팬클럽 회장님 입장하십니다. ',--글내용 clob 
+	NULL,
+	sysdate,--작성시간
+	'0',
+	'127.0.0.1',
+	0,
+	0
+);
+
+INSERT INTO board VALUES (
+	1002,--게시글번호
+	1001,--작성자인덱스
+	'팬클럽 테스트 제목2',--게시글 제목
+	'팬클럽 회장님 입장하십니다.
+	팬클럽 회장님 입장하십니다.
+	팬클럽 회장님 입장하십니다.
+	팬클럽 회장님 입장하십니다.
+	팬클럽 회장님 입장하십니다. ',--글내용 clob 
+	NULL,
+	sysdate,--작성시간
+	'0',
+	'127.0.0.2',
+	0,
+	0
+);
+
+INSERT INTO board VALUES (
+	1003,--게시글번호
+	1002,--작성자인덱스
+	'팬클럽 테스트 제목3',--게시글 제목
+	'팬클럽 회장님 퇴장하십니다.
+	팬클럽 회장님 퇴장하십니다.
+	팬클럽 회장님 퇴장하십니다.
+	팬클럽 회장님 퇴장하십니다.
+	팬클럽 회장님 퇴장하십니다. ',--글내용 clob 
+	NULL,
+	sysdate,--작성시간
+	'0',
+	'127.0.0.3',
+	0,
+	0
+);
+
+INSERT INTO board VALUES (
+	1004,--게시글번호
+	1002,--작성자인덱스
+	'팬클럽 테스트 제목4',--게시글 제목
+	'팬클럽 회장님 퇴장하셨습니다.
+	팬클럽 회장님 퇴장하셨습니다.
+	팬클럽 회장님 퇴장하셨습니다.
+	팬클럽 회장님 퇴장하셨습니다.
+	팬클럽 회장님 퇴장하셨습니다. ',--글내용 clob 
+	NULL,
+	sysdate,--작성시간
+	'0',
+	'127.0.0.4',
+	0,
+	0
+);
+
+INSERT INTO reply VALUES(
+	1000,
+	'내용물 엄청나게 긴것!!
+	내용물 엄청나게 긴것!!
+	내용물 엄청나게 긴것!!
+	내용물 엄청나게 긴것!!
+	내용물 엄청나게 긴것!!
+	내용물 엄청나게 긴것!!',
+	sysdate,
+	1004,
+	1001,
+	'127.0.0.1',
+	0
+);
