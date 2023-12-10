@@ -20,7 +20,7 @@ function send(f){
 		"m_id": encodeURIComponent(m_id),
 		"m_password": encodeURIComponent(m_password)
 	};
-	send_request(url, param, my_check, "post");
+	sendRequest(url, param, my_check, "post");
 }
 
 function my_check(...args){

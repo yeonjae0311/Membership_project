@@ -1,7 +1,6 @@
 package com.korea.membership;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import util.Path;
@@ -16,9 +15,7 @@ public class MainController {
 	}
 	
 	@RequestMapping("main")
-	public String main(Model model) {
-		
-		
+	public String main() {
 		
 		return "redirect:/";
 	}

@@ -15,7 +15,7 @@
         <div id="m_photo_name">
             <img id="m_profile" src="${pageContext.request.contextPath}/resources/upload/user/${vo.m_photo_name}">
             <input type="hidden" name="m_photo_name" value="${vo.m_photo_name}">
-            <!-- 확장자 제한 기능 추가(완), 로컬저장소에 이미지 파일이 없을 경우 파일 생성하도록 추가 중 -->
+            <!-- 확장자 제한 기능 추가(완)-->
             <input type="file" id="photo_file_id" name="m_photo" accept=".gif, .jpg, .png, .BMP"
              onchange="change_img()" >
             <input type="button" value="기본프로필 사진으로 변경" onclick="photo_default_update(this.form)">

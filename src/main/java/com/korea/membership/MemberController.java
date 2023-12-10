@@ -231,7 +231,10 @@ public class MemberController {
 		int m_idx = (int) session.getAttribute("m_idx");
 
 		PMemberVO vo = pmember_dao.select_one(m_idx);
-
+		
+		
+		
+		
 		model.addAttribute("vo", vo);
 
 		return Path.UserPath.make_path("user_edit");
