@@ -391,7 +391,14 @@ public class MemberController {
 	}
 
 	@RequestMapping("kakao_pay")
-	public String kakao_pay() {
+	public String kakao_pay(Model model) {
+		
+		String payment_name = String.valueOf(session.getAttribute("payment_name"));
+		String payment_price = String.valueOf(session.getAttribute("payment_price"));
+		
+		model.addAttribute("payment_price", payment_price);
+		model.addAttribute("payment_name", payment_name);
+				
 		return Path.LoginPath.make_path("kakao_pay");
 	}
 

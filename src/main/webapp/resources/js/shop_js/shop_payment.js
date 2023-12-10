@@ -138,7 +138,7 @@ function order_insert_Fn(){
 }
 
 function go_to_payment(...args) {
-
+    
     location.href = "kakao_pay";
 
 }

@@ -62,6 +62,7 @@ public class ShopController {
 		this.board_dao = board_dao;
 		this.pmember_dao = pmember_dao;
 		this.porder_dao = porder_dao;
+		this.order_detail_dao = order_detail_dao;
 	}
 
 	@RequestMapping("shop")
@@ -405,32 +406,30 @@ public class ShopController {
 	   
 	   JSONArray items = (JSONArray)object.get("items");
 	   
-	   List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
- 	   
-	   for(int i = 0 ; i<items.size();i++){
+	   porder_dao.order_insert(map_order);
+	   	   
+	   for(int i = 0 ; i<items.size();i++){	   
 		   
 		   Map<String, Object> map_detail = new HashMap<String, Object>();
 		   
 		   object = (JSONObject) items.get(i);
-           String i_idx = String.valueOf(object.get("i_idx")); 
-           String od_count = String.valueOf(object.get("od_count")); 
-           String od_sum = String.valueOf(object.get("od_sum")); 
+           int i_idx = Integer.parseInt(String.valueOf(object.get("i_idx"))); 
+           int od_count = Integer.parseInt(String.valueOf(object.get("od_count"))); 
+           int od_sum = Integer.parseInt(String.valueOf(object.get("od_sum"))); 
+             
+           map_detail.put("i_idx", i_idx);
+           map_detail.put("od_count", od_count);
+           map_detail.put("od_sum", od_sum);
+           map_detail.put("m_idx", m_idx);        
            
-           String map_num = "map_detail" + i;
-           map_detail.put("i_idx", i_idx);     
-           map_detail.put("od_count", od_count);     
-           map_detail.put("od_sum", od_sum);     
-           
-           list.add(map_detail);
-	   }	   
-	   System.out.println(list);   
-	   // porder_dao.order_insert(map_order);	   	   	
-   
-       // 주문 상세 테이블에 등록
+           order_detail_dao.order_detail_insert(map_detail);
+	   }	   	   
 	   
-	   order_detail_dao.order_detail_insert(list);
-   
-       return "{\"param\": \"success\"}";
+	   String payment_name = "NEWJEANS MEMBERSHIP PAYMENT";
+	   session.setAttribute("payment_name", payment_name);
+	   session.setAttribute("payment_price", o_sum);
+	      	     	   
+	   return "{\"param\": \"success\"}";
    }
   
 }

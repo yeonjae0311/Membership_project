@@ -14,22 +14,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<!-- order_detail 테이블에 상세 주문내역 생성 -->
-	<insert id="order_detail_insert" parameterType="java.util.List">
-	    INSERT INTO order_detail
-	    (
-	        od_idx, o_idx, i_idx, od_count, od_sum
-	    )
+	<insert id="order_detail_insert" parameterType="java.util.HashMap">
+		<selectKey resultType="int" keyProperty="o_idx" order="BEFORE">
+	        select o_idx from p_order where ROWNUM = 1
+	    </selectKey>
+
+		INSERT INTO order_detail
+			( od_idx, o_idx, i_idx, OD_COUNT, OD_SUM )
 	    VALUES
-	    (
-	    <foreach collection="map_detail" item="item" separator=",">
-	        SEQ_order_detail_IDX.nextval
-	        , CONCAT(TO_CHAR(sysdate,'YYYYMMDD'),
-			  TO_CHAR(SEQ_p_order_IDX.currentval))
-	        , #{item.i_idx}
-	        , #{item.od_count}
-	        , #{item.od_sum}
-   		</foreach>
-    	)
+	    	(  
+		        SEQ_order_detail_IDX.nextval,
+		        #{o_idx}, 
+		        #{i_idx}, 
+		        #{od_count}, 
+		        #{od_sum}
+			)
 	</insert>
 		
 
