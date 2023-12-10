@@ -2,16 +2,15 @@
 
 <!DOCTYPE html>
 <html>
-<head>
+<head data-id="user">
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="${pageContext.request.contextPath}/resources/css/user/member_insert_form.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
-	<script src="resources/js/http_request.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/login_js/member_insert_form.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default.js" defer></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/login_js/email.js" defer></script>
 </head>
 <body>
 	<div id="header_bar"></div>
+	
 	<form>
 		<div>회원가입</div>
 		<div>아이디</div>
@@ -68,7 +67,6 @@
 				</div>
 				<input class="mail_check_input" id="mail_check_input" disabled placeholder="인증번호를 적어주세요">
 				<div id="mail_check_input_info" ></div>
-				<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/login_js/email.js"></script>
 			</div>
 			
 		<div>생년월일</div>
@@ -80,10 +78,11 @@
 			</div>
 		
 		<div>
-			<input type="button" value="가입" onclick="javascript:send(this.form)"> 
+			<input type="button" value="가입" onclick="send(this.form)"> 
 			<input type="button" value="취소" onclick="location.href='main'">
 		</div>			
 	</form>
+	
 	<div id="footer_bar"></div>
 </body>
 </html>

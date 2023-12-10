@@ -4,13 +4,11 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
-<head>
+<head data-id="shop">
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="${pageContext.request.contextPath}/resources/css/shop/shop_payment.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default.js" defer></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
-	<script type="module" src="${pageContext.request.contextPath}/resources/js/shop_js/membership_shop_payment.js" defer></script>
 	<script>
 		
 	    function addr() {
@@ -81,7 +79,8 @@
 </head>
 <body>
 	<div id="header_bar"></div>
-	<div align="center">
+	
+	<div>
 		<div>
 			<h1>결제하기</h1>	
 		</div>
@@ -138,6 +137,7 @@
 		    <input type="button" value="취소하기" onclick="location.href='shop'">
 		</div>
 	</div>
+	
 	<div id="footer_bar"></div>
 </body>
 </html>

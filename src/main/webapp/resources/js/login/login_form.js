@@ -20,11 +20,13 @@ function send(f){
 		"m_id": encodeURIComponent(m_id),
 		"m_password": encodeURIComponent(m_password)
 	};
-	sendRequest(url, param, myCheck, "post");
+	sendRequest(url, param, my_check, "post");
 }
 
-function myCheck(...args){
-	let res = args[0].param;
+function my_check(...args){
+	let res = args[0];
+
+	console.log(res)
 	
 	let form = document.getElementsByTagName("form")[0];
 	
@@ -36,11 +38,11 @@ function myCheck(...args){
 
 	sessionStorage.setItem("session", true);
 
-	if(res == 'no_m_id'){
+	if(res["param"] == 'no_m_id'){
 		alert('아이디가 존재하지 않습니다.');
 		form.m_id.focus();
 		return;
-	} else if(res == 'no_m_password'){
+	} else if(res["param"] == 'no_m_password'){
 		alert('비밀번호가 일치하지 않습니다');
 		form.m_password.focus();
 		return;

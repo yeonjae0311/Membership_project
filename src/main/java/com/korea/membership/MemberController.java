@@ -104,7 +104,7 @@ public class MemberController {
 		
 		// 로그인할 때 멤버쉽 기간이 지났는지 안 지났는지 확인
 		item_dao.membership_check(vo.getM_idx());
-
+		
 		// 로그인에 성공한 경우
 		return localStorage;
 	}

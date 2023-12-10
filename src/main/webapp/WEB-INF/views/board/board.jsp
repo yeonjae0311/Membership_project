@@ -3,11 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<head>
+<head data-id="board">
 	<meta charset="UTF-8">
 	<title>Board</title>
-	<link href="${pageContext.request.contextPath}/resources/css/board/board.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default.js" defer></script>
 	<style>
 		.b_list{
 			margin:0 auto;
@@ -122,7 +121,8 @@
 				
 			</table>
 		</div>
-		<input type="button" value="글쓰기" onclick="location.href='board_post';">
+		<input type="button" value="글쓰기" onclick="location.href='board_post'">
+		
 		<div id="footer_bar"></div>
 	</body>
 </html>

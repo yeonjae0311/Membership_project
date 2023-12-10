@@ -4,12 +4,10 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
-<head>
+<head data-id="board">
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="${pageContext.request.contextPath}/resources/css/board/board_view.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
-	<script src="${pageContext.request.contextPath}/resources/js/http_request.js"> </script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default.js" defer></script>
 	<script>
 		let bl_isliked;
 		let b_idx='${vo.b_idx}';
@@ -164,6 +162,7 @@
 <body>
 	<div id="header_bar"></div>
 	<jsp:include page="/WEB-INF/views/login_check.jsp" />
+	
 	<div id="id1">
 		<table border="1" align="center">
 			<caption>:::게시글 상세보기:::</caption>
@@ -232,6 +231,7 @@
 			</tr>
 		</table>
 	</div>
+	
 	<div id="reply_form" align="center">
 		<form>
 			<input type="hidden" name="b_idx" value="${vo.b_idx}">
@@ -263,6 +263,7 @@
 			</div>
 		</c:forEach>
 	</div>
+	
 	<div id="footer_bar"></div>
 </body>
 </html>

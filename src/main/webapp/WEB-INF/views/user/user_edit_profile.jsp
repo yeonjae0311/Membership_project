@@ -3,59 +3,56 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<head>
+<head data-id="user">
 	<meta charset="UTF-8">
 	<title>user_edit_profile</title>
-	<script src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
-	<link href="${pageContext.request.contextPath}/resources/css/user/user_edit_profile.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default.js" defer></script>
 	<script type="text/javascript">
-	function change_img() {
-	    const img_file_id = document.getElementById("photo_file_id");
-	    const image_id = document.getElementById("m_profile");
-
-	    const img = img_file_id.files[0];
-	    let allowed_extensions = [".gif", ".jpg", ".png", ".bmp"];
-
-	    if (img) {
-	        const reader = new FileReader();
-
-	        reader.onload = function(e) {
-	            // 파일 내용을 읽어와서 이미지 소스로 설정
-	            image_id.src = e.target.result;
-	        };
-
-	        // 파일의 확장자를 체크하여 허용된 확장자인 경우에만 이미지를 설정
-	        let file_extension = img.name.split('.').pop().toLowerCase();
-	        if (allowed_extensions.includes("." + file_extension)) {
-	            // 파일을 읽어옴
-	            reader.readAsDataURL(img);
-	        } else {
-	            alert("허용된 확장자가 아닙니다. GIF, JPG, PNG, BMP 파일만 업로드 가능합니다.");
-	            img_file_id.value = ""; // 파일 선택 창 비우기
-	        }
-	    }
-	}
+		function change_img() {
+		    const img_file_id = document.getElementById("photo_file_id");
+		    const image_id = document.getElementById("m_profile");
+	
+		    const img = img_file_id.files[0];
+		    let allowed_extensions = [".gif", ".jpg", ".png", ".bmp"];
+	
+		    if (img) {
+		        const reader = new FileReader();
+	
+		        reader.onload = function(e) {
+		            // 파일 내용을 읽어와서 이미지 소스로 설정
+		            image_id.src = e.target.result;
+		        };
+	
+		        // 파일의 확장자를 체크하여 허용된 확장자인 경우에만 이미지를 설정
+		        let file_extension = img.name.split('.').pop().toLowerCase();
+		        if (allowed_extensions.includes("." + file_extension)) {
+		            // 파일을 읽어옴
+		            reader.readAsDataURL(img);
+		        } else {
+		            alert("허용된 확장자가 아닙니다. GIF, JPG, PNG, BMP 파일만 업로드 가능합니다.");
+		            img_file_id.value = ""; // 파일 선택 창 비우기
+		        }
+		    }
+		}
 	</script>
 	<script type="text/javascript">
-	
-	function photo_default_update(f){
-		
-		f.action="photo_default_upload";
-		f.method="POST";
-		f.submit();
-		
-	}
-		
-	function modify(f) {
+		function photo_default_update(f){
+			f.action="photo_default_upload";
+			f.method="POST";
+			f.submit();
+			
+		}
+			
+		function modify(f) {
             f.action = "user_profile_modify";
             f.method = "POST";
             f.submit();
-	}
+		}
 	</script>
 </head>
-	<body>
+<body>
 	<div id="header_bar"></div>
+	
 	<form enctype="multipart/form-data" name="myForm">
         <div id="m_photo_name">
             <img id="m_profile" src="${pageContext.request.contextPath}/resources/upload/user/${vo.m_photo_name}">
@@ -70,6 +67,7 @@
         <input type="hidden" name="m_idx" value="${vo.m_idx}">
         <input type="button" value="수정완료" onclick="modify(this.form)">
     </form>
+    
 	<div id="footer_bar"></div>
-	</body>
+</body>
 </html>

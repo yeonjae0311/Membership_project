@@ -4,11 +4,10 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
-<head>
+<head data-id="board">
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="${pageContext.request.contextPath}/resources/css/board/board_post.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default.js" defer></script>
 	<script>
 		function check_fix(){
 			let isfixed = document.getElementById('isfixed');
@@ -48,6 +47,7 @@
 </head>
 <body>
 	<div id="header_bar"></div>
+	
 	<jsp:include page="/WEB-INF/views/login_check.jsp"/>
 
 	<div id="board_post_div">
@@ -96,6 +96,7 @@
 			</table>
 		</form>
 	</div>
+	
 	<div id="footer_bar"></div>
 </body>
 </html>

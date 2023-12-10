@@ -3,13 +3,10 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<head>
+<head data-id="story">
 	<meta charset="UTF-8">
-	<title>스토리~</title>
-	<link href="${pageContext.request.contextPath}/resources/css/story/story.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
-	<script src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/story_js/story.js"></script>
+	<title>스토리</title>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default.js" defer></script>
 	<script>		
 		function change(event){
 			if(event.target.style.fill=="white"){				
@@ -22,8 +19,6 @@
 </head>
 <body>
 	<div id="header_bar"></div>
-	
-	story	
 	
 	<c:if test="${id.m_ismaster eq '1' }">
 		<input type="button" value="스토리 작성하기" onclick="location.href='story_post'">
@@ -107,8 +102,6 @@
 		</c:forEach>		
 	</div>
 	
-	<input type="button" value="home" onclick="location.href='/membership/'">
-			
 	<div id="footer_bar"></div>
 </body>
 </html>

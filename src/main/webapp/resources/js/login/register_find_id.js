@@ -1,4 +1,5 @@
 let b_email_check = false;
+
 function send_id(f){
 	let m_name = document.getElementById("m_name").value;
 	let m_email = document.getElementById("m_email").value;

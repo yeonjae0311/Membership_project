@@ -2,11 +2,10 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
+<head data-id="user">
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="${pageContext.request.contextPath}/resources/css/user/user_edit.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default.js" defer></script>
 	<script>
 		function send(e){
 			location.href=e.target.parentElement.id
@@ -17,9 +16,6 @@
 <body>
 	<div id="header_bar"></div>
 
-	<header>
-		<input type="button" value="home" onclick="location.href='/membership/'">
-	</header>
 	<div id="user_edit">
 		<div id="member_info_head_div">
 			<div>
@@ -62,6 +58,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<div id="footer_bar"></div>
 </body>
 </html>

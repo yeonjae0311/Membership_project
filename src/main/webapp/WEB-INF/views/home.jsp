@@ -3,13 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<head>
+<head data-id="home">
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/login_js/login_form.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default.js" defer></script>
 	<script>
 		let isFilled = true;
 		
@@ -32,6 +29,7 @@
 </head>
 <body>
 	<div id="header_bar"></div>
+	
 	<c:choose>
 		<c:when test="${empty id}">
 			<input type="button" value="로그인" onclick="location.href='login_form'">
@@ -63,6 +61,7 @@
 				  	0 4 1.794 4 4s-.7 3.412-3.5 6.5Z"/>
 		</svg>
 	</div>
+	
 	<div id="footer_bar"></div>
 </body>
 </html>

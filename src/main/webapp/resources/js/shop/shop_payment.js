@@ -111,15 +111,4 @@ cancel_button.addEventListener("click", () => {
     location.href = "shop";
 })
 
-button_bar_div.appendChild(cancel_button)
-
-/*
-<div>
-    <input type="checkbox" id="ToS">주문자는 개인정보 제공 약관에 모두 동의합니다.
-</div>
-<input type="button" value="결제하기" onclick="kakao_pay()">
-<input type="button" value="취소하기" onclick="location.href='shop'"></input>
-*/
-
-console.log(order_item_list);
-console.log(totals);
+button_bar_div.appendChild(cancel_button);
