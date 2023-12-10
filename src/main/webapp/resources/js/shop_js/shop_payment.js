@@ -142,3 +142,4 @@ function go_to_payment(...args) {
     location.href = "kakao_pay";
 
 }
+

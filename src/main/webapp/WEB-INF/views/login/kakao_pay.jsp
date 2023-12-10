@@ -36,6 +36,7 @@
                     },
                     body: JSON.stringify({
                         imp_uid: rsp.imp_uid
+                   		// 주문 번호, 날짜, 총 가격
                         // 기타 필요한 데이터가 있으면 추가 전달
                     })
                 })

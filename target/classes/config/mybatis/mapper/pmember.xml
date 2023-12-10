@@ -75,6 +75,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 							m_photo_name=#{m_photo_name}
 							where m_idx=#{m_idx}
 	</update>
+	
+	<update id="update_addr" parameterType="java.util.HashMap">
+		update p_member set m_addr1=#{m_addr1},
+							m_addr2=#{m_addr2},
+							m_addr3=#{m_addr3}
+							where m_idx=#{m_idx}
+	</update>
 </mapper>
 
 

@@ -77,6 +77,30 @@
 	    		location.href="kakao_pay";
 	    	}
 	    }
+	    
+	    function update_addr(){
+
+	    	let postcode = document.getElementById("postcode").value;
+	    	let address = document.getElementById("address").value;
+	    	let detail_address = document.getElementById("detailAddress").value;
+	    	
+	    	const url = "insert_addr";
+	    	
+	    	let param = {
+	    		"postcode": encodeURIComponent(postcode),
+	    		"address": encodeURIComponent(address),
+	    		"detail_address": encodeURIComponent(detail_address)
+	    	};
+	    	
+	    	sendRequest(url, param, callback_addr, "post");
+	    	
+	    }
+
+	    function callback_addr(...args){
+	    	let res = args[0].m_addr1;
+	    	console.log(res);
+
+	    }
     
 	</script>
 </head>
@@ -116,6 +140,12 @@
 					<input type="text" id="detailAddress" placeholder="상세주소">
 				</td>
 			</tr>
+			<tr>
+				<td>
+					<input type="button" onclick="update_addr()" value="배송지 등록">
+				</td>
+			</tr>
+			
 		</table>
 			
 		<div id="order_item_list_div"></div>	
