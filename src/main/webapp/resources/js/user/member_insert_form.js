@@ -69,7 +69,7 @@ function check_id(f){
 		
 	};	
 		
-	sendRequest(url, param, i_check, "post");
+	send_request(url, param, i_check, "post");
 }
 
 function i_check(...args){
@@ -159,7 +159,7 @@ function check_email(f){
 	let param = {
 		"m_email": encodeURIComponent(m_email)
 	};
-	sendRequest(url, param, e_check, "post");
+	send_request(url, param, e_check, "post");
 }
 
 function e_check(...args){

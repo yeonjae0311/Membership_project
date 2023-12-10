@@ -49,9 +49,6 @@ for(const element of buttons){
 	left_header.appendChild(button);
 }
 
-console.log(header_bar)
-console.log(left_header)
-
 header_bar.appendChild(left_header);
 
 function send_main(page){
@@ -76,14 +73,12 @@ if(m_id != null && m_password != null && session === null){
 		"m_id": encodeURIComponent(m_id),
 		"m_password": encodeURIComponent(m_password)
 	};
-	sendRequest(url, param, my_check, "post");
+	send_request(url, param, my_check, "post");
 }
 
 function my_check(...args){
 	let res = args[0];
 
-	console.log(res)
-	
 	let form = document.getElementsByTagName("form")[0];
 	
 	localStorage.setItem("idx", res.m_idx);
@@ -103,7 +98,6 @@ function my_check(...args){
 		form.m_password.focus();
 		return;
 	} else {
-		
 		location.href='main';
 	}
 }

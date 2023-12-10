@@ -1,4 +1,4 @@
-async function sendRequest(url, param, callBack, method){
+async function send_request(url, param, callBack, method){
 	let response;
 	let res;
 	

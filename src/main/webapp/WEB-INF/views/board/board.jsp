@@ -21,30 +21,11 @@
 			text-decoration: none;
 		}
 	</style>
-	<script>			
-		function managerfunc(){
-			let unfixed_master_list = document.getElementById("unfixed_master_list");
-			let unfixed_fan_list = document.getElementById("unfixed_fan_list");
-
-			unfixed_master_list.style="display:block";
-			unfixed_fan_list.style="display:none";				
-		}
-		
-		function userfunc(){			
-			let unfixed_master_list = document.getElementById("unfixed_master_list");
-			let unfixed_fan_list = document.getElementById("unfixed_fan_list");
-
-			unfixed_master_list.style="display:none";
-			unfixed_fan_list.style="display:block";				
-		}
-	</script>
 </head>
 <body>
 	<div id="header_bar"></div>
 	
 	<input type="button" value="home" onclick="location.href='/membership/'">
-	
-	<br>
 	
 	<div id="board_view_button_bar">
 		<input type="button" value="관리자버튼" onclick="managerfunc()">	
@@ -71,10 +52,6 @@
 				</c:forEach> 
 			</table>
 		</div>
-		
-		<br>
-		<hr>
-		<br>
 		
 		<div id="unfixed_master_list">
 			<table border="1" class="b_list">

@@ -17,7 +17,7 @@
 		     document.getElementById("option").appendChild(element);
 		} 
 		 */
-		 function upload(){
+		/*  function upload(){
 	
 			 const item_upload = document.getElementById(item_upload);
 			 function upload(item_upload){
@@ -29,7 +29,7 @@
 				 }
 				 
 				 item_upload.submit();
-			 }
+			 } */
 	</script>
 </head>
 <body>

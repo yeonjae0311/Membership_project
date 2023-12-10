@@ -7,15 +7,6 @@
 	<meta charset="UTF-8">
 	<title>스토리</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default.js" defer></script>
-	<script>		
-		function change(event){
-			if(event.target.style.fill=="white"){				
-				event.target.style.fill = "red";
-			}else{				
-				event.target.style.fill = "white";
-			}
-		}
-	</script>
 </head>
 <body>
 	<div id="header_bar"></div>

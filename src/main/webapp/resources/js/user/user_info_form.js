@@ -12,7 +12,7 @@ function leave(f){
 	let url = "del";
 	let param = {"m_idx"+${id.m_idx}};
 	
-	sendRequest(url, param, del_check, "POST");
+	send_request(url, param, del_check, "POST");
 }
 
 function del_check(){ 

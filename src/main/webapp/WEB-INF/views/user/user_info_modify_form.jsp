@@ -7,13 +7,6 @@
 	<meta charset="UTF-8">
 	<title>user_info_modify_form</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default.js" defer></script>
-	<script>
-		function send(f){
-			f.action="user_info_modify";
-			f.method="POST";
-			f.submit();
-		}
-	</script>
 </head>
 <body>
 	<div id="header_bar"></div>

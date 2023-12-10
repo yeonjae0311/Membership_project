@@ -34,7 +34,7 @@ function send_password(f){
 		"m_code": encodeURIComponent(m_code)
 	};
 
-	sendRequest(url, param, check, "post");
+	send_request(url, param, check, "post");
 }
 
 function check(...args){

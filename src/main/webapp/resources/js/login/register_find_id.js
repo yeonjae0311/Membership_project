@@ -33,7 +33,7 @@ function send_id(f){
 		"m_email": encodeURIComponent(m_email)
 	};
 
-	sendRequest(url, param, check, "post");
+	send_request(url, param, check, "post");
 }
 
 function check(...args){

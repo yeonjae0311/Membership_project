@@ -60,7 +60,6 @@ public class ShopController {
 
 	@RequestMapping("shop")
 	public String shop(Model model) {
-
 		PMemberVO vo = (PMemberVO) session.getAttribute("id");
 		int m_idx = vo.getM_idx();
 

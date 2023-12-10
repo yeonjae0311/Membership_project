@@ -7,25 +7,6 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default.js" defer></script>
-	<script>
-		let isFilled = true;
-		
-		function change(event){
-			if(isFilled){
-				isFilled = !isFilled;
-				
-				event.target.style.fill = "red";
-			}else{
-				isFilled = !isFilled;
-				
-				event.target.style.fill = "white";
-			}
-		}
-		function logout(){
-			localStorage.clear();
-			location.href='logout';
-		}
-	</script>
 </head>
 <body>
 	<div id="header_bar"></div>
