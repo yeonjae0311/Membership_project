@@ -30,10 +30,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.BoardDAO;
 import dao.ItemDAO;
+import dao.OrderDetailDAO;
 import dao.PMemberDAO;
 import util.Path;
 import vo.BoardPMemberViewVO;
+import vo.OrderDetailVO;
 import vo.PMemberVO;
+import vo.POrderVO;
 
 @Controller
 public class MemberController {
@@ -41,6 +44,7 @@ public class MemberController {
 	PMemberDAO pmember_dao;
 	BoardDAO board_dao;
 	ItemDAO item_dao;
+	OrderDetailDAO order_detail_dao;
 
 	@Autowired
 	HttpServletRequest request;
@@ -51,10 +55,11 @@ public class MemberController {
 	@Autowired
 	JavaMailSender mailSender;
 
-	public MemberController(PMemberDAO pmember_dao, BoardDAO board_dao, ItemDAO item_dao) {
+	public MemberController(PMemberDAO pmember_dao, BoardDAO board_dao, ItemDAO item_dao,OrderDetailDAO order_detail_dao) {
 		this.pmember_dao = pmember_dao;
 		this.board_dao = board_dao;
 		this.item_dao = item_dao;
+		this.order_detail_dao = order_detail_dao;
 	}
 
 	@RequestMapping("login_form")
@@ -255,12 +260,17 @@ public class MemberController {
 	}
 
 	@RequestMapping("user_order_list")
-	public String user_order_list() {
-		PMemberVO vo = (PMemberVO) session.getAttribute("id");
-
-		List<BoardPMemberViewVO> list = board_dao.fixed_board_list();
-
-		session.setAttribute("user_order_list", list);
+	public String user_order_list(Model model) {
+		PMemberVO uservo = (PMemberVO)session.getAttribute("id");
+		if(uservo==null) {
+			return "redirect:login_form";
+		}
+		
+		int m_idx = uservo.getM_idx();
+		
+		List<POrderVO> order_list = item_dao.select_order_list(m_idx);
+		
+		model.addAttribute("order_list",order_list);
 
 		return Path.UserPath.make_path("user_order_list");
 	}
@@ -513,5 +523,19 @@ public class MemberController {
 	@RequestMapping("membership_info")
 	public String congratulations_register() {
 		return Path.LoginPath.make_path("membership_info");
+	}
+	
+	@RequestMapping("user_order_view")
+	public String order_view(Model model,int o_idx) {
+		
+		//m_idx 나 마스터인지 검증
+		//deep한 검증은 후순위
+		System.out.println(o_idx);
+		
+		List<OrderDetailVO> order_detail_list = order_detail_dao.select_order_detail_list(o_idx);
+		
+		model.addAttribute("order_detail_list",order_detail_list);
+		
+		return Path.UserPath.make_path("user_order_view");
 	}
 }
