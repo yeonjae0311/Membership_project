@@ -11,11 +11,11 @@
 </head>
 <body>
 	<div id="header_bar"></div>
-	
 	<div>
-		<form enctype="multipart/form-data" name="myForm">
-	        <div id="m_photo_name">
+		<form enctype="multipart/form-data" name="my_form" align="center">
+	        <div class = 'container' id="m_photo_name">
 	            <img id="m_profile" src="${pageContext.request.contextPath}/resources/upload/user/${vo.m_photo_name}">
+	            <br>
 	            <input type="hidden" name="m_photo_name" value="${vo.m_photo_name}">
 	            <!-- 확장자 제한 기능 추가(완), 로컬저장소에 이미지 파일이 없을 경우 파일 생성하도록 추가 중 -->
 	            <input type="file" id="photo_file_id" name="m_photo" accept=".gif, .jpg, .png, .BMP"
