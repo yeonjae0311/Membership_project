@@ -431,7 +431,7 @@ public class MemberController {
 		model.addAttribute("payment_price", payment_price);
 		model.addAttribute("payment_name", payment_name);
 				
-		return Path.LoginPath.make_path("kakao_pay");
+		return Path.ShopPath.make_path("kakao_pay");
 	}
 
 	@RequestMapping("user_info_modify_form")
