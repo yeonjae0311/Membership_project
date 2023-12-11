@@ -57,7 +57,7 @@ left_header.appendChild(button_header);
 if(localStorage.getItem("idx") == null || localStorage.getItem("idx") == ""){
 	const login_button = document.createElement("input");
 	login_button.type = "button";
-	login_button.value = "로그인";
+	login_button.value = "Login";
 	login_button.addEventListener("click", () => {
 		send_to("login_form");
 	});
@@ -66,7 +66,7 @@ if(localStorage.getItem("idx") == null || localStorage.getItem("idx") == ""){
 
 	const register_button = document.createElement("input");
 	register_button.type = "button";
-	register_button.value = "회원가입";
+	register_button.value = "Sign-up";
 	register_button.addEventListener("click", () => {
 		send_to("member_insert_form");
 	});
@@ -75,7 +75,7 @@ if(localStorage.getItem("idx") == null || localStorage.getItem("idx") == ""){
 
 	const my_page_button = document.createElement("input");
 	my_page_button.type = "button";
-	my_page_button.value = "마이페이지";
+	my_page_button.value = "MyPage";
 	my_page_button.addEventListener("click", () => {
 		send_to("login_form");
 	});
@@ -84,14 +84,14 @@ if(localStorage.getItem("idx") == null || localStorage.getItem("idx") == ""){
 }else{
 	const logout_button = document.createElement("input");
 	logout_button.type = "button";
-	logout_button.value = "로그아웃";
+	logout_button.value = "Logout";
 	logout_button.addEventListener("click", logout);
 
 	right_header.appendChild(logout_button);
 
 	const my_page_button = document.createElement("input");
 	my_page_button.type = "button";
-	my_page_button.value = "마이페이지";
+	my_page_button.value = "MyPage";
 	my_page_button.addEventListener("click", () => {
 		send_to("user_edit");
 	});
