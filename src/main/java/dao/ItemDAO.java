@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import vo.ItemVO;
+import vo.POrderVO;
 
 public class ItemDAO {
 	
@@ -43,6 +44,21 @@ public class ItemDAO {
 	// i_name으로 된 상품 전체 삭제
 	public int item_delete(String i_name) {
 		return sqlSession.delete("i.item_delete", i_name);
+	}
+	
+	// membership 유효기간 늘리기
+	public int membership_buy(int idx) {
+		return sqlSession.update("i.membership_buy", idx);
+	}
+	
+	// 로그인시 membership 확인
+	public int membership_check(int idx) {
+		return sqlSession.update("i.membership_check", idx);
+	}
+	
+	//유저번호로 주문 목록 조회
+	public List<POrderVO> select_order_list(int m_idx){
+		return sqlSession.selectList("i.select_order_list",m_idx);
 	}
 	
 }

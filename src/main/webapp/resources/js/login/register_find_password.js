@@ -1,4 +1,5 @@
 let b_email_check = false;
+
 function send_password(f){
 	let m_id = document.getElementById("m_id").value;
 	let m_email = document.getElementById("m_email").value;
@@ -33,7 +34,7 @@ function send_password(f){
 		"m_code": encodeURIComponent(m_code)
 	};
 
-	sendRequest(url, param, check, "post");
+	send_request(url, param, check, "post");
 }
 
 function check(...args){

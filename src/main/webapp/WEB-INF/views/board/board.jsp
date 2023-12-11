@@ -3,11 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<head>
+<head data-id="board">
 	<meta charset="UTF-8">
 	<title>Board</title>
-	<link href="${pageContext.request.contextPath}/resources/css/board/board.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_css.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_js.js"></script>
 	<style>
 		.b_list{
 			margin:0 auto;
@@ -22,43 +22,23 @@
 			text-decoration: none;
 		}
 	</style>
-	<script>			
-		function managerfunc(){
-			let unfixed_master_list = document.getElementById("unfixed_master_list");
-			let unfixed_fan_list = document.getElementById("unfixed_fan_list");
-
-			unfixed_master_list.style="display:block";
-			unfixed_fan_list.style="display:none";				
-		}
-		
-		function userfunc(){			
-			let unfixed_master_list = document.getElementById("unfixed_master_list");
-			let unfixed_fan_list = document.getElementById("unfixed_fan_list");
-
-			unfixed_master_list.style="display:none";
-			unfixed_fan_list.style="display:block";				
-		}
-	</script>
 </head>
 <body>
 	<div id="header_bar"></div>
 	
-	<input type="button" value="home" onclick="location.href='/membership/'">
-	
-	<br>
-	
-	<div id="board_view_button_bar">
-		<input type="button" value="관리자버튼" onclick="managerfunc()">	
-		<input type="button" value="유저버튼" onclick="userfunc()">	
-	</div>
-	
-	<div id="fixed_list">
-		<table border="1" class="b_list">
-			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-			</tr>
+	<div>
+		<div id="board_view_button_bar">
+			<input type="button" value="관리자버튼" onclick="managerfunc()">	
+			<input type="button" value="유저버튼" onclick="userfunc()">	
+		</div>
+		
+		<div id="fixed_list">
+			<table border="1" class="b_list">
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+				</tr>
 				<c:forEach var="i" items="${fixed_list}">
 					<tr>
 						<td>${i.b_idx}</td>
@@ -72,11 +52,7 @@
 				</c:forEach> 
 			</table>
 		</div>
-		
-		<br>
-		<hr>
-		<br>
-		
+			
 		<div id="unfixed_master_list">
 			<table border="1" class="b_list">
 				<tr>
@@ -122,7 +98,9 @@
 				
 			</table>
 		</div>
-		<input type="button" value="글쓰기" onclick="location.href='board_post';">
-		<div id="footer_bar"></div>
-	</body>
+		<input type="button" value="글쓰기" onclick="location.href='board_post'">
+	</div>
+		
+	<div id="footer_bar"></div>
+</body>
 </html>

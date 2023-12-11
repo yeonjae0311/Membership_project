@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import vo.ItemVO;
 import vo.PMemberVO;
 
 public class PMemberDAO {
@@ -18,6 +17,11 @@ public class PMemberDAO {
 	// 아이디가 DB에 존재하는지 체크
 	public PMemberVO login_check(String m_id) {
 		return sqlSession.selectOne("pm.login_check", m_id);
+	}
+	
+	// m_idx 가져오기
+	public PMemberVO get_m_idx(String m_email) {
+		return sqlSession.selectOne("pm.get_m_idx", m_email);
 	}
 
 	// 아이디 중복체크
@@ -48,8 +52,8 @@ public class PMemberDAO {
 	}
 
 	// 탈퇴하기
-	public int delete_update(PMemberVO vo) {
-		return sqlSession.update("pm.delete_update", vo);
+	public int delete_update(PMemberVO basevo) {
+		return sqlSession.update("pm.delete_update", basevo);
 	}
 
 	// 아이디 찾기
@@ -67,18 +71,19 @@ public class PMemberDAO {
 		return sqlSession.update("pm.user_info_update", vo);
 	}
 
-	// 프로필 사진 수정하기
-	public int photo_upload(HashMap<String, Object> map) {
-		return sqlSession.update("pm.photo_upload", map);
+	// 기본 프로필로 사진 수정하기
+	public int default_photo_name(HashMap<String, Object> map) {
+		return sqlSession.update("pm.default_photo_name", map);
 	}
 
 	// 프로필 수정
 	public int user_profile_update(PMemberVO vo) {
 		return sqlSession.update("pm.user_profile_update", vo);
 	}
-	
+
 	// 주소 추가
 	public int update_addr(Map<String, Object> map) {
 		return sqlSession.update("pm.update_addr", map);
 	}
+	
 }

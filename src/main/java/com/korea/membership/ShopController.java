@@ -67,7 +67,6 @@ public class ShopController {
 
 	@RequestMapping("shop")
 	public String shop(Model model) {
-
 		PMemberVO vo = (PMemberVO) session.getAttribute("id");
 		int m_idx = vo.getM_idx();
 
@@ -161,15 +160,15 @@ public class ShopController {
 
 		List<ItemVO> list = cart_detail_dao.cart_select_list(m_idx);
 
-		String jsonArray = null;
+		String json_array = null;
 
 		try {
-			jsonArray = om.writeValueAsString(list);
+			json_array = om.writeValueAsString(list);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return jsonArray;
+		return json_array;
 	}
 
 	@RequestMapping("item_insert")
@@ -229,8 +228,8 @@ public class ShopController {
 		return null;
 	}
 
-	@RequestMapping("shop_item_select")
-	public String shop_item_select(Model model, int i_idx, String i_name) {
+	@RequestMapping("shop_item")
+	public String shop_item(Model model, int i_idx, String i_name) {
 
 		ItemVO vo = item_dao.item_select_one(i_idx);
 		List<String> colors = item_dao.item_select_color(i_name);
@@ -259,15 +258,15 @@ public class ShopController {
 
 		List<String> colors = item_dao.item_select_color(i_name);
 
-		String jsonArray = null;
+		String json_array = null;
 
 		try {
-			jsonArray = om.writeValueAsString(colors);
+			json_array = om.writeValueAsString(colors);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return jsonArray;
+		return json_array;
 	}
 
 	@RequestMapping("item_count_change")
@@ -345,12 +344,6 @@ public class ShopController {
 		return Path.ShopPath.make_path("shop_payment");
 	}
 	
-	@RequestMapping("payment_completed")
-	public String payment_completed() {
-		
-		
-		return Path.ShopPath.make_path("payment_completed");
-	}
 	
 	@RequestMapping("cart_delete")
 	@ResponseBody
@@ -381,7 +374,20 @@ public class ShopController {
 			return "{\"param\": \"fail\"}";
 		}
 	}
-
+	
+	@RequestMapping("payment_completed")
+	public String payment_completed() {
+		
+		PMemberVO userVo = (PMemberVO) session.getAttribute("id");
+		
+		int m_idx = userVo.getM_idx();
+		item_dao.membership_buy(m_idx);
+		
+		return Path.ShopPath.make_path("payment_completed");
+	}
+	
+	@RequestMapping("membership_shop_payment")
+	public String membership_shop_payment() {
 
    @RequestMapping("order_insert") 
    @ResponseBody
@@ -431,5 +437,13 @@ public class ShopController {
 	      	     	   
 	   return "{\"param\": \"success\"}";
    }
-  
+
+		return Path.ShopPath.make_path("membership_shop_payment");
+	}
+	
+	@RequestMapping("membership_kakao_pay")
+	public String membership_kakao_pay() {
+
+		return Path.ShopPath.make_path("membership_kakao_pay");
+	}
 }

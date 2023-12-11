@@ -9,10 +9,10 @@ function story_update_read_hit(storyclass){
 		"s_idx": encodeURIComponent(s_idx)
 	};
 	
-	sendRequest(url,param,resultFn2,'post');
+	send_request(url,param,after_story_update_read_hit,'post');
 }
 
-function resultFn2(...args){
+function after_story_update_read_hit(...args){
 	let res = args[0].param;
 	let s_idx = args[0].s_idx;
 	
@@ -44,17 +44,6 @@ function show_previous() {
     story_update_read_hit(stories[currentStoryIndex]);
 }
 
-function revalidate(){
-	if(xhr.readyState==4&&xhr.status==200){
-		var data = xhr.responseText;
-		var json = (new Function('return'+data))();
-		
-		let stories = document.querySelectorAll(".story");
-		let classname = stories[currentStoryIndex].getElementsByClassName('liked');
-		classname[0].innerHTML = json[0].sl_isliked;
-	}
-}
-
 function liked2(s_idx,event){
 	change(event);
 	
@@ -72,7 +61,7 @@ function liked2(s_idx,event){
 			"s_idx":encodeURIComponent(s_idx)
 		}; 
 		
-		sendRequest(url,param,resultFn,'post');	
+		send_request(url,param,resultFn,'post');	
 			 
 	} else if(story_liked.value == 1){
 		story_liked.value = Number(story_liked.value)-1;
@@ -85,7 +74,7 @@ function liked2(s_idx,event){
 			"s_idx":encodeURIComponent(s_idx)
 		}; 
 		
-		sendRequest(url,param,resultFn,'post');	
+		send_request(url,param,resultFn,'post');	
 			
 	} else{
 	}
@@ -107,5 +96,13 @@ window.onload = function() {
 		"s_idx": encodeURIComponent(s_idx)
 	};
 	
-	sendRequest(url,param,resultFn2,'post');
+	send_request(url,param,after_story_update_read_hit,'post');
 };
+
+function change(event){
+	if(event.target.style.fill=="white"){				
+		event.target.style.fill = "red";
+	}else{				
+		event.target.style.fill = "white";
+	}
+}

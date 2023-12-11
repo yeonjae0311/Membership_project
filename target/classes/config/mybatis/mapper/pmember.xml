@@ -11,6 +11,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="id_check" resultType="int" parameterType="String">
 		select count(*) from p_member where m_id=#{m_id}
 	</select>
+	
+	<select id="get_m_idx" resultType="pmember"
+		parameterType="String">
+		select * from p_member where m_email=#{m_email}
+	</select>
 
 	<insert id="insert" parameterType="pmember">
 		insert into p_member values(
@@ -47,7 +52,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<update id="delete_update" parameterType="pmember">
-		update p_member set m_id='del'||#{m_id} where m_idx=#{m_idx}
+		update p_member set m_id=#{m_id},
+							m_email=#{m_email}
+							where m_idx=#{m_idx}
 	</update>
 	
 	<select id="id_find" resultType="pmember" parameterType="String">
@@ -66,7 +73,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 							where m_idx=#{m_idx}
 	</update>
 	
-	<update id="photo_upload" parameterType="pmember">
+	<update id="default_photo_name" parameterType="java.util.HashMap">
 		update p_member set m_photo_name=#{m_photo_name} where m_idx=#{m_idx}
 	</update>
 	
@@ -75,13 +82,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 							m_photo_name=#{m_photo_name}
 							where m_idx=#{m_idx}
 	</update>
-	
+
 	<update id="update_addr" parameterType="java.util.HashMap">
 		update p_member set m_addr1=#{m_addr1},
 							m_addr2=#{m_addr2},
 							m_addr3=#{m_addr3}
 							where m_idx=#{m_idx}
 	</update>
+
 </mapper>
 
 
