@@ -7,7 +7,8 @@
 <head data-id="shop">
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default.js" defer></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_css.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_js.js"></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 	    function addr() {
@@ -77,6 +78,7 @@
 </head>
 <body>
 	<div id="header_bar"></div>
+	
 	<div>
 		<div>
 			<h1>결제하기</h1>	
@@ -128,6 +130,7 @@
 
 		<div id="button_bar_div"></div>
 	</div>
+	
 	<div id="footer_bar"></div>
 </body>
 </html>

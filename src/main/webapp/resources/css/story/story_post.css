@@ -1,1 +1,35 @@
 @charset "UTF-8";
+
+#story_post_div{
+    width: 100vw;
+    margin-top: 10em;
+}
+
+#story_post_form{
+    width: 35em;
+    margin: auto;
+}
+
+#story_post_form > div:last-child{
+    width: 89%;
+    margin-top: 5%;
+    margin-right: 0%;
+    text-align: right;
+}
+
+#file_upload_div{
+    width: 110%;
+    display: flex;
+    justify-content: center;
+}
+
+#file_upload_div > p{
+    height: 3em;
+    line-height: 3em;
+    margin-right: 1%;
+}
+
+#caption{
+    margin: auto;
+    width: 82%;
+}

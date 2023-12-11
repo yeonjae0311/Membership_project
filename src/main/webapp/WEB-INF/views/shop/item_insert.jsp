@@ -7,7 +7,8 @@
 <head data-id="shop">
 	<meta charset="UTF-8">
 	<title>NewJeans Membership</title>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default.js" defer></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_css.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_js.js"></script>
 	<script>
 	
 		/* // 옵션 추가
@@ -35,18 +36,20 @@
 <body>
 	<div id="header_bar"></div>
 	
-	<form id="item_upload" action="item_insert_upload" method="POST" enctype="multipart/form-data">
-		상품 이름 : <input name="i_name"><br>		
-		상품 가격 : <input name="i_price">원<br>
-		상품 색상 : <input name="i_color"><br>
-		재고 수량 : <input type="number" name="i_amount" min="1" max="99"><br>
-		상품 이미지 : <input type="file" name="i_photo"><br> 
-   		상품 상세 이미지 : <input type="file" name="i_detail_photo"><br>	
-    	<div id=button_bar>
-    		<input type="button" value="등록하기" onclick="upload(this.form)">
-    		<input type="button" value="취소하기" onclick="location.href='shop'">
-    	</div>
-   	</form>
+	<div>
+		<form id="item_upload" action="item_insert_upload" method="POST" enctype="multipart/form-data">
+			상품 이름 : <input name="i_name"><br>		
+			상품 가격 : <input name="i_price">원<br>
+			상품 색상 : <input name="i_color"><br>
+			재고 수량 : <input type="number" name="i_amount" min="1" max="99"><br>
+			상품 이미지 : <input type="file" name="i_photo"><br> 
+	   		상품 상세 이미지 : <input type="file" name="i_detail_photo"><br>	
+	    	<div id=button_bar>
+	    		<input type="button" value="등록하기" onclick="upload(this.form)">
+	    		<input type="button" value="취소하기" onclick="location.href='shop'">
+	    	</div>
+	   	</form>
+	</div>
    	
    	<div id="footer_bar"></div>
 </body>
