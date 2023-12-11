@@ -1,1 +1,13 @@
 @charset "UTF-8";
+
+#banner_img{
+	width: 750px;
+	height: 500px;
+	margin: 4%;
+	display: inline-block;
+}
+
+.left, .right{
+	margin: auto;
+	padding: 0 3%;
+}

@@ -15,6 +15,8 @@ public class MainController {
 		return Path.HomePath.make_path("home");
 	}
 	
+	
+	
 	@RequestMapping("main")
 	public String main() {
 		

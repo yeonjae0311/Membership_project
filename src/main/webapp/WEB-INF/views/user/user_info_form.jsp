@@ -8,7 +8,7 @@
 	<title>user_info_form</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_css.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_js.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/httpRequest.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
 </head>
 <body>
 	<div id="header_bar"></div>
@@ -19,7 +19,7 @@
 			<div> 연락처 : ${vo.m_tel }		</div>
 			<div> 생년월일 : ${vo.m_date_of_birth }</div>
 			<div> 이메일 : ${vo.m_email }		</div>
-			<input type="hidden" name="m_idx" value="${vo.m_idx }">
+			<input type="hidden" id="m_idx" name="m_idx" value="${vo.m_idx }">
 			<input type="hidden" name="m_id" value="${vo.m_id }">
 			<input type="button" name="modify_form" value="수정하기" onclick="modify(this.form)">
 			<input type="button" value="회원탈퇴" onclick="delete_leave(this.form)">

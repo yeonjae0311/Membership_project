@@ -44,6 +44,8 @@ public class StoryController {
 	@RequestMapping("story")
 	public String story(Model model) {	
 		
+		story_dao.update_to_delete_story();
+		
 		//유저의 m_idx를 가져오는 코드
 		PMemberVO membervo = (PMemberVO) session.getAttribute("id");
 		if(membervo==null) {
@@ -54,6 +56,7 @@ public class StoryController {
 		//STORY_ISLIKED테이블 갱신 및 조회를 위한 map
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("m_idx",m_idx);
+		
 		
 		List<StoryVO> svo_list = story_dao.select_story_list(m_idx);		
 		
