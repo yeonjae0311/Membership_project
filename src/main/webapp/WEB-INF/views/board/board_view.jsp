@@ -41,14 +41,16 @@
 				<tr>
 					<th>좋아요 !</th>
 					<td>
-						<input id="like_count" type="text" id="b_like_count" value="${vo.b_like_count}" readonly>
+						<input type="text" id="b_like_count" value=${vo.b_like_count} readonly>
 						
 						<c:choose>
 							<c:when test="${vo.bl_isliked eq '0'}">
+								<input type="hidden" id="like_count_id" value="0">
 								<input type="button" class="board_like_button" value="좋아요" onclick="board_like('${vo.b_idx}')">
 							</c:when>
 							
 							<c:when test="${vo.bl_isliked eq '1'}">
+								<input type="hidden" id="like_count_id" value="1">
 								<input type="button" class="board_like_button" value="좋아요 해제" onclick="board_like('${vo.b_idx}')">
 							</c:when>
 							
