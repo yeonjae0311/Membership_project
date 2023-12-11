@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head data-id="story">
@@ -20,7 +19,7 @@
 					파일 업로드:
 				</p>
 				
-				<input type="file" name="s_file">
+				<input type="file" name="s_file" title=" /">
 			</div>
 			
 			<div id="caption">

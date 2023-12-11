@@ -8,7 +8,8 @@ import lombok.Setter;
 public class POrderVO {
 	private int o_idx,
 				m_idx,
-				o_count,
-				o_sum;
+				o_sum,
+    			o_count;
+
 }
 

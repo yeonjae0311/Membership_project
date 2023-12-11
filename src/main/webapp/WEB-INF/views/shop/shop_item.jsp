@@ -9,6 +9,27 @@
 	<title>MEMBERSHIP</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_css.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_js.js"></script>
+	<script>
+		function item_amount(amount_button_id){
+	
+			let amount_button_value = 
+				document.getElementById(amount_button_id).value.trim();
+					
+			let cd_count = document.getElementById("cd_count").value;
+			let i_amount = parseInt('${vo.i_amount}');
+					
+			if(amount_button_value == "+" && i_amount > cd_count){
+				document.getElementById("cd_count").value = parseInt(document.getElementById("cd_count").value) + 1;
+			} else if(amount_button_value == "+" && i_amount <= cd_count){
+				document.getElementById(amount_button_id).disabled = true;
+			}
+					
+			if((amount_button_value == "-") && (cd_count > 1)){	
+				document.getElementById("cd_count").value = parseInt(document.getElementById("cd_count").value) - 1;
+				document.getElementById("button_plus").disabled = false;
+			}
+		}
+	</script>
 </head>
 <body>	
 	<div id="header_bar"></div>

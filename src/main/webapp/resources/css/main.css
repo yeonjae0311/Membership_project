@@ -67,7 +67,7 @@ body{
 
 body > div:nth-child(2){
 	flex-grow: 1;
-	width: 100vw;
+	/* width: 100vw; */
 }
 
 input[type="button"]{
@@ -95,7 +95,7 @@ input[type="file"]::file-selector-button{
 }
 
 textarea{
-	border: none;
+	/* border: none; */
 	overflow: auto;
 	outline: none;
 	resize: none;
@@ -110,14 +110,17 @@ textarea{
 #header_bar{
 	display: flex;
 	justify-content: space-between;
-	background: rgb(255,255,255);
+	/* background: rgb(255,255,255); */
 	/* background: linear-gradient(0deg, #ffffff 0%, #082a90 100%); */
 }
 
-#left_header{
+#left_header, #right_header{
 	display: flex;
+	margin: 2% 0 1%;
+}
+
+#left_header{
 	width: 50%;
-	margin: 3% 0;
 }
 
 #home_img{
@@ -138,9 +141,8 @@ textarea{
 	width: 35%;
 	height: 4em;
 	align-items: center;
-	display: flex;
 	justify-content: flex-end;
-	margin: 3% 0;
+
 	padding-right: 2%;
 }
 
