@@ -6,14 +6,16 @@
 <html>
 <head data-id="board">
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>게시글 상세보기~</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_css.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_js.js"></script>
 	<script>
 		let bl_isliked;
-		let b_idx='${vo.b_idx}';
+		let b_idx,m_idx;
 		window.onload = function(){
-			if('${vo.bl_isliked}' == '1'){
+			b_idx = document.getElementById('b_idx').value;
+			let m_idx = document.getElementById('m_idx').value;
+			if(b_idx == '1'){
 				bl_isliked = '1';
 			}else{
 				bl_isliked = '0';
@@ -32,10 +34,7 @@
 			f.submit();
 		}
 		
-		function delete_board_post(){
-			let m_idx = '${id.m_idx}';
-			let b_idx = '${vo.b_idx}';
-			
+		function delete_board_post(){			
 			let url = "delete_board_post";
 			
 		   	const param = {
@@ -43,9 +42,9 @@
                 "b_idx": encodeURIComponent(b_idx)
             };			
 			
-			sendRequest(url,param,resultFn3,'post');
+		   	send_request(url,param,after_delete_board_post,'post');
 		}
-		function resultFn3(...args){
+		function after_delete_board_post(...args){
 			let res = args[0].res;
 			if(res == 'success'){
 				alert('게시글 삭제 성공');
@@ -66,7 +65,7 @@
 						"b_idx":encodeURIComponent(b_idx)
 				};
 				
-				sendRequest(url,param,resultFn,'post');
+				send_request(url,param,after_board_like,'post');
 				
 				like_button_class[0].value='좋아요 해제'
 			}else{
@@ -77,13 +76,13 @@
 						"b_idx":encodeURIComponent(b_idx)
 				};
 				
-				sendRequest(url,param,resultFn,'post');
+				send_request(url,param,after_board_like,'post');
 				
 				like_button_class[0].value='좋아요'
 			}
 		}
 		
-		function resultFn(...args){
+		function after_board_like(...args){
 			let res = args[0].param;
 			let like_count_id = document.getElementById('b_like_count');
 			if(res=='plus'){
@@ -105,7 +104,7 @@
 						"r_idx":encodeURIComponent(r_idx)
 				};
 				
-				sendRequest(url,param,resultFn2,'post');
+				send_request(url,param,after_reply_like,'post');
 				id.value='1';
 			}else{
 				console.log('down');
@@ -116,12 +115,12 @@
 						"r_idx":encodeURIComponent(r_idx)
 				};
 				
-				sendRequest(url,param,resultFn2,'post');
+				send_request(url,param,after_reply_like,'post');
 				id.value='0';
 			}
 		}
 		
-		function resultFn2(...args){
+		function after_reply_like(...args){
 			console.log(args[0]);
 			let res = args[0].res;
 			let r_idx = args[0].r_idx;
@@ -142,7 +141,7 @@
 				"r_idx":encodeURIComponent(r_idx)
 			}
 			
-			sendRequest(url,param,after_delete_reply,'post');
+			send_request(url,param,after_delete_reply,'post');
 		}
 		
 		function after_delete_reply(...args){
@@ -266,5 +265,7 @@
 	</div>
 	
 	<div id="footer_bar"></div>
+	<input type="hidden" id="b_idx" value="${vo.b_idx}">
+	<input type="hidden" id="m_idx" value="${id.m_idx}">
 </body>
 </html>
