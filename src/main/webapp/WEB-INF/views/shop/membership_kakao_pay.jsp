@@ -30,7 +30,7 @@
 	            if (rsp.success) {
 	                // 서버단에서 결제정보 조회를 위해 fetch로 imp_uid 전달하기
 	                // 여기도 payment_completed로 하면 2번 왔다갔다해서 2개월 결제됨 그래서 main으로 설정
-	                fetch('membership_payment_completed', {
+	                fetch('/membership/main', {
 	                    method: 'POST',
 	                    headers: {
 	                        'Content-Type': 'application/json;charset=UTF-8'
@@ -63,9 +63,9 @@
 	                .catch(error => {
 	                    console.error('Error:', error.message);
 	                });
-					
+	                window.localStorage.setItem("isMembership", "1");
 	                // 성공시 이동할 페이지
-	                location.href = '<%=request.getContextPath()%>/payment_completed';
+	                location.href = 'membership_payment_completed';
 	            } else {
 	                msg = '결제에 실패하였습니다.';
 	                msg += '\에러내용 : ' + rsp.error_msg;

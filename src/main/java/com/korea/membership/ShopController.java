@@ -383,13 +383,9 @@ public class ShopController {
 		PMemberVO vo = (PMemberVO) session.getAttribute("id");
 		
 		int m_idx = vo.getM_idx();
-		int res = item_dao.membership_buy(m_idx);
+		item_dao.membership_buy(m_idx);
 		
-		if (res == 1) {
-			model.addAttribute("isMembership",res);
-		}
-		
-		return "{\"param\": \"success\"}";
+		return Path.ShopPath.make_path("payment_completed");
 	}
 
 	@RequestMapping("payment_completed")

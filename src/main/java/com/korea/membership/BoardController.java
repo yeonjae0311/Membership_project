@@ -116,11 +116,6 @@ public class BoardController {
 			System.out.println("nowPage2 : "+nowPage2);
 		}
 		model.addAttribute("priority",priority);
-
-		System.out.println("nowPage1 : "+nowPage1);
-		System.out.println("nowPage2 : "+nowPage2);
-		System.out.println(unfixed_master_list.size());
-		System.out.println(unfixed_fan_list.size());
 		
 		return Path.BoardPath.make_path("board");
 	}
