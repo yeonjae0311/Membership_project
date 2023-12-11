@@ -58,7 +58,7 @@
 			
 			<div>
 				<input type="button" value="스토리 쓰기" onclick="send(this.form)">
-			</div>			
+			</div>
 		</form>
 	</div>
 	

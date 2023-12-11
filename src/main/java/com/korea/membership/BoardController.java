@@ -78,7 +78,7 @@ public class BoardController {
 		
 		
 		int start2 = (nowPage2-1)*Common.BOARD_PER_PAGE+1;
-		int end2 = start1+Common.BOARD_PER_PAGE-1;		
+		int end2 = start2+Common.BOARD_PER_PAGE-1;		
 		
 		map.put("start2", start2);
 		map.put("end2", end2);		
@@ -116,6 +116,11 @@ public class BoardController {
 			System.out.println("nowPage2 : "+nowPage2);
 		}
 		model.addAttribute("priority",priority);
+
+		System.out.println("nowPage1 : "+nowPage1);
+		System.out.println("nowPage2 : "+nowPage2);
+		System.out.println(unfixed_master_list.size());
+		System.out.println(unfixed_fan_list.size());
 		
 		return Path.BoardPath.make_path("board");
 	}

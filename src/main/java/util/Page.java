@@ -57,7 +57,7 @@ public class Page {
 				sb.append(i);
 				sb.append("</font></b>");
 			}else {
-				sb.append("&nbsp;<a href='"+pageURL+"?page=");
+				sb.append("&nbsp;<a href='"+pageURL+"?page1=");
 				sb.append(i);
 				sb.append("'>");
 				sb.append(i);
@@ -135,7 +135,7 @@ public class Page {
 				sb.append(i);
 				sb.append("</font></b>");
 			}else {
-				sb.append("&nbsp;<a href='"+pageURL+"?page=");
+				sb.append("&nbsp;<a href='"+pageURL+"?page2=");
 				sb.append(i);
 				sb.append("'>");
 				sb.append(i);
