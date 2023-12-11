@@ -374,12 +374,29 @@ public class ShopController {
 		}
 	}
 	
+
+	@RequestMapping("membership_payment_completed")
+	public String payment_completed(Model model) {
+		
+		PMemberVO vo = (PMemberVO) session.getAttribute("id");
+		
+		int m_idx = vo.getM_idx();
+		int res = item_dao.membership_buy(m_idx);
+		
+		if (res == 1) {
+			model.addAttribute("isMembership",res);
+		}
+		
+		return "{\"param\": \"success\"}";
+	}
+
 	@RequestMapping("payment_completed")
 	@ResponseBody
 	public String payment_completed(@RequestBody String body) {
 		
 		System.out.println(body);
 		System.out.println("여기로 오는거 맞나요?");
+
 		
 		return "{\"param\": \"success\"}";
 	}

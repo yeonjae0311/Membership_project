@@ -26,7 +26,6 @@
 			</div>
 		</div>
 		
-		
 		<!-- 스토리 4개 정도 출력해보기 -->
 		<div id="story">
 		
@@ -39,7 +38,8 @@
 		<div id="board">
 		
 		</div>
-	</div> <!--</div id="home_div"> -->
+		<input type="button" onclick="location.href='membership_shop_payment'" value="buy membership">
+	</div>
 	
 	<div id="footer_bar"></div>
 </body>
