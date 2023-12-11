@@ -77,7 +77,6 @@
 												  	0 4 1.794 4 4s-.7 3.412-3.5 6.5Z"/>
 										</svg>
 									</div>
-									<c:out value="${svo.s_idx }+${svo.sl_isliked}"/>
 								</c:when>
 								
 								<c:when test="${svo.sl_isliked eq '1'}">
