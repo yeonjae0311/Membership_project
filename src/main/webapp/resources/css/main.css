@@ -67,7 +67,7 @@ body{
 
 body > div:nth-child(2){
 	flex-grow: 1;
-	width: 100vw;
+	/* width: 100vw; */
 }
 
 input[type="button"]{
@@ -95,7 +95,7 @@ input[type="file"]::file-selector-button{
 }
 
 textarea{
-	border: none;
+	/* border: none; */
 	overflow: auto;
 	outline: none;
 	resize: none;
@@ -110,7 +110,7 @@ textarea{
 #header_bar{
 	display: flex;
 	justify-content: space-between;
-	background: rgb(255,255,255);
+	/* background: rgb(255,255,255); */
 	/* background: linear-gradient(0deg, #ffffff 0%, #082a90 100%); */
 }
 
