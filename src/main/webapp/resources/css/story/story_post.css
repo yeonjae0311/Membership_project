@@ -23,6 +23,14 @@
     justify-content: center;
 }
 
+#story_img{
+	align: "center";
+	width: 500px;
+	height: 350px;
+	margin: 4%;
+	display: inline-block;
+}
+
 #file_upload_div > p{
     height: 3em;
     line-height: 3em;

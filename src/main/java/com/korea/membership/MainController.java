@@ -7,21 +7,16 @@ import util.Path;
 
 @Controller
 public class MainController {
-	
-	
-	
+
 	@RequestMapping("/")
-	public String home() {		
+	public String home() {
+
 		return Path.HomePath.make_path("home");
 	}
-	
-	
-	
+
 	@RequestMapping("main")
 	public String main() {
-		
-		
-		
+
 		return "redirect:/";
 	}
 }
