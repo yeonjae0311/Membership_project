@@ -375,13 +375,17 @@ public class ShopController {
 	}
 	
 	@RequestMapping("payment_completed")
-	public String payment_completed() {
+	@ResponseBody
+	public String payment_completed(@RequestBody String body) {
 		
-		PMemberVO userVo = (PMemberVO) session.getAttribute("id");
+		System.out.println(body);
+		System.out.println("여기로 오는거 맞나요?");
 		
-		int m_idx = userVo.getM_idx();
-		item_dao.membership_buy(m_idx);
-		
+		return "{\"param\": \"success\"}";
+	}
+	
+	@RequestMapping("completed_page")
+	public String completed_page() {
 		return Path.ShopPath.make_path("payment_completed");
 	}
 	
@@ -389,10 +393,34 @@ public class ShopController {
 	public String membership_shop_payment() {
 		return Path.ShopPath.make_path("membership_shop_payment");
 	}
+	
+	@RequestMapping("kakao")
+	@ResponseBody
+	public String kakao_payment(@RequestBody String body) {
+		ObjectMapper om = new ObjectMapper();
+		
+		Map<String, String> data = null;
+		
+		try {
+			data = om.readValue(body, new TypeReference<Map<String, String>>() {
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String o_sum = data.get("o_sum");
+		String payment_name = "NEWJEANS MEMBERSHIP PAYMENT";
+		
+		session.setAttribute("payment_name", payment_name);
+		session.setAttribute("payment_price", o_sum);
+		
+		return "{\"param\": \"success\"}";
+	}
+	
 
-   @RequestMapping("order_insert") 
-   @ResponseBody
-   public String order_insert(@RequestBody String body) throws ParseException {
+    @RequestMapping("order_insert") 
+    @ResponseBody
+    public String order_insert(@RequestBody String body) throws ParseException {
 	   
 	   JSONParser parser = new JSONParser();
 	   JSONObject object = (JSONObject) parser.parse(body);
@@ -430,11 +458,7 @@ public class ShopController {
            map_detail.put("m_idx", m_idx);        
            
            order_detail_dao.order_detail_insert(map_detail);
-	   }	   	   
-	   
-	   String payment_name = "NEWJEANS MEMBERSHIP PAYMENT";
-	   session.setAttribute("payment_name", payment_name);
-	   session.setAttribute("payment_price", o_sum);
+	   }	   	   	   
 	      	     	   
 	   return "{\"param\": \"success\"}";
    }
@@ -444,4 +468,5 @@ public class ShopController {
 
 		return Path.ShopPath.make_path("membership_kakao_pay");
 	}
+	
 }

@@ -14,6 +14,7 @@
 	        var IMP = window.IMP;
 	        IMP.init('imp57607280');
 	        var msg;
+	        let order_list_json = localStorage.getItem("order_list_json");
 	
 	        IMP.request_pay({
 	            pg: 'kakaopay',
@@ -29,13 +30,13 @@
 	        }, function (rsp) {
 	            if (rsp.success) {
 	                // 서버단에서 결제정보 조회를 위해 fetch로 imp_uid 전달하기
-	                fetch('/membership/payment_completed', {
+	                fetch("payment_completed", {
 	                    method: 'POST',
 	                    headers: {
 	                        'Content-Type': 'application/json;charset=UTF-8'
 	                    },
 	                    body: JSON.stringify({
-	                        imp_uid: rsp.imp_uid
+	                        "order_list_json" : order_list_json
 	                        // 기타 필요한 데이터가 있으면 추가 전달
 	                    })
 	                })
@@ -64,7 +65,7 @@
 	                });
 	
 	                // 성공시 이동할 페이지
-	                location.href = '<%=request.getContextPath()%>/payment_completed';
+	                location.href = '<%=request.getContextPath()%>/completed_page';
 	            } else {
 	                msg = '결제에 실패하였습니다.';
 	                msg += '\에러내용 : ' + rsp.error_msg;
