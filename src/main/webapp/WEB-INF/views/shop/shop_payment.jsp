@@ -64,7 +64,7 @@
 		    let detail_address = document.getElementById("detailAddress").value;
 		    
 	    	if((postcode == '') || (address == '') || (detail_address = '')){
-	    		alert("정확한 배송지를 입력해주세요")
+	    		alert("정확한 배송지를 입력해주세요");
 	    		return;
 	    	}
 	    	
@@ -81,6 +81,17 @@
 	    	let postcode = document.getElementById("postcode").value;
 	    	let address = document.getElementById("address").value;
 	    	let detail_address = document.getElementById("detailAddress").value;
+	    	
+	    	if(postcode == ""){
+	    		alert("우편번호 입력이 필요합니다.");
+	    		return;
+	    	}
+	    	
+	    	if(detail_address == ""){
+	    		alert("상세 주소를 입력하세요");
+	    		 document.getElementById("detailAddress").focus();
+	    		return;
+	    	}
 	    	
 	    	const url = "insert_addr";
 	    	

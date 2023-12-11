@@ -49,7 +49,7 @@
 				<p>
 					파일 업로드:
 				</p>
-				<input type="file" id="s_img" name="s_file" onchange="change_img()" >
+				<input type="file" id="s_img" name="s_file" onchange="change_img()"  title=" /" >
 			</div>
 			
 			<div id="caption">
