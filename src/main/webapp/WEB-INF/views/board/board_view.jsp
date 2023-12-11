@@ -120,9 +120,16 @@
 						${i.r_content}<br>
 						
 						누적 좋아요 : <input id="r_like_count_${i.r_idx}" type="text" value="${i.r_like_count}"><br>
-						
-						<input id="rl_isliked_${i.r_idx}" type="button" value="${i.rl_isliked}" onclick="reply_like(${i.r_idx})">
-						
+						<c:choose>
+							<c:when test="${i.rl_isliked eq '0'}">
+								<input id="rl_isliked_status_${i.r_idx}" type="button" value="좋아요" onclick="reply_like(${i.r_idx})">
+							</c:when>
+							<c:when test="${i.rl_isliked eq '1'}">
+								<input id="rl_isliked_status_${i.r_idx}" type="button" value="좋아요 해제" onclick="reply_like(${i.r_idx})">
+							</c:when>
+						</c:choose>
+						<input id="rl_isliked_${i.r_idx}" type="hidden" value="${i.rl_isliked}" onclick="reply_like(${i.r_idx})">
+												
 						<input id="r_del_button_${i.r_idx}" type="button" value="댓글 삭제" onclick="delete_reply(${i.r_idx})">
 					</div>
 				</c:forEach>

@@ -115,10 +115,13 @@ function after_reply_like(...args){
 	let res = args[0].res;
 	let r_idx = args[0].r_idx;
 	let r_like_count_id = document.getElementById('r_like_count_'+r_idx);
+	let rl_isliked_status_id = document.getElementById('rl_isliked_status_'+r_idx);
 	if(res == 'plus'){     
 		r_like_count_id.value= Number(r_like_count_id.value)+1;
+		rl_isliked_status_id.value = '좋아요 해제';	
 	}else if(res=='minus'){
-		r_like_count_id.value= Number(r_like_count_id.value)-1;				
+		r_like_count_id.value= Number(r_like_count_id.value)-1;
+		rl_isliked_status_id.value = '좋아요';				
 	}else{
 		alert('권한이 없습니다.');
 	}
