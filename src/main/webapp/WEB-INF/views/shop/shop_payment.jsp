@@ -10,10 +10,6 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_css.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_js.js"></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
-	<script type="module" src="${pageContext.request.contextPath}/resources/js/shop_js/shop_payment.js" defer></script>
-
 	<script>
 	    function addr() {
 	        new daum.Postcode({
@@ -67,7 +63,7 @@
 		    let detail_address = document.getElementById("detailAddress").value;
 		    
 	    	if((postcode == '') || (address == '') || (detail_address = '')){
-	    		alert("정확한 배송지를 입력해주세요")
+	    		alert("정확한 배송지를 입력해주세요");
 	    		return;
 	    	}
 	    	
@@ -84,6 +80,17 @@
 	    	let postcode = document.getElementById("postcode").value;
 	    	let address = document.getElementById("address").value;
 	    	let detail_address = document.getElementById("detailAddress").value;
+	    	
+	    	if(postcode == ""){
+	    		alert("우편번호 입력이 필요합니다.");
+	    		return;
+	    	}
+	    	
+	    	if(detail_address == ""){
+	    		alert("상세 주소를 입력하세요");
+	    		 document.getElementById("detailAddress").focus();
+	    		return;
+	    	}
 	    	
 	    	const url = "insert_addr";
 	    	
