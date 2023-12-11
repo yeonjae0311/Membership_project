@@ -3,7 +3,7 @@ package com.korea.membership;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
+import java.net.URLDecoder;	
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +11,10 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +29,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import dao.BoardDAO;
 import dao.CartDetailDAO;
 import dao.ItemDAO;
+import dao.OrderDetailDAO;
 import dao.PMemberDAO;
 import dao.POrderDAO;
 import util.Path;
@@ -45,16 +50,18 @@ public class ShopController {
 	BoardDAO board_dao;
 	PMemberDAO pmember_dao;
 	POrderDAO porder_dao;
+	OrderDetailDAO order_detail_dao;
 
 	public ShopController(ItemDAO item_dao, CartDetailDAO cart_detail_dao, 
 						  BoardDAO board_dao, PMemberDAO pmember_dao,
-						  POrderDAO porder_dao) {
+						  POrderDAO porder_dao, OrderDetailDAO order_detail_dao) {
 		
 		this.item_dao = item_dao;
 		this.cart_detail_dao = cart_detail_dao;
 		this.board_dao = board_dao;
 		this.pmember_dao = pmember_dao;
 		this.porder_dao = porder_dao;
+		this.order_detail_dao = order_detail_dao;
 	}
 
 	@RequestMapping("shop")
@@ -380,10 +387,58 @@ public class ShopController {
 	
 	@RequestMapping("membership_shop_payment")
 	public String membership_shop_payment() {
-
 		return Path.ShopPath.make_path("membership_shop_payment");
 	}
-	
+
+   @RequestMapping("order_insert") 
+   @ResponseBody
+   public String order_insert(@RequestBody String body) throws ParseException {
+	   
+	   JSONParser parser = new JSONParser();
+	   JSONObject object = (JSONObject) parser.parse(body);
+	   System.out.println(object.get("items"));
+	   
+	   JSONObject total_count = (JSONObject) object.get("total_count");	
+	   String o_sum_str = String.valueOf(total_count.get("final_price"));
+	   String o_count_str = String.valueOf(total_count.get("total_amount"));
+	   
+	   int o_sum = Integer.parseInt(o_sum_str);
+	   int o_count = Integer.parseInt(o_count_str);
+	   int m_idx = (int) session.getAttribute("m_idx");
+	   
+	   Map<String, Object> map_order = new HashMap<String, Object>();
+	   map_order.put("o_sum", o_sum);
+	   map_order.put("o_count", o_count);
+	   map_order.put("m_idx", m_idx);
+	   
+	   JSONArray items = (JSONArray)object.get("items");
+	   
+	   porder_dao.order_insert(map_order);
+	   	   
+	   for(int i = 0 ; i<items.size();i++){	   
+		   
+		   Map<String, Object> map_detail = new HashMap<String, Object>();
+		   
+		   object = (JSONObject) items.get(i);
+           int i_idx = Integer.parseInt(String.valueOf(object.get("i_idx"))); 
+           int od_count = Integer.parseInt(String.valueOf(object.get("od_count"))); 
+           int od_sum = Integer.parseInt(String.valueOf(object.get("od_sum"))); 
+             
+           map_detail.put("i_idx", i_idx);
+           map_detail.put("od_count", od_count);
+           map_detail.put("od_sum", od_sum);
+           map_detail.put("m_idx", m_idx);        
+           
+           order_detail_dao.order_detail_insert(map_detail);
+	   }	   	   
+	   
+	   String payment_name = "NEWJEANS MEMBERSHIP PAYMENT";
+	   session.setAttribute("payment_name", payment_name);
+	   session.setAttribute("payment_price", o_sum);
+	      	     	   
+	   return "{\"param\": \"success\"}";
+   }
+
 	@RequestMapping("membership_kakao_pay")
 	public String membership_kakao_pay() {
 

@@ -10,6 +10,10 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_css.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_js.js"></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
+	<script type="module" src="${pageContext.request.contextPath}/resources/js/shop_js/shop_payment.js" defer></script>
+
 	<script>
 	    function addr() {
 	        new daum.Postcode({
@@ -74,6 +78,30 @@
 	    		location.href="kakao_pay";
 	    	}
 	    }
+	    
+	    function update_addr(){
+
+	    	let postcode = document.getElementById("postcode").value;
+	    	let address = document.getElementById("address").value;
+	    	let detail_address = document.getElementById("detailAddress").value;
+	    	
+	    	const url = "insert_addr";
+	    	
+	    	let param = {
+	    		"postcode": encodeURIComponent(postcode),
+	    		"address": encodeURIComponent(address),
+	    		"detail_address": encodeURIComponent(detail_address)
+	    	};
+	    	
+	    	send_request(url, param, callback_addr, "post");
+	    	
+	    }
+
+	    function callback_addr(...args){
+	    	alert("배송지가 등록되었습니다.")
+
+	    }
+
 	</script>
 </head>
 <body>
@@ -113,6 +141,12 @@
 					<input type="text" id="detailAddress" placeholder="상세주소">
 				</td>
 			</tr>
+			<tr>
+				<td>
+					<input type="button" onclick="update_addr()" value="배송지 등록">
+				</td>
+			</tr>
+			
 		</table>
 			
 		<div id="order_item_list_div"></div>	
