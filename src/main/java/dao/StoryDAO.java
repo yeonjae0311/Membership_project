@@ -50,4 +50,8 @@ public class StoryDAO {
 	public int story_update_read_hit(int s_idx) {
 		return sqlSession.update("s.story_update_read_hit",s_idx);
 	}
+	
+	public int update_to_delete_story() {
+		return sqlSession.update("s.update_to_delete_story");
+	}
 }

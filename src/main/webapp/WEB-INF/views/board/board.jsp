@@ -24,12 +24,13 @@
 	</style>
 </head>
 <body>
+	<input id="priority" type="hidden" value="${priority}">
 	<div id="header_bar"></div>
 	
 	<div>
 		<div id="board_view_button_bar">
-			<input type="button" value="관리자버튼" onclick="managerfunc()">	
-			<input type="button" value="유저버튼" onclick="userfunc()">	
+			<input type="button" value="관리자버튼" onclick="master_board_first()">	
+			<input type="button" value="유저버튼" onclick="all_board_first()">	
 		</div>
 		
 		<div id="fixed_list">
@@ -72,7 +73,9 @@
 						<td>${i.m_username}</td>
 					</tr>
 				</c:forEach> 
-				
+				<tr>
+					<td colspan="3">${pageMenu1}</td>
+				</tr>
 			</table>
 		</div>
 				
@@ -95,7 +98,9 @@
 						<td>${i.m_username}</td>
 					</tr>
 				</c:forEach> 
-				
+				<tr>
+					<td colspan="3">${pageMenu2}</td>
+				</tr>
 			</table>
 		</div>
 		<input type="button" value="글쓰기" onclick="location.href='board_post'">

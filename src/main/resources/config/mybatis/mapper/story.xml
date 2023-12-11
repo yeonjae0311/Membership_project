@@ -78,4 +78,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set s_read_hit = s_read_hit+1
 		where s_idx=#{s_idx}
 	</update>
+	
+	<delete id="update_to_delete_story">
+		<![CDATA[
+		DELETE story
+		WHERE S_EXPECTED_EXPIRATION_TIME<SYSDATE
+		]]>
+	</delete>
 </mapper>
