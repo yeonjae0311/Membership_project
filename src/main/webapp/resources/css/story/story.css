@@ -1,43 +1,60 @@
 @charset "UTF-8";
 
-#create_story{
-	margin: 2% 0;
-	width: 100vw;
-}
-
-#create_story > input{
-	width: 11em;
-	display: block;
-	margin-left: auto;
-	margin-right: 5%;
-}
-
 #storyContainer{
-	margin-top: 5%;
+	margin-top: 3%;
 }
 
-.story > div{
+.story_main{
 	display: flex;
+	width: 80vw;
+	margin: auto;
+	position: relative;
+}
+
+.left, .right{
+	padding: 0 3%;
+}
+
+.left{
+	margin: auto 0 auto auto;
+}
+
+.right{
+	margin: auto auto auto 0;
+}
+
+.img_class{
+	width: 30vw;
+	height: 40vh;
+	text-align: center;
+}
+
+.story_img{
+	height: 100%;
+	padding: 1.5%;
+	box-shadow: 6px 6px 1px 1px #bcecff;
+	border: 2px solid #ffbbe3;
+}
+
+#create_story > img{
+	width: 4em;
+	height: 4em;
+	cursor: pointer;
+	position: absolute;
+	bottom: -30px;
+}
+
+.story_info_div{
 	width: 80vw;
 	margin: auto;
 }
 
-.left, .right{
-	margin: auto;
-	padding: 0 3%;
-}
-
-.img_class{
-	width: 100%;
-}
-
-.story_img{
-	width: 100%;
-}
-
-.story_info_div > div{
-	margin: 2% auto;
+.count_list{
+	width: 40vw;
+	border-top: 1px solid #082a90;
+	margin: 5% auto 0;
 	display: flex;
+	justify-content: center;
 }
 
 .count_info_div{
@@ -72,4 +89,9 @@
 .like_button{
 	height: 2em;
 	width: 2em;
+}
+
+.comment{
+	justify-content: center;
+    display: flex;
 }
