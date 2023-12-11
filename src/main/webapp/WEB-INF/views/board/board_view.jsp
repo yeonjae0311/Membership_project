@@ -7,7 +7,8 @@
 <head data-id="board">
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default.js" defer></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_css.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_js.js"></script>
 	<script>
 		let bl_isliked;
 		let b_idx='${vo.b_idx}';

@@ -145,7 +145,7 @@ public class MemberController {
 		session.removeAttribute("id");
 		session.removeAttribute("m_idx");
 
-		return Path.HomePath.make_path("home");
+		return "redirect:/";
 	}
 
 	@RequestMapping("member_insert_form")
@@ -271,7 +271,7 @@ public class MemberController {
 		List<POrderVO> order_list = item_dao.select_order_list(m_idx);
 		
 		model.addAttribute("order_list",order_list);
-		
+
 		return Path.UserPath.make_path("user_order_list");
 	}
 
@@ -281,11 +281,11 @@ public class MemberController {
 
 		List<BoardPMemberViewVO> list = board_dao.fixed_board_list();
 
-		session.setAttribute("list", list);
+		session.setAttribute("user_post_list", list);
 
 		return Path.UserPath.make_path("user_post_list");
 	}
-
+	
 	@RequestMapping(value = "mail_check", method = RequestMethod.GET)
 	@ResponseBody
 	public String mailCheck(String m_email) throws Exception { // 반환값이 있기에 메서드 타입도 String
