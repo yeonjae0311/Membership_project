@@ -14,7 +14,7 @@
 	
 	<div id="story_div">
 		<div id="storyContainer">	
-			<c:forEach var="svo" items="${svo_list}" varStatus="loop">		
+			<c:forEach var="svo" items="${svo_list}" varStatus="loop">
 				<div id="story_${svo.s_idx}" class="story" style="display: ${loop.index == 0 ? 'block' : 'none'}">
 					<div class="story_main">
 						<div class="left">
