@@ -1,3 +1,31 @@
+
+const order_list = {
+	"items": {},
+	"final_amount": {}
+};
+
+let cd_count = document.getElementById("cd_count").value;
+let i_price = document.getElementById("i_price").value;
+
+let final_list = order_list.final_amount;
+final_list["total_amount"] = document.getElementById("cd_count").value;
+final_list["final_price"] = cd_count * i_price;
+
+let order_item = order_list.items;
+
+order_item[0] = {};
+
+order_item = order_item[0];
+
+order_item["i_idx"] = document.getElementById("i_idx").value;
+order_item["i_name"] = document.getElementById("i_name").value;
+order_item["i_color"] = document.getElementById("i_color").value;
+order_item["i_photo_name"] = document.getElementById("item_img_id").value;
+order_list.items[0]["cd_amount"] = document.getElementById("cd_count").value;
+order_list.items[0]["total_price"] = cd_count * i_price;
+	
+sessionStorage.setItem("order_list", JSON.stringify(order_list));
+
 function send_shopping_cart(f){
 				
 	const i_name = f.i_name.value.trim();

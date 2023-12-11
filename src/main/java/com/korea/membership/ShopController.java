@@ -3,7 +3,9 @@ package com.korea.membership;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;	
+import java.net.URLDecoder;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -396,13 +398,60 @@ public class ShopController {
 		
 		JSONParser parser = new JSONParser();
 		JSONObject object = (JSONObject) parser.parse(body);
-		JSONObject object_new = (JSONObject) object.get("order_list_json");
-
+		String obj = String.valueOf(object.get("order_list_json"));
+		JSONObject object_new = (JSONObject) parser.parse(obj);
+		
+	    JSONObject total_count = (JSONObject) object_new.get("total_count");	
+	    String o_sum_str = String.valueOf(total_count.get("final_price"));
+	    String o_count_str = String.valueOf(total_count.get("total_amount"));
+		   
+	    int o_sum = Integer.parseInt(o_sum_str);
+		int o_count = Integer.parseInt(o_count_str);
+		int m_idx = (int) session.getAttribute("m_idx");
+		   
+		Map<String, Object> map_order = new HashMap<String, Object>();
+		map_order.put("o_sum", o_sum);
+		map_order.put("o_count", o_count);
+		map_order.put("m_idx", m_idx);
+		   
+		JSONArray items = (JSONArray)object_new.get("items");
+		   
+		porder_dao.order_insert(map_order);
+		   	   
+		for(int i = 0 ; i<items.size();i++){	   
+			   
+		   Map<String, Object> map_detail = new HashMap<String, Object>();
+		   
+		   object = (JSONObject) items.get(i);
+           int i_idx = Integer.parseInt(String.valueOf(object.get("i_idx"))); 
+           int od_count = Integer.parseInt(String.valueOf(object.get("od_count"))); 
+           int od_sum = Integer.parseInt(String.valueOf(object.get("od_sum"))); 
+             
+           map_detail.put("i_idx", i_idx);
+           map_detail.put("od_count", od_count);
+           map_detail.put("od_sum", od_sum);
+           map_detail.put("m_idx", m_idx);        
+           
+           order_detail_dao.order_detail_insert(map_detail);
+		}	   	   	   
+		
 		return "{\"param\": \"success\"}";
 	}
 	
 	@RequestMapping("completed_page")
-	public String completed_page() {
+	public String completed_page(Model model) {
+		
+		LocalDateTime now = LocalDateTime.now();
+
+		String formatedNow = now.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분 ss초"));
+		
+		int m_idx = (int) session.getAttribute("m_idx");
+		
+		int o_idx = porder_dao.o_idx_select(m_idx);
+		
+		model.addAttribute("order_date", formatedNow);
+		model.addAttribute("order_num", o_idx);
+		
 		return Path.ShopPath.make_path("payment_completed");
 	}
 	
@@ -433,52 +482,6 @@ public class ShopController {
 		
 		return "{\"param\": \"success\"}";
 	}
-	
-
-    @RequestMapping("order_insert") 
-    @ResponseBody
-    public String order_insert(@RequestBody String body) throws ParseException {
-	   
-	   JSONParser parser = new JSONParser();
-	   JSONObject object = (JSONObject) parser.parse(body);
-	   System.out.println(object.get("items"));
-	   
-	   JSONObject total_count = (JSONObject) object.get("total_count");	
-	   String o_sum_str = String.valueOf(total_count.get("final_price"));
-	   String o_count_str = String.valueOf(total_count.get("total_amount"));
-	   
-	   int o_sum = Integer.parseInt(o_sum_str);
-	   int o_count = Integer.parseInt(o_count_str);
-	   int m_idx = (int) session.getAttribute("m_idx");
-	   
-	   Map<String, Object> map_order = new HashMap<String, Object>();
-	   map_order.put("o_sum", o_sum);
-	   map_order.put("o_count", o_count);
-	   map_order.put("m_idx", m_idx);
-	   
-	   JSONArray items = (JSONArray)object.get("items");
-	   
-	   porder_dao.order_insert(map_order);
-	   	   
-	   for(int i = 0 ; i<items.size();i++){	   
-		   
-		   Map<String, Object> map_detail = new HashMap<String, Object>();
-		   
-		   object = (JSONObject) items.get(i);
-           int i_idx = Integer.parseInt(String.valueOf(object.get("i_idx"))); 
-           int od_count = Integer.parseInt(String.valueOf(object.get("od_count"))); 
-           int od_sum = Integer.parseInt(String.valueOf(object.get("od_sum"))); 
-             
-           map_detail.put("i_idx", i_idx);
-           map_detail.put("od_count", od_count);
-           map_detail.put("od_sum", od_sum);
-           map_detail.put("m_idx", m_idx);        
-           
-           order_detail_dao.order_detail_insert(map_detail);
-	   }	   	   	   
-	      	     	   
-	   return "{\"param\": \"success\"}";
-   }
 
 	@RequestMapping("membership_kakao_pay")
 	public String membership_kakao_pay() {

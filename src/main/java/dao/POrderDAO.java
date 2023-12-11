@@ -14,4 +14,8 @@ public class POrderDAO {
 	public int order_insert(Map<String, Object> map_order) {
 		return sqlSession.insert("o.porder_insert", map_order);
 	}
+	
+	public int o_idx_select(int m_idx) {
+		return sqlSession.selectOne("o.o_idx_select", m_idx);
+	}
 }

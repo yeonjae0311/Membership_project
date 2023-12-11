@@ -43,20 +43,23 @@
 			<div id=item_info_div>
 			
 				<div class=item_img_div>
+					<input type="hidden" id="item_img_id" value="${vo.i_photo_name}"> 
 					<img id=item_img src="${pageContext.request.contextPath}/resources/upload/shop/${vo.i_photo_name}"><br>
 				</div>
 				
 				<div>
+					<input type="hidden" id="i_idx" value="${vo.i_idx}">
 					<input type="hidden" name="i_name" id="i_name" value="${vo.i_name}">
-					${vo.i_name}<br>
+					<span>${vo.i_name}<br></span>
 				</div>
 				
 				<div>
-					${vo.i_price}<br>
+					<input type="hidden" id="i_price" value="${vo.i_price}">
+					<span>${vo.i_price}<br></span>
 				</div>
 				
 				<div>
-					<select class="color_option" id="color" name="i_color" required>
+					<select class="color_option" id="i_color" name="i_color" required>
 					    <c:forEach var="colors" items="${colors}">
 					    	<option value="${colors}">${colors}</option>
 					    </c:forEach>	   
