@@ -19,7 +19,7 @@
 					파일 업로드:
 				</p>
 				
-				<input type="file" name="s_file">
+				<input type="file" name="s_file" title=" /">
 			</div>
 			
 			<div id="caption">
