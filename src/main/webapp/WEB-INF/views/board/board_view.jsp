@@ -9,20 +9,26 @@
 	<title>게시글 상세보기~</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_css.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_js.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/board/board_view.js"></script>
-	<script>
-		let bl_isliked;
-		let b_idx,m_idx;
-		window.onload = function(){
-			b_idx = document.getElementById('b_idx').value;
-			let m_idx = document.getElementById('m_idx').value;
-			if(b_idx == '1'){
-				bl_isliked = '1';
-			}else{
-				bl_isliked = '0';
-			}
-		}
-	    </script>
+	<style>
+	.reply_div{
+		overflow: auto;
+		width: 80%;
+		
+	}
+	.user_info_div{
+		overflow: auto;
+	}
+	
+	.user_photo{
+		float:right;
+		padding-right: 5%;
+	}
+	.user_image{
+		overflow: auto;
+		width: 100px; 
+		height: 100px;
+	}
+	</style>
 </head>
 <body>
 	<div id="header_bar"></div>
@@ -110,10 +116,10 @@
 			<div class="reply_div">
 				<div class="user_info_div">
 					<div class="user_photo">
-						<img src="${pageContext.request.contextPath}/resources/upload/user${i.m_photo_name}" alt="이미지 유실">
+						<img class="user_image" src="${pageContext.request.contextPath}/resources/upload/user/${i.m_photo_name}" alt="이미지 유실">
 					</div>
 					
-					<div>${i.m_username}</div>
+					<span>${i.m_username}</span>
 					
 					<div>${i.r_date}</div>
 				</div>

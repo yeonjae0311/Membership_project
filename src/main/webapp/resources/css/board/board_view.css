@@ -1,1 +1,10 @@
 @charset "UTF-8";
+/* 여기가 작동이 안됨 디폴트 연결이 안되나? */
+.user_photo{
+	
+}
+
+.user_image{
+	width: 200px; 
+	height: auto;
+}
