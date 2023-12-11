@@ -14,7 +14,7 @@
 	<div id="user_edit">
 		<div id="member_info_head_div">
 			<div>
-				<img id="member_photo" src="${pageContext.request.contextPath}/resources/upload/${vo.m_photo_name}">		
+				<img id="member_photo" src="${pageContext.request.contextPath}/resources/upload/user/${vo.m_photo_name}">		
 				
 				<div id="user_info_form">
 					<div class="member_info_head" onclick="send(event)">${vo.m_username}</div>

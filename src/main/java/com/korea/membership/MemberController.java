@@ -205,20 +205,19 @@ public class MemberController {
 			e.printStackTrace();
 		}
 
-		int m_idx = Integer.parseInt(data.get("m_idx"));
-		PMemberVO basevo = pmember_dao.select_one(m_idx);
+		PMemberVO user_vo = (PMemberVO) session.getAttribute("id");
 
 		// 탈퇴시 아이디랑 메일에 랜덤한 수 넣기
 		Random random = new Random();
 		int check_num = random.nextInt(888888) + 111111;
 
-		String m_id = basevo.getM_id() + (int) check_num;
-		String m_email = basevo.getM_email() + (int) check_num;
+		String m_id = user_vo.getM_id() + (int) check_num;
+		String m_email = user_vo.getM_email() + (int) check_num;
 
-		basevo.setM_id(m_id);
-		basevo.setM_email(m_email);
+		user_vo.setM_id(m_id);
+		user_vo.setM_email(m_email);
 
-		int res = pmember_dao.delete_update(basevo);
+		int res = pmember_dao.delete_update(user_vo);
 
 		if (res == 1) {
 			return "{\"param\": \"success\"}";
@@ -286,7 +285,7 @@ public class MemberController {
 
 		return Path.UserPath.make_path("user_post_list");
 	}
-	
+
 	@RequestMapping(value = "mail_check", method = RequestMethod.GET)
 	@ResponseBody
 	public String mailCheck(String m_email) throws Exception { // 반환값이 있기에 메서드 타입도 String
@@ -424,10 +423,10 @@ public class MemberController {
 
 	@RequestMapping("kakao_pay")
 	public String kakao_pay(Model model) {
-		
+
 		String payment_name = String.valueOf(session.getAttribute("payment_name"));
 		String payment_price = String.valueOf(session.getAttribute("payment_price"));
-		
+
 		model.addAttribute("payment_price", payment_price);
 		model.addAttribute("payment_name", payment_name);
 				
@@ -532,6 +531,7 @@ public class MemberController {
 	public String congratulations_register() {
 		return Path.LoginPath.make_path("membership_info");
 	}
+
 	@RequestMapping("insert_addr")
 	@ResponseBody
 	public String insert_addr(@RequestBody String body) throws UnsupportedEncodingException {
@@ -549,17 +549,17 @@ public class MemberController {
 		String postcode = data.get("postcode");
 		String address = URLDecoder.decode(data.get("address"), "utf-8");
 		String detail_address = URLDecoder.decode(data.get("detail_address"), "utf-8");
-		
+
 		int m_idx = (int) session.getAttribute("m_idx");
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("m_addr1", postcode);
 		map.put("m_addr2", address);
 		map.put("m_addr3", detail_address);
 		map.put("m_idx", m_idx);
-		
+
 		pmember_dao.update_addr(map);
-		
+
 		String jsonArray = null;
 
 		try {
