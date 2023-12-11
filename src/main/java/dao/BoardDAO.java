@@ -19,12 +19,12 @@ public class BoardDAO {
 		return sqlSession.selectList("b.fixed_board_list");
 	}
 	
-	public List<BoardPMemberViewVO> unfixed_master_board_list(){
-		return sqlSession.selectList("b.unfixed_master_board_list");
+	public List<BoardPMemberViewVO> unfixed_master_board_list(HashMap<String, Object> map){
+		return sqlSession.selectList("b.unfixed_master_board_list",map);
 	}
 	
-	public List<BoardPMemberViewVO> unfixed_all_board_list(){
-		return sqlSession.selectList("b.unfixed_all_board_list");
+	public List<BoardPMemberViewVO> unfixed_all_board_list(HashMap<String, Object> map){
+		return sqlSession.selectList("b.unfixed_all_board_list",map);
 	}
 	
 	public int board_insert(BoardVO vo) {
@@ -66,5 +66,13 @@ public class BoardDAO {
 	
 	public int recalculate_total_like(int b_idx) {
 		return sqlSession.update("b.recalculate_total_like",b_idx);
+	}
+	
+	public int count_unfixed_master_list() {
+		return sqlSession.selectOne("b.count_unfixed_master_list");
+	}
+	
+	public int count_unfixed_fan_list() {
+		return sqlSession.selectOne("b.count_unfixed_fan_list");
 	}
 }

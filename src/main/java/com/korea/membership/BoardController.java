@@ -23,6 +23,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.BoardDAO;
 import dao.ReplyDAO;
+import util.Common;
+import util.Page;
 import util.Path;
 import vo.BoardPMemberReplyViewVO;
 import vo.BoardPMemberViewVO;
@@ -48,16 +50,72 @@ public class BoardController {
 	}
 	
 	@RequestMapping("board")
-	public String board(Model model) {
+	public String board(Model model,String page1,String page2) {
 		session.removeAttribute("board_post_viewed");
-
-		List<BoardPMemberViewVO> fixed_list =  board_dao.fixed_board_list();
-		List<BoardPMemberViewVO> unfixed_master_list =  board_dao.unfixed_master_board_list();
-		List<BoardPMemberViewVO> unfixed_fan_list =  board_dao.unfixed_all_board_list();
 		
+		int nowPage1,nowPage2;
+		
+		nowPage1=nowPage2= 1;
+		
+		if(page1!=null && !page1.isEmpty()) {
+			nowPage1 = Integer.parseInt(page1);
+		}
+		
+		if(page2!=null && !page2.isEmpty()) {
+			nowPage2 = Integer.parseInt(page2);
+		}
+	
+		int count_unfixed_master_list = board_dao.count_unfixed_master_list();
+		int count_unfixed_fan_list = board_dao.count_unfixed_fan_list();
+
+		int start1 = (nowPage1-1)*Common.BOARD_PER_PAGE+1;
+		int end1 = start1+Common.BOARD_PER_PAGE-1;
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("start1", start1);
+		map.put("end1", end1);
+		
+		
+		
+		int start2 = (nowPage2-1)*Common.BOARD_PER_PAGE+1;
+		int end2 = start1+Common.BOARD_PER_PAGE-1;		
+		
+		map.put("start2", start2);
+		map.put("end2", end2);		
+		
+		String pageMenu1 = Page.getPaging("board",
+				nowPage1, 
+				count_unfixed_master_list, 
+				Common.BOARD_PER_PAGE, 
+				Common.BLOCKPAGE);
+		
+		String pageMenu2 = Page.getPaging2("board",
+				nowPage2, 
+				count_unfixed_fan_list, 
+				Common.BOARD_PER_PAGE, 
+				Common.BLOCKPAGE);
+		
+		List<BoardPMemberViewVO> fixed_list =  board_dao.fixed_board_list();
+		List<BoardPMemberViewVO> unfixed_master_list =  board_dao.unfixed_master_board_list(map);
+		List<BoardPMemberViewVO> unfixed_fan_list =  board_dao.unfixed_all_board_list(map);
+				
+		model.addAttribute("pageMenu1",pageMenu1);
+		model.addAttribute("pageMenu2",pageMenu2);
 		model.addAttribute("fixed_list",fixed_list);
 		model.addAttribute("unfixed_master_list",unfixed_master_list);
 		model.addAttribute("unfixed_fan_list",unfixed_fan_list);
+		int priority;
+		if(nowPage1==1) {
+			priority=2; 
+		}else if(nowPage2==1) {
+			priority=1;
+		}else {
+			priority=1;
+			System.out.println("예외 발생 priority : "+priority);
+			System.out.println("nowPage1 : "+nowPage1);
+			System.out.println("nowPage2 : "+nowPage2);
+		}
+		model.addAttribute("priority",priority);
 		
 		return Path.BoardPath.make_path("board");
 	}
