@@ -9,12 +9,11 @@ const final_info = {
     "items": [{}]
 };
 
-
 const order_item_list_div = document.getElementById("order_item_list_div");
 const total_amount_div = document.getElementById("total_amount_div");
 const button_bar_div = document.getElementById("button_bar_div");
 
-const IMG_PATH = window.location.origin + "/membership/resources/";
+const ITEM_IMG_PATH = window.location.origin + "/membership/resources/";
 
 for(const key in order_item_list){
     const item = order_item_list[key];
@@ -24,7 +23,7 @@ for(const key in order_item_list){
 
     const item_photo = document.createElement("img");
     item_photo.className = "item_photo";
-    item_photo.src = IMG_PATH + "upload/shop/" + item["i_photo_name"];
+    item_photo.src = ITEM_IMG_PATH + "upload/shop/" + item["i_photo_name"];
     item_div.appendChild(item_photo);
 
     const item_info = document.createElement("div");
@@ -100,18 +99,9 @@ cancel_button.addEventListener("click", () => {
     location.href = "shop";
 })
 
-button_bar_div.appendChild(cancel_button)
+button_bar_div.appendChild(cancel_button);
 
-/*
-<div>
-    <input type="checkbox" id="ToS">주문자는 개인정보 제공 약관에 모두 동의합니다.
-</div>
-<input type="button" value="결제하기" onclick="kakao_pay()">
-<input type="button" value="취소하기" onclick="location.href='shop'"></input>
-*/
-
-console.log(order_item_list);
-console.log(totals);
+console.log(totals.final_price);
 
 function order_insert_Fn(){
 
@@ -122,24 +112,23 @@ function order_insert_Fn(){
         const final_item_info = item_list_obj[key];
         const item_info_obj = order_item_list[key];
 
-        final_item_info["i_idx"] = item_info_obj["i_idx"]
-        final_item_info["od_count"] = item_info_obj["cd_amount"]
-        final_item_info["od_sum"] = item_info_obj["total_price"]
+        final_item_info["i_idx"] = item_info_obj["i_idx"];
+        final_item_info["od_count"] = item_info_obj["cd_amount"];
+        final_item_info["od_sum"] = item_info_obj["total_price"];
     }
+       
+    localStorage.setItem("order_list_json", JSON.stringify(final_info));
     
-    console.log(final_info);
-    console.log(final_info.items[0]);
+    const url = "kakao";
 
-    const url = "order_insert";
-
-    let param = final_info;
+    const param = {
+		"o_sum": encodeURIComponent(totals.final_price)
+	};
 
     send_request(url, param, go_to_payment, "post");
 }
 
-function go_to_payment(...args) {
-    
+function go_to_payment(...args) {  
+  
     location.href = "kakao_pay";
-
 }
-

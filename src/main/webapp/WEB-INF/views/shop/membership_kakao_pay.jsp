@@ -30,13 +30,13 @@
 	            if (rsp.success) {
 	                // 서버단에서 결제정보 조회를 위해 fetch로 imp_uid 전달하기
 	                // 여기도 payment_completed로 하면 2번 왔다갔다해서 2개월 결제됨 그래서 main으로 설정
-	                fetch('/membership/main', {
+	                fetch('membership_payment_completed', {
 	                    method: 'POST',
 	                    headers: {
 	                        'Content-Type': 'application/json;charset=UTF-8'
 	                    },
 	                    body: JSON.stringify({
-	                        imp_uid: rsp.imp_uid
+	                        
 	                        // 기타 필요한 데이터가 있으면 추가 전달
 	                    })
 	                })
@@ -63,7 +63,7 @@
 	                .catch(error => {
 	                    console.error('Error:', error.message);
 	                });
-	
+					
 	                // 성공시 이동할 페이지
 	                location.href = '<%=request.getContextPath()%>/payment_completed';
 	            } else {

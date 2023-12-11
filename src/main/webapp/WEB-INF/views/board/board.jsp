@@ -8,33 +8,19 @@
 	<title>Board</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_css.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_js.js"></script>
-	<style>
-		.b_list{
-			margin:0 auto;
-			width:90%;
-		}
-		
-		.b_list tbody tr td{
-			text-align: center;
-		}
-		
-		a{
-			text-decoration: none;
-		}
-	</style>
 </head>
 <body>
 	<input id="priority" type="hidden" value="${priority}">
 	<div id="header_bar"></div>
 	
-	<div>
+	<div id="board_div">
 		<div id="board_view_button_bar">
 			<input type="button" value="관리자버튼" onclick="master_board_first()">	
 			<input type="button" value="유저버튼" onclick="all_board_first()">	
 		</div>
 		
 		<div id="fixed_list">
-			<table border="1" class="b_list">
+			<table class="b_list">
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
@@ -53,40 +39,41 @@
 				</c:forEach> 
 			</table>
 		</div>
-			
-		<div id="unfixed_master_list">
-			<table border="1" class="b_list">
-				<tr>
-					<th>번호</th>
-					<th>제목</th>
-					<th>작성자</th>
-				</tr>
-				
-				<c:forEach var="i" items="${unfixed_master_list}">
+		
+		<div id="unfixed_list">
+			<div id="unfixed_master_list">
+				<table class="b_list">
 					<tr>
-						<td>${i.b_idx}</td>
-						
-						<td>
-							<a href="board_view?b_idx=${i.b_idx}">${i.b_title} [${i.b_reply_count}]</a>
-						</td>
-						
-						<td>${i.m_username}</td>
+						<th>번호</th>
+						<th>제목</th>
+						<th>작성자</th>
 					</tr>
-				</c:forEach> 
-				<tr>
-					<td colspan="3">${pageMenu1}</td>
-				</tr>
-			</table>
-		</div>
+                    <c:forEach var="i" items="${unfixed_master_list}">
+                        <tr>
+                            <td>${i.b_idx}</td>
+                            
+                            <td>
+                                <a href="board_view?b_idx=${i.b_idx}">${i.b_title} [${i.b_reply_count}]</a>
+                            </td>
+                            
+                            <td>${i.m_username}</td>
+                        </tr>
+                    </c:forEach> 
+					<tr>
+						<td colspan="3">${pageMenu1}</td>
+					</tr>
+				</table>
+			</div>
+			
 				
-		<div id="unfixed_fan_list" style="display:none;">
-			<table border="1" class="b_list">
-				<tr>
-					<th>번호</th>
-					<th>제목</th>
-					<th>작성자</th>
-				</tr>
-				
+			<div id="unfixed_fan_list" style="display:none;">
+				<table border="1" class="b_list">
+					<tr>
+						<th>번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+					</tr>
+					
 				<c:forEach var="i" items="${unfixed_fan_list}">
 					<tr>
 						<td>${i.b_idx}</td>
@@ -102,7 +89,7 @@
 					<td colspan="3">${pageMenu2}</td>
 				</tr>
 			</table>
-		</div>
+		</div>		
 		<input type="button" value="글쓰기" onclick="location.href='board_post'">
 	</div>
 		
