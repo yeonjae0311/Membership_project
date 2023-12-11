@@ -1,1 +1,43 @@
 @charset "UTF-8";
+
+#board_view_button_bar{
+    text-align: center;
+    margin: 1% 0 2%;
+}
+
+#fixed_list, #unfixed_master_list, #unfixed_fan_list{
+    width: 80%;
+    margin: auto;
+}
+
+#fixed_list{
+    margin-bottom: 10%;
+}
+
+#unfixed_list{
+    height: 33vh;
+}
+
+.b_list{
+    width: 60%;
+    margin: auto;
+}
+
+th{
+    text-align: center;
+    font-size: 1.3em;
+    padding: 2%;
+    border-bottom: 2px solid #082a90;
+}
+
+td{
+    padding: 2% 2% 2% 4%;
+}
+
+a{
+    text-decoration: none;
+}
+
+#board_div > input{
+    margin-left: 68vw;
+}

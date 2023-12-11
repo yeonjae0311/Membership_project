@@ -1,5 +1,6 @@
 let bl_isliked;
 let b_idx,m_idx;
+
 window.onload = function(){
 	b_idx = document.getElementById('b_idx').value;
 	let m_idx = document.getElementById('m_idx').value;

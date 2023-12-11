@@ -14,7 +14,7 @@ const order_item_list_div = document.getElementById("order_item_list_div");
 const total_amount_div = document.getElementById("total_amount_div");
 const button_bar_div = document.getElementById("button_bar_div");
 
-const IMG_PATH = window.location.origin + "/membership/resources/";
+const ITEM_IMG_PATH = window.location.origin + "/membership/resources/";
 
 for(const key in order_item_list){
     const item = order_item_list[key];
@@ -24,7 +24,7 @@ for(const key in order_item_list){
 
     const item_photo = document.createElement("img");
     item_photo.className = "item_photo";
-    item_photo.src = IMG_PATH + "upload/shop/" + item["i_photo_name"];
+    item_photo.src = ITEM_IMG_PATH + "upload/shop/" + item["i_photo_name"];
     item_div.appendChild(item_photo);
 
     const item_info = document.createElement("div");
@@ -140,6 +140,4 @@ function order_insert_Fn(){
 function go_to_payment(...args) {
     
     location.href = "kakao_pay";
-
 }
-

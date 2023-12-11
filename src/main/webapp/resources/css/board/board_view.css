@@ -1,6 +1,122 @@
 @charset "UTF-8";
-/* 여기가 작동이 안됨 디폴트 연결이 안되나? */
+
+/* *{
+	border: 1px solid black;
+} */
+
+#board_view_div{
+	display: flex;
+	justify-content: center;
+	padding-top: 4%;
+	width: 80vw;
+	margin: auto;
+	justify-content: space-between;
+}
+
+#id1, #reply_form_div{
+	width: 38vw;
+	height: 70vh;
+	margin-bottom: 2%;
+}
+
+#id1 > table{
+	border: none;
+	overflow: auto;
+	outline: none;
+	resize: none;
+	margin: 1% auto;
+	padding: 2%;
+	width: 30em;
+	height: 7em;
+	box-shadow: 6px 6px 1px 1px #bcecff;
+	border: 2px solid #ffbbe3;
+}
+
+th, td{
+	padding: 2%;
+}
+
+th{
+	width: 6em;
+}
+
+#like_count{
+	border: none;
+	width: 14.5em;
+}
+
+#board_content{
+	padding-top: 5%;
+	height: 30vh;
+	border: 1px solid #082a90;
+}
+
+#reply_form{
+	height: 21vh;
+}
+
+#reply_form_div > form{
+	width: 40vw;
+}
+
+#reply_textarea{
+	width: 32vw;
+}
+
+#submit_button_div{
+	width: 33vw;
+	display: inline-block;
+}
+
+#submit_button{
+	margin-top: 2%;
+    width: 10em;
+	float: right;
+}
+
+.reply_div{
+	width: 34vw;
+	border: 1px solid #082a90;
+}
+
+.user_info_div{
+	display: flex;
+	padding-top: 2%;
+    padding-left: 3%;
+}
+
 .user_photo{
+	width: 4em;
+	height: 4em;
+	border-radius: 50px;
+}
+
+.user_photo > img{
+	width: 100%;
+}
+
+.user_info{
+	width: calc(100% - 4em);
+	display: flex;
+	justify-content: space-between;
+	height: 4em;
+	line-height: 4em;
+}
+
+.user_info > div:first-child{
+	padding-left: 5%;
+}
+
+.user_info > div:last-child{
+	padding-right: 5%;
+}
+
+#reply_list{
+	height: 49vh;
+	overflow: auto;
+}
+
+/* .user_photo{
 	
 }
 
@@ -8,3 +124,22 @@
 	width: 200px; 
 	height: auto;
 }
+
+.reply_div{
+	overflow: auto;
+	width: 80%;
+	
+}
+.user_info_div{
+	overflow: auto;
+}
+
+.user_photo{
+	float:right;
+	padding-right: 5%;
+}
+.user_image{
+	overflow: auto;
+	width: 100px; 
+	height: 100px;
+} */

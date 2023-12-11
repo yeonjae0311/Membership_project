@@ -7,7 +7,7 @@
 	<title>Insert title here</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_css.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_js.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/login_js/email.js" defer></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/login/email.js" defer></script>
 </head>
 <body>
 	<div id="header_bar"></div>

@@ -114,10 +114,13 @@ textarea{
 	/* background: linear-gradient(0deg, #ffffff 0%, #082a90 100%); */
 }
 
-#left_header{
+#left_header, #right_header{
 	display: flex;
+	margin: 2% 0 1%;
+}
+
+#left_header{
 	width: 50%;
-	margin: 3% 0;
 }
 
 #home_img{
@@ -138,9 +141,8 @@ textarea{
 	width: 35%;
 	height: 4em;
 	align-items: center;
-	display: flex;
 	justify-content: flex-end;
-	margin: 3% 0;
+
 	padding-right: 2%;
 }
 
