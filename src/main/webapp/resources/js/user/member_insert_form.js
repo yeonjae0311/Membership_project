@@ -184,27 +184,25 @@ function e_check(...args){
 
 function birth_check(f) {
     let birth_check_alert = document.getElementById("birth_check_alert");
-    let m_date_of_birth = document.getElementById("m_date_of_birth");
-    let year = Number(m_date_of_birth.value.substr(0, 4));
-    let month = Number(m_date_of_birth.value.substr(4, 2));
-    let day = Number(m_date_of_birth.value.substr(6, 2));
+    let m_date_of_birth = document.getElementById("m_date_of_birth").value.replace(/[^0-9]/g, '');
+    let year = Number(m_date_of_birth.substr(0, 4));
+    let month = Number(m_date_of_birth.substr(4, 2));
+    let day = Number(m_date_of_birth.substr(6, 2));
     let today = new Date();
     let yearNow = today.getFullYear();
     let result;
 
-    if (m_date_of_birth.value.length <= 8) {
-
-    if (1900 > year || year > yearNow || month < 1 || month > 12 || day < 1 || day > 31 || ((month == 4 || month == 6 || month == 9 || month == 11) && day == 31) || (month == 2 && (day > 29 || (day == 29 && !(year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)))))) {
-        result = false;
-    } else if (new Date(year, month - 1, day) > today) {
-        // 추가된 부분: 생년월일이 오늘보다 미래인 경우
-        result = false;
+    if (m_date_of_birth.length === 8) {
+        if (1900 > year || year > yearNow || month < 1 || month > 12 || day < 1 || day > 31 || ((month == 4 || month == 6 || month == 9 || month == 11) && day == 31) || (month == 2 && (day > 29 || (day == 29 && !(year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)))))) {
+            result = false;
+        } else if (new Date(year, month - 1, day) > today) {
+            result = false;
+        } else {
+            result = true;
+        }
     } else {
-        result = true;
+        result = false;
     }
-} else {
-    result = false;
-}
 
     if (result) {
         birth_check_alert.innerText = "올바른 형식입니다";

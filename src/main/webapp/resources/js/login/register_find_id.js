@@ -1,5 +1,3 @@
-let b_email_check = false;
-
 function send_id(f){
 	let m_name = document.getElementById("m_name").value;
 	let m_email = document.getElementById("m_email").value;
@@ -19,13 +17,7 @@ function send_id(f){
 		alert('인증번호를 확인해주세요');
 		return;
 	}
-	
-	if(!b_email_check){
-		alert('이메일 인증을 해주세요');
-		return;
-	}
-	
-	
+		
 	let url = "find_id";
 
 	let param = {
@@ -53,8 +45,4 @@ function check(...args){
 		alert('아이디 찾기 성공');
 		location.href='id';
 	}
-}
-
-function change(){
-	b_email_check = false;
 }
