@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head data-id="story">
@@ -25,24 +24,32 @@
 			// 파일 내용을 읽어와서 이미지 소스로 설정
 			image_id.src = e.target.result;
 		};
-	
-	
+		
+		// 파일의 확장자를 체크하여 허용된 확장자인 경우에만 이미지를 설정
+		let file_extension = img.name.split('.').pop().toLowerCase();
+		if (allowed_extensions.includes("." + file_extension)) {
+			// 파일을 읽어옴
+			reader.readAsDataURL(img);
+		} else {
+			alert("허용된 확장자가 아닙니다. GIF, JPG, PNG, BMP 파일만 업로드 가능합니다.");
+			img_file_id.value = ""; // 파일 선택 창 비우기
+		}
+	}
+}
 	</script>
-	
-	
 </head>
 <body>
 	<div id="header_bar"></div>
 	
 	<div id="story_post_div">
 		<form id="story_post_form" method="post" enctype="multipart/form-data">
+				 <img class="story_img" id="story_img" src="${pageContext.request.contextPath}/resources/upload/story/${svo.s_filename}"  
+				 alt="이미지 유실">
 			<div id="file_upload_div">
 				<p>
 					파일 업로드:
 				</p>
-				 <img class="story_img" id="story_img" src="${pageContext.request.contextPath}/resources/upload/story/${svo.s_filename}"  
-				 alt="이미지 유실">
-				<input type="file" id="s_img" name="s_file">
+				<input type="file" id="s_img" name="s_file" onchange="change_img()" >
 			</div>
 			
 			<div id="caption">

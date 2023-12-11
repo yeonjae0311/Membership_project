@@ -107,8 +107,8 @@ function send_to(page){
 }
 
 function logout(){
-    localStorage.clear();
-    location.href='logout';
+	localStorage.clear();
+	location.href='logout';
 }
 
 // footer 만들기

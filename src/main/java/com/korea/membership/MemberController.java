@@ -422,7 +422,14 @@ public class MemberController {
 	}
 
 	@RequestMapping("kakao_pay")
-	public String kakao_pay() {
+	public String kakao_pay(Model model) {
+
+		String payment_name = String.valueOf(session.getAttribute("payment_name"));
+		String payment_price = String.valueOf(session.getAttribute("payment_price"));
+
+		model.addAttribute("payment_price", payment_price);
+		model.addAttribute("payment_name", payment_name);
+
 		return Path.LoginPath.make_path("kakao_pay");
 	}
 
@@ -523,6 +530,45 @@ public class MemberController {
 	@RequestMapping("membership_info")
 	public String congratulations_register() {
 		return Path.LoginPath.make_path("membership_info");
+	}
+
+	@RequestMapping("insert_addr")
+	@ResponseBody
+	public String insert_addr(@RequestBody String body) throws UnsupportedEncodingException {
+		ObjectMapper om = new ObjectMapper();
+
+		Map<String, String> data = null;
+
+		try {
+			data = om.readValue(body, new TypeReference<Map<String, String>>() {
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		String postcode = data.get("postcode");
+		String address = URLDecoder.decode(data.get("address"), "utf-8");
+		String detail_address = URLDecoder.decode(data.get("detail_address"), "utf-8");
+
+		int m_idx = (int) session.getAttribute("m_idx");
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("m_addr1", postcode);
+		map.put("m_addr2", address);
+		map.put("m_addr3", detail_address);
+		map.put("m_idx", m_idx);
+
+		pmember_dao.update_addr(map);
+
+		String jsonArray = null;
+
+		try {
+			jsonArray = om.writeValueAsString(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return jsonArray;
 	}
 
 	@RequestMapping("user_order_view")

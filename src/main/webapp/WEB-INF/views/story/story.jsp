@@ -12,13 +12,7 @@
 <body>
 	<div id="header_bar"></div>
 	
-	<div>
-		<div id="create_story">
-			<c:if test="${id.m_ismaster eq '1' }">
-				<input type="button" value="스토리 작성하기" onclick="location.href='story_post'">
-			</c:if>
-		</div>
-		
+	<div id="story_div">
 		<div id="storyContainer">	
 			<c:forEach var="svo" items="${svo_list}" varStatus="loop">		
 				<div id="story_${svo.s_idx}" class="story" style="display: ${loop.index == 0 ? 'block' : 'none'}">
@@ -30,6 +24,12 @@
 						<div class="img_class">
 							<img class="story_img" src="${pageContext.request.contextPath}/resources/upload/story/${svo.s_filename}"  alt="이미지 유실">
 						</div>
+						
+						<c:if test="${id.m_ismaster eq '1' }">
+							<div id="create_story" onclick="location.href='story_post'">
+								<img src="${pageContext.request.contextPath}/resources/img/add_icon.png">
+							</div>
+						</c:if>
 					
 						<div class="right">
 							<input type="button" value="RIGHT" onclick="show_next()">	
@@ -41,7 +41,7 @@
 						<input type="hidden" id="liked_${svo.s_idx}" readonly value="${svo.sl_isliked}" class="liked valuebox">
 						<input type="hidden" value="LIKE" onclick="liked2(${svo.s_idx},event)">
 						
-						<div>
+						<div class="count_list">
 							<div class="count_info_div">
 								<p class="count_info_view">
 									조회수: 
@@ -77,7 +77,6 @@
 												  	0 4 1.794 4 4s-.7 3.412-3.5 6.5Z"/>
 										</svg>
 									</div>
-									<c:out value="${svo.s_idx }+${svo.sl_isliked}"/>
 								</c:when>
 								
 								<c:when test="${svo.sl_isliked eq '1'}">

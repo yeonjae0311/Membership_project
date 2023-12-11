@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div id="header_bar"></div>
-	
+		
 	<div id="home_div">
 		<div id = "photo_banner">
 			<div class="left">
