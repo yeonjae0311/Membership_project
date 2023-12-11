@@ -55,7 +55,8 @@ public class MemberController {
 	@Autowired
 	JavaMailSender mailSender;
 
-	public MemberController(PMemberDAO pmember_dao, BoardDAO board_dao, ItemDAO item_dao,OrderDetailDAO order_detail_dao) {
+	public MemberController(PMemberDAO pmember_dao, BoardDAO board_dao, ItemDAO item_dao,
+			OrderDetailDAO order_detail_dao) {
 		this.pmember_dao = pmember_dao;
 		this.board_dao = board_dao;
 		this.item_dao = item_dao;
@@ -106,10 +107,10 @@ public class MemberController {
 		// 아이디와 비밀번호 체크에 문제가 없다면 세션에 바인딩 한다.
 		session.setAttribute("id", vo);
 		session.setAttribute("m_idx", vo.getM_idx());
-		
+
 		// 로그인할 때 멤버쉽 기간이 지났는지 안 지났는지 확인
 		item_dao.membership_check(vo.getM_idx());
-		
+
 		// 로그인에 성공한 경우
 		return localStorage;
 	}
@@ -119,7 +120,7 @@ public class MemberController {
 	public String check_email(@RequestBody String body) throws UnsupportedEncodingException {
 
 		ObjectMapper om = new ObjectMapper();
-		
+
 		Map<String, String> data = null;
 
 		try {
@@ -181,7 +182,7 @@ public class MemberController {
 
 	@RequestMapping("member_insert")
 	public String insert_member(PMemberVO vo) {
-		int res = pmember_dao.insert(vo);	
+		int res = pmember_dao.insert(vo);
 		if (res > 0) {
 			vo = pmember_dao.get_m_idx(vo.getM_email());
 			session.setAttribute("id", vo);
@@ -261,16 +262,16 @@ public class MemberController {
 
 	@RequestMapping("user_order_list")
 	public String user_order_list(Model model) {
-		PMemberVO uservo = (PMemberVO)session.getAttribute("id");
-		if(uservo==null) {
+		PMemberVO uservo = (PMemberVO) session.getAttribute("id");
+		if (uservo == null) {
 			return "redirect:login_form";
 		}
-		
+
 		int m_idx = uservo.getM_idx();
-		
+
 		List<POrderVO> order_list = item_dao.select_order_list(m_idx);
-		
-		model.addAttribute("order_list",order_list);
+
+		model.addAttribute("order_list", order_list);
 
 		return Path.UserPath.make_path("user_order_list");
 	}
@@ -524,18 +525,18 @@ public class MemberController {
 	public String congratulations_register() {
 		return Path.LoginPath.make_path("membership_info");
 	}
-	
+
 	@RequestMapping("user_order_view")
-	public String order_view(Model model,int o_idx) {
-		
-		//m_idx 나 마스터인지 검증
-		//deep한 검증은 후순위
+	public String order_view(Model model, int o_idx) {
+
+		// m_idx 나 마스터인지 검증
+		// deep한 검증은 후순위
 		System.out.println(o_idx);
-		
+
 		List<OrderDetailVO> order_detail_list = order_detail_dao.select_order_detail_list(o_idx);
-		
-		model.addAttribute("order_detail_list",order_detail_list);
-		
+
+		model.addAttribute("order_detail_list", order_detail_list);
+
 		return Path.UserPath.make_path("user_order_view");
 	}
 }

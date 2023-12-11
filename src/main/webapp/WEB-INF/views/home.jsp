@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div id="header_bar"></div>
-	
+		
 	<div id="home_div">
 		<!-- 바꿔야 할것 id, onclick에 붙은 메서드 -->
 		<!-- <svg id="svg_test"
