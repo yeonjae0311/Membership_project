@@ -93,7 +93,7 @@
 	    		"detail_address": encodeURIComponent(detail_address)
 	    	};
 	    	
-	    	sendRequest(url, param, callback_addr, "post");
+	    	send_request(url, param, callback_addr, "post");
 	    	
 	    }
 

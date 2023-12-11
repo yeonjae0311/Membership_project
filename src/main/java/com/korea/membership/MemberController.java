@@ -569,6 +569,7 @@ public class MemberController {
 		}
 
 		return jsonArray;
+	}
 
 	@RequestMapping("user_order_view")
 	public String order_view(Model model, int o_idx) {

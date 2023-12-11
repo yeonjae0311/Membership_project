@@ -134,7 +134,7 @@ function order_insert_Fn(){
 
     let param = final_info;
 
-    sendRequest(url, param, go_to_payment, "post");
+    send_request(url, param, go_to_payment, "post");
 }
 
 function go_to_payment(...args) {

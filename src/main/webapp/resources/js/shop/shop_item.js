@@ -67,22 +67,3 @@ function send_shop_payment(){
 		
 }
 
-function item_amount(amount_button_id){
-
-	let amount_button_value = 
-		document.getElementById(amount_button_id).value.trim();
-			
-	let cd_count = document.getElementById("cd_count").value;
-	let i_amount = parseInt('${vo.i_amount}');
-			
-	if(amount_button_value == "+" && i_amount > cd_count){
-		document.getElementById("cd_count").value = parseInt(document.getElementById("cd_count").value) + 1;
-	} else if(amount_button_value == "+" && i_amount <= cd_count){
-		document.getElementById(amount_button_id).disabled = true;
-	}
-			
-	if((amount_button_value == "-") && (cd_count > 1)){	
-		document.getElementById("cd_count").value = parseInt(document.getElementById("cd_count").value) - 1;
-		document.getElementById("button_plus").disabled = false;
-	}
-}

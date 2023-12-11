@@ -3,8 +3,7 @@ package com.korea.membership;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.util.ArrayList;
+import java.net.URLDecoder;	
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -388,6 +387,8 @@ public class ShopController {
 	
 	@RequestMapping("membership_shop_payment")
 	public String membership_shop_payment() {
+		return Path.ShopPath.make_path("membership_shop_payment");
+	}
 
    @RequestMapping("order_insert") 
    @ResponseBody
@@ -438,9 +439,6 @@ public class ShopController {
 	   return "{\"param\": \"success\"}";
    }
 
-		return Path.ShopPath.make_path("membership_shop_payment");
-	}
-	
 	@RequestMapping("membership_kakao_pay")
 	public String membership_kakao_pay() {
 
