@@ -95,6 +95,10 @@ public class MemberController {
 		if (!vo.getM_password().equals(m_password)) {
 			return "{\"param\": \"no_m_password\"}";
 		}
+		
+		// 로그인할 때 멤버쉽 기간이 지났는지 안 지났는지 확인
+		item_dao.membership_check(vo.getM_idx());
+		vo = pmember_dao.login_check(m_id);
 
 		String localStorage = null;
 
@@ -103,13 +107,10 @@ public class MemberController {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-
+		
 		// 아이디와 비밀번호 체크에 문제가 없다면 세션에 바인딩 한다.
 		session.setAttribute("id", vo);
 		session.setAttribute("m_idx", vo.getM_idx());
-
-		// 로그인할 때 멤버쉽 기간이 지났는지 안 지났는지 확인
-		item_dao.membership_check(vo.getM_idx());
 
 		// 로그인에 성공한 경우
 		return localStorage;

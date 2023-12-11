@@ -367,13 +367,17 @@ public class ShopController {
 		}
 	}
 	
-	@RequestMapping("payment_completed")
-	public String payment_completed() {
+	@RequestMapping("membership_payment_completed")
+	public String payment_completed(Model model) {
 		
-		PMemberVO userVo = (PMemberVO) session.getAttribute("id");
+		PMemberVO vo = (PMemberVO) session.getAttribute("id");
 		
-		int m_idx = userVo.getM_idx();
-		item_dao.membership_buy(m_idx);
+		int m_idx = vo.getM_idx();
+		int res = item_dao.membership_buy(m_idx);
+		
+		if (res == 1) {
+			model.addAttribute("isMembership",res);
+		}
 		
 		return Path.ShopPath.make_path("payment_completed");
 	}

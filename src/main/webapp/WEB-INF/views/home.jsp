@@ -34,6 +34,11 @@
 		<div>story</div>
 		<div>board</div>
 		<div>shop</div>
+		<div>
+		<input type="button" onclick="location.href='membership_shop_payment'" value="buy membership">
+		
+		</div>
+		
 	</div>
 	
 	<div id="footer_bar"></div>
