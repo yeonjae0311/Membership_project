@@ -128,6 +128,13 @@ public class BoardController {
 	@RequestMapping("board_post_insert")
 	public String board_post_insert(BoardVO vo) {
 		
+		PMemberVO user_vo = (PMemberVO) session.getAttribute("id");
+		int m_idx = user_vo.getM_idx();
+		int is_master = board_dao.is_master(m_idx);
+		if(is_master==0) {
+			return "redirect:logout";
+		}
+		
 		vo.setB_ip(request.getRemoteAddr());
 		
 		String webPath = "/resources/upload/board";

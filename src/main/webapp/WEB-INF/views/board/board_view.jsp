@@ -41,14 +41,16 @@
 				<tr>
 					<th>좋아요 !</th>
 					<td>
-						<input id="like_count" type="text" id="b_like_count" value="${vo.b_like_count}" readonly>
+						<input type="text" id="b_like_count" value=${vo.b_like_count} readonly>
 						
 						<c:choose>
 							<c:when test="${vo.bl_isliked eq '0'}">
+								<input type="hidden" id="like_count_id" value="0">
 								<input type="button" class="board_like_button" value="좋아요" onclick="board_like('${vo.b_idx}')">
 							</c:when>
 							
 							<c:when test="${vo.bl_isliked eq '1'}">
+								<input type="hidden" id="like_count_id" value="1">
 								<input type="button" class="board_like_button" value="좋아요 해제" onclick="board_like('${vo.b_idx}')">
 							</c:when>
 							
@@ -118,9 +120,16 @@
 						${i.r_content}<br>
 						
 						누적 좋아요 : <input id="r_like_count_${i.r_idx}" type="text" value="${i.r_like_count}"><br>
-						
-						<input id="rl_isliked_${i.r_idx}" type="button" value="${i.rl_isliked}" onclick="reply_like(${i.r_idx})">
-						
+						<c:choose>
+							<c:when test="${i.rl_isliked eq '0'}">
+								<input id="rl_isliked_status_${i.r_idx}" type="button" value="좋아요" onclick="reply_like(${i.r_idx})">
+							</c:when>
+							<c:when test="${i.rl_isliked eq '1'}">
+								<input id="rl_isliked_status_${i.r_idx}" type="button" value="좋아요 해제" onclick="reply_like(${i.r_idx})">
+							</c:when>
+						</c:choose>
+						<input id="rl_isliked_${i.r_idx}" type="hidden" value="${i.rl_isliked}" onclick="reply_like(${i.r_idx})">
+												
 						<input id="r_del_button_${i.r_idx}" type="button" value="댓글 삭제" onclick="delete_reply(${i.r_idx})">
 					</div>
 				</c:forEach>

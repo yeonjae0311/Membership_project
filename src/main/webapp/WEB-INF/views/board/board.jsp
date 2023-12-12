@@ -92,6 +92,7 @@
 		</div>		
 		<input type="button" value="글쓰기" onclick="location.href='board_post'">
 	</div>
+	</div>
 		
 	<div id="footer_bar"></div>
 </body>

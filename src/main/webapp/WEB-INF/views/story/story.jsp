@@ -12,8 +12,23 @@
 <body>
 	<div id="header_bar"></div>
 	
+	<c:if test="${empty svo_list}">
+		<c:choose>
+		<c:when test="${id.m_ismaster eq '1' }">
+			<div id="create_story" onclick="location.href='story_post'">
+				<img src="${pageContext.request.contextPath}/resources/img/add_icon.png">
+			</div>
+		</c:when>
+		<c:otherwise>
+			<div id="no_story_list">
+				현재 story가 한개도 없습니다!! 관리자가 곧 글을 작성할거예요~
+			</div>
+		</c:otherwise>
+		</c:choose>
+	</c:if>
+	
 	<div id="story_div">
-		<div id="storyContainer">	
+		<div id="storyContainer">
 			<c:forEach var="svo" items="${svo_list}" varStatus="loop">
 				<div id="story_${svo.s_idx}" class="story" style="display: ${loop.index == 0 ? 'block' : 'none'}">
 					<div class="story_main">
