@@ -4,7 +4,7 @@
     width: 20em;
     margin: 7% auto;
     padding: 3.5% 3%;
-    background: #ffbbe3;
+    background: #ffebf7;
     border-radius: 10px;
 }
 
@@ -13,7 +13,7 @@
 }
 
 #login_form > div{
-    margin: 5% 0;
+    margin: 6% 0;
 }
 
 p{
@@ -39,6 +39,10 @@ input[type="text"], input[type="password"]{
     display: flex;
     justify-content: space-between;
     padding: 0 3%;
+}
+
+#login_div{
+    padding-top: 8%;
 }
 
 #find_info_div > input[type="button"]{
