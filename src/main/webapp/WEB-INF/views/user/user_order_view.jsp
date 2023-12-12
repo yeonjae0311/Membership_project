@@ -4,8 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>주문 상세 내역</title>
+	<meta charset="UTF-8">
+	<title>주문 상세 내역</title>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
 </head>
 <body>
 	<c:forEach items="${order_detail_list}" var="od">

@@ -8,30 +8,9 @@
 	<meta charset="UTF-8">
 	<title>NewJeans Membership</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_css.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_js.js"></script>
-	<script>
-	
-		/* // 옵션 추가
-		function add(){
-			 let element = document.createElement("input");
-			 element.setAttribute("name","i_color")  
-		     document.getElementById("option").appendChild(element);
-		} 
-		 */
-		/*  function upload(){
-	
-			 const item_upload = document.getElementById(item_upload);
-			 function upload(item_upload){
-				 
-				 if(item_upload.i_name.value == ''){
-					alert('상품명을 입력하세요');
-					item_upload.i_name.focus();
-					return;
-				 }
-				 
-				 item_upload.submit();
-			 } */
-	</script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/shop/item_insert.js" defer></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
 </head>
 <body>
 	<div id="header_bar"></div>

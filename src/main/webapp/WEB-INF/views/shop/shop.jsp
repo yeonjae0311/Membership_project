@@ -8,7 +8,9 @@
 	<meta charset="UTF-8">
 	<title>Membership</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_css.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_js.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/shop/shop.js" defer></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
 	<script>
 		function shop_item_select(f){
 			f.action = "shop_item";
@@ -41,6 +43,10 @@
 	<div>
 		<div>
 			<input type="button" id="item_insert_form" value="상품 등록하기" onclick="location.href='item_insert'">
+		</div>
+		
+		<div>
+			<img id="shop_banner" src="${pageContext.request.contextPath}/resources/img/photo_banner/newjeans1.jpg">
 		</div>
 		
 		<div>
