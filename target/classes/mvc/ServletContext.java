@@ -36,8 +36,8 @@ public class ServletContext implements WebMvcConfigurer {
 	}
 
 	@Bean
-	public MainController main_controller() {
-		return new MainController();
+	public MainController main_controller(StoryDAO story_dao, BoardDAO board_dao) {
+		return new MainController(story_dao, board_dao);
 	}
 
 	@Bean
