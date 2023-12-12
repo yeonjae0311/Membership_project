@@ -1,9 +1,5 @@
 @charset "UTF-8";
 
-#storyContainer{
-	margin-top: 3%;
-}
-
 .story_main{
 	display: flex;
 	width: 80vw;
@@ -26,11 +22,12 @@
 .img_class{
 	width: 30vw;
 	height: 40vh;
-	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .story_img{
-	height: 100%;
 	padding: 1.5%;
 	box-shadow: 6px 6px 1px 1px #bcecff;
 	border: 2px solid #ffbbe3;
@@ -41,7 +38,8 @@
 	height: 4em;
 	cursor: pointer;
 	position: absolute;
-	bottom: -30px;
+	bottom: -1vh;
+    right: 17vw;
 }
 
 .story_info_div{
@@ -52,7 +50,7 @@
 .count_list{
 	width: 40vw;
 	border-top: 1px solid #082a90;
-	margin: 5% auto 0;
+	margin: 3% auto 0;
 	display: flex;
 	justify-content: center;
 }

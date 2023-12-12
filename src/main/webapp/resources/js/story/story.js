@@ -1,5 +1,19 @@
 let currentStoryIndex = 0;
-		
+
+let img_class_array = document.getElementsByClassName("img_class");
+
+for(let element of img_class_array){
+	const story_img = element.lastElementChild;
+	const story_img_height = story_img.naturalHeight;
+	const story_img_width = story_img.naturalWidth;
+
+	if(story_img_height >= story_img_width){
+		story_img.style.height = "100%";
+	}else{
+		story_img.style.width = "100%";
+	}
+}
+
 function story_update_read_hit(storyclass){
 	let idx = storyclass.getElementsByClassName('story_idx');
 	let s_idx = idx[0].value;
