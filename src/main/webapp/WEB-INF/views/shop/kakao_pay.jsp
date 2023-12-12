@@ -36,7 +36,7 @@
 	                        'Content-Type': 'application/json;charset=UTF-8'
 	                    },
 	                    body: JSON.stringify({
-	                        "order_list_json" : order_list_json
+	                       order_list_json
 	                        // 기타 필요한 데이터가 있으면 추가 전달
 	                    })
 	                })

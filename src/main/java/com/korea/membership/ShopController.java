@@ -392,12 +392,12 @@ public class ShopController {
 
 	@RequestMapping("payment_completed")
 	@ResponseBody
-	public String payment_completed(@RequestBody String body) {
+	public String payment_completed(@RequestBody String body) throws ParseException {
 		
-		System.out.println(body);
-		System.out.println("여기로 오는거 맞나요?");
+		JSONParser parser = new JSONParser();
+		JSONObject object = (JSONObject) parser.parse(body);
+		JSONObject object_new = (JSONObject) object.get("order_list_json");
 
-		
 		return "{\"param\": \"success\"}";
 	}
 	
