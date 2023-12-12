@@ -40,11 +40,6 @@
     padding: 0 10%;
 }
 
-#file_upload_div > img{
-    width: 3em;
-    height: 3em;
-}
-
 #s_img{
     display: none;
 }
@@ -54,8 +49,36 @@
     height: 3em;
 }
 
-#caption > textarea{
-    padding: 5%;
-    height: 10vh;
-    width: 35vw;
+#caption{
+    overflow: auto;
+	outline: none;
+	resize: none;
+	margin: 1% auto;
+	padding: 2%;
+	width: 30em;
+	height: 7em;
+	box-shadow: 6px 6px 1px 1px #bcecff;
+	border: 2px solid #ffbbe3;
+    display: flex;
+    justify-content: space-between;
+}
+
+textarea{
+    margin: 0;
+    padding: 2%;
+	width: 27em;
+    height: 7em;
+	box-shadow: none;
+    border: none;
+}
+
+#post_upload_div{
+    display: flex;
+    align-items: center;
+    padding-right: 2%;
+}
+
+#post_upload{
+    width: 3em;
+    height: 3em;
 }
