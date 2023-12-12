@@ -22,12 +22,16 @@
 				<label id="file_upload" for="s_img">
 					<img src="${pageContext.request.contextPath}/resources/img/photo_upload_icon.png">
 				</label>
-				
-				<img src="${pageContext.request.contextPath}/resources/img/post_upload_icon.png" onclick="send(this.form)">
 			</div>
 			
 			<div id="caption">
-				<textarea name="s_content" ></textarea>
+				<div>
+					<textarea name="s_content" ></textarea>
+				</div>
+				
+				<div id="post_upload_div">
+					<img id="post_upload" src="${pageContext.request.contextPath}/resources/img/post_upload_icon.png" onclick="send(this.form)">
+				</div>
 			</div>
 		</form>
 	</div>
