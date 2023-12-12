@@ -1,6 +1,5 @@
 const order_item_list_obj = JSON.parse(sessionStorage.getItem("order_list"));
 console.log(sessionStorage.getItem("order_list"))
-sessionStorage.removeItem("order_list");
 
 const order_item_list = order_item_list_obj["items"];
 const totals = order_item_list_obj["final_amount"];
@@ -87,6 +86,7 @@ const payment_button = document.createElement("input");
 payment_button.type = "button";
 payment_button.value = "결제하기";
 payment_button.addEventListener("click", () => {
+	sessionStorage.removeItem("order_list");
     order_insert_Fn();
 });
 
