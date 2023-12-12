@@ -4,7 +4,7 @@
 <html>
 <head data-id="story">
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>스토리 포스팅</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_css.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_js.js"></script>
 </head>
@@ -23,11 +23,13 @@
 					<img src="${pageContext.request.contextPath}/resources/img/photo_upload_icon.png">
 				</label>
 				
+				<!-- 버튼에 온클릭이 안됨 이유모름 -->
 				<img src="${pageContext.request.contextPath}/resources/img/post_upload_icon.png" onclick="send(this.form)">
+				<input type="button" onclick="send(this.form)">
 			</div>
 			
 			<div id="caption">
-				<textarea name="s_content" ></textarea>
+				<textarea name="s_content"></textarea>
 			</div>
 		</form>
 	</div>

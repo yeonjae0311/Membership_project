@@ -57,9 +57,8 @@ public class StoryController {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("m_idx",m_idx);
 		
-		
-		List<StoryVO> svo_list = story_dao.select_story_list(m_idx);		
-		
+		List<StoryVO> svo_list = story_dao.select_story_list(m_idx);	
+				
 		model.addAttribute("svo_list",svo_list);
 		
 		return Path.StoryPath.make_path("story");
