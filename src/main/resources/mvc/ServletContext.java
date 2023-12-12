@@ -41,22 +41,34 @@ public class ServletContext implements WebMvcConfigurer {
 	}
 
 	@Bean
-	public MemberController member_controller(PMemberDAO member_dao, BoardDAO board_dao, ItemDAO item_dao,OrderDetailDAO order_detail_dao) {
-		return new MemberController(member_dao, board_dao, item_dao,order_detail_dao);
+	public MemberController member_controller(PMemberDAO member_dao,
+											  BoardDAO board_dao,
+											  ItemDAO item_dao,
+											  OrderDetailDAO order_detail_dao) {
+		return new MemberController(member_dao,
+									board_dao,
+									item_dao,
+									order_detail_dao);
 	}
 	
 	@Bean
-	public ShopController shop_controller(ItemDAO item_dao, CartDetailDAO cart_detail_dao, 
-										  BoardDAO board_dao, PMemberDAO pmember_dao, 
-										  POrderDAO porder_dao, OrderDetailDAO order_detail_dao) {
-		return new ShopController(item_dao, cart_detail_dao, 
-								  board_dao, pmember_dao, 
-								  porder_dao, order_detail_dao);
+	public ShopController shop_controller(ItemDAO item_dao,
+										  CartDetailDAO cart_detail_dao, 
+										  BoardDAO board_dao,
+										  PMemberDAO pmember_dao, 
+										  POrderDAO porder_dao,
+										  OrderDetailDAO order_detail_dao) {
+		return new ShopController(item_dao,
+								  cart_detail_dao, 
+								  board_dao,
+								  pmember_dao, 
+								  porder_dao,
+								  order_detail_dao);
 	}
 
 	@Bean
-	public BoardController board_controller(BoardDAO board_dao,ReplyDAO reply_dao) {
-		return new BoardController(board_dao,reply_dao);
+	public BoardController board_controller(BoardDAO board_dao, ReplyDAO reply_dao) {
+		return new BoardController(board_dao, reply_dao);
 	}
 	
 	@Bean
@@ -65,13 +77,12 @@ public class ServletContext implements WebMvcConfigurer {
 	}
 	
 	@Bean
-	public ReplyController reply_controller(ReplyDAO reply_dao,BoardDAO board_dao) {
-		return new ReplyController(reply_dao,board_dao);
+	public ReplyController reply_controller(ReplyDAO reply_dao, BoardDAO board_dao) {
+		return new ReplyController(reply_dao, board_dao);
 	}
 
 	@Bean
 	public JavaMailSender javaMailSender() {
-
 		Properties mailProperties = new Properties();
 		mailProperties.put("mail.transport.protocol", "smtp");
 		mailProperties.put("mail.smtp.auth", "true");
