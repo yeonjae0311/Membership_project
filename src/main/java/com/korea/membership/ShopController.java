@@ -345,6 +345,20 @@ public class ShopController {
 		return Path.ShopPath.make_path("shop_payment");
 	}
 	
+	@RequestMapping("membership_shop_payment")
+	public String membership_shop_payment(Model model) {
+
+		// m_idx에 해당하는 유저정보 조회해서 바인딩
+
+		int m_idx = (int) session.getAttribute("m_idx");
+		
+		PMemberVO vo = pmember_dao.select_one(m_idx);
+
+		model.addAttribute("vo", vo);
+
+		return Path.ShopPath.make_path("shop_payment");
+	}
+	
 	
 	@RequestMapping("cart_delete")
 	@ResponseBody
@@ -473,11 +487,6 @@ public class ShopController {
 		return Path.ShopPath.make_path("payment_completed");
 	}
 	
-	@RequestMapping("membership_shop_payment")
-	public String membership_shop_payment() {
-		return Path.ShopPath.make_path("membership_shop_payment");
-	}
-	
 	@RequestMapping("kakao")
 	@ResponseBody
 	public String kakao_payment(@RequestBody String body) {
@@ -501,10 +510,26 @@ public class ShopController {
 		return "{\"param\": \"success\"}";
 	}
 
-	@RequestMapping("membership_kakao_pay")
-	public String membership_kakao_pay() {
-
-		return Path.ShopPath.make_path("membership_kakao_pay");
+	@RequestMapping("membership_kakao")
+	@ResponseBody
+	public String membership_kakao(@RequestBody String body) {
+		ObjectMapper om = new ObjectMapper();
+		
+		Map<String, String> data = null;
+		
+		try {
+			data = om.readValue(body, new TypeReference<Map<String, String>>() {
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		String o_sum = data.get("o_sum");
+		String payment_name = "NEWJEANS MEMBERSHIP 1개월";
+		
+		session.setAttribute("payment_name", payment_name);
+		session.setAttribute("payment_price", o_sum);
+		
+		return "{\"param\": \"success\"}";
 	}
-	
 }

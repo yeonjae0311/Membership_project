@@ -17,7 +17,7 @@ order_item[0] = {};
 
 order_item = order_item[0];
 
-order_item["i_idx"] = 24;
+order_item["i_idx"] = 4;
 order_item["i_name"] = "Membership 1개월";
 order_item["i_color"] = "none";
 order_item["i_photo_name"] = "membership_img.jpg";
@@ -26,10 +26,7 @@ order_list.items[0]["total_price"] = 9900;
 
 sessionStorage.setItem("order_list", JSON.stringify(order_list));
 
-function membership_payment(){
+function shop_payment(){
 
-    
-    const url = "shop_payment"
+    location.href = 'membership_shop_payment';
 }
-
-"location.href='membership_shop_payment'"
