@@ -83,4 +83,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where m_idx=#{m_idx}
 	</select>
 	
+	<select id="select_one_order" parameterType="int" resultType="vo.POrderVO">
+		select * from p_order_view
+		where o_idx=#{o_idx}
+	</select>
+	
 </mapper>

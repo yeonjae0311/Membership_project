@@ -5,7 +5,7 @@
 <html>
 <head data-id="user">
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>주문 내역</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_css.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_js.js"></script>
 </head>
@@ -26,11 +26,17 @@
 							<div class="o_idx_div">
 								주문 번호 : ${order_i.o_idx}
 							</div>
+							<div class="o_idx_div">
+								<img src="${pageContext.request.contextPath}/resources/upload/shop/${order_i.i_photo_name}">
+							</div>
 							<div class="i_names_div">
 								${order_i.i_names}
 							</div>
-							<div class="o_count_div">
-								${order_i.o_count}개 · ${order_i.o_sum}원
+							<div class="i_names_div">
+								 
+							</div>
+							<div class="o_count_sum_div">
+								${order_i.o_sum}원 · ${order_i.o_count}개
 							</div>
 						</div>
 					</c:forEach>

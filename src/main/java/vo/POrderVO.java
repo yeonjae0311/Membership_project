@@ -10,7 +10,7 @@ public class POrderVO {
 				m_idx,
 				o_sum,
     			o_count;
-	private String i_names;
-
+	private String i_names,
+				   i_photo_name;
 }
 

@@ -577,9 +577,11 @@ public class MemberController {
 
 		// m_idx 나 마스터인지 검증
 		// deep한 검증은 후순위
-		System.out.println(o_idx);
-
+		POrderVO ordervo = item_dao.select_one_order(o_idx);
+		
 		List<OrderDetailVO> order_detail_list = order_detail_dao.select_order_detail_list(o_idx);
+		
+		model.addAttribute("ordervo",ordervo);
 
 		model.addAttribute("order_detail_list", order_detail_list);
 
