@@ -59,29 +59,3 @@
     height: 10vh;
     width: 35vw;
 }
-
-/* 
-#story_post_form > div:last-child{
-    width: 89%;
-    margin-top: 5%;
-    margin-right: 0%;
-    text-align: right;
-}
-
-#file_upload_div{
-    width: 110%;
-    display: flex;
-    justify-content: center;
-}
-
-#file_upload_div > p{
-    height: 3em;
-    line-height: 3em;
-    margin-right: 1%;
-}
-
-#caption{
-    margin: auto;
-    width: 82%;
-}
-*/
