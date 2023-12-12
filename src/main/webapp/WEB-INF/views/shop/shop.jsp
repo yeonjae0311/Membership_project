@@ -42,7 +42,7 @@
 	
 	<div>
 		<div>
-			<input type="button" id="item_insert_form" value="상품 등록하기" onclick="location.href='item_insert'">
+			<input type="button" id="item_insert_form" value="상품 등록" onclick="location.href='item_insert'">
 		</div>
 		
 		<div>

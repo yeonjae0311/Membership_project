@@ -39,7 +39,7 @@
 	<div>
 		<form name="selected_item" action="shopping_cart_insert" method="POST">
 			<div>
-				<input type="button" id="item_delete_id" value="상품 삭제하기" onclick="item_delete()">
+				<input type="button" id="item_delete_id" value="상품 삭제" onclick="item_delete()">
 			</div>
 			
 			<div id=item_info_div>
