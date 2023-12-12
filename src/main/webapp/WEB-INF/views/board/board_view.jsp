@@ -86,10 +86,8 @@
 				
 				<tr>
 					<td colspan="2">
-						<!-- 목록으로 -->
-						<img src="resources/img2/btn_list.gif" onclick="location.href='board'">
-						<!-- 삭제 -->
-						<img src="resources/img2/btn_delete.gif" onclick="delete_board_post();">
+						<img class="button_img" src="${pageContext.request.contextPath}/resources/img/navigation.png" onclick="location.href='board'">
+						<img class="button_img" src="${pageContext.request.contextPath}/resources/img/remove.png" onclick="delete_board_post();">
 					</td>
 				</tr>
 			</table>

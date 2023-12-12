@@ -24,7 +24,10 @@ function send_reply(f){
 	f.submit();
 }
 
-function delete_board_post(){			
+function delete_board_post(){
+	if(!confirm('정말로 삭제하시겠습니까?')){
+		return;
+	}
 	let url = "delete_board_post";
 	
    	const param = {
@@ -131,6 +134,9 @@ function after_reply_like(...args){
 }
 
 function delete_reply(r_idx){
+	if(!confirm('정말로 삭제하시겠습니까?')){
+		return;
+	}
 	
 	let url='delete_reply';
 	let param = {
