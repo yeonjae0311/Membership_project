@@ -12,7 +12,6 @@
 		<div id="div_${od.od_idx}">
 			아이템 명 : (${od.i_color}) ${od.i_name} <br> 
 			<img src="${pageContext.request.contextPath}/resources/upload/shop/${od.i_photo_name}" alt="이미지 유실"> <br>
-			<img src="${pageContext.request.contextPath}/resources/upload/shop/${od.i_detail_photo_name}" alt="이미지 유실">
 			아이템 가격 : ${od.i_price} <br> 
 			주문 수량 : ${od.od_count} <br>
 			이 아이템 주문 합계: ${od.od_sum} <br>
