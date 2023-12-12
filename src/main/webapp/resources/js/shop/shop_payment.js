@@ -1,5 +1,5 @@
 const order_item_list_obj = JSON.parse(sessionStorage.getItem("order_list"));
-
+console.log(sessionStorage.getItem("order_list"))
 sessionStorage.removeItem("order_list");
 
 const order_item_list = order_item_list_obj["items"];

@@ -133,7 +133,7 @@
 			<tr>
 				<td rowSpan="3">배송지</td>
 				<td>
-					<input id="postcode" placeholder="우편번호">
+					<input id="postcode" placeholder="우편번호" readonly="readonly">
 				</td>
 				<td>
 					<input type="button" onclick="addr()" value="우편번호 찾기">
@@ -141,7 +141,7 @@
 			</tr>
 			<tr>
 				<td>
-					<input type="text" id="address" placeholder="주소">
+					<input type="text" id="address" placeholder="주소" readonly="readonly">
 				</td>
 			</tr>
 			<tr>
