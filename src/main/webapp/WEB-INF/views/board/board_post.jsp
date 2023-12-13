@@ -15,21 +15,12 @@
 <body>
 	<div id="header_bar"></div>
 	
-	<jsp:include page="/WEB-INF/views/login_check.jsp"/>
-
 	<div id="board_post_div">
 		<form method="post" enctype="multipart/form-data">
 			<table>
-				<caption>새글 작성하기</caption>
-				<c:choose>
-					<c:when test="${id.m_ismaster eq 1}">
-						관리자<br>
-						<input type="button" id="fixoption" value="공지글로 작성하기" onclick="check_fix()">						
-					</c:when>
-					<c:otherwise>
-						일반유저
-					</c:otherwise>
-				</c:choose>	
+				<c:if test="${id.m_ismaster eq 1}">
+					<input type="button" id="fixoption" value="공지글로 작성하기" onclick="check_fix()">						
+				</c:if>
 						
 				<tr>
 					<th>제목</th>
