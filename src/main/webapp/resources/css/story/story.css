@@ -12,11 +12,16 @@
 }
 
 .left{
-	margin: auto 0 auto auto;
+	margin: auto 2% auto auto;
 }
 
 .right{
-	margin: auto auto auto 0;
+	margin: auto auto auto 2%;
+}
+
+.left_button, .right_button{
+	width: 3em;
+	height: 5em;
 }
 
 .img_class{
@@ -38,8 +43,8 @@
 	height: 4em;
 	cursor: pointer;
 	position: absolute;
-	bottom: -1vh;
-    right: 17vw;
+	bottom: -2vh;
+    right: 16vw;
 }
 
 .story_info_div{

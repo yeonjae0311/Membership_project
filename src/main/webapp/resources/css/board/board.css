@@ -1,8 +1,115 @@
 @charset "UTF-8";
 
+*{
+    border: 1px solid black;
+}
+
+#board_div{
+    display: flex;
+    justify-content: center;
+}
+
 #board_view_button_bar{
+    width: 15vw;
+    height: 15vh;
+    display: grid;
+    padding-top: 5%;
+}
+
+.board_display_button{
+    display: flex;
+    height: 3em;
+}
+
+.board_display_button > img{
+    width: 3em;
+    height: 3em;
+    cursor: pointer;
+}
+
+.board_display_button > p{
+    line-height: 3em;
+    padding-left: 3%;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.board_list{
+    width: 45vw;
+}
+
+#board_list_header{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #082a90;
+}
+
+#board_title{
+    height: 2.5em;
+    line-height: 3em;
+    font-size: 1.5em;
+    margin-left: 5%;
+}
+
+#board_post_icon{
+    margin: auto 0 0;
+    width: 3em;
+    height: 3em;
+}
+
+#fixed_list_table{
+    max-height: 15vh;
+    overflow: hidden;
+}
+
+.b_list{
+    min-height: 10vh;
+    width: 100%;
+    margin: 2% auto;
+}
+
+#board_pin_icon{
+    width: 2em;
+    height: 2em;
+    margin: auto 2%;
+}
+
+th{
+    font-size: 1.3em;
+    height: 2em;
+    display: flex;
+}
+
+th > div{
+    line-height: 2em;
+}
+
+td{
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 7%;
+}
+
+#adjust_size_button_div{
     text-align: center;
-    margin: 1% 0 2%;
+}
+
+#adjust_size_button{
+    width: 3em;
+    height: 1.5em;
+}
+
+
+
+
+
+
+
+
+
+
+/* #board_view_button_bar{
+    text-align: center;
 }
 
 #fixed_list, #unfixed_master_list, #unfixed_fan_list{
@@ -40,4 +147,4 @@ a{
 
 #board_div > input{
     margin-left: 68vw;
-}
+} */

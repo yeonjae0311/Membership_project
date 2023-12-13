@@ -1,6 +1,5 @@
 const order_item_list_obj = JSON.parse(sessionStorage.getItem("order_list"));
 console.log(sessionStorage.getItem("order_list"))
-sessionStorage.removeItem("order_list");
 
 const order_item_list = order_item_list_obj["items"];
 const totals = order_item_list_obj["final_amount"];
@@ -87,7 +86,8 @@ const payment_button = document.createElement("input");
 payment_button.type = "button";
 payment_button.value = "결제하기";
 payment_button.addEventListener("click", () => {
-    order_insert_Fn();
+    sessionStorage.removeItem("order_list");
+    order_insert_fn();
 });
 
 button_bar_div.appendChild(payment_button);
@@ -103,7 +103,7 @@ button_bar_div.appendChild(cancel_button);
 
 console.log(totals.final_price);
 
-function order_insert_Fn(){
+function order_insert_fn(){
 
     const item_list_obj = final_info["items"];
 

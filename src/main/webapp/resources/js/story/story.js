@@ -14,26 +14,26 @@ for(let element of img_class_array){
 	}
 }
 
-function story_update_read_hit(storyclass){
-	let idx = storyclass.getElementsByClassName('story_idx');
-	let s_idx = idx[0].value;
+// function story_update_read_hit(storyclass){
+// 	let idx = storyclass.getElementsByClassName('story_idx');
+// 	let s_idx = idx[0].value;
 	
-	let url = "story_update_read_hit";
-	let param = {
-		"s_idx": encodeURIComponent(s_idx)
-	};
+// 	let url = "story_update_read_hit";
+// 	let param = {
+// 		"s_idx": encodeURIComponent(s_idx)
+// 	};
 	
-	send_request(url,param,after_story_update_read_hit,'post');
-}
+// 	send_request(url,param,after_story_update_read_hit,'post');
+// }
 
-function after_story_update_read_hit(...args){
-	let res = args[0].param;
-	let s_idx = args[0].s_idx;
+// function after_story_update_read_hit(...args){
+// 	let res = args[0].param;
+// 	let s_idx = args[0].s_idx;
 	
-	let id = document.getElementById("story_"+s_idx);
-	let s_read_hit_class = id.getElementsByClassName('s_read_hit');
-	s_read_hit_class[0].value = Number(s_read_hit_class[0].value)+1;
-}
+// 	let id = document.getElementById("story_"+s_idx);
+// 	let s_read_hit_class = id.getElementsByClassName('s_read_hit');
+// 	s_read_hit_class[0].value = Number(s_read_hit_class[0].value)+1;
+// }
 		
 function show_next() {
     let stories = document.querySelectorAll(".story");
@@ -42,7 +42,7 @@ function show_next() {
 
     currentStoryIndex = (currentStoryIndex + 1) % stories.length;
     stories[currentStoryIndex].style.display = "block";
-    story_update_read_hit(stories[currentStoryIndex]);
+    // story_update_read_hit(stories[currentStoryIndex]);
 }
 
 function show_previous() {
@@ -55,7 +55,7 @@ function show_previous() {
     if(currentStoryIndex==-1) 
     	currentStoryIndex+=stories.length;
     stories[currentStoryIndex].style.display = "block";
-    story_update_read_hit(stories[currentStoryIndex]);
+    // story_update_read_hit(stories[currentStoryIndex]);
 }
 
 function liked2(s_idx,event){
@@ -98,20 +98,20 @@ function resultFn(...args){
 	let res = args[0].param;
 }
 
-window.onload = function() {	
+// window.onload = function() {	
 		
-	let beign_story_class = document.getElementsByClassName('story_idx');
+// 	let beign_story_class = document.getElementsByClassName('story_idx');
 	
-	let s_idx = beign_story_class[0].value;
+// 	let s_idx = beign_story_class[0].value;
 	
-	let url = "story_update_read_hit";
+// 	let url = "story_update_read_hit";
 	
-	let param = {
-		"s_idx": encodeURIComponent(s_idx)
-	};
+// 	let param = {
+// 		"s_idx": encodeURIComponent(s_idx)
+// 	};
 	
-	send_request(url,param,after_story_update_read_hit,'post');
-};
+// 	send_request(url,param,after_story_update_read_hit,'post');
+// };
 
 function change(event){
 	if(event.target.style.fill=="white"){				

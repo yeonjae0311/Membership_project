@@ -45,10 +45,12 @@ function change_img() {
     }
 }
 
-function send(f){
-    let s_content=f.s_content.value
+function send(){
+    const story_form = document.getElementById("story_post_form")
+
+    let s_content=story_form.s_content.value;
     //빈 콘텐트도 가능
-    f.method = "post";
-    f.action = "story_post_insert";
-    f.submit();
+    story_form.method = "post";
+    story_form.action = "story_post_insert";
+    story_form.submit();
 }

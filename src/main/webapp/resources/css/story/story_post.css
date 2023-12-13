@@ -1,19 +1,8 @@
 @charset "UTF-8";
 
-/* #story_post_div{
-    width: 100vw;
-    margin-top: 3%;
-} */
-
-/* *{
-    border: 1px solid black;
-} */
-
-
-
 #story_post_form{
     width: 35em;
-    margin: auto;
+    margin: 2% auto 0;
     text-align: center;
 }
 
@@ -55,7 +44,7 @@
 	resize: none;
 	margin: 1% auto;
 	padding: 2%;
-	width: 30em;
+	width: 30vw;
 	height: 7em;
 	box-shadow: 6px 6px 1px 1px #bcecff;
 	border: 2px solid #ffbbe3;
@@ -66,8 +55,8 @@
 textarea{
     margin: 0;
     padding: 2%;
-	width: 27em;
-    height: 7em;
+	width: 24vw;
+    height: 10.5vh;
 	box-shadow: none;
     border: none;
 }

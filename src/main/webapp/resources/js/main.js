@@ -15,6 +15,8 @@ const left_header = document.createElement("div");
 left_header.id = "left_header";
 const right_header = document.createElement("div");
 right_header.id = "right_header";
+const header_border = document.createElement("div");
+header_border.id = "header_border";
 
 const home_img = document.createElement("img");
 home_img.id = "home_img";
@@ -101,6 +103,7 @@ if(localStorage.getItem("idx") == null || localStorage.getItem("idx") == ""){
 
 header_bar.appendChild(left_header);
 header_bar.appendChild(right_header);
+header_bar.appendChild(header_border);
 
 function send_to(page){
 	location.href = page;

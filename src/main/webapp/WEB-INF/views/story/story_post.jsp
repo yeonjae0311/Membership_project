@@ -30,7 +30,7 @@
 				</div>
 				
 				<div id="post_upload_div">
-					<img id="post_upload" src="${pageContext.request.contextPath}/resources/img/post_upload_icon.png" onclick="send(this.form)">
+					<img id="post_upload" src="${pageContext.request.contextPath}/resources/img/post_upload_icon.png" onclick="send()">
 				</div>
 			</div>
 		</form>

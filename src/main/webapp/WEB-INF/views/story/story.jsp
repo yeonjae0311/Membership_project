@@ -33,7 +33,7 @@
 				<div id="story_${svo.s_idx}" class="story" style="display: ${loop.index == 0 ? 'block' : 'none'}">
 					<div class="story_main">
 						<div class="left">
-							<input type="button" value="LEFT" onclick="show_previous()">	
+							<img class="left_button" src="${pageContext.request.contextPath}/resources/img/arrow_left_icon.png" onclick="show_previous()">
 						</div>
 						
 						<div class="img_class">
@@ -47,7 +47,7 @@
 						</c:if>
 					
 						<div class="right">
-							<input type="button" value="RIGHT" onclick="show_next()">	
+							<img class="right_button" src="${pageContext.request.contextPath}/resources/img/arrow_right_icon.png" onclick="show_next()">
 						</div>
 					</div>
 					
@@ -58,16 +58,8 @@
 						
 						<div class="count_list">
 							<div class="count_info_div">
-								<p class="count_info_view">
-									조회수: 
-								</p>
-								
-								<input class="s_read_hit valuebox" readonly value="${svo.s_read_hit}">
-							</div>
-							
-							<div class="count_info_div">
 								<p class="count_info_like">
-									누적 좋아요: 
+									좋아요: 
 								</p>
 								
 								<input id="like_count_${svo.s_idx}" readonly class="like_count valuebox" value="${svo.s_like_count}">
