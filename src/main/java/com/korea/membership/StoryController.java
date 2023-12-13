@@ -78,6 +78,7 @@ public class StoryController {
 		// 이미지 업로드
 		String webPath = "/resources/upload/story";
 		String savePath = request.getServletContext().getRealPath(webPath);
+		System.out.println(savePath);
 
 		MultipartFile file = vo.getS_file();
 		String filename = "no_file";

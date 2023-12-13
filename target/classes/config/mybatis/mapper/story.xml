@@ -85,4 +85,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE S_EXPECTED_EXPIRATION_TIME<SYSDATE
 		]]>
 	</delete>
+	
+	<select id="story_count" resultType="int">
+		select count(*) from story	
+	</select>
 </mapper>

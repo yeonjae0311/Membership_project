@@ -53,4 +53,8 @@ public class StoryDAO {
 	public int update_to_delete_story() {
 		return sqlSession.update("s.update_to_delete_story");
 	}
+	
+	public int story_count() {
+		return sqlSession.selectOne("s.story_count");
+	}
 }

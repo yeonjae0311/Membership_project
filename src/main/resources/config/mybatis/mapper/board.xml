@@ -13,6 +13,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY B_POSTED_DATE DESC
 	</select>
 	
+	
+	
 	<select id="count_unfixed_master_list" resultType="int">
 		select count(*) from board_p_member_join_view
 		WHERE B_ISFIXED ='0' AND M_ISMASTER ='1'
@@ -27,6 +29,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where rnum between #{start1} and #{end1}
 	</select>
 	
+	<select id="unfixed_master_board_list2" resultType="vo.BoardPMemberViewVO">
+		select *
+		from (select ROW_NUMBER() over(order by B_POSTED_DATE desc) rnum,
+		b.* from board_p_member_join_view b
+			WHERE B_ISFIXED ='0' AND M_ISMASTER ='1'
+		)
+	</select>
+	
 	<select id="count_unfixed_fan_list" resultType="int">
 		select count(*) from board_p_member_join_view
 		WHERE B_ISFIXED ='0'
@@ -39,6 +49,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			WHERE B_ISFIXED ='0'
 		)
 		where rnum between #{start2} and #{end2}
+	</select>
+	
+	<select id="unfixed_all_board_list2" resultType="vo.BoardPMemberViewVO">
+		select *
+		from (select ROW_NUMBER() over(order by B_POSTED_DATE desc) rnum,
+		b.* from board_p_member_join_view b
+			WHERE B_ISFIXED ='0'
+		)
 	</select>
 	
 	<insert id="board_insert" parameterType="vo.BoardVO">
