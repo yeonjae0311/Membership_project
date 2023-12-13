@@ -4,10 +4,9 @@
     width: 20em;
     margin: 7% auto;
     padding: 3.5% 3%;
-    background: #ffebf7;
     border-radius: 10px;
-    border-color: #ffbbe3;
-    border-width: 1em;
+    box-shadow: 6px 6px 1px 1px #bcecff;
+    border: 2px solid #ffbbe3;
 }
 
 p{
