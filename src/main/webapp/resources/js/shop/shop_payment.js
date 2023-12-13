@@ -1,3 +1,5 @@
+
+
 const order_item_list_obj = JSON.parse(sessionStorage.getItem("order_list"));
 console.log(sessionStorage.getItem("order_list"))
 
@@ -118,9 +120,17 @@ function order_insert_fn(){
     }
        
     localStorage.setItem("order_list_json", JSON.stringify(final_info));
-    
-    const url = "kakao";
 
+	console.log(order_item_list[0].i_idx)
+
+	/* if(order_item_list[0].i_idx == 4) {
+    	const url = "membership_kakao";
+    } else {
+		url = "kakao";
+    } */
+    
+    const url = "membership_kakao";
+    
     const param = {
 		"o_sum": encodeURIComponent(totals.final_price)
 	};
@@ -129,6 +139,7 @@ function order_insert_fn(){
 }
 
 function go_to_payment(...args) {  
-  
-    location.href = "kakao_pay";
+  	
+	location.href = "kakao_pay";
+  	
 }

@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_css.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user/user_edit.js" defer></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user/user_edit.js" defer></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
 </head>
