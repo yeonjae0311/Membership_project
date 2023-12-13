@@ -29,12 +29,24 @@
     padding: 0 10%;
 }
 
+<<<<<<< HEAD
 #s_img{
     display: none;
 }
 
 #file_upload > img{
     width: 3em;
+=======
+#story_img{
+	align: "center";
+	width: 500px;
+	height: 350px;
+	margin: 4%;
+	display: inline-block;
+}
+
+#file_upload_div > p{
+>>>>>>> c78e2e3ab25d4931ee6da56162d15bd20f6b04aa
     height: 3em;
 }
 
