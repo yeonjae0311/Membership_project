@@ -9,29 +9,29 @@
 	display: flex;
 }
 
-#photo_main {
-	width: 80vw;
+.photo_main {
+	overflow: hidden;
+	width: 60vw;
 	height: 500px;
-  	transform: translateX(-50%);
   	position:relative;
 }
 
 .img_container {
-	width: 80vw;
+	width: 60vw;
 	height: 500px;
-	position: absolute;
+	position:absolute;
+	display: flex;
 }
 
 .img_slide{
-	width: 80vw;
+	width: 60vw;
 	height: 500px;
 	margin: 0.1%;
 	display: inline-block;
-	float: left;
 }
 
 .banner_img {
-	width: 76vw;
+	width: 61vw;
 	height: 500px;
 }
 

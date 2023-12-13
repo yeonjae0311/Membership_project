@@ -14,46 +14,7 @@
 	<div id="header_bar"></div>
 		
 	<div id="body_div">
-		<div id="photo_banner">
-			<div class="left">
-				<input type="button" value="LEFT">
-			</div>
-				<div class="photo_main" style="overflow: hidden">
-					<div class="img container" style="display: flex">
-						<div class="img_slide">
-							<img class="banner_img" 
-							src="${pageContext.request.contextPath}/resources/img/photo_banner/newjeans1.jpg"  
-							alt="이미지 유실">
-						</div>
-						<div class="img_slide">
-							<img class="banner_img" 
-							src="${pageContext.request.contextPath}/resources/img/photo_banner/newjeans2.jpg"  
-							alt="이미지 유실">
-						</div>
-						<div class="img_slide">
-							<img class="banner_img" 
-							src="${pageContext.request.contextPath}/resources/img/photo_banner/newjeans3.jpg"  
-							alt="이미지 유실">
-						</div>
-						<div class="img_slide">
-							<img class="banner_img" 
-							src="${pageContext.request.contextPath}/resources/img/photo_banner/newjeans4.jpg"  
-							alt="이미지 유실">
-						</div>
-						<div class="img_slide">
-							<img class="banner_img" 
-							src="${pageContext.request.contextPath}/resources/img/photo_banner/newjeans5.jpg"  
-							alt="이미지 유실">
-						</div>
-					</div>
-				</div>
-			<div class="right">
-				<input type="button" value="RIGHT">
-			</div>
-			</div>
-		</div>
-		
-		<!-- 스토리 4개 정도 출력해보기 -->
+			<!-- 스토리 4개 정도 출력해보기 -->
 		<div id="story">
 			<div class="story container">
 				<c:forEach var="svo" items="${svo_list}" varStatus="status" end="3" >
@@ -86,8 +47,47 @@
 		</div>
 		
 		
-		<!-- 공지사항 버튼, 관리자 버튼, 유저 버튼 만들어서 
-		누르면 해당 게시글들 볼 수 있도록, 5개씩 정도 출력되도록 -->
+	
+		<div id="photo_banner">
+			<div class="left">
+				<input type="button" value="LEFT">
+			</div>
+				<div class="photo_main">
+					<div class="img_container">
+						<div class="img_slide">
+							<img class="banner_img" 
+							src="${pageContext.request.contextPath}/resources/img/photo_banner/newjeans1.jpg"  
+							alt="이미지 유실">
+						</div>
+						<div class="img_slide">
+							<img class="banner_img" 
+							src="${pageContext.request.contextPath}/resources/img/photo_banner/newjeans6.jpg"  
+							alt="이미지 유실">
+						</div>
+						<div class="img_slide">
+							<img class="banner_img" 
+							src="${pageContext.request.contextPath}/resources/img/photo_banner/newjeans3.jpg"  
+							alt="이미지 유실">
+						</div>
+						<div class="img_slide">
+							<img class="banner_img" 
+							src="${pageContext.request.contextPath}/resources/img/photo_banner/newjeans4.jpg"  
+							alt="이미지 유실">
+						</div>
+						<div class="img_slide">
+							<img class="banner_img" 
+							src="${pageContext.request.contextPath}/resources/img/photo_banner/membership.jpg"  
+							alt="이미지 유실">
+						</div>
+					</div>
+				</div>
+			<div class="right">
+				<input type="button" value="RIGHT">
+			</div>
+			</div>
+		</div>
+		
+		<!-- 관리자 버튼, 유저 버튼 만들어서 누르면 해당 게시글들 볼 수 있도록, 5개씩 정도 출력되도록 -->
 		<div id="board">
 		<div id="board_view_button_bar">
 			<input type="button" value="관리자버튼" onclick="managerfunc()">	
@@ -161,7 +161,6 @@
 				</table>
 			</div>
 		</div><!-- <div id="board"> -->
-		</div>
 	</div> <!--</div id="body_div"> -->
 	
 	<div id="footer_bar"></div>
