@@ -14,42 +14,70 @@
 	<div id="header_bar"></div>
 		
 	<div id="body_div">
-		<div id="photo_container"> <!-- 여유가 되면 여러개의 이미지를 두고 저절로 이미지가 넘어가게끔 하도록 만들 예정 -->
-			<div id = "photo_banner">
-				<div class="photo_main">
-						<div class="left">
-							<input type="button" value="LEFT" onclick="show_previous()">
-						</div>
-						<div class="img_class">
+		<div id="photo_banner">
+			<div class="left">
+				<input type="button" value="LEFT">
+			</div>
+				<div class="photo_main" style="overflow: hidden">
+					<div class="img container" style="display: flex">
+						<div class="img_slide">
 							<img class="banner_img" 
 							src="${pageContext.request.contextPath}/resources/img/photo_banner/newjeans1.jpg"  
 							alt="이미지 유실">
 						</div>
-						<div class="right">
-							<input type="button" value="RIGHT" onclick="show_next()">
+						<div class="img_slide">
+							<img class="banner_img" 
+							src="${pageContext.request.contextPath}/resources/img/photo_banner/newjeans2.jpg"  
+							alt="이미지 유실">
 						</div>
+						<div class="img_slide">
+							<img class="banner_img" 
+							src="${pageContext.request.contextPath}/resources/img/photo_banner/newjeans3.jpg"  
+							alt="이미지 유실">
+						</div>
+						<div class="img_slide">
+							<img class="banner_img" 
+							src="${pageContext.request.contextPath}/resources/img/photo_banner/newjeans4.jpg"  
+							alt="이미지 유실">
+						</div>
+						<div class="img_slide">
+							<img class="banner_img" 
+							src="${pageContext.request.contextPath}/resources/img/photo_banner/newjeans5.jpg"  
+							alt="이미지 유실">
+						</div>
+					</div>
 				</div>
+			<div class="right">
+				<input type="button" value="RIGHT">
+			</div>
 			</div>
 		</div>
 		
 		<!-- 스토리 4개 정도 출력해보기 -->
 		<div id="story">
 			<div class="story container">
-				<!-- 비로그인 및 멤버십 결제 회원이 아닐 경우 보여줄 스토리 사진 -->
 				<c:forEach var="svo" items="${svo_list}" varStatus="status" end="3" >
-				<c:if test="${empty membervo.m_ismembership or membervo.m_ismembership eq '0' }">
-					<div  class="story_content" >
-						<img id="lock_icon" style="heigth:100px"
-						src="${pageContext.request.contextPath}/resources/img/photo_banner/lock_icon.jpg"
-						>
-						
-					</div>
-				</c:if>
 				<c:if test="${membervo.m_ismembership eq '1' }">
 						<div  class="story_content"  >
 							<img id="story_id_${svo.s_idx }" 
+							style="	width: 100px;
+									height: 100px;
+									border-radius: 50%;
+									padding : auto;
+									margin: 4%;
+									display: inline-block;"
 							src="${pageContext.request.contextPath}/resources/upload/story/${svo.s_filename }"
-							>
+				<c:if test="${empty membervo.m_ismembership or membervo.m_ismembership eq '0' }">
+				<!-- 비로그인 및 멤버십 결제 회원이 아닐 경우 보여줄 스토리 사진 -->
+							<img id="story_id_${svo.s_idx }" 
+							style="	width: 100px;
+									height: 100px;
+									border-radius: 50%;
+									padding : auto;
+									margin: 4%;
+									display: inline-block;"
+							src="${pageContext.request.contextPath}/resources/img/photo_banner/lock_icon.jpg"
+				</c:if>>
 							
 						</div>
 				</c:if>
@@ -72,7 +100,7 @@
 					<th>제목</th>
 					<th>작성자</th>
 				</tr>
-				<c:forEach var="i" items="${fixed_list}" end="9">
+				<c:forEach var="i" items="${fixed_list}" end="4">
 					<tr>
 						<td>${i.b_idx}</td>
 						
@@ -132,9 +160,9 @@
 					
 				</table>
 			</div>
+		</div><!-- <div id="board"> -->
 		</div>
-		</div>
-	</div> <!--</div id="home_div"> -->
+	</div> <!--</div id="body_div"> -->
 	
 	<div id="footer_bar"></div>
 </body>
