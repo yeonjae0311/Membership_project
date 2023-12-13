@@ -19,7 +19,7 @@
     height: 100%;
     padding: 1.5%;
 	box-shadow: 6px 6px 1px 1px #bcecff;
-	border: 2px solid #ffebf7;
+	border: 2px solid #ffbbe3;
 }
 
 #file_upload_div{
@@ -29,15 +29,12 @@
     padding: 0 10%;
 }
 
-/* #story_img{
-	align: "center";
-	width: 500px;
-	height: 350px;
-	margin: 4%;
-	display: inline-block;
-} */
+#s_img{
+    display: none;
+}
 
-#file_upload_div > p{
+#file_upload > img{
+    width: 3em;
     height: 3em;
 }
 
@@ -50,7 +47,7 @@
 	width: 30vw;
 	height: 7em;
 	box-shadow: 6px 6px 1px 1px #bcecff;
-	border: 2px solid #ffebf7;
+	border: 2px solid #ffbbe3;
     display: flex;
     justify-content: space-between;
 }
