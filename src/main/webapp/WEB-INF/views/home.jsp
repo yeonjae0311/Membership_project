@@ -16,7 +16,7 @@
 	<div id="header_bar"></div>
 		
 	<div id="home_div">
-	<input type="button" onclick="location.href='shop_payment'" value="buy membership">
+	<input type="button" value="buy membership" onclick="shop_payment()">
 		<div id = "photo_banner">
 			<div class="left">
 				<input type="button" value="LEFT" onclick="show_previous()">	

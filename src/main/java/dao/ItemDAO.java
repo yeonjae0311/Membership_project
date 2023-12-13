@@ -47,8 +47,8 @@ public class ItemDAO {
 	}
 	
 	// membership 유효기간 늘리기
-	public int membership_buy(int idx) {
-		return sqlSession.update("i.membership_buy", idx);
+	public int membership_buy(int m_idx) {
+		return sqlSession.update("i.membership_buy", m_idx);
 	}
 	
 	// 로그인시 membership 확인
