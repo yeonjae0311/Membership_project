@@ -7,7 +7,9 @@
 	<meta charset="UTF-8">
 	<title>Welcome! This`s Newjeans_membership_homepage</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_css.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_js.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/home.js"></script>
 </head>
 <body>
 	<div id="header_bar"></div>
@@ -38,7 +40,7 @@
 		<div id="board">
 		
 		</div>
-		<input type="button" onclick="location.href='membership_shop_payment'" value="buy membership">
+		<input type="button" onclick="location.href='shop_payment'" value="buy membership">
 	</div>
 	
 	<div id="footer_bar"></div>

@@ -8,7 +8,9 @@
 	<meta charset="UTF-8">
 	<title>MEMBERSHIP</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_css.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_js.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/shop/shop_item.js" defer></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
 	<script>
 		function item_amount(amount_button_id){
 	
@@ -37,7 +39,7 @@
 	<div>
 		<form name="selected_item" action="shopping_cart_insert" method="POST">
 			<div>
-				<input type="button" id="item_delete_id" value="상품 삭제하기" onclick="item_delete()">
+				<input type="button" id="item_delete_id" value="상품 삭제" onclick="item_delete()">
 			</div>
 			
 			<div id=item_info_div>

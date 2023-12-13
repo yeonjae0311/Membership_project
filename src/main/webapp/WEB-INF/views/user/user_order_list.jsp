@@ -7,7 +7,9 @@
 	<meta charset="UTF-8">
 	<title>주문 내역</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_css.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_js.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/user/user_order_list.js" defer></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
 </head>
 <body>
 	<div id="header_bar"></div>
@@ -44,6 +46,7 @@
 			</c:choose>
 		</div>
 	</div>
+	
 	<div id="footer_bar"></div>
 </body>
 </html>

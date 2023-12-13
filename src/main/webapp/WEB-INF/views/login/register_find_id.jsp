@@ -6,7 +6,9 @@
 	<title>Insert title here</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_css.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_js.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/login/register_find_id.js" defer></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/login/email.js" defer></script>
 </head>
 <body>

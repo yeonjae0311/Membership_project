@@ -23,7 +23,7 @@ order_item["i_color"] = document.getElementById("i_color").value;
 order_item["i_photo_name"] = document.getElementById("item_img_id").value;
 order_list.items[0]["cd_amount"] = document.getElementById("cd_count").value;
 order_list.items[0]["total_price"] = cd_count * i_price;
-	
+
 sessionStorage.setItem("order_list", JSON.stringify(order_list));
 
 function send_shopping_cart(f){

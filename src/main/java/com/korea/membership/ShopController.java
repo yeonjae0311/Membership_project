@@ -385,29 +385,31 @@ public class ShopController {
 		int m_idx = vo.getM_idx();
 		item_dao.membership_buy(m_idx);
 		
-		/*
-		 * int o_sum = 9900; int o_count = 1;
-		 * 
-		 * Map<String, Object> map_order = new HashMap<String, Object>();
-		 * map_order.put("o_sum", o_sum); map_order.put("o_count", o_count);
-		 * map_order.put("m_idx", m_idx);
-		 * 
-		 * porder_dao.order_insert(map_order);
-		 * 
-		 * Map<String, Object> map_detail = new HashMap<String, Object>();
-		 * 
-		 * int i_idx = 21; // 멤버쉽 1개월 상품을 등록하고 i_idx를 지정해두어야함 int od_count = 1; int
-		 * od_sum = 9900;
-		 * 
-		 * map_detail.put("i_idx", i_idx); map_detail.put("od_count", od_count);
-		 * map_detail.put("od_sum", od_sum); map_detail.put("m_idx", m_idx);
-		 * 
-		 * order_detail_dao.order_detail_insert(map_detail);
-		 */
+		int o_sum = 9900; 
+		int o_count = 1;
+		
+		Map<String, Object> map_order = new HashMap<String, Object>();
+		map_order.put("o_sum", o_sum); map_order.put("o_count", o_count);
+		map_order.put("m_idx", m_idx);
+		 
+		porder_dao.order_insert(map_order);
+		  
+		Map<String, Object> map_detail = new HashMap<String, Object>();
+		
+		int i_idx = 24; // 멤버쉽 1개월 상품을 등록하고 i_idx를 지정해두어야함 
+		// 여기서 오류나면 item을 다지우고 첫번째 상품으로 멤버십 상품을 등록해주세요
+		int od_count = 1; 
+		int od_sum = 9900;
+		 
+		map_detail.put("i_idx", i_idx); map_detail.put("od_count", od_count);
+		map_detail.put("od_sum", od_sum); map_detail.put("m_idx", m_idx);
+		
+		order_detail_dao.order_detail_insert(map_detail);
 		
 		return Path.ShopPath.make_path("payment_completed");
 	}
 
+	
 	@RequestMapping("payment_completed")
 	@ResponseBody
 	public String payment_completed(@RequestBody String body) throws ParseException {
