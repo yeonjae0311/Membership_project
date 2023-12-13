@@ -68,7 +68,7 @@ order_item[0] = {};
 
 order_item = order_item[0];
 
-order_item["i_idx"] = 4;
+order_item["i_idx"] = 1;
 order_item["i_name"] = "Membership 1개월";
 order_item["i_color"] = "none";
 order_item["i_photo_name"] = "membership_img.jpg";

@@ -410,7 +410,8 @@ public class ShopController {
 		  
 		Map<String, Object> map_detail = new HashMap<String, Object>();
 		
-		int i_idx = 4; // 멤버쉽 1개월 상품을 등록하고 i_idx를 지정해두어야함 
+		int i_idx = 1; // 멤버쉽 1개월 상품을 등록하고 i_idx를 지정해두어야함 
+		
 		// 여기서 오류나면 item을 다지우고 첫번째 상품으로 멤버십 상품을 등록해주세요
 		int od_count = 1; 
 		int od_sum = 9900;
