@@ -1,5 +1,3 @@
-
-
 const order_item_list_obj = JSON.parse(sessionStorage.getItem("order_list"));
 console.log(sessionStorage.getItem("order_list"))
 
@@ -106,7 +104,7 @@ button_bar_div.appendChild(cancel_button);
 console.log(totals.final_price);
 
 function order_insert_fn(){
-
+	
     const item_list_obj = final_info["items"];
 
     for(const key in order_item_list){
@@ -121,7 +119,14 @@ function order_insert_fn(){
        
     localStorage.setItem("order_list_json", JSON.stringify(final_info));
 
-	console.log(order_item_list[0].i_idx)
+	let postcode = document.getElementById("postcode").value;
+	let address = document.getElementById("address").value;
+	let detail_address = document.getElementById("detailAddress").value;
+	
+	if(postcode == "" || detail_address == ""){
+		alert("정확한 배송지를 입력해주세요.");
+		return;
+	}
 
 	/* if(order_item_list[0].i_idx == 4) {
     	const url = "membership_kakao";

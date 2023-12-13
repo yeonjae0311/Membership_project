@@ -14,6 +14,7 @@
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 	<script>
+		
 	    function addr() {
 	        new daum.Postcode({
 	            oncomplete: function(data) {
@@ -58,24 +59,6 @@
 	                document.getElementById("detailAddress").focus();
 	            }
 	        }).open();
-	    }
-
-	    function kakao_pay(){
-			let postcode =  document.getElementById('postcode').value;
-		    let address = document.getElementById("address").value;
-		    let detail_address = document.getElementById("detailAddress").value;
-		    
-	    	if((postcode == '') || (address == '') || (detail_address = '')){
-	    		alert("정확한 배송지를 입력해주세요");
-	    		return;
-	    	}
-	    	
-	    	if(!document.getElementById("ToS").checked){
-	    		alert("약관 동의가 필요합니다.")
-	    		return;
-	    	} else{
-	    		location.href="kakao_pay";
-	    	}
 	    }
 	    
 	    function update_addr(){

@@ -46,6 +46,14 @@ function change_img() {
 }
 
 function send(){
+
+	const img_file = document.getElementById("s_img").value;
+	
+	if(img_file == ''){
+		alert("이미지를 등록해주세요");
+		return;
+	}
+	
     const story_form = document.getElementById("story_post_form")
 
     let s_content=story_form.s_content.value;

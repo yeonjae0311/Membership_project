@@ -33,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 상품 목록 조회 -->
 	<select id="item_list_select" resultMap="shop_list">
 		SELECT * FROM item 
-		WHERE ROWID IN (SELECT MAX(ROWID) FROM item GROUP BY I_NAME)
+		WHERE ROWID IN (SELECT MAX(ROWID) FROM item GROUP BY I_NAME) and i_idx != 1
 	</select>
 	
 	<!-- 선택한 상품 한개 조회 -->
