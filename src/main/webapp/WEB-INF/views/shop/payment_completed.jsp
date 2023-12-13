@@ -18,10 +18,14 @@
 <body>
 	<div id="header_bar"></div>
 	
-	<div>
-
+	<div id="payment_completed_div">
 		<input id="isMembership" type="hidden" value="${isMembership}">
-		<div>감사합니다. 고객님의 주문이 완료되었습니다. </div>
+		<div id="payment_completed_header">
+			주문완료
+		</div>
+		<div>
+			<span>감사합니다. 고객님의 주문이 완료되었습니다.</span> 
+		</div>
 
 		<div>주문 내역 및 배송에 관한 안내는 Mypage > 나의 주문내역 에서 확인하실 수 있습니다.</div>
 		
@@ -31,8 +35,7 @@
 		
 		<div>
 			<span id="order_num">주문번호 : ${order_num}</span>
-		</div>				
-		
+		</div>					
 	</div>
 	
 	<div id="footer_bar"></div>

@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+#payment_completed_div{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin: 7% 25%;
+    padding: 2% 3%;
+    background: #ffebf7;
+    border-radius: 10px;
+}
+
+#payment_completed_div > div {
+    margin: 2% 0;
+}
+
+#payment_completed_header{
+    font-size: 1.8em;
+}
