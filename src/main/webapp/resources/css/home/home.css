@@ -37,7 +37,6 @@
 
 .left, .right {
 	padding: 0 3%;
-	postion: absolute;
 	cursor: pointer;
 }
 

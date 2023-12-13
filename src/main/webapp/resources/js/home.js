@@ -22,9 +22,6 @@ function all_board_first(){
 	document.getElementById("board_title").innerHTML = "All posts";
 }
 
-
-
-
 //캐러셀 및 슬라이드 기능 구현
 
 window.onload = function(){

@@ -6,7 +6,7 @@
     padding: 3.5% 3%;
     border-radius: 10px;
     box-shadow: 6px 6px 1px 1px #bcecff;
-    border: 2px solid #ffbbe3;
+	border: 2px solid #ffebf7;
 }
 
 p{
@@ -25,6 +25,6 @@ p{
 .user_info_form_hr {
     border: 0;
     border-top: 1px dotted #ffa8db;
-    border-bottom: 1px dotted #ff7eca;
+    /* border-bottom: 1px dotted #ff7eca; */
     width: 80%;
   }
