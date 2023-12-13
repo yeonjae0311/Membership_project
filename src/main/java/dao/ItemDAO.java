@@ -61,4 +61,9 @@ public class ItemDAO {
 		return sqlSession.selectList("i.select_order_list",m_idx);
 	}
 	
+	//한건의 주문 조회
+	public POrderVO select_one_order(int o_idx) {
+		return sqlSession.selectOne("i.select_one_order",o_idx);
+	}
+	
 }

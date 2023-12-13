@@ -115,3 +115,13 @@ th{
 	height: 49vh;
 	overflow: auto;
 }
+
+.like_img{
+	width: 25px;
+	height: 25px;
+}
+
+.button_img{
+	width: 25px;
+	height: 25px;
+}

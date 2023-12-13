@@ -68,7 +68,10 @@
 							<c:choose>
 								<c:when test="${svo.sl_isliked eq '0'}">
 									<div class="like_button_div" onclick="liked2(${svo.s_idx}, event)">
-										<svg id="svg_test_${svo.s_idx}"
+										<img class="like_img" id="like_img_id_${svo.s_idx}"
+										src="${pageContext.request.contextPath}/resources/img/likep.png">
+										
+										<%-- <svg id="svg_test_${svo.s_idx}"
 											 class="like_button"
 											 xmlns="http://www.w3.org/2000/svg"
 											 fill="white"
@@ -82,13 +85,15 @@
 												  	16c-2.8-3.088-3.5-4.294-3.5-6.5 0-2.206 1.6-4 4-4
 												  	2 0 3.2 1.324 4 2.647.8-1.323 2-2.647 4-2.647 2.4
 												  	0 4 1.794 4 4s-.7 3.412-3.5 6.5Z"/>
-										</svg>
+										</svg> --%>
 									</div>
 								</c:when>
 								
 								<c:when test="${svo.sl_isliked eq '1'}">
 									<div class="like_button_div" onclick="liked2(${svo.s_idx}, event)">
-										<svg id="svg_test_${svo.s_idx}"
+										<img class="like_img" id="like_img_id_${svo.s_idx}"
+										src="${pageContext.request.contextPath}/resources/img/liker.png">
+										<%-- <svg id="svg_test_${svo.s_idx}"
 											 class="like_button"
 											 xmlns="http://www.w3.org/2000/svg"
 											 fill="red"
@@ -102,7 +107,7 @@
 												  	16c-2.8-3.088-3.5-4.294-3.5-6.5 0-2.206 1.6-4 4-4
 												  	2 0 3.2 1.324 4 2.647.8-1.323 2-2.647 4-2.647 2.4
 												  	0 4 1.794 4 4s-.7 3.412-3.5 6.5Z"/>
-										</svg>
+										</svg> --%>
 									</div>
 								</c:when>
 							</c:choose>

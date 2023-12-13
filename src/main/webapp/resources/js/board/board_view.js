@@ -24,7 +24,10 @@ function send_reply(f){
 	f.submit();
 }
 
-function delete_board_post(){			
+function delete_board_post(){
+	if(!confirm('정말로 삭제하시겠습니까?')){
+		return;
+	}
 	let url = "delete_board_post";
 	
    	const param = {
@@ -45,6 +48,7 @@ function after_delete_board_post(...args){
 }
 function board_like(b_idx){
 	let like_button_class = document.getElementsByClassName('board_like_button');
+	const like_img_b_id = document.getElementById('like_img_b_'+b_idx);
 	
 	if(like_button_class[0].value == '좋아요'){
 		
@@ -57,6 +61,7 @@ function board_like(b_idx){
 		
 		send_request(url,param,after_board_like,'post');
 		
+		like_img_b_id.src="/membership/resources/img/liker.png";
 		like_button_class[0].value='좋아요 해제'
 	}else{
 		let url ="delete_board_to_unlike";
@@ -68,6 +73,7 @@ function board_like(b_idx){
 		
 		send_request(url,param,after_board_like,'post');
 		
+		like_img_b_id.src="/membership/resources/img/likep.png";
 		like_button_class[0].value='좋아요'
 	}
 }
@@ -84,9 +90,9 @@ function after_board_like(...args){
 
 function reply_like(r_idx){
 	let id = document.getElementById('rl_isliked_'+r_idx);
+	const r_id = document.getElementById('like_img_r_'+r_idx);
 	
 	if(id.value=='0'){
-		console.log('up');
 		let url ="add_reply_like";
 		
 		let param={
@@ -96,8 +102,8 @@ function reply_like(r_idx){
 		
 		send_request(url,param,after_reply_like,'post');
 		id.value='1';
+		r_id.src = "/membership/resources/img/liker.png";
 	}else{
-		console.log('down');
 		let url ="delete_reply_to_unlike";
 		
 		let param={
@@ -107,11 +113,11 @@ function reply_like(r_idx){
 		
 		send_request(url,param,after_reply_like,'post');
 		id.value='0';
+		r_id.src = "/membership/resources/img/likep.png";
 	}
 }
 
 function after_reply_like(...args){
-	console.log(args[0]);
 	let res = args[0].res;
 	let r_idx = args[0].r_idx;
 	let r_like_count_id = document.getElementById('r_like_count_'+r_idx);
@@ -128,6 +134,9 @@ function after_reply_like(...args){
 }
 
 function delete_reply(r_idx){
+	if(!confirm('정말로 삭제하시겠습니까?')){
+		return;
+	}
 	
 	let url='delete_reply';
 	let param = {

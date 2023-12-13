@@ -79,8 +79,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 유저번호로 주문리스트 조회 -->
 	<select id="select_order_list" parameterType="int" resultType="vo.POrderVO">
-		select * from p_order
+		select * from P_ORDER_view
 		where m_idx=#{m_idx}
+	</select>
+	
+	<select id="select_one_order" parameterType="int" resultType="vo.POrderVO">
+		select * from p_order_view
+		where o_idx=#{o_idx}
 	</select>
 	
 </mapper>

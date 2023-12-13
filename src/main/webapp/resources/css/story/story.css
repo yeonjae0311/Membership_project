@@ -98,3 +98,8 @@
 	justify-content: center;
     display: flex;
 }
+
+.like_img{
+	width: 25px;
+	height: 25px;
+}

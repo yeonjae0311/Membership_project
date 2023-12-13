@@ -63,11 +63,12 @@ function liked2(s_idx,event){
 	
 	const story_liked = document.getElementById("liked_" + s_idx);
 	const story_like_count = document.getElementById("like_count_" + s_idx);
+	const like_img_id = document.getElementById("like_img_id_" + s_idx);
 	
-	if(story_liked.value == 0){
-	
+	if(story_liked.value == 0){	
 		story_liked.value = Number(story_liked.value)+ 1;
 		story_like_count.value = Number(story_like_count.value)+1;
+		like_img_id.src = "/membership/resources/img/liker.png";
 		let url = "add_story_like";
 		 
 		let param={
@@ -80,6 +81,7 @@ function liked2(s_idx,event){
 	} else if(story_liked.value == 1){
 		story_liked.value = Number(story_liked.value)-1;
 		story_like_count.value = Number(story_like_count.value)-1;
+		like_img_id.src = "/membership/resources/img/likep.png";
 		
 		let url="delete_story_to_unlike";
 		 
@@ -98,20 +100,22 @@ function resultFn(...args){
 	let res = args[0].param;
 }
 
-// window.onload = function() {	
+window.onload = function() {	
 		
-// 	let beign_story_class = document.getElementsByClassName('story_idx');
+	let begin_story_class = document.getElementsByClassName('story_idx');
 	
-// 	let s_idx = beign_story_class[0].value;
-	
-// 	let url = "story_update_read_hit";
-	
-// 	let param = {
-// 		"s_idx": encodeURIComponent(s_idx)
-// 	};
-	
-// 	send_request(url,param,after_story_update_read_hit,'post');
-// };
+	if(begin_story_class!=null){
+		let s_idx = begin_story_class[0].value;
+		
+		let url = "story_update_read_hit";
+		
+		let param = {
+			"s_idx": encodeURIComponent(s_idx)
+		};
+		
+		send_request(url,param,after_story_update_read_hit,'post');
+	}
+};
 
 function change(event){
 	if(event.target.style.fill=="white"){				
