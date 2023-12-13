@@ -10,7 +10,7 @@ const nextBtn = document.querySelector(".right");
 function translateContainer(direction){
   const selectedBtn = (direction === 1) ? 'left' : 'right';
   container.style.transitionDuration = '1s';
-  container.style.transform = `translateX(${direction * (100 / 5)}%)`; //${direction * (100 / 넘기고 싶은 요소의 개수)%)
+  container.style.transform = `translateX(${direction * (100 / 6)}%)`; //${direction * (100 / 넘기고 싶은 요소의 개수)%)
   container.ontransitionend = () => reorganizeEl(selectedBtn);
 }
 
