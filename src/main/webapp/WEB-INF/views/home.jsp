@@ -16,7 +16,20 @@
 	<div id="header_bar"></div>
 		
 	<div id="home_div">
-	<input type="button" onclick="location.href='shop_payment'" value="buy membership">
+	
+	<input type="button" value="buy membership" onclick="shop_payment()">
+		<div id = "photo_banner">
+			<div class="left">
+				<input type="button" value="LEFT" onclick="show_previous()">	
+			</div>
+			<div class="img_class" align="center">
+				<img id="banner_img" src="${pageContext.request.contextPath}/resources/img/photo_banner/newjeans1.jpg" 
+				alt="이미지 준비중입니다.">
+			</div>
+			<div class="right">
+				<input type="button" value="RIGHT" onclick="show_next()">	
+			</div>
+		</div>
 		
 		<!-- 스토리 4개 정도 출력해보기 -->
 		<div id="story">

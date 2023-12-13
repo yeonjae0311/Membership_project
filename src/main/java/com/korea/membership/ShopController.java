@@ -356,7 +356,7 @@ public class ShopController {
 
 		model.addAttribute("vo", vo);
 
-		return Path.ShopPath.make_path("shop_payment");
+		return Path.ShopPath.make_path("membership_shop_payment");
 	}
 	
 	
@@ -410,7 +410,7 @@ public class ShopController {
 		  
 		Map<String, Object> map_detail = new HashMap<String, Object>();
 		
-		int i_idx = 24; // 멤버쉽 1개월 상품을 등록하고 i_idx를 지정해두어야함 
+		int i_idx = 4; // 멤버쉽 1개월 상품을 등록하고 i_idx를 지정해두어야함 
 		// 여기서 오류나면 item을 다지우고 첫번째 상품으로 멤버십 상품을 등록해주세요
 		int od_count = 1; 
 		int od_sum = 9900;
@@ -419,8 +419,8 @@ public class ShopController {
 		map_detail.put("od_sum", od_sum); map_detail.put("m_idx", m_idx);
 		
 		order_detail_dao.order_detail_insert(map_detail);
-		
-		return Path.ShopPath.make_path("payment_completed");
+
+		return "{\"param\": \"success\"}";
 	}
 
 	
@@ -512,7 +512,7 @@ public class ShopController {
 
 	@RequestMapping("membership_kakao")
 	@ResponseBody
-	public String membership_kakao(@RequestBody String body) {
+	public String membership_kakao_pay(@RequestBody String body) {
 		ObjectMapper om = new ObjectMapper();
 		
 		Map<String, String> data = null;
@@ -526,7 +526,9 @@ public class ShopController {
 		
 		String o_sum = data.get("o_sum");
 		String payment_name = "NEWJEANS MEMBERSHIP 1개월";
+		int i_idx = 1;
 		
+		session.setAttribute("i_idx", i_idx);
 		session.setAttribute("payment_name", payment_name);
 		session.setAttribute("payment_price", o_sum);
 		
