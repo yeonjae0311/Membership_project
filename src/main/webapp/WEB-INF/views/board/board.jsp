@@ -30,11 +30,6 @@
 		</div>
 		
 		<div id="board_view_list">
-			<div id="board_list_header">
-				<div id="board_title">All posts</div>
-				<img id="board_post_icon" src="${pageContext.request.contextPath}/resources/img/post_upload_icon.png" onclick="location.href='board_post'">
-			</div>
-			
 			<div class="board_list" id="fixed_list">
 				<div id="fixed_list_table">
 					<table class="b_list">
@@ -47,8 +42,8 @@
 						-->
 						
 						<tr>
-							<th>
-								<img id="board_pin_icon" src="${pageContext.request.contextPath}/resources/img/pin_icon.png" onclick="location.href='board_post'">
+							<th id="pinned_th">
+								<img id="board_pin_icon" src="${pageContext.request.contextPath}/resources/img/pin_icon.png">
 								<div>
 									Pinned Posts
 								</div>
@@ -77,54 +72,53 @@
 				</div>
 			</div>
 			
+			<div id="board_list_header">
+				<div id="board_title">All posts</div>
+				<img id="board_post_icon" src="${pageContext.request.contextPath}/resources/img/post_upload_icon.png" onclick="location.href='board_post'">
+			</div>
+			
 			<div class="board_list" id="unfixed_list">
 				<div id="unfixed_master_list"  style="display:none;">
 					<table class="b_list">
-						<tr>
-							<th>번호</th>
+						<tr class="title_tr">
 							<th>제목</th>
 							<th>작성자</th>
 						</tr>
 	                    <c:forEach var="i" items="${unfixed_master_list}">
-	                        <tr>
-	                            <td>${i.b_idx}</td>
-	                            
-	                            <td>
+	                        <tr class="post_tr">
+	                            <td class="board_post_title">
 	                                <a href="board_view?b_idx=${i.b_idx}">${i.b_title} [${i.b_reply_count}]</a>
 	                            </td>
 	                            
-	                            <td>${i.m_username}</td>
+	                            <td class="board_post_username">${i.m_username}</td>
 	                        </tr>
 	                    </c:forEach> 
 						<tr>
-							<td colspan="3">${pageMenu1}</td>
+							<td colspan="2" class="paging_td">${pageMenu1}</td>
 						</tr>
 					</table>
 				</div>
 				
 					
 				<div class="board_list" id="unfixed_fan_list">
-					<table border="1" class="b_list">
-						<tr>
-							<th>번호</th>
+					<table class="b_list">
+						<tr class="title_tr">
 							<th>제목</th>
 							<th>작성자</th>
 						</tr>
 						
 						<c:forEach var="i" items="${unfixed_fan_list}">
-							<tr>
-								<td>${i.b_idx}</td>
-								
-								<td>
+							<tr class="post_tr">
+								<td class="board_post_title">
 									<a href="board_view?b_idx=${i.b_idx}">${i.b_title} [${i.b_reply_count}]</a>
 								</td>
 								
-								<td>${i.m_username}</td>
+								<td class="board_post_username">${i.m_username}</td>
 							</tr>
 						</c:forEach>
 						
 						<tr>
-							<td colspan="3">${pageMenu2}</td>
+							<td colspan="2" class="paging_td">${pageMenu2}</td>
 						</tr>
 					</table>
 				</div>

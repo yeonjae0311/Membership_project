@@ -112,8 +112,6 @@ textarea{
 	position: relative;
 	display: flex;
 	justify-content: space-between;
-	/* background: rgb(255,255,255); */
-	/* background: linear-gradient(0deg, #ffffff 0%, #082a90 100%); */
 }
 
 #left_header, #right_header{
