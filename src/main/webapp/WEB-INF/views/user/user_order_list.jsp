@@ -29,7 +29,7 @@
 								주문 번호 : ${order_i.o_idx}
 							</div>
 							<div class="o_idx_div">
-								<img src="${pageContext.request.contextPath}/resources/upload/shop/${order_i.i_photo_name}">
+								<img class="order_photo" src="${pageContext.request.contextPath}/resources/upload/shop/${order_i.i_photo_name}">
 							</div>
 							<div class="i_names_div">
 								${order_i.i_names}
