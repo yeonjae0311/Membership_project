@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{m_name},
 			#{m_tel},
 			#{m_email},
-			'basic',
+			'default_profile.jpg',
 			0, 
 			0,
 			null,
