@@ -37,7 +37,12 @@
 	display: inline-block;
 } */
 
-#file_upload_div > p{
+#s_img{
+    display: none;
+}
+
+#file_upload > img{
+    width: 3em;
     height: 3em;
 }
 
