@@ -19,8 +19,8 @@
 			<c:forEach items="${order_detail_list}" var="od">
 				<div id="div_${od.od_idx}" class="od_div">
 					<div class="r5c1"></div>
-					<div class="od_number_div">
-						주문 상세 번호 <br>
+					
+					<div class="r5c2">
 						${od.od_idx}
 					</div> 					
 					<div class="r5c1"></div>
