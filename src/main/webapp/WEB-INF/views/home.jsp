@@ -81,7 +81,7 @@
 					<!-- 비로그인 및 멤버십 결제 회원이 아닐 경우 보여줄 스토리 사진 -->
 							<div  class="story_content"  >
 								<img class="story_img"
-								src="${pageContext.request.contextPath}/resources/img/photo_banner/lock_icon.jpg"
+								src="${pageContext.request.contextPath}/resources/img/photo_banner/story_lock.svg"
 								onclick="location.href='login_form'">
 							</div> 
 					</c:forEach> 
@@ -129,17 +129,10 @@
 						</tr>
 						<c:forEach var="i" items="${fixed_list}">
 							<tr>
-								<%--
-								<td>${i.b_idx}</td>
-								--%>
-								
 								<td>
 									<a href="board_view?b_idx=${i.b_idx}">${i.b_title} [${i.b_reply_count}]</a>
 								</td>
 								
-								<%--
-								<td>${i.m_username}</td>
-								--%>
 							</tr>
 						</c:forEach> 
 					</table>
