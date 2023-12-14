@@ -18,46 +18,7 @@
 	<div id="home_div">
 	<input type="button" value="buy membership" onclick="shop_payment()">
 		
-		<!-- 스토리 4개 정도 출력해보기 -->
-		<div id="story">
-			<div class="story container">
-				<c:if test="${membervo.m_ismembership eq '1' }">
-				<c:forEach var="svo" items="${svo_list}" varStatus="status" end="3" >
-						<div  class="story_content"  >
-							<img id="story_id_${svo.s_idx }" 
-							style="	width: 100px;
-									height: 100px;
-									border-radius: 50%;
-									padding : auto;
-									margin: 4%;
-									display: inline-block;"
-							src="${pageContext.request.contextPath}/resources/upload/story/${svo.s_filename }"
-							onclick="location.href='story'">
-						</div>
-				</c:forEach>
-				</c:if>
-				
-				<c:if test="${empty membervo or membervo.m_ismembership eq '0' }">
-					<c:forEach begin="1" end="${s_count }">
-					<!-- 비로그인 및 멤버십 결제 회원이 아닐 경우 보여줄 스토리 사진 -->
-							<div  class="story_content"  >
-								<img
-								style="	width: 100px;
-										height: 100px;
-										border-radius: 50%;
-										padding : auto;
-										margin: 4%;
-										display: inline-block;"
-								src="${pageContext.request.contextPath}/resources/img/photo_banner/lock_icon.jpg"
-								onclick="location.href='login_form'">
-							</div> 
-					</c:forEach> 
-				</c:if>
-			</div>
-		</div>
 		
-		
-	
 		<div id="photo_banner">
 			<div class="left">
 				<input type="button" value="LEFT">
@@ -101,6 +62,45 @@
 			</div>
 			</div>
 		</div>
+		
+		<!-- 스토리 4개 정도 출력해보기 -->
+		<div id="story">
+			<div class="story container">
+				<c:if test="${membervo.m_ismembership eq '1' }">
+				<c:forEach var="svo" items="${svo_list}" varStatus="status" end="3" >
+						<div  class="story_content"  >
+							<img id="story_id_${svo.s_idx }" 
+							style="	width: 100px;
+									height: 100px;
+									border-radius: 50%;
+									padding : auto;
+									margin: 4%;
+									display: inline-block;"
+							src="${pageContext.request.contextPath}/resources/upload/story/${svo.s_filename }"
+							onclick="location.href='story'">
+						</div>
+				</c:forEach>
+				</c:if>
+				
+				<c:if test="${empty membervo or membervo.m_ismembership eq '0' }">
+					<c:forEach begin="1" end="${s_count }">
+					<!-- 비로그인 및 멤버십 결제 회원이 아닐 경우 보여줄 스토리 사진 -->
+							<div  class="story_content"  >
+								<img
+								style="	width: 100px;
+										height: 100px;
+										border-radius: 50%;
+										padding : auto;
+										margin: 4%;
+										display: inline-block;"
+								src="${pageContext.request.contextPath}/resources/img/photo_banner/lock_icon.jpg"
+								onclick="location.href='login_form'">
+							</div> 
+					</c:forEach> 
+				</c:if>
+			</div>
+		</div>
+		
 		
 		
 		<!-- 관리자 버튼, 유저 버튼 만들어서 누르면 해당 게시글들 볼 수 있도록, 5개씩 정도 출력되도록 -->
