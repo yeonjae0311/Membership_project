@@ -36,7 +36,7 @@ const left_btn = document.querySelector(".left")
 const right_btn = document.querySelector(".right")
 const container = document.querySelector(".img_container")
 
-function previous(){
+/*function previous(){
   if(current_idx > 0){
    // right_btn.removeAttribute("disabled")
     position += img_width;
@@ -49,7 +49,7 @@ function previous(){
     position = -(images.length-1) * img_width;
     container.style.transform = `translateX(${position}vw)`;
   }
-}
+}*/
 
 function next(){
   if(current_idx < images.length-1){
@@ -71,7 +71,7 @@ function init(){
   right_btn.addEventListener("click", next)
 }
  
-setInterval(next, 5000);
+setInterval(next, 6000);
  
 init();
 }

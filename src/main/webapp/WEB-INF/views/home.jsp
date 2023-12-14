@@ -21,7 +21,7 @@
 		
 		<div id="photo_banner">
 			<div class="left">
-				<input type="button" value="LEFT">
+				<input type="hidden" value="LEFT">
 			</div>
 				<div class="photo_main">
 					<div class="img_container">
@@ -58,7 +58,7 @@
 					</div>
 				</div>
 			<div class="right">
-				<input type="button" value="RIGHT">
+				<input type="hidden" value="RIGHT">
 			</div>
 			</div>
 		</div>
