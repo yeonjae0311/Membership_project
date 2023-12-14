@@ -57,12 +57,10 @@ function next(){
     position -= img_width;
     container.style.transform = `translateX(${position}vw)`;
     current_idx = current_idx + 1;
-    console.log(current_idx);
   }
   else if(current_idx == images.length-1){
     //right_btn.setAttribute('disabled', 'true');
     current_idx = 0;
-    console.log(current_idx);
     position = 0;
     container.style.transform = `translateX(${position}vw)`;
   }
@@ -72,6 +70,8 @@ function init(){
   left_btn.addEventListener("click", previous)
   right_btn.addEventListener("click", next)
 }
+ 
+setInterval(next, 5000);
  
 init();
 }
