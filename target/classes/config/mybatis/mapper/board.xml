@@ -13,7 +13,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY B_POSTED_DATE DESC
 	</select>
 	
-	
+	<select id="select_board_list" resultType="vo.BoardPMemberViewVO">
+		select * FROM board_p_member_join_view
+		where m_idx = #{m_idx}
+	</select>
 	
 	<select id="count_unfixed_master_list" resultType="int">
 		select count(*) from board_p_member_join_view

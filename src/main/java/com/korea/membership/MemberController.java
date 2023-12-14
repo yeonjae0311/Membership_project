@@ -279,8 +279,10 @@ public class MemberController {
 	@RequestMapping("user_post_list")
 	public String user_post_list() {
 		PMemberVO vo = (PMemberVO) session.getAttribute("id");
-
-		List<BoardPMemberViewVO> list = board_dao.fixed_board_list();
+		
+		int m_idx = (int) session.getAttribute("m_idx");
+		
+		List<BoardPMemberViewVO> list = board_dao.select_board_list(m_idx);
 
 		session.setAttribute("user_post_list", list);
 
