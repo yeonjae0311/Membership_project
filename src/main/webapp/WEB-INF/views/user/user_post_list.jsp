@@ -13,19 +13,25 @@
 </head>
 <body>
 	<div id="header_bar"></div>
-	
-	<div id="user_post_list">
-		<c:forEach var="list" items="${user_post_list}">
-			<div>
-				<div>${list.b_title}</div>
-				<div>${list.b_content}</div>
-				<div>${list.b_posted_date}</div>
-				<div>${id.m_name}</div>
+	<div id="user_post_list_body_div">
+		<div id="user_post_list_div">
+			<div id="user_post_list_header_div">
+			내가 쓴 글
 			</div>
-			<hr>
-		</c:forEach>
+			<c:forEach var="list" items="${user_post_list}">
+				<div class="user_post_one_div">
+					<div id="user_post_list_title">
+						<a href="board_view?b_idx=${list.b_idx}">${list.b_title}[${list.b_reply_count}]</a>
+					</div>
+					<div id="user_post_list_posted_date">
+						${list.b_posted_date}
+					</div>
+				</div>
+				<div class="user_post_list_hr">
+				</div>
+			</c:forEach>
+		</div>
 	</div>
-	
 	<div id="footer_bar"></div>
 </body>
 </html>
