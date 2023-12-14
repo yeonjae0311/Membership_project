@@ -14,6 +14,10 @@ public class BoardDAO {
 	public BoardDAO(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
+	
+	public List<BoardPMemberViewVO> select_board_list(int m_idx){
+		return sqlSession.selectList("b.select_board_list", m_idx);
+	}
 
 	public List<BoardPMemberViewVO> fixed_board_list(){
 		return sqlSession.selectList("b.fixed_board_list");
