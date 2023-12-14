@@ -17,47 +17,38 @@
 	
 	<div id="board_post_div">
 		<form id="board_post_form" method="post" enctype="multipart/form-data">
-			<table>
-				<c:if test="${id.m_ismaster eq 1}">
-					<div>
-						<img id="fixoption" data-id="pin_icon.png" src="${pageContext.request.contextPath}/resources/img/pin_icon.png" onclick="check_fix()">
-					</div><!-- 
-					<input type="button" id="fixoption" value="공지글로 작성하기" onclick="check_fix()">	 -->					
-				</c:if>
-						
-				<tr>
-					<th>제목</th>
-					<td>
-						<input name="b_title">
-					</td>
-				</tr>
+			<c:if test="${id.m_ismaster eq 1}">
+				<div id="pin_button_div">
+					<img id="fixoption" src="${pageContext.request.contextPath}/resources/img/pin_icon.png" onclick="check_fix()">
+				</div>				
+			</c:if>
+			
+			<div class="board_post_class">
+				<input type="text" name="b_title">
+			</div>
+			
+			<div class="board_post_class">
+				<textarea name="b_content"></textarea>
+			</div>
+
+			<div id="file_upload_div">
+				<div id="photo_preview" class="board_post_class">
+					<img id="board_img" src="">
+				</div>
 				
-				<tr>
-					<th>내용</th>
-					<td>
-						<textarea name="b_content" rows="5" cols="50"></textarea>
-					</td>
-				</tr>
-				
-				<tr>
-					<td>
-						<div id="file_upload_div">
-							<input type="file" id="s_img" name="b_file">
-							<label id="file_upload" for="s_img">
-								<img src="${pageContext.request.contextPath}/resources/img/photo_upload_icon.png">
-							</label>
-						</div>
-					</td>
-				</tr>
-				
-				<tr>
-					<td colspan="2" align="center">
-						<input type="hidden" id="isfixed" value="0" name="b_isfixed">
-						<input type="button" value="등록하기" onclick="send(this.form)">
-						<input type="button" value="목록으로" onclick="location.href='board'">
-					</td>
-				</tr>
-			</table>
+				<div id="file_upload_button">
+					<input type="file" id="b_img" name="b_file" onchange="change_img()">
+					<label id="file_upload" for="b_img">
+						<img src="${pageContext.request.contextPath}/resources/img/photo_upload_icon.png">
+					</label>
+				</div>
+			</div>
+
+			<div>
+				<input type="hidden" id="isfixed" value="0" name="b_isfixed">
+				<input type="button" value="등록하기" onclick="send(this.form)">
+				<input type="button" value="목록으로" onclick="location.href='board'">
+			</div>
 		</form>
 	</div>
 	

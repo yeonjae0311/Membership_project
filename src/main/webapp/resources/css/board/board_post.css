@@ -7,22 +7,73 @@
     margin: auto;
 }
 
-#pin_button{
+#pin_button_div{
+    display: flex;
+    justify-content: right;
+    margin-top: 2%;
+    margin-right: 2%;
+}
+
+#fixoption{
     width: 3em;
     height: 3em;
+
 }
 
+.board_post_class{
+    border: 1px solid #ffa8db;
+    border-radius: 10px;
+    width: 85%;
+    margin: auto;
+}
 
+.board_post_class:nth-child(2){
+    margin-top: 2%;
+}
 
+.board_post_class:nth-child(3){
+    margin-top: 4%;
+    margin-bottom: 4%;
+}
+
+input, textarea{
+    border: none;
+    width: 96%;
+}
+
+input[type="text"]{
+    background: transparent;
+    border: none;
+    height: 3em;
+    padding: 2%;
+    font-size: 1.1em;
+}
+
+textarea{
+    background: transparent;
+    box-shadow: none;
+}
 
 #file_upload_div{
-    margin: 6% 0 3%;
     display: flex;
-    justify-content: space-evenly;
-    padding: 0 10%;
+    margin: auto;
+    width: 85%;
+    justify-content: space-around;
 }
 
-#s_img{
+
+#photo_preview{
+    width: 20vw;
+    height: 25vh;
+    margin: 0;
+}
+
+
+#file_upload_button{
+    margin-top: 3%;
+}
+
+#b_img{
     display: none;
 }
 

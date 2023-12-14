@@ -147,10 +147,6 @@ public class BoardController {
 		MultipartFile file = vo.getB_file();
 		String filename = "no_file";
 		
-		System.out.println("here");
-		
-		System.out.println(file.isEmpty());
-		
 		//파일처리
 		if(!file.isEmpty() || file == null) {
 			filename = file.getOriginalFilename();

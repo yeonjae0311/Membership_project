@@ -101,9 +101,14 @@ function resultFn(...args){
 }
 
 window.onload = function() {	
-		
 	let begin_story_class = document.getElementsByClassName('story_idx');
 	
+	if(begin_story_class.length == 0){
+		
+	}
+
+	console.log(begin_story_class)
+
 	if(begin_story_class!=null){
 		let s_idx = begin_story_class[0].value;
 		
