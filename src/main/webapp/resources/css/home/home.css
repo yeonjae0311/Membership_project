@@ -53,44 +53,142 @@
 	display: flex;
 }
 
-#board_view_button_bar {
-	text-align: center;
-	margin: 1% 0 2%;
+.story_img{
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	padding : auto;
+	margin: 20px 10px 20px 10px;
+	display: inline-block;
+	border: 5px solid #bcecff;
 }
 
-#fixed_list, #unfixed_master_list, #unfixed_fan_list {
-	width: 80%;
-	margin: auto;
+#board_div{
+    display: flex;
+    justify-content: center;
 }
 
-#fixed_list {
-	margin-bottom: 10%;
+#board_view_button_bar{
+    width: 15vw;
+    height: 15vh;
+    display: grid;
+    padding-top: 5%;
 }
 
-#unfixed_list {
-	height: 33vh;
+.board_display_button{
+    display: flex;
+    height: 3em;
 }
 
-.b_list {
-	width: 60%;
-	margin: auto;
+.board_display_button > img{
+    width: 3em;
+    height: 3em;
+    cursor: pointer;
 }
 
-th {
-	text-align: center;
-	font-size: 1.3em;
-	padding: 2%;
-	border-bottom: 2px solid #082a90;
+.board_display_button > p{
+    line-height: 3em;
+    padding-left: 3%;
+    font-size: 1.2em;
+    cursor: pointer;
 }
 
-td {
-	padding: 2% 2% 2% 4%;
+#fixed_list{
+    width: 45vw;
+    box-shadow: 6px 6px 1px 1px #bcecff;
+	border: 2px solid #ffebf7;
 }
 
-a {
-	text-decoration: none;
+#fixed_list_table{
+    max-height: 14vh;
+    overflow: hidden;
 }
 
-#board_div>input {
-	margin-left: 68vw;
+.b_list{
+    min-height: 10vh;
+    width: 100%;
+    margin: 2% auto;
+}
+
+#pinned_th{
+    display: flex;
+}
+
+#board_pin_icon{
+    width: 2em;
+    height: 2em;
+    margin: auto 2%;
+}
+
+th{
+    font-size: 1.3em;
+    height: 2em;
+}
+
+th > div{
+    line-height: 2em;
+}
+
+td{
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 7%;
+}
+
+#adjust_size_button_div{
+    text-align: center;
+}
+
+#adjust_size_button{
+    width: 3em;
+    height: 1.5em;
+}
+
+#board_list_header{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #082a90;
+}
+
+#board_title{
+    height: 2.5em;
+    line-height: 3em;
+    font-size: 1.5em;
+    margin-left: 5%;
+}
+
+#board_post_icon{
+    margin: auto 0 0;
+    width: 3em;
+    height: 3em;
+}
+
+#unfixed_list, #unfixed_fan_list{
+    width: 45vw;
+    height: 40vh;
+}
+
+.title_tr > th{
+    text-align: center;
+    height: 2em;
+    line-height: 2em;
+}
+
+.post_tr{
+    width: 100%;
+}
+
+.board_post_title{
+    width: 65%;
+}
+
+.board_post_username{
+    width: 35%;
+    text-align: right;
+    padding-right: 5%;
+}
+
+.paging_td{
+    padding: 3% 0;
+    text-align: center;
 }
