@@ -17,8 +17,6 @@
 		
 	<div id="home_div">
 	<input type="button" value="buy membership" onclick="shop_payment()">
-		
-		
 		<div id="photo_banner">
 			<div class="left">
 				<input type="hidden" value="LEFT">
@@ -95,30 +93,10 @@
 		<div id="board_div">
 		<input id="priority" type="hidden" value="${priority}">
 		
-		<div id="board_view_button_bar">
-			<div class="board_display_button">
-				<img src="${pageContext.request.contextPath}/resources/img/new_jeans_rabbit_icon.png" onclick="master_board_first()">
-				<p onclick="master_board_first()">New Jeans</p>
-			</div>
-			
-			<div class="board_display_button">
-				<img src="${pageContext.request.contextPath}/resources/img/new_jeans_rabbit_icon.png" onclick="all_board_first()">
-				<p onclick="all_board_first()">Users</p>
-			</div>	
-		</div>
-		
 		<div id="board_view_list">
 			<div class="board_list" id="fixed_list">
 				<div id="fixed_list_table">
 					<table class="b_list">
-						<!--
-						<tr>
-							<th>번호</th>
-							<th>제목</th>
-							<th>작성자</th>
-						</tr>
-						-->
-						
 						<tr>
 							<th id="pinned_th">
 								<img id="board_pin_icon" src="${pageContext.request.contextPath}/resources/img/pin_icon.png">
@@ -194,7 +172,7 @@
 					</table>
 				</div>
 			</div>
-	</div><!-- <div id="board"> -->
+		</div><!-- <div id="board"> -->
 	</div> <!--</div id="body_div"> -->
 	
 	<div id="footer_bar"></div>

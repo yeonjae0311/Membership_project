@@ -52,7 +52,7 @@ public class MainController {
 		model.addAttribute("fixed_list", fixed_list);
 		model.addAttribute("unfixed_master_list", unfixed_master_list);
 		model.addAttribute("unfixed_fan_list", unfixed_fan_list);
-
+		
 		PMemberVO membervo = (PMemberVO) session.getAttribute("id");
 		if (membervo == null) {
 			return Path.HomePath.make_path("home");
