@@ -1,5 +1,5 @@
 function shop_payment(){
-	location.href = 'membership_shop_payment';
+	location.href = 'shop_payment';
 }
 
 function master_board_first(){
