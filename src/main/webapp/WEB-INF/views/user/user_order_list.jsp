@@ -20,24 +20,32 @@
 		<div id="user_order_list">
 			<c:choose>
 				<c:when test="${empty order_list}">
-				주문 목록이 없습니다.
+					주문 목록이 없습니다.
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${order_list}" var="order_i">
 						<div onclick="location.href='user_order_view?o_idx=${order_i.o_idx}'" class="order_div">
-							<div class="o_idx_div">
-								주문 번호 : ${order_i.o_idx}
+							<div class="r5c1"></div>
+							
+							<div class="r5c2">
+								${order_i.o_idx}
 							</div>
-							<div class="o_idx_div">
-								<img src="${pageContext.request.contextPath}/resources/upload/shop/${order_i.i_photo_name}">
+							
+							<div class="r5c1"></div>
+							
+							<div class="r5c4">
+								<img class="order_photo" src="${pageContext.request.contextPath}/resources/upload/shop/${order_i.i_photo_name}">
 							</div>
-							<div class="i_names_div">
+							
+							<div class="r1c4"></div>
+							
+							<div class="r1c4">
 								${order_i.i_names}
 							</div>
-							<div class="i_names_div">
-								 
-							</div>
-							<div class="o_count_sum_div">
+							
+							<div class="r1c4"></div>
+							
+							<div class="r1c4">
 								${order_i.o_sum}원 · ${order_i.o_count}개
 							</div>
 						</div>

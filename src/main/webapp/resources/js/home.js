@@ -1,5 +1,5 @@
 function shop_payment(){
-	location.href = 'membership_shop_payment';
+	location.href = 'shop_payment';
 }
 
 function master_board_first(){
@@ -21,9 +21,6 @@ function all_board_first(){
 	
 	document.getElementById("board_title").innerHTML = "All posts";
 }
-
-
-
 
 //캐러셀 및 슬라이드 기능 구현
 

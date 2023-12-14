@@ -13,7 +13,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY B_POSTED_DATE DESC
 	</select>
 	
-	
+	<select id="select_board_list" resultType="vo.BoardPMemberViewVO">
+		select * FROM board_p_member_join_view
+		where m_idx = #{m_idx}
+	</select>
 	
 	<select id="count_unfixed_master_list" resultType="int">
 		select count(*) from board_p_member_join_view
@@ -136,9 +139,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set b_like_count = (select count(*) from BOARD_ISLIKED where b_idx=#{b_idx})
 		where b_idx=#{b_idx}
 	</update>
-	
-	
-
 </mapper>
 
 

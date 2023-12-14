@@ -9,14 +9,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into p_order values(CONCAT(TO_CHAR(sysdate,'YYYYMMDD'),
 								   TO_CHAR(SEQ_p_order_IDX.nextval)), 
 								   #{m_idx}, 
-								   #{o_sum},
-								   #{o_count})	
+								   #{o_count},
+								   #{o_sum})	
 	</insert>
 	
 	<!-- order_detail 테이블에 상세 주문내역 생성 -->
 	<insert id="order_detail_insert" parameterType="java.util.HashMap">
 		<selectKey resultType="int" keyProperty="o_idx" order="BEFORE">
-	        select o_idx from p_order where m_idx=#{m_idx} and ROWNUM = 1
+	        select o_idx from (SELECT * FROM p_order ORDER BY o_idx DESC) 
+	        where m_idx=#{m_idx} and ROWNUM = 1
+	        
+	        <!-- select o_idx from p_order where m_idx=#{m_idx} and ROWNUM = 1
+	         SELECT o_idx FROM (select o_idx from p_order  where m_idx=#{m_idx} ORDER BY o_idx desc) where rownum=1 -->
+	         
 	    </selectKey>
 
 		INSERT INTO order_detail
@@ -37,7 +42,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="o_idx_select" parameterType="int" resultType="int">
-		select o_idx from p_order where ROWNUM = 1
+		select o_idx from (SELECT * FROM p_order ORDER BY o_idx DESC) 
+	    where m_idx=#{m_idx} and ROWNUM = 1
 	</select>
 		
 </mapper>

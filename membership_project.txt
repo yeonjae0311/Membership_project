@@ -1,0 +1,125 @@
+##
+
+home.jsp
+	login_form
+	member_insert_form
+	user_edit
+
+login_check.jsp
+
+## USER
+
+member_insert_form.jsp
+	member_insert
+	check_id
+	check_email
+	*mail_check
+
+user_edit_profile.jsp
+	photo_default_upload
+	user_profile_modify
+
+user_edit.jsp
+	user_info_form
+	user_edit_profile
+	user_order_list
+	user_post_list
+	logout
+
+user_info_form.jsp
+	user_info_modify_form
+	delete_update
+
+user_info_modify.jsp
+	user_info_modify
+
+user_order_list.jsp
+	user_edit
+
+user_post_list.jsp
+	user_edit
+
+## STORY
+
+story_post.jsp
+	story_post_insert
+
+story.jsp
+	story_post
+
+## SHOP
+
+item_insert.jsp
+	item_insert_upload
+
+kakao_pay.jsp
+
+membership_kakao.jsp
+
+membership_shop_payment.jsp
+	membership_kakao_pay
+	shop
+
+payment_completed.jsp
+completed(?)
+
+shop_item.jsp
+	item_delete
+	shopping_cart_insert
+	shop_payment
+
+shop_payment.jsp
+	shop
+
+shop.jsp
+	item_insert
+	shop_item_select
+
+shopping_cart.jsp
+
+## LOGIN
+
+id.jsp
+
+login_form.jsp
+	login
+	member_insert_form
+	main
+	register_find_id
+	register_find_password
+
+membership_info.jsp
+	membership_shop_payment
+	main
+
+password.jsp
+
+register_find_id.jsp
+	find_id
+	main
+
+register_find_password.jsp
+	find_password
+	main
+
+## BOARD
+
+board_post.jsp
+	board_post_insert
+	board
+
+board_view.jsp
+	board_reply
+	delete_board_post
+	board
+	add_board_like
+	delete_board_to_unlike *
+	add_reply_like
+	delete_reply_to_unlike
+	delete_reply
+	board_view
+
+board.jsp
+	membership
+	board_view
+	board_post

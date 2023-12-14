@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import dao.BoardDAO;
 import dao.StoryDAO;
 import util.Path;
 import vo.PMemberVO;
@@ -30,6 +31,7 @@ import vo.StoryVO;
 public class StoryController {
 
 	StoryDAO story_dao;
+	BoardDAO board_dao;	
 
 	@Autowired
 	HttpServletRequest request;
@@ -37,8 +39,9 @@ public class StoryController {
 	@Autowired
 	HttpSession session;
 
-	public StoryController(StoryDAO story_dao) {
+	public StoryController(StoryDAO story_dao,BoardDAO board_dao) {
 		this.story_dao = story_dao;
+		this.board_dao = board_dao;
 	}
 
 	@RequestMapping("story")
@@ -66,14 +69,23 @@ public class StoryController {
 
 	@RequestMapping("story_post")
 	public String story_post() {
+		PMemberVO user_vo = (PMemberVO) session.getAttribute("id");
+		if(user_vo==null) {
+			return "redirect:login_form";
+		}
+		int m_idx = user_vo.getM_idx();
+		int is_master = board_dao.is_master(m_idx);
+		if(is_master!=1) {
+			return "redirect:logout";
+		}
 		return Path.StoryPath.make_path("story_post");
 	}
 
 	@RequestMapping("story_post_insert")
 	public String story_post_insert(StoryVO vo) {
 
-		PMemberVO uservo = (PMemberVO) session.getAttribute("id");
-		vo.setM_idx(uservo.getM_idx());
+		PMemberVO user_vo = (PMemberVO) session.getAttribute("id");
+		vo.setM_idx(user_vo.getM_idx());
 
 		// 이미지 업로드
 		String webPath = "/resources/upload/story";

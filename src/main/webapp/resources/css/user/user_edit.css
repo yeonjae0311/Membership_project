@@ -56,8 +56,8 @@
 
 #member_info_head_profile_div{
 	border-radius: 60px;
-	border: 0.6px solid #ffbbe3;
-}
+	box-shadow: 6px 6px 1px 1px #bcecff;
+	border: 2px solid #ffebf7;}
 
 #member_info_body_div{
 	margin: auto;

@@ -43,7 +43,7 @@
 						
 						<tr>
 							<th id="pinned_th">
-								<img id="board_pin_icon" src="${pageContext.request.contextPath}/resources/img/pin_icon.png">
+								<img id="board_pin_icon" src="${pageContext.request.contextPath}/resources/img/pin_static_icon.png">
 								<div>
 									Pinned Posts
 								</div>

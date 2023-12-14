@@ -16,7 +16,8 @@
 	<div id="header_bar"></div>
 		
 	<div id="home_div">
-	<input type="button" value="buy membership" onclick="shop_payment()">
+		<input type="button" value="buy membership" onclick="shop_payment()">
+		
 		<div id="photo_banner">
 			<div class="left">
 				<input type="hidden" value="LEFT">
@@ -61,7 +62,7 @@
 			</div>
 		</div>
 		
-		<!-- 스토리 4개 정도 출력해보기 -->
+		<!-- 스토리 4개 정도 출력해보기 시간되면 overflow로 숨기고 스토리 다 출력해도 괜찮을듯? -->
 		<div id="story">
 			<div class="story container">
 				<c:if test="${membervo.m_ismembership eq '1' }">
@@ -87,9 +88,7 @@
 			</div>
 		</div>
 		
-		
-		
-		<!-- 관리자 버튼, 유저 버튼 만들어서 누르면 해당 게시글들 볼 수 있도록, 5개씩 정도 출력되도록 -->
+		<!-- 최신글 5개 출력 -->
 		<div id="board_div">
 		<input id="priority" type="hidden" value="${priority}">
 		
@@ -110,7 +109,6 @@
 								<td>
 									<a href="board_view?b_idx=${i.b_idx}">${i.b_title} [${i.b_reply_count}]</a>
 								</td>
-								
 							</tr>
 						</c:forEach> 
 					</table>

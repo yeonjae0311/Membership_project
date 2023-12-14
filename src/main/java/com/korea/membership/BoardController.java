@@ -3,6 +3,7 @@ package com.korea.membership;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -126,13 +127,10 @@ public class BoardController {
 	}
 	
 	@RequestMapping("board_post_insert")
-	public String board_post_insert(BoardVO vo) {
-		
+	public String board_post_insert(BoardVO vo) {		
 		PMemberVO user_vo = (PMemberVO) session.getAttribute("id");
-		int m_idx = user_vo.getM_idx();
-		int is_master = board_dao.is_master(m_idx);
-		if(is_master==0) {
-			return "redirect:logout";
+		if(user_vo==null) {
+			return "redirect:login_form";
 		}
 		
 		vo.setB_ip(request.getRemoteAddr());
@@ -147,7 +145,7 @@ public class BoardController {
 		String filename = "no_file";
 		
 		//파일처리
-		if(!file.isEmpty()) {
+		if(!file.isEmpty() || file == null) {
 			filename = file.getOriginalFilename();
 			
 			File saveFile = new File(savePath,filename);
@@ -171,6 +169,7 @@ public class BoardController {
 				e.printStackTrace();
 			}
 		}
+		
 		vo.setB_filename(filename);
 		int res = board_dao.board_insert(vo);
 		if(res>0) {
@@ -192,14 +191,13 @@ public class BoardController {
 		
 		if(res>0) {
 			return "redirect:board_view?b_idx="+vo.getB_idx();
-		}		
+		}
 		
 		return null;
 	}
 	
 	@RequestMapping("board_view")
-	public String board_view(Model model,int b_idx) {		//게시물 한건 조회
-		
+	public String board_view(Model model,int b_idx) {		//게시물 한건 조회		
 		
 		//해당 게시물 좋아요 했는지를 조회하기 위한 매개변수 map 세팅
 		HashMap<String, Object> map = new HashMap<String, Object>();

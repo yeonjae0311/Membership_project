@@ -278,9 +278,10 @@ public class MemberController {
 
 	@RequestMapping("user_post_list")
 	public String user_post_list() {
-		PMemberVO vo = (PMemberVO) session.getAttribute("id");
-
-		List<BoardPMemberViewVO> list = board_dao.fixed_board_list();
+		
+		int m_idx = (int) session.getAttribute("m_idx");
+		
+		List<BoardPMemberViewVO> list = board_dao.select_board_list(m_idx);
 
 		session.setAttribute("user_post_list", list);
 
@@ -577,12 +578,12 @@ public class MemberController {
 
 		// m_idx 나 마스터인지 검증
 		// deep한 검증은 후순위
-		POrderVO ordervo = item_dao.select_one_order(o_idx);
+		POrderVO order_vo = item_dao.select_one_order(o_idx);
 		
 		List<OrderDetailVO> order_detail_list = order_detail_dao.select_order_detail_list(o_idx);
 		
-		model.addAttribute("ordervo",ordervo);
-
+		model.addAttribute("o_idx", o_idx);
+		model.addAttribute("order_vo", order_vo);
 		model.addAttribute("order_detail_list", order_detail_list);
 
 		return Path.UserPath.make_path("user_order_view");
