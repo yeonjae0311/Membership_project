@@ -21,11 +21,8 @@
 					<div class="r5c1"></div>
 					<div class="r5c1"></div>
 					<div class="od_number_div">
-						주문 상세 번호 <br>
 						${od.od_idx}
 					</div> 
-					
-					<div class="r1c9"></div>
 					
 					<div class="r1c9">
 						(${od.i_color}) ${od.i_name}
@@ -42,11 +39,11 @@
 				결제 정보 : KAKAO PAY <br/>
 				결제 수단 : KAKAO PAY <br/>
 				결제 금액 : ${ordervo.o_sum}<br/>
-				주문자 정보 : ${id.m_username} <br/>
 				이름 : ${id.m_name}<br/>
-				번호 : ${id.m_tel}<br/>
+				번호 : ${id.m_tel}<br/>		
+				우편번호 : ${id.m_addr1}<br/>
 				주소 : ${id.m_addr2}${id.m_addr3}<br/>
-				우편번호 : ${id.m_addr1}
+		
 			</div>
 			<div class="buttons">
 				<input type="button" value="뒤로가기" onclick="location.href='user_order_list'">
