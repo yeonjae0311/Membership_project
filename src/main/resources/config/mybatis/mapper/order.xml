@@ -38,7 +38,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="o_idx_select" parameterType="int" resultType="int">
-		select o_idx from p_order where ROWNUM = 1
+		select o_idx from (SELECT * FROM p_order ORDER BY o_idx DESC) 
+	    where ROWNUM = 1
 	</select>
 		
 </mapper>
