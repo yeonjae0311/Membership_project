@@ -39,7 +39,7 @@
 							
 							<div class="r1c4"></div>
 							
-							<div class=" r1c4">
+							<div class="r1c4">
 								${order_i.i_names}
 							</div>
 							

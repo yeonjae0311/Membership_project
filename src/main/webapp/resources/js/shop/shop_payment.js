@@ -135,7 +135,7 @@ function order_insert_fn(){
 
 	let url = "";
 	
-	if(order_item_list[0].i_idx == 4) {
+	if(order_item_list[0].i_idx == 1) {
     	url = "membership_kakao";
     } else {
 		url = "kakao";

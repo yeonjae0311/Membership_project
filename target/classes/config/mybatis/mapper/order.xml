@@ -9,8 +9,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into p_order values(CONCAT(TO_CHAR(sysdate,'YYYYMMDD'),
 								   TO_CHAR(SEQ_p_order_IDX.nextval)), 
 								   #{m_idx}, 
-								   #{o_sum},
-								   #{o_count})	
+								   #{o_count},
+								   #{o_sum})	
 	</insert>
 	
 	<!-- order_detail 테이블에 상세 주문내역 생성 -->

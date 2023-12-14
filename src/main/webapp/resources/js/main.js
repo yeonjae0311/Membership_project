@@ -37,7 +37,7 @@ for(const element of buttons){
 	button.value = element;
 	button.addEventListener("click", () => {
 		if(localStorage.getItem("idx") == null || localStorage.getItem("idx") == ""){
-			send_to("main");
+			send_to("login_form");
 
 			return;
 		}

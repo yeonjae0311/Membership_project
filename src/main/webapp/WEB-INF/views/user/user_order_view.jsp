@@ -15,46 +15,53 @@
 	<div id="header_bar"></div>
 	
 	<div id="body_div">
-		<div id="user_order_view">
-			<c:forEach items="${order_detail_list}" var="od">
-				<div id="div_${od.od_idx}" class="od_div">
-					<div class="r5c1"></div>
-					
-					<div class="r5c2">
-						${od.od_idx}
-					</div> 					
-					<div class="r5c1"></div>
-					
-					<div class="r5c4">
-						<img class="order_photo" src="${pageContext.request.contextPath}/resources/upload/shop/${od.i_photo_name}">
+		<div class="button_div">
+			<input type="button" value="뒤로가기" onclick="location.href='user_order_list'">
+		</div>
+		<div id="user_order_view_div">
+			<div id="user_order_view_head">
+				<div>주문상세내역</div> 
+				<div>주문번호 ${o_idx}</div>
+			</div>
+			<div id="user_order_view_item_list">
+				<c:forEach items="${order_detail_list}" var="od">
+					<div id="div_${od.od_idx}" class="od_div">
+						<div class="r5c1"></div>
+						
+						<div class="r5c2">
+							${od.od_idx}
+						</div> 					
+						<div class="r5c1"></div>
+						
+						<div class="r5c4">
+							<img class="order_photo" src="${pageContext.request.contextPath}/resources/upload/shop/${od.i_photo_name}">
+						</div>
+						
+						<div class="r1c4"></div>
+						
+						<div class="r1c4">
+							${od.i_name}
+						</div>
+						
+						<div class="r1c4">
+							${od.i_color}
+						</div>
+						
+						<div class="r1c4"> 
+							 ${od.i_price}원 · ${od.od_count}개
+						</div>
 					</div>
-					
-					<div class="r1c4"></div>
-					
-					<div class="r1c4">
-						(${od.i_color}) ${od.i_name}
-					</div>
-					
-					<div class="r1c4"></div>
-					
-					<div class="r1c4"> 
-						 ${od.i_price}원 · ${od.od_count}개
-					</div>
-				</div>
-			</c:forEach>
+				</c:forEach>
+			</div>
 			<div class="order_info">
 				결제 정보 : KAKAO PAY <br/>
 				결제 수단 : KAKAO PAY <br/>
-				결제 금액 : ${ordervo.o_sum}<br/>
+				결제 금액 : ${order_vo.o_sum}<br/>
 				이름 : ${id.m_name}<br/>
 				번호 : ${id.m_tel}<br/>		
 				우편번호 : ${id.m_addr1}<br/>
-				주소 : ${id.m_addr2}${id.m_addr3}<br/>
-		
-			</div>
-			<div class="buttons">
-				<input type="button" value="뒤로가기" onclick="location.href='user_order_list'">
-			</div>
+				주소 : ${id.m_addr2}${id.m_addr3}<br/>		
+			</div>		
 		</div>
 	</div>
 	
