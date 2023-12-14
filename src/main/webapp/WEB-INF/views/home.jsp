@@ -16,20 +16,7 @@
 	<div id="header_bar"></div>
 		
 	<div id="home_div">
-	
 	<input type="button" value="buy membership" onclick="shop_payment()">
-		<div id = "photo_banner">
-			<div class="left">
-				<input type="button" value="LEFT" onclick="show_previous()">	
-			</div>
-			<div class="img_class" align="center">
-				<img id="banner_img" src="${pageContext.request.contextPath}/resources/img/photo_banner/newjeans1.jpg" 
-				alt="이미지 준비중입니다.">
-			</div>
-			<div class="right">
-				<input type="button" value="RIGHT" onclick="show_next()">	
-			</div>
-		</div>
 		
 		<!-- 스토리 4개 정도 출력해보기 -->
 		<div id="story">
@@ -44,7 +31,8 @@
 									padding : auto;
 									margin: 4%;
 									display: inline-block;"
-							src="${pageContext.request.contextPath}/resources/upload/story/${svo.s_filename }">
+							src="${pageContext.request.contextPath}/resources/upload/story/${svo.s_filename }"
+							onclick="location.href='story'">
 						</div>
 				</c:forEach>
 				</c:if>
@@ -61,7 +49,7 @@
 										margin: 4%;
 										display: inline-block;"
 								src="${pageContext.request.contextPath}/resources/img/photo_banner/lock_icon.jpg"
-								>
+								onclick="location.href='login_form'">
 							</div> 
 					</c:forEach> 
 				</c:if>
@@ -101,6 +89,11 @@
 							src="${pageContext.request.contextPath}/resources/img/photo_banner/membership.jpg"  
 							alt="이미지 유실">
 						</div>
+						<div class="img_slide">
+							<img class="banner_img" 
+							src="${pageContext.request.contextPath}/resources/img/photo_banner/bunnies_newjeans.jpg"  
+							alt="이미지 유실">
+						</div>
 					</div>
 				</div>
 			<div class="right">
@@ -108,6 +101,7 @@
 			</div>
 			</div>
 		</div>
+		
 		
 		<!-- 관리자 버튼, 유저 버튼 만들어서 누르면 해당 게시글들 볼 수 있도록, 5개씩 정도 출력되도록 -->
 		<div id="board">

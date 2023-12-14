@@ -44,7 +44,7 @@ public class MainController {
 		int s_count = story_dao.story_count();
 		model.addAttribute("s_count", s_count);
 
-//		// 게시판--------------
+		// 게시판--------------
 		List<BoardPMemberViewVO> fixed_list = board_dao.fixed_board_list();
 		List<BoardPMemberViewVO> unfixed_master_list = board_dao.unfixed_master_board_list();
 		List<BoardPMemberViewVO> unfixed_fan_list = board_dao.unfixed_all_board_list();
