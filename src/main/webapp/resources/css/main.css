@@ -165,5 +165,9 @@ textarea{
 	color: #bcecff;
 	font: #082a90;
 	border: #ffebf7; 
+
+	box-shadow: 6px 6px 1px 1px #bcecff;
+	border: 2px solid #ffebf7;
+
 	border-bottom: #fac9e7;
 }

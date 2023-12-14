@@ -16,10 +16,13 @@
 	<div id="header_bar"></div>
 	
 	<div id="board_post_div">
-		<form method="post" enctype="multipart/form-data">
+		<form id="board_post_form" method="post" enctype="multipart/form-data">
 			<table>
 				<c:if test="${id.m_ismaster eq 1}">
-					<input type="button" id="fixoption" value="공지글로 작성하기" onclick="check_fix()">						
+					<div>
+						<img id="fixoption" data-id="pin_icon.png" src="${pageContext.request.contextPath}/resources/img/pin_icon.png" onclick="check_fix()">
+					</div><!-- 
+					<input type="button" id="fixoption" value="공지글로 작성하기" onclick="check_fix()">	 -->					
 				</c:if>
 						
 				<tr>
@@ -37,8 +40,14 @@
 				</tr>
 				
 				<tr>
-					<th>이미지 첨부</th>
-					<td><input type="file" name="b_file"></td>
+					<td>
+						<div id="file_upload_div">
+							<input type="file" id="s_img" name="s_file" onchange="change_img()">
+							<label id="file_upload" for="s_img">
+								<img src="${pageContext.request.contextPath}/resources/img/photo_upload_icon.png">
+							</label>
+						</div>
+					</td>
 				</tr>
 				
 				<tr>

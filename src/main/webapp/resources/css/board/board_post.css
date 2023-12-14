@@ -1,1 +1,32 @@
 @charset "UTF-8";
+
+#board_post_form{
+    width: 40vw;
+    box-shadow: 6px 6px 1px 1px #bcecff;
+	border: 2px solid #ffebf7;
+    margin: auto;
+}
+
+#pin_button{
+    width: 3em;
+    height: 3em;
+}
+
+
+
+
+#file_upload_div{
+    margin: 6% 0 3%;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0 10%;
+}
+
+#s_img{
+    display: none;
+}
+
+#file_upload > img{
+    width: 3em;
+    height: 3em;
+}

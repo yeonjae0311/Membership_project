@@ -3,6 +3,7 @@ package com.korea.membership;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -146,6 +147,8 @@ public class BoardController {
 		MultipartFile file = vo.getB_file();
 		String filename = "no_file";
 		
+		System.out.println("here");
+		
 		//파일처리
 		if(!file.isEmpty()) {
 			filename = file.getOriginalFilename();
@@ -171,6 +174,7 @@ public class BoardController {
 				e.printStackTrace();
 			}
 		}
+		
 		vo.setB_filename(filename);
 		int res = board_dao.board_insert(vo);
 		if(res>0) {
