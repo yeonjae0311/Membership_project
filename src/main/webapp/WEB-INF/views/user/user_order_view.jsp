@@ -19,18 +19,25 @@
 			<c:forEach items="${order_detail_list}" var="od">
 				<div id="div_${od.od_idx}" class="od_div">
 					<div class="r5c1"></div>
-					<div class="r5c1"></div>
-					<div class="od_number_div">
-						${od.od_idx}
-					</div> 
 					
-					<div class="r1c9">
+					<div class="r5c2">
+						${od.od_idx}
+					</div> 					
+					<div class="r5c1"></div>
+					
+					<div class="r5c4">
+						<img class="order_photo" src="${pageContext.request.contextPath}/resources/upload/shop/${od.i_photo_name}">
+					</div>
+					
+					<div class="r1c4"></div>
+					
+					<div class="r1c4">
 						(${od.i_color}) ${od.i_name}
 					</div>
 					
-					<div class="r1c9"></div>
+					<div class="r1c4"></div>
 					
-					<div class="r1c9">
+					<div class="r1c4"> 
 						 ${od.i_price}원 · ${od.od_count}개
 					</div>
 				</div>

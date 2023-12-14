@@ -19,15 +19,9 @@ a{
 	padding: 10px;
 }
 
-.od_number_div{
-	grid-row:span 5;
-	grid-column:span 2;
-	text-align: center;
-}
-
-.r1c9{
+.r1c4{
 	grid-row:span 1;
-	grid-column:span 8;
+	grid-column:span 4;
 	text-align: center;
 }
 
@@ -36,6 +30,24 @@ a{
 	grid-column:span 1;
 	text-align: center;
 }
+
+.r5c2{
+	grid-row:span 5;
+	grid-column:span 2;
+	text-align: center;
+}
+
+.r5c4{
+	grid-row:span 5;
+	grid-column:span 4;
+	text-align: center;
+}
+
+.order_photo{
+	width: 100%;
+	height: auto;
+}
+
 
 .o_count_sum_div{
 	grid-column:span 5;

@@ -72,8 +72,8 @@ public class ServletContext implements WebMvcConfigurer {
 	}
 	
 	@Bean
-	public StoryController story_controller(StoryDAO story_dao) {
-		return new StoryController(story_dao);
+	public StoryController story_controller(StoryDAO story_dao,BoardDAO board_dao) {
+		return new StoryController(story_dao,board_dao);
 	}
 	
 	@Bean

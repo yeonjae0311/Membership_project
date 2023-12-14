@@ -69,6 +69,10 @@ public class ShopController {
 	@RequestMapping("shop")
 	public String shop(Model model) {
 		PMemberVO vo = (PMemberVO) session.getAttribute("id");
+		if(vo==null) {
+			return "redirect:login_form";
+		}
+		
 		int m_idx = vo.getM_idx();
 
 		// idx로 마스터 계정인지 판별하는 메서드 자리(이미 만든거 가져다 쓰기)

@@ -139,9 +139,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set b_like_count = (select count(*) from BOARD_ISLIKED where b_idx=#{b_idx})
 		where b_idx=#{b_idx}
 	</update>
-	
-	
-
 </mapper>
 
 
