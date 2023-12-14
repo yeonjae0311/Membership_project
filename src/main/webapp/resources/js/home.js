@@ -67,7 +67,7 @@ function next(){
 }
  
 function init(){
-  left_btn.addEventListener("click", previous)
+  //left_btn.addEventListener("click", previous)
   right_btn.addEventListener("click", next)
 }
  
