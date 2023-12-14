@@ -118,7 +118,14 @@
 			<tr>
 				<td rowSpan="3">배송지</td>
 				<td>
-					<input id="postcode" placeholder="우편번호" readonly="readonly">
+					<c:choose>
+						<c:when test="${not empty id.m_addr1}">
+							<input id="postcode" value="${id.m_addr1}" placeholder="우편번호" readonly="readonly">
+						</c:when>
+						<c:otherwise>
+							<input id="postcode" placeholder="우편번호" readonly="readonly">
+						</c:otherwise>
+					</c:choose>
 				</td>
 				<td>
 					<input type="button" onclick="addr()" value="우편번호 찾기">
@@ -126,12 +133,26 @@
 			</tr>
 			<tr>
 				<td>
-					<input type="text" id="address" placeholder="주소" readonly="readonly">
+					<c:choose>
+						<c:when test="${not empty id.m_addr2}">
+							<input type="text" value="${id.m_addr2}" id="address" placeholder="주소" readonly="readonly">
+						</c:when>
+						<c:otherwise>
+							<input type="text" id="address" placeholder="주소" readonly="readonly">
+						</c:otherwise>
+					</c:choose>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<input type="text" id="detailAddress" placeholder="상세주소">
+					<c:choose>
+						<c:when test="${not empty id.m_addr3}">
+							<input type="text" value="${id.m_addr3}" id="detailAddress" placeholder="상세주소">
+						</c:when>
+						<c:otherwise>
+							<input type="text" id="detailAddress" placeholder="상세주소">
+						</c:otherwise>
+					</c:choose>
 				</td>
 			</tr>
 			<tr>

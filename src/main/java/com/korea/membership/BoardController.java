@@ -129,6 +129,9 @@ public class BoardController {
 	public String board_post_insert(BoardVO vo) {
 		
 		PMemberVO user_vo = (PMemberVO) session.getAttribute("id");
+		if(user_vo==null) {
+			return "redirect:login_form";
+		}
 		int m_idx = user_vo.getM_idx();
 		int is_master = board_dao.is_master(m_idx);
 		if(is_master==0) {
