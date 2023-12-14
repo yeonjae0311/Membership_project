@@ -42,7 +42,7 @@
 				<tr>
 					<td>
 						<div id="file_upload_div">
-							<input type="file" id="s_img" name="s_file" onchange="change_img()">
+							<input type="file" id="s_img" name="b_file">
 							<label id="file_upload" for="s_img">
 								<img src="${pageContext.request.contextPath}/resources/img/photo_upload_icon.png">
 							</label>
