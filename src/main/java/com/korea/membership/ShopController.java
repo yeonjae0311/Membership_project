@@ -508,7 +508,9 @@ public class ShopController {
 		
 		String o_sum = data.get("o_sum");
 		String payment_name = "NEWJEANS MEMBERSHIP PAYMENT";
+		int membership = 0;
 		
+		session.setAttribute("membership", membership);
 		session.setAttribute("payment_name", payment_name);
 		session.setAttribute("payment_price", o_sum);
 		
@@ -531,9 +533,9 @@ public class ShopController {
 		
 		String o_sum = data.get("o_sum");
 		String payment_name = "NEWJEANS MEMBERSHIP 1개월";
-		int i_idx = 1;
+		int membership = 1;
 		
-		session.setAttribute("i_idx", i_idx);
+		session.setAttribute("membership", membership);
 		session.setAttribute("payment_name", payment_name);
 		session.setAttribute("payment_price", o_sum);
 		
