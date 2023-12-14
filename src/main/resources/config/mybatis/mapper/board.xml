@@ -6,6 +6,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 사고 방지를 위해서 일단은 alias를 이쪽에서는 사용하지 않고 테스트 -->
 	
+	<!-- home.jsp에서 최신 것부터 보여주기 위한 select문 -->
+	<select id="board_select" resultType="vo.BoardVO">
+		select * from board
+	</select>
+	
 	<!-- 고정된 게시글 조회 -->
 	<select id="fixed_board_list" resultType="vo.BoardPMemberViewVO">
 		SELECT * FROM board_p_member_join_view

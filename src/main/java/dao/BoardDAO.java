@@ -87,4 +87,10 @@ public class BoardDAO {
 	public int count_unfixed_fan_list() {
 		return sqlSession.selectOne("b.count_unfixed_fan_list");
 	}
+	
+	//home에서 전체 게시물을 조회하기 위한 코드
+	public List<BoardVO> select_board_list() {
+		return sqlSession.selectList("b.board_select");
+	}
+	
 }

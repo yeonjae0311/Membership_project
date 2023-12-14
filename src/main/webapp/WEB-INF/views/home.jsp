@@ -60,10 +60,10 @@
 				<input type="hidden" value="RIGHT">
 			</div>
 			</div>
-		</div>
 		
 		<!-- 스토리 4개 정도 출력해보기 시간되면 overflow로 숨기고 스토리 다 출력해도 괜찮을듯? -->
-		<div id="story">
+		<div id="story" style="display:flex;">
+			<div class="left" style="margin:6.0%;"></div>
 			<div class="story container">
 				<c:if test="${membervo.m_ismembership eq '1' }">
 				<c:forEach var="svo" items="${svo_list}" varStatus="status" end="3" >
@@ -91,87 +91,31 @@
 		<!-- 최신글 5개 출력 -->
 		<div id="board_div">
 		<input id="priority" type="hidden" value="${priority}">
-		
-		<div id="board_view_list">
-			<div class="board_list" id="fixed_list">
-				<div id="fixed_list_table">
-					<table class="b_list">
-						<tr>
-							<th id="pinned_th">
-								<img id="board_pin_icon" src="${pageContext.request.contextPath}/resources/img/pin_icon.png">
-								<div>
-									Pinned Posts
-								</div>
-							</th>
-						</tr>
-						<c:forEach var="i" items="${fixed_list}">
-							<tr>
-								<td>
-									<a href="board_view?b_idx=${i.b_idx}">${i.b_title} [${i.b_reply_count}]</a>
-								</td>
-							</tr>
-						</c:forEach> 
-					</table>
-				</div>
-				
-				<div id="adjust_size_button_div">
-					<img id="adjust_size_button" data-value="down" src="${pageContext.request.contextPath}/resources/img/arrow_down_icon.png" onclick="adjust_size(event)">					
-				</div>
+		<div id="board_view_list" style="display: flex">
+			<div class="left" style="margin: 6.0%;"></div>
+			<div class="board_container" style="display: flex;">
+				<c:forEach var="board" items="${board_list }">
+					<div class="board_feed">
+						<c:choose>
+						<c:when test="${not empty board.b_filename }">
+						<img class="board_img"
+						 src="${pageContext.request.contextPath}/resources/upload/board/${board.b_filename}"> 
+						 <br>
+						${board.b_content }
+						</c:when>
+						<c:otherwise>
+						<img class="board_img"
+						 src="${pageContext.request.contextPath}/resources/upload/board/유튜브`s 뉴진스 아이콘.jpg"> 
+						 <br>
+						${board.b_content }
+						</c:otherwise>
+						</c:choose>
+					</div>
+				</c:forEach>
 			</div>
-			
-			<div id="board_list_header">
-				<div id="board_title">All posts</div>
-				<img id="board_post_icon" src="${pageContext.request.contextPath}/resources/img/post_upload_icon.png" onclick="location.href='board_post'">
-			</div>
-			
-			<div class="board_list" id="unfixed_list">
-				<div id="unfixed_master_list"  style="display:none;">
-					<table class="b_list">
-						<tr class="title_tr">
-							<th>제목</th>
-							<th>작성자</th>
-						</tr>
-	                    <c:forEach var="i" items="${unfixed_master_list}">
-	                        <tr class="post_tr">
-	                            <td class="board_post_title">
-	                                <a href="board_view?b_idx=${i.b_idx}">${i.b_title} [${i.b_reply_count}]</a>
-	                            </td>
-	                            
-	                            <td class="board_post_username">${i.m_username}</td>
-	                        </tr>
-	                    </c:forEach> 
-						<tr>
-							<td colspan="2" class="paging_td">${pageMenu1}</td>
-						</tr>
-					</table>
-				</div>
-				
-					
-				<div class="board_list" id="unfixed_fan_list">
-					<table class="b_list">
-						<tr class="title_tr">
-							<th>제목</th>
-							<th>작성자</th>
-						</tr>
-						
-						<c:forEach var="i" items="${unfixed_fan_list}">
-							<tr class="post_tr">
-								<td class="board_post_title">
-									<a href="board_view?b_idx=${i.b_idx}">${i.b_title} [${i.b_reply_count}]</a>
-								</td>
-								
-								<td class="board_post_username">${i.m_username}</td>
-							</tr>
-						</c:forEach>
-						
-						<tr>
-							<td colspan="2" class="paging_td">${pageMenu2}</td>
-						</tr>
-					</table>
-				</div>
-			</div>
-		</div><!-- <div id="board"> -->
-	</div> <!--</div id="body_div"> -->
+			</div><!-- <div id="board"> -->
+		</div>
+	</div> <!--</div id="home_div"> -->
 	
 	<div id="footer_bar"></div>
 </body>
