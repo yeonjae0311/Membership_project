@@ -49,7 +49,7 @@
 										margin: 4%;
 										display: inline-block;"
 								src="${pageContext.request.contextPath}/resources/img/photo_banner/lock_icon.jpg"
-								onclick="location.href='story'">
+								onclick="location.href='login_form'">
 							</div> 
 					</c:forEach> 
 				</c:if>

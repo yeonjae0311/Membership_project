@@ -30,7 +30,7 @@ function all_board_first(){
 window.onload = function(){
 let images = document.querySelectorAll(".banner_img");
 let current_idx = 0;
-let postion = 0;
+let position = 0;
 const img_width = 60.1;  // css에서 설정한 width 값과 동일하게 맞춰주세요
 const left_btn = document.querySelector(".left")
 const right_btn = document.querySelector(".right")
@@ -39,22 +39,14 @@ const container = document.querySelector(".img_container")
 function previous(){
   if(current_idx > 0){
    // right_btn.removeAttribute("disabled")
-    postion += img_width;
-    container.style.transform = `translateX(${postion}vw)`;
+    position += img_width;
+    container.style.transform = `translateX(${position}vw)`;
     current_idx = current_idx - 1;
-    console.log(current_idx);
   }
   else if(current_idx == 0){
     //left_btn.setAttribute('disabled', 'true');
     current_idx = images.length-1;
-    console.log(current_idx);
     position = -(images.length-1) * img_width;
-    container.style.transform = `translateX(${position}vw)`;
-  }
-  else{ // current_idx가 image_length-1보다 커질 경우 초기화
-  	current_idx = 0;
-  	console.leg(current_idx);
-    position = 0;
     container.style.transform = `translateX(${position}vw)`;
   }
 }
@@ -62,8 +54,8 @@ function previous(){
 function next(){
   if(current_idx < images.length-1){
     //left_btn.removeAttribute("disabled")
-    postion -= img_width;
-    container.style.transform = `translateX(${postion}vw)`;
+    position -= img_width;
+    container.style.transform = `translateX(${position}vw)`;
     current_idx = current_idx + 1;
     console.log(current_idx);
   }
@@ -73,14 +65,6 @@ function next(){
     console.log(current_idx);
     position = 0;
     container.style.transform = `translateX(${position}vw)`;
-    //left_btn.setAttribute('disabled', 'true');
-  }
-  else{ // current_idx가 image_length-1보다 커질 경우 초기화
-  	current_idx = 0;
-  	console.log(current_idx);
-    position = 0;
-    container.style.transform = `translateX(${position}vw)`;
-   // left_btn.setAttribute('disabled', 'true');
   }
 }
  
