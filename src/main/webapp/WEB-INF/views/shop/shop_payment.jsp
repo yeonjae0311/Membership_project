@@ -61,6 +61,8 @@
 	        }).open();
 	    }
 	    
+	    let check_update_addr = 0;
+	    
 	    function update_addr(){
 
 	    	let postcode = document.getElementById("postcode").value;
@@ -92,6 +94,7 @@
 
 	    function callback_addr(...args){
 	    	alert("배송지가 등록되었습니다.")
+	    	check_update_addr = 1;
 
 	    }
 

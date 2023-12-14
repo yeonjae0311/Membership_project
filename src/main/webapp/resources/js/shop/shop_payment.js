@@ -127,6 +127,11 @@ function order_insert_fn(){
 		alert("정확한 배송지를 입력해주세요.");
 		return;
 	}
+	
+	if(check_update_addr == 0) {
+		alert("배송지 등록을 해주세요")
+		return;
+	}
 
 	let url = "";
 	
