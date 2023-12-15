@@ -1,8 +1,5 @@
 let check_update_addr = 0;
 let check_oninput_addr = 1;
-let postcode = document.getElementById("postcode").value;
-let address = document.getElementById("address").value;
-let detail_address = document.getElementById("detailAddress").value;
 
 const order_item_list_obj = JSON.parse(sessionStorage.getItem("order_list"));
 console.log(sessionStorage.getItem("order_list"))
@@ -192,23 +189,14 @@ button_bar_div.appendChild(cancel_button);
 
 console.log(totals.final_price);
 
-function handleAddressInputChange() {
-    // 사용자가 값을 변경할 때 이 함수가 호출됩니다.
-    var addressInput = document.getElementById("address");
-    console.log("변경된 주소 값: " + addressInput.value);
-
-    // check_oninput_addr 변수를 0으로 변경합니다.
-    check_oninput_addr = 0;
-    console.log("check_oninput_addr 변수 값 변경: " + check_oninput_addr);
+function addr_change() {
+	check_oninput_addr = 0;
 }
 
-// 초기화할 때 onchange 이벤트를 추가합니다.
-window.onload = function () {
-    var addressInput = document.getElementById("address");
-    addressInput.addEventListener("input", handleAddressInputChange);
-};
-
 function order_insert_fn(){
+	let postcode = document.getElementById("postcode").value;
+	let address = document.getElementById("address").value;
+	let detail_address = document.getElementById("detailAddress").value;
 	
     const item_list_obj = final_info["items"];
 
@@ -233,13 +221,16 @@ function order_insert_fn(){
 		check_update_addr = 1;
 	}
 	
-	if(check_update_addr != 1 && check_oninput_addr != 1) {
-		alert("배송지 등록을 해주세요");
+	if(check_update_addr == 0) {
+		alert("1배송지 등록을 해주세요");
 		return;
 	}
 	
+	if(check_oninput_addr == 0) {
+		alert("2배송지 등록을 해주세요");
+		return;
+	}
 	
-
 	let url = "";
 	
 	if(order_item_list[0].i_idx == 1) {

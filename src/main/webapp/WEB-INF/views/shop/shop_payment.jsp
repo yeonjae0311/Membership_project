@@ -64,7 +64,7 @@
 				<td>
 					<c:choose>
 						<c:when test="${not empty id.m_addr3}">
-							<input type="text" value="${id.m_addr3}" id="detailAddress" placeholder="상세주소">
+							<input type="text" value="${id.m_addr3}" id="detailAddress" placeholder="상세주소" oninput="addr_change()">
 						</c:when>
 						<c:otherwise>
 							<input type="text" id="detailAddress" placeholder="상세주소">

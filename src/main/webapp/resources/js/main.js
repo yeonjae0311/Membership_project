@@ -110,7 +110,7 @@ function send_to(page){
 }
 
 function logout(){
-	localStorage.clear();
+	window.localStorage.clear();
 	location.href='logout';
 }
 
