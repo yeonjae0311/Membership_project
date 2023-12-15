@@ -527,7 +527,7 @@ public class MemberController {
 
 		pmember_dao.user_profile_update(vo);
 
-		return "redirect:user_edit";
+		return "redirect:user_edit_profile";
 	}
 
 	@RequestMapping("membership_info")

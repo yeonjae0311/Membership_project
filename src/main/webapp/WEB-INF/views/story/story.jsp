@@ -24,13 +24,28 @@
 				</c:when>
 				<c:otherwise>
 					<div id="no_story_list">
-						현재 story가 한개도 없습니다!! 관리자가 곧 글을 작성할거예요~
+						작성된 글이 없습니다.
 					</div>
 				</c:otherwise>
 			</c:choose>
 		</c:if>
 		
 		<div id="storyContainer">
+	
+		<c:if test="${empty svo_list}">
+			<c:choose>
+			<c:when test="${id.m_ismaster eq '1' }">
+				<div id="create_story" onclick="location.href='story_post'">
+					<img src="${pageContext.request.contextPath}/resources/img/add_icon.png">
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div id="no_story_list">
+					작성된 글이 없습니다.
+				</div>
+			</c:otherwise>
+			</c:choose>
+		</c:if>
 			<c:forEach var="svo" items="${svo_list}" varStatus="loop">
 				<div id="story_${svo.s_idx}" class="story" style="display: ${loop.index == 0 ? 'block' : 'none'}">
 					<div class="story_main">
@@ -73,21 +88,6 @@
 										<img class="like_img" id="like_img_id_${svo.s_idx}"
 										src="${pageContext.request.contextPath}/resources/img/likep.png">
 										
-										<%-- <svg id="svg_test_${svo.s_idx}"
-											 class="like_button"
-											 xmlns="http://www.w3.org/2000/svg"
-											 fill="white"
-											 width="24px"
-											 height="24px"
-											 viewBox="0 0 24 24"
-											 >
-											<path stroke="#121923"
-												  stroke-width="1.2"
-												  d="M17 16c-1.2 1.323-4.5 4.5-4.5 4.5S9.2 17.323 8
-												  	16c-2.8-3.088-3.5-4.294-3.5-6.5 0-2.206 1.6-4 4-4
-												  	2 0 3.2 1.324 4 2.647.8-1.323 2-2.647 4-2.647 2.4
-												  	0 4 1.794 4 4s-.7 3.412-3.5 6.5Z"/>
-										</svg> --%>
 									</div>
 								</c:when>
 								
@@ -95,21 +95,6 @@
 									<div class="like_button_div" onclick="liked2(${svo.s_idx}, event)">
 										<img class="like_img" id="like_img_id_${svo.s_idx}"
 										src="${pageContext.request.contextPath}/resources/img/liker.png">
-										<%-- <svg id="svg_test_${svo.s_idx}"
-											 class="like_button"
-											 xmlns="http://www.w3.org/2000/svg"
-											 fill="red"
-											 width="24px"
-											 height="24px"
-											 viewBox="0 0 24 24"
-											 >
-											<path stroke="#121923"
-												  stroke-width="1.2"
-												  d="M17 16c-1.2 1.323-4.5 4.5-4.5 4.5S9.2 17.323 8
-												  	16c-2.8-3.088-3.5-4.294-3.5-6.5 0-2.206 1.6-4 4-4
-												  	2 0 3.2 1.324 4 2.647.8-1.323 2-2.647 4-2.647 2.4
-												  	0 4 1.794 4 4s-.7 3.412-3.5 6.5Z"/>
-										</svg> --%>
 									</div>
 								</c:when>
 							</c:choose>
