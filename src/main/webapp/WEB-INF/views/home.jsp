@@ -10,7 +10,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_css.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/home.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/home/home.js"></script>
 </head>
 <body>
 	<div id="header_bar"></div>

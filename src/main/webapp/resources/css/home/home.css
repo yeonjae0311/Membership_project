@@ -13,30 +13,30 @@
 	display: flex;
 }
 
-.photo_main, .img_container,
-.img_slide{
+.photo_main {
 	width: 77vw;
 	height: 500px;
-}
-
-.photo_main {
 	overflow: hidden;
   	position:relative;
 }
 
 .img_container {
+	width: 77vw;
+	height: 500px;
 	position:absolute;
 	transition: 2s;
 	display: flex;
 }
 
 .img_slide{
+	width: 77vw;
+	height: 500px;
 	margin: 0.1%;
 	display: inline-block;
 }
 
 .banner_img{
-	width: 1040px;
+	width: 68vw;
 	height: 500px;
 }
 
