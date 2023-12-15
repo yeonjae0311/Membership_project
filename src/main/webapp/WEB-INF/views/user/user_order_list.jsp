@@ -40,7 +40,6 @@
 								</div>
 								
 								<div class="order_list_info">
-									<div>상세보기 ></div>
 									<div class="order_list_name">
 										${order_i.i_names}
 									</div>
@@ -49,6 +48,8 @@
 										${order_i.o_sum}원 · ${order_i.o_count}개
 									</div>
 								</div>
+								
+								<div id="go_to_order_detail_list">상세보기 ></div>
 							</div>
 						</c:forEach>
 					</c:otherwise>
