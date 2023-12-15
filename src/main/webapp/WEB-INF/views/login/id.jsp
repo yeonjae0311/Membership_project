@@ -29,6 +29,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<div id="footer_bar"></div>
 </body>
 </html>
