@@ -72,15 +72,16 @@ body > div:nth-child(2){
 }
 
 input[type="button"]{
-	background: #bcecff;
 	height: 3em;
 	width: 6em;
 	outline: none;
-	border: none;
 	padding: .5em;
 	margin: 1%;
 	box-sizing: border-box;
+	background: none;
 	border-radius: 20px;
+	box-shadow: 3px 3px 1px 1px #bcecff;
+	border: 2px solid #ffebf7;
 }
 
 /* input[type="file"]::file-selector-button{
@@ -137,13 +138,31 @@ textarea{
 	display: flex;
 }
 
+#shopping_cart_div > img{
+	width: 50px;
+    height: 50px;
+    margin: 2px 5px;
+}
+
+#my_page_div > img{
+	width: 45px;
+    height: 45px;
+    margin: 4px 12px;
+}
+
 #right_header{
 	width: 35%;
-	height: 4em;
+	height: 4.5em;
 	align-items: center;
 	justify-content: flex-end;
+	padding-right: 5%;
+}
 
-	padding-right: 2%;
+#right_header > div{
+	width: 3em;
+    height: 3em;
+    margin: 0 0.3em;
+    border-radius: 50%;    
 }
 
 #header_border{

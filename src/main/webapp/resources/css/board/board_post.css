@@ -15,8 +15,8 @@
 }
 
 #fixoption{
-    width: 3em;
-    height: 3em;
+    width: 2em;
+    height: 2em;
 
 }
 
@@ -52,6 +52,7 @@ input[type="text"]{
 textarea{
     background: transparent;
     box-shadow: none;
+    height: 15em;
 }
 
 #file_upload_div{
@@ -63,14 +64,16 @@ textarea{
 
 
 #photo_preview{
-    width: 20vw;
-    height: 25vh;
+    width: 18vw;
+    height: 18vh;
     margin: 0;
 }
 
 
 #file_upload_button{
     margin-top: 3%;
+    display: flex;
+    align-items: center;
 }
 
 #b_img{
@@ -80,4 +83,9 @@ textarea{
 #file_upload > img{
     width: 3em;
     height: 3em;
+}
+
+#board_button_bar_div{
+    margin: 3% 5% 3% auto;
+    text-align: right;
 }

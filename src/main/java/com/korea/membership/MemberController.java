@@ -144,6 +144,7 @@ public class MemberController {
 
 	@RequestMapping("logout")
 	public String logout() {
+		
 		session.removeAttribute("id");
 		session.removeAttribute("m_idx");
 
