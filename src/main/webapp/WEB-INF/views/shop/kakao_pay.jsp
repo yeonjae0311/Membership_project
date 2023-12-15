@@ -29,7 +29,7 @@
 	            buyer_addr: '${id.m_addr1}',
 	            buyer_postcode: "01181"
 	        }, function (rsp) {
-	        	if('${i_idx}' == 1 ) {
+	        	if('${membership}' == 1 ) {
 	        		if (rsp.success) {
 		                // 서버단에서 결제정보 조회를 위해 fetch로 imp_uid 전달하기
 		                // 여기도 payment_completed로 하면 2번 왔다갔다해서 2개월 결제됨 그래서 main으로 설정
