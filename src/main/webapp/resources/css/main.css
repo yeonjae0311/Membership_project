@@ -80,7 +80,7 @@ input[type="button"]{
 	box-sizing: border-box;
 	background: none;
 	border-radius: 20px;
-	box-shadow: 6px 6px 1px 1px #bcecff;
+	box-shadow: 3px 3px 1px 1px #bcecff;
 	border: 2px solid #ffebf7;
 }
 

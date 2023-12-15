@@ -47,7 +47,6 @@
 			<div id="board_button_bar_div">
 				<input type="hidden" id="isfixed" value="0" name="b_isfixed">
 				<input type="button" value="등록하기" onclick="send(this.form)">
-				<input type="button" value="목록으로" onclick="location.href='board'">
 			</div>
 		</form>
 	</div>
