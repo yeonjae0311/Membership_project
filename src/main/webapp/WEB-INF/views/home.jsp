@@ -16,7 +16,7 @@
 	<div id="header_bar"></div>
 		
 	<div id="home_div">
-		<input type="button" value="buy membership" onclick="shop_payment()">
+		<input type="button" value="buy membership" onclick="shop_payment()" style="cursor: pointer;">
 		
 		<div id="photo_banner">
 			<div class="left">
@@ -96,6 +96,7 @@
 			<div class="board_container" style="display: flex;">
 				<c:forEach var="board" items="${board_list }">
 					<div class="board_feed">
+						<img src="">
 						<c:choose>
 						<c:when test="${not empty board.b_filename }">
 						<img class="board_img"
@@ -113,8 +114,8 @@
 					</div>
 				</c:forEach>
 			</div>
-			</div><!-- <div id="board"> -->
-		</div>
+			</div>
+		</div><!-- <div id="board"> -->
 	</div> <!--</div id="home_div"> -->
 	
 	<div id="footer_bar"></div>
