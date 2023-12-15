@@ -47,8 +47,9 @@ for(const element of buttons){
 			
 			return;
 		}
+		const lower_element = element.toLowerCase();
 
-		send_to(element);
+		send_to(lower_element);
 	});
 	
 	button_header.appendChild(button);
