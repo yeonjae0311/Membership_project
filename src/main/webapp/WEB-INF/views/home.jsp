@@ -95,20 +95,22 @@
 			<div class="left" style="margin: 6.0%;"></div>
 			<div class="board_container" style="display: flex;">
 				<c:forEach var="board" items="${board_list }">
-					<div class="board_feed">
-						<img src="">
+					<div class="board_feed" onclick="location.href='board_view?b_idx=${board.b_idx}'">
 						<c:choose>
 						<c:when test="${not empty board.b_filename }">
 						<img class="board_img"
-						 src="${pageContext.request.contextPath}/resources/upload/board/${board.b_filename}"> 
+						 src="${pageContext.request.contextPath}/resources/upload/board/${board.b_filename}"
+						 onclick="location.href='board_view?b_idx=${i.b_idx}'" style="cursor: pointer;"> 
 						 <br>
-						${board.b_content }
+						<div class="board_text"> ${board.b_title } <br>
+						${board.b_content }</div>
 						</c:when>
 						<c:otherwise>
 						<img class="board_img"
 						 src="${pageContext.request.contextPath}/resources/upload/board/유튜브`s 뉴진스 아이콘.jpg"> 
 						 <br>
-						${board.b_content }
+						<div class="board_text"> ${board.b_title } <br>
+						${board.b_content }</div>
 						</c:otherwise>
 						</c:choose>
 					</div>

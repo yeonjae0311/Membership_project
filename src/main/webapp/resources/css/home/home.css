@@ -65,19 +65,29 @@
 }
 
 .board_feed{
-	width: 200px; 
-	height: 300px;
+	width: 215px; 
+	cusor: pointer;
+	height: 297px;
 	margin: 1.5%;
-	text-align:"center";
 	background-color: #FFFFE0;
 	border-radius: 10px;
+	overflow: hidden;
+}
+
+.board_text{
+	display : -webkit-box;
+	-webkit-line-clamp: 6;
+	-webkit-box-orient: vertical;
+	over-flow: hidden;
+	text-align: ;
+	font-size: 0.9;
 }
 
 .board_img{
-	width: 200px; 
+	width: 11.8vw; 
 	height:200px; 
 	margin: auto; 
-	padding: auto%;
+	padding: auto;
 	border-radius: 10px;
 }
 
