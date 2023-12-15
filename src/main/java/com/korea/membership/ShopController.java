@@ -338,11 +338,16 @@ public class ShopController {
 	@RequestMapping("shop_payment")
 	public String shop_payment(Model model) {
 
+		PMemberVO vo = (PMemberVO) session.getAttribute("id");
+		if(vo==null) {
+			return "redirect:login_form";
+		}
+
 		// m_idx에 해당하는 유저정보 조회해서 바인딩
 
 		int m_idx = (int) session.getAttribute("m_idx");
 
-		PMemberVO vo = pmember_dao.select_one(m_idx);
+		vo = pmember_dao.select_one(m_idx);
 
 		model.addAttribute("vo", vo);
 

@@ -18,13 +18,18 @@
 		<c:if test="${empty svo_list}">
 			<c:choose>
 				<c:when test="${id.m_ismaster eq '1' }">
-					<div id="create_story" onclick="location.href='story_post'">
-						<img src="${pageContext.request.contextPath}/resources/img/add_icon.png">
-					</div>
+					
+						<div id="fixed_list">
+						
+						</div>
+						<div id="create_story" onclick="location.href='story_post'">
+							<img src="${pageContext.request.contextPath}/resources/img/add_icon.png">
+						</div>
+					
 				</c:when>
 				<c:otherwise>
 					<div id="no_story_list">
-						현재 story가 한개도 없습니다!! 관리자가 곧 글을 작성할거예요~
+						<img src="${pageContext.request.contextPath}/resources/img/pawer.jpg">
 					</div>
 				</c:otherwise>
 			</c:choose>
