@@ -9,7 +9,7 @@ document.head.appendChild(icon_link);
 
 // header 만들기
 const header_bar = document.getElementById("header_bar");
-const buttons = ["story", "board", "shop"];
+const buttons = ["Story", "Board", "Shop"];
 
 const left_header = document.createElement("div");
 left_header.id = "left_header";
@@ -47,8 +47,9 @@ for(const element of buttons){
 			
 			return;
 		}
+		const lower_element = element.toLowerCase();
 
-		send_to(element);
+		send_to(lower_element);
 	});
 	
 	button_header.appendChild(button);
@@ -57,48 +58,62 @@ for(const element of buttons){
 left_header.appendChild(button_header);
 
 if(localStorage.getItem("idx") == null || localStorage.getItem("idx") == ""){
-	const login_button = document.createElement("input");
-	login_button.type = "button";
-	login_button.value = "Login";
-	login_button.addEventListener("click", () => {
+
+	const shopping_cart_div = document.createElement("div");
+	shopping_cart_div.id = "shopping_cart_div";
+	shopping_cart_div.addEventListener("click", () => {
 		send_to("login_form");
 	});
-
-	right_header.appendChild(login_button);
-
-	const register_button = document.createElement("input");
-	register_button.type = "button";
-	register_button.value = "Sign-up";
-	register_button.addEventListener("click", () => {
-		send_to("member_insert_form");
-	});
-
-	right_header.appendChild(register_button);
-
-	const my_page_button = document.createElement("input");
-	my_page_button.type = "button";
-	my_page_button.value = "MyPage";
-	my_page_button.addEventListener("click", () => {
+	
+	right_header.appendChild(shopping_cart_div);
+	
+	const my_page_div = document.createElement("div");
+	my_page_div.id = "my_page_div";	
+	my_page_div.addEventListener("click", () => {
 		send_to("login_form");
 	});
+	
+	right_header.appendChild(my_page_div);
+	
+	const shopping_cart_img = document.createElement("img");
+	shopping_cart_img.src = IMG_PATH + "user/cart.png";
+	
+	shopping_cart_div.appendChild(shopping_cart_img);
+	
+	const my_page_img = document.createElement("img");
+	my_page_img.src = IMG_PATH + "user/user_profile.png";
+	
+	my_page_div.appendChild(my_page_img);
 
-	right_header.appendChild(my_page_button);
 }else{
-	const logout_button = document.createElement("input");
-	logout_button.type = "button";
-	logout_button.value = "Logout";
-	logout_button.addEventListener("click", logout);
 
-	right_header.appendChild(logout_button);
-
-	const my_page_button = document.createElement("input");
-	my_page_button.type = "button";
-	my_page_button.value = "MyPage";
-	my_page_button.addEventListener("click", () => {
+	const shopping_cart_div = document.createElement("div");
+	shopping_cart_div.id = "shopping_cart_div";
+	shopping_cart_div.addEventListener("click", () => {
+		send_to("shopping_cart");
+	});
+	
+	right_header.appendChild(shopping_cart_div);
+	
+	const my_page_div = document.createElement("div");
+	my_page_div.id = "my_page_div";	
+	my_page_div.addEventListener("click", () => {
 		send_to("user_edit");
 	});
+	
+	right_header.appendChild(my_page_div);
+	
+	const shopping_cart_img = document.createElement("img");
+	shopping_cart_img.src = IMG_PATH + "user/cart.png";
+	
+	shopping_cart_div.appendChild(shopping_cart_img);
+	
+	const my_page_img = document.createElement("img");
+	my_page_img.src = IMG_PATH + "user/user_profile.png";
+	
+	my_page_div.appendChild(my_page_img);
 
-	right_header.appendChild(my_page_button);
+
 }
 
 header_bar.appendChild(left_header);
@@ -107,11 +122,6 @@ header_bar.appendChild(header_border);
 
 function send_to(page){
 	location.href = page;
-}
-
-function logout(){
-	window.localStorage.clear();
-	location.href='logout';
 }
 
 // footer 만들기

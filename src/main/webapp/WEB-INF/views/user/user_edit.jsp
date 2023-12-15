@@ -48,9 +48,9 @@
 			</div>
 			
 			<div id="logout" class="member_info_body">
-				<img src="${pageContext.request.contextPath}/resources/img/user/logout.png" onclick="send(event)" >
-				<div onclick="send(event)">
-					logout
+				<img src="${pageContext.request.contextPath}/resources/img/user/logout.png" onclick="logout()" >
+				<div onclick="logout()">
+					로그아웃
 				</div>
 			</div>
 		</div>
