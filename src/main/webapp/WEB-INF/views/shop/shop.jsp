@@ -11,20 +11,6 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/shop/shop.js" defer></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
-	<script>
-		function shop_item_select(f){
-			f.action = "shop_item";
-			f.submit();
-		}
-		
-		window.onload = function(){
-			let is_master = ${is_master};
-	
-			if(is_master == 0){
-				document.getElementById("item_insert_form").style.display = "none"
-			}
-		}
-	</script>
 	<style>
 		.item_one_img_div{
 			height:200px;
@@ -41,6 +27,8 @@
 	<div id="header_bar"></div>
 	
 	<div>
+		<input id="is_master" type="hidden" value="${is_master}">
+		
 		<div>
 			<input type="button" id="item_insert_form" value="상품 등록" onclick="location.href='item_insert'">
 		</div>
