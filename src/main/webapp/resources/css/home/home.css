@@ -3,6 +3,10 @@
 *{
 	box-sizing: border-box;
 }
+#home_div{
+	display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+}
 
 #photo_banner {
 	margin-top: 0%;
@@ -32,7 +36,7 @@
 }
 
 .banner_img {
-	width: 61vw;
+	width: 60vw;
 	height: 500px;
 }
 
@@ -49,7 +53,12 @@
 	margin: auto auto auto 0;
 }
 
-.story {
+.story{
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+}
+
+.story_container{
 	display: flex;
 }
 
@@ -62,6 +71,15 @@
 	display: inline-block;
 	border: 5px solid #bcecff;
 	cursor: pointer;
+}
+
+.board_view_list{
+	display: flex;
+	justify-content: center;
+}
+
+.board_container{
+	display: flex;
 }
 
 .board_feed{

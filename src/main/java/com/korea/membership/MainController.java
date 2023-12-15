@@ -42,7 +42,7 @@ public class MainController {
 	public String home(Model model) {
 
 		// 비로그인시 스토리 카운트 조회--------------
-		int s_count = story_dao.story_count();
+		int s_count = Math.min(5, story_dao.story_count());
 		model.addAttribute("s_count", s_count);
 
 		// 게시판--------------

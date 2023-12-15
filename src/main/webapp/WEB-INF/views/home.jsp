@@ -16,108 +16,108 @@
 	<div id="header_bar"></div>
 		
 	<div id="home_div">
-		<input type="button" value="buy membership" onclick="shop_payment()" style="cursor: pointer;">
-		
-		<div id="photo_banner">
-			<div class="left">
-				<input type="hidden" value="LEFT">
-			</div>
-				<div class="photo_main">
-					<div class="img_container">
-						<div class="img_slide">
-							<img class="banner_img" 
-							src="${pageContext.request.contextPath}/resources/img/photo_banner/newjeans1.jpg"  
-							alt="이미지 유실">
-						</div>
-						<div class="img_slide">
-							<img class="banner_img" 
-							src="${pageContext.request.contextPath}/resources/img/photo_banner/newjeans6.jpg"  
-							alt="이미지 유실">
-						</div>
-						<div class="img_slide">
-							<img class="banner_img" 
-							src="${pageContext.request.contextPath}/resources/img/photo_banner/newjeans3.jpg"  
-							alt="이미지 유실">
-						</div>
-						<div class="img_slide">
-							<img class="banner_img" 
-							src="${pageContext.request.contextPath}/resources/img/photo_banner/newjeans4.jpg"  
-							alt="이미지 유실">
-						</div>
-						<div class="img_slide">
-							<img class="banner_img" 
-							src="${pageContext.request.contextPath}/resources/img/photo_banner/membership.jpg"  
-							alt="이미지 유실">
-						</div>
-						<div class="img_slide">
-							<img class="banner_img" 
-							src="${pageContext.request.contextPath}/resources/img/photo_banner/bunnies_newjeans.jpg"  
-							alt="이미지 유실">
-						</div>
-					</div>
+		<div id="child_home">
+			<input type="button" value="buy membership" onclick="shop_payment()" style="cursor: pointer;">
+			
+			<div id="photo_banner">
+				<div class="left">
+					<input type="hidden" value="LEFT"> <!-- 배너 슬라이드 : 왼쪽 -->
 				</div>
-			<div class="right">
-				<input type="hidden" value="RIGHT">
-			</div>
-			</div>
-		
-		<!-- 스토리 4개 정도 출력해보기 시간되면 overflow로 숨기고 스토리 다 출력해도 괜찮을듯? -->
-		<div id="story" style="display:flex;">
-			<div class="left" style="margin:6.0%;"></div>
-			<div class="story container">
-				<c:if test="${membervo.m_ismembership eq '1' }">
-				<c:forEach var="svo" items="${svo_list}" varStatus="status" end="3" >
-						<div  class="story_content"  >
-							<img class="story_img" 
-							src="${pageContext.request.contextPath}/resources/upload/story/${svo.s_filename }"
-							onclick="location.href='story'">
+					<div class="photo_main">
+						<div class="img_container">
+							<div class="img_slide">
+								<img class="banner_img" 
+								src="${pageContext.request.contextPath}/resources/img/photo_banner/newjeans1.jpg"  
+								alt="이미지 유실">
+							</div>
+							<div class="img_slide">
+								<img class="banner_img" 
+								src="${pageContext.request.contextPath}/resources/img/photo_banner/newjeans6.jpg"  
+								alt="이미지 유실">
+							</div>
+							<div class="img_slide">
+								<img class="banner_img" 
+								src="${pageContext.request.contextPath}/resources/img/photo_banner/newjeans3.jpg"  
+								alt="이미지 유실">
+							</div>
+							<div class="img_slide">
+								<img class="banner_img" 
+								src="${pageContext.request.contextPath}/resources/img/photo_banner/newjeans4.jpg"  
+								alt="이미지 유실">
+							</div>
+							<div class="img_slide">
+								<img class="banner_img" 
+								src="${pageContext.request.contextPath}/resources/img/photo_banner/membership.jpg"  
+								alt="이미지 유실">
+							</div>
+							<div class="img_slide">
+								<img class="banner_img" 
+								src="${pageContext.request.contextPath}/resources/img/photo_banner/bunnies_newjeans.jpg"  
+								alt="이미지 유실">
+							</div>
 						</div>
-				</c:forEach>
-				</c:if>
-				
-				<c:if test="${empty membervo or membervo.m_ismembership eq '0' }">
-					<c:forEach begin="1" end="${s_count }">
-					<!-- 비로그인 및 멤버십 결제 회원이 아닐 경우 보여줄 스토리 사진 -->
-							<div  class="story_content"  >
-								<img class="story_img"
-								src="${pageContext.request.contextPath}/resources/img/photo_banner/story_lock.svg"
-								onclick="location.href='login_form'">
-							</div> 
-					</c:forEach> 
-				</c:if>
-			</div>
-		</div>
-		
-		<!-- 최신글 5개 출력 -->
-		<div id="board_div">
-		<input id="priority" type="hidden" value="${priority}">
-		<div id="board_view_list" style="display: flex">
-			<div class="left" style="margin: 6.0%;"></div>
-			<div class="board_container" style="display: flex;">
-				<c:forEach var="board" items="${board_list }">
-					<div class="board_feed" onclick="location.href='board_view?b_idx=${board.b_idx}'">
-						<c:choose>
-						<c:when test="${not empty board.b_filename }">
-						<img class="board_img"
-						 src="${pageContext.request.contextPath}/resources/upload/board/${board.b_filename}"
-						 onclick="location.href='board_view?b_idx=${i.b_idx}'" style="cursor: pointer;"> 
-						 <br>
-						<div class="board_text"> ${board.b_title } <br>
-						${board.b_content }</div>
-						</c:when>
-						<c:otherwise>
-						<img class="board_img"
-						 src="${pageContext.request.contextPath}/resources/upload/board/유튜브`s 뉴진스 아이콘.jpg"> 
-						 <br>
-						<div class="board_text"> ${board.b_title } <br>
-						${board.b_content }</div>
-						</c:otherwise>
-						</c:choose>
 					</div>
-				</c:forEach>
+				<div class="right">
+					<input type="hidden" value="RIGHT"> <!-- 배너 슬라이드 :  -->
+				</div>
+				</div>
+			
+			<!-- 스토리 4개 정도 출력해보기 시간되면 overflow로 숨기고 스토리 다 출력해도 괜찮을듯? -->
+			<div class="story">
+				<div class="story_container">
+					<c:if test="${membervo.m_ismembership eq '1' }">
+					<c:forEach var="svo" items="${svo_list}" varStatus="status" end="4">
+							<div  class="story_content"  onclick="location.href='story?s_idx=${svo.s_idx}'">
+								<img class="story_img" 
+								src="${pageContext.request.contextPath}/resources/upload/story/${svo.s_filename }"
+								onclick="location.href='story'">
+							</div>
+					</c:forEach>
+					</c:if>
+					
+					<c:if test="${empty membervo or membervo.m_ismembership eq '0' }">
+						<c:forEach begin="1" end="${s_count }">
+						<!-- 비로그인 및 멤버십 결제 회원이 아닐 경우 보여줄 스토리 사진 -->
+								<div  class="story_content"  >
+									<img class="story_img"
+									src="${pageContext.request.contextPath}/resources/img/photo_banner/story_lock.svg"
+									onclick="location.href='login_form'">
+								</div> 
+						</c:forEach> 
+					</c:if>
+				</div>
 			</div>
-			</div>
-		</div><!-- <div id="board"> -->
+			
+			<!-- 최신글 5개 출력 -->
+			<div class="board_div">
+			<input id="priority" type="hidden" value="${priority}">
+			<div class="board_view_list">
+				<div class="board_container">
+					<c:forEach var="board" items="${unfixed_master_list }" end="4">
+						<div class="board_feed" onclick="location.href='board_view?b_idx=${board.b_idx}'">
+							<c:choose>
+							<c:when test="${not empty board.b_filename }">
+							<img class="board_img"
+							 src="${pageContext.request.contextPath}/resources/upload/board/${board.b_filename}"
+							 onclick="location.href='board_view?b_idx=${i.b_idx}'" style="cursor: pointer;"> 
+							 <br>
+							<div class="board_text"> ${board.b_title } <br>
+							${board.b_content }</div>
+							</c:when>
+							<c:otherwise>
+							<img class="board_img"
+							 src="${pageContext.request.contextPath}/resources/upload/board/유튜브`s 뉴진스 아이콘.jpg"> 
+							 <br>
+							<div class="board_text"> ${board.b_title } <br>
+							${board.b_content }</div>
+							</c:otherwise>
+							</c:choose>
+						</div>
+					</c:forEach>
+				</div>
+				</div>
+			</div><!-- <div id="board"> -->
+		</div>
 	</div> <!--</div id="home_div"> -->
 	
 	<div id="footer_bar"></div>

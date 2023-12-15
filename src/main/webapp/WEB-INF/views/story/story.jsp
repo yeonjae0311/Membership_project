@@ -41,7 +41,7 @@
 			</c:when>
 			<c:otherwise>
 				<div id="no_story_list">
-					현재 story가 한개도 없습니다!! 관리자가 곧 글을 작성할거예요~
+					작성된 글이 없습니다.
 				</div>
 			</c:otherwise>
 			</c:choose>
