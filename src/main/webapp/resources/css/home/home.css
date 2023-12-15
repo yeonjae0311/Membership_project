@@ -13,30 +13,30 @@
 	display: flex;
 }
 
+.photo_main, .img_container,
+.img_slide{
+	width: 77vw;
+	height: 500px;
+}
+
 .photo_main {
 	overflow: hidden;
-	width: 60vw;
-	height: 500px;
   	position:relative;
 }
 
 .img_container {
-	width: 60vw;
-	height: 500px;
 	position:absolute;
 	transition: 2s;
 	display: flex;
 }
 
 .img_slide{
-	width: 60vw;
-	height: 500px;
 	margin: 0.1%;
 	display: inline-block;
 }
 
-.banner_img {
-	width: 60vw;
+.banner_img{
+	width: 1040px;
 	height: 500px;
 }
 
@@ -63,11 +63,11 @@
 }
 
 .story_img{
-	width: 150px;
-	height: 150px;
+	width: 175px;
+	height: 175px;
 	border-radius: 50%;
 	padding : auto;
-	margin: 20px 10px 20px 10px;
+	margin: 20px 20px 20px 20px;
 	display: inline-block;
 	border: 5px solid #bcecff;
 	cursor: pointer;
@@ -102,7 +102,7 @@
 }
 
 .board_img{
-	width: 11.8vw; 
+	width: 100%; 
 	height:200px; 
 	margin: auto; 
 	padding: auto;

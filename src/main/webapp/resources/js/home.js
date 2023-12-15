@@ -51,6 +51,7 @@ const container = document.querySelector(".img_container")
 function next(){
   if(current_idx < images.length-1){
     //left_btn.removeAttribute("disabled")
+	container.style.transition = '2s';
     position -= img_width;
     container.style.transform = `translateX(${position}vw)`;
     current_idx = current_idx + 1;
@@ -59,6 +60,7 @@ function next(){
     //right_btn.setAttribute('disabled', 'true');
     current_idx = 0;
     position = 0;
+    container.style.transition = 'none';
     container.style.transform = `translateX(${position}vw)`;
   }
 }
