@@ -7,6 +7,6 @@ window.onload = function(){
     let is_master = document.getElementById("is_master");
 
     if(is_master == 0){
-        document.getElementById("item_insert_form").style.display = "none";
+        document.getElementById("add_item").style.display = "none";
     }
 }
