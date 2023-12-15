@@ -14,19 +14,15 @@
 .user_post_one_div{     
     display: flex;
     justify-content: space-between;
-    font-size: 20px;
+    font-size: 16px;
     border-bottom: 1px dotted;
     padding: 11px;
 }
 
 #user_post_list_header_div{
-    font-size: 1.7em;
+    font-size: 1.5em;
     margin: 0 0 1.5em 3em;
     margin: 0 10px 30px;
-}
-
-#user_post_list_title{
-    margin: 0 0 0 0;
 }
 
 .user_post_list_hr{

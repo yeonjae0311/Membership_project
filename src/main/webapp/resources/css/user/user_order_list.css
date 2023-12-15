@@ -4,63 +4,56 @@ a{
 	text-decoration: none;
 }
 
+#user_order_list_head{
+	font-size: 1.5em;
+	margin: 0 20%;
+}
+
+#user_order_list_head > div{
+	margin: 10px 10px;
+}
+
+#user_order_list_body{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #user_order_list{
-	width:70%;
-	align: center;
-	margin-left: auto;
-	margin-right: auto;
+	display: flex;
+	flex-direction: column;
+	margin-left: 14%;
+}
+
+.order_list_info > div{
+	padding: 6px 10px;
+}
+
+.order_list_o_idx > div{
+	padding: 7px;
+	font-size: 13px;
 }
 
 .order_div{
-	display: grid;
-	grid-template-rows :repeat(5,1fr);
-	grid-template-columns : repeat(12,1fr);
+	display: flex;
 	align-items: center;
 	padding: 10px;
+	width: 80%;
+    justify-content: space-around;
+	border-bottom: 1px dotted #082a903b;
 }
 
-.r1c4{
-	grid-row:span 1;
-	grid-column:span 4;
+.order_div > div{
 	text-align: center;
-}
-
-.r5c1{
-	grid-row:span 5;
-	grid-column:span 1;
-	text-align: center;
-}
-
-.r5c2{
-	grid-row:span 5;
-	grid-column:span 2;
-	text-align: center;
-}
-
-.r5c4{
-	grid-row:span 5;
-	grid-column:span 4;
-	text-align: center;
-}
-
-.o_idx_div{
-	grid-row:span 4;
-	grid-column:span 3;
-	text-align: center;
-}
-
-.i_names_div{
-	grid-column:span 5;
-	text-align: center;
-}
-
-.o_count_sum_div{
-	grid-column:span 5;
-	text-align: center;
+    padding: 6px 10px;
 }
 
 .order_photo{
-	width: 100%;
-	height: auto;
+	width: 100px;
+	height: 100px;
+	object-fit: contain;
 }
 
+#go_to_order_detail_list{
+	font-size: 13px;
+}
