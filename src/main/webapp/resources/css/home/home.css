@@ -14,30 +14,30 @@
 }
 
 .photo_main {
-	width: 77vw;
-	height: 500px;
+	width: 1000px;
+	height: 666px;
 	overflow: hidden;
   	position:relative;
 }
 
 .img_container {
-	width: 77vw;
-	height: 500px;
+	width: 1000px;
+	height: 666px;
 	position:absolute;
 	transition: 2s;
 	display: flex;
 }
 
 .img_slide{
-	width: 77vw;
-	height: 500px;
+	width: 1000px;
+	height: 666px;
 	margin: 0.1%;
 	display: inline-block;
 }
 
 .banner_img{
-	width: 68vw;
-	height: 500px;
+	width: 1000px;
+	height: 666px;
 }
 
 .left, .right {
