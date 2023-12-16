@@ -34,7 +34,7 @@
 				</p>
 				<p>
 					<input type="text" name="m_email" id="m_email" placeholder="이메일을 적어주세요">
-					<input id="auth_btn" type="button" value="이메일 인증">
+					<input id="auth_btn" type="button" value="인증하기">
 				</p>
 				<p>
 				<input type="text" class="mail_check_input" id="m_code" placeholder="인증번호를 적어주세요">

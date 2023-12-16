@@ -17,22 +17,34 @@
 	<div id="user_info_modify_form_div">
 		<form>
 			<div class="modify_form_input_div">
-				 이름 : <input name="m_name" value="${vo.m_name}" >
+				 이름 : <input name="m_name" id="m_name" value="${vo.m_name}" >
+			</div>
+			<div id="check_mid">
+				<div></div>
 			</div>
 			<hr class="user_info_modify_form_hr">
 			
 			<div class="modify_form_input_div"> 
-				 연락처 : <input name="m_tel" value="${vo.m_tel}" >
+				 연락처 : <input name="m_tel" id="m_tel" oninput="tel_check(this.form)" value="${vo.m_tel}" >
+			</div>
+			<div id="check_alert">
+				<div id="tel_check_alert"></div>
 			</div>
 			<hr class="user_info_modify_form_hr">
 			
 			<div class="modify_form_input_div">
-				 생년월일 : <input name="m_date_of_birth" value="${vo.m_date_of_birth}">
+				 생년월일 : <input name="m_date_of_birth" id="m_date_of_birth" oninput="birth_check(this.form)" value="${vo.m_date_of_birth}">
+			</div>
+			<div id="check_alert">
+				<div id="birth_check_alert"></div>
 			</div>
 			<hr class="user_info_modify_form_hr">	
 					
 			<div class="modify_form_input_div">
-				이메일 : <input name="m_email" value="${vo.m_email}" >
+				이메일 : <input name="m_email" id="m_email" oninput="check_email(this.form)" value="${vo.m_email}" >
+			</div>
+			<div id="check_alert">
+				<div id="email_check_alert"></div>
 			</div>
 			
 			<input type="hidden" name="m_idx" value="${vo.m_idx}">

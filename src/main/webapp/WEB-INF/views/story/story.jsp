@@ -22,7 +22,7 @@
 						<div id="fixed_list">
 						
 						</div>
-						<div id="create_story" onclick="location.href='story_post'">
+						<div id="create_no_story" onclick="location.href='story_post'">
 							<img src="${pageContext.request.contextPath}/resources/img/add_icon.png">
 						</div>
 					
@@ -36,21 +36,6 @@
 		</c:if>
 		
 		<div id="storyContainer">
-	
-		<c:if test="${empty svo_list}">
-			<c:choose>
-			<c:when test="${id.m_ismaster eq '1' }">
-				<div id="create_story" onclick="location.href='story_post'">
-					<img src="${pageContext.request.contextPath}/resources/img/add_icon.png">
-				</div>
-			</c:when>
-			<c:otherwise>
-				<div id="no_story_list">
-					작성된 글이 없습니다.
-				</div>
-			</c:otherwise>
-			</c:choose>
-		</c:if>
 			<c:forEach var="svo" items="${svo_list}" varStatus="loop">
 				<div id="story_${svo.s_idx}" class="story" style="display: ${loop.index == 0 ? 'block' : 'none'}">
 					<div class="story_main">
@@ -63,7 +48,7 @@
 						</div>
 						
 						<c:if test="${id.m_ismaster eq '1' }">
-							<div id="create_story" onclick="location.href='story_post'">
+							<div id="create_yes_story" onclick="location.href='story_post'">
 								<img src="${pageContext.request.contextPath}/resources/img/add_icon.png">
 							</div>
 						</c:if>

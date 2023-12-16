@@ -44,13 +44,22 @@
 	border: 2px solid #ffebf7;
 }
 
-#create_story > img{
+#create_no_story > img{
 	width: 4em;
 	height: 4em;
 	cursor: pointer;
 	position: absolute;
-	bottom: 18vh;
+	bottom: 45vh;
     right: 48vw;
+}
+
+#create_yes_story > img {
+    width: 4em;
+    height: 4em;
+    cursor: pointer;
+    position: absolute;
+    bottom: -3vh;
+    right: 16vw;
 }
 
 .story_info_div{
