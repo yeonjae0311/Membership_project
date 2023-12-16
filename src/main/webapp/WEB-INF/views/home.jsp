@@ -100,7 +100,7 @@
 								<c:when test="${not empty board.b_filename and board.b_filename ne 'no_file' }">
 									<img class="board_img"
 									 src="${pageContext.request.contextPath}/resources/upload/board/${board.b_filename}"
-									 onclick="location.href='board_view?b_idx=${i.b_idx}'" style="cursor: pointer;"
+									 onclick="location.href='board_view?b_idx=${i.b_idx}'"
 									 alt="${pageContext.request.contextPath}/resources/upload/board/유튜브`s 뉴진스 아이콘.jpg"> 
 							 		<br>
 									<div class="board_text"> ${board.b_title } <br>
@@ -109,7 +109,7 @@
 								<c:otherwise>
 									<img class="board_img"
 									 src="${pageContext.request.contextPath}/resources/upload/board/newjeans_icon.jpg"
-									 onclick="location.href='board_view?b_idx=${i.b_idx}'" style="cursor: pointer;"> 
+									 onclick="location.href='board_view?b_idx=${i.b_idx}'"> 
 							 		<br>
 									<div class="board_text"> ${board.b_title } <br>
 									${board.b_content }</div>
@@ -122,28 +122,35 @@
 				
 			<!-- 인기글 피드 -->
 			<div class="popular_list">
+				<h1 id="popuular_title">인기글</h1>
 				<div class="popular_container">
-					<c:forEach var="p" items="${board_list_popular }" end="4">
 					<ol id="p_wrap">
-						<li id="p_${p.b_idx }_list">
-						<div id="popular_img">
-							<img alt="이미지가 없습니다." 
-							src="${pageContext.request.contextPath}/resources/upload/board/newjeans_icon.jpg"
-							onclick="location.href='board_view?b_idx=${p.b_idx}'" style="cursor: pointer;">
-						</div>
-							<div id="popular_content">
-							<a href="board_view?b_idx=${p.b_idx}">${p.b_title }</a>
-							</div>
-						
-					</ol>
+					<c:forEach var="p" items="${board_list_popular }" end="4">
+						<c:choose>
+							<c:when test="${not empty board.b_filename and board.b_filename ne 'no_file' }">
+								<li id="p_${p.b_idx }_list"> 
+									<a href="board_view?b_idx=${p.b_idx}">
+										<img id="p_img" alt="" 
+										src="${pageContext.request.contextPath}/resources/upload/board/${p.b_filename}">
+										${p.b_title }
+									</a>
+								</li>
+							</c:when>
+							<c:otherwise>
+								<li id="p_${p.b_idx }_list">
+								<a href="board_view?b_idx=${p.b_idx}">
+										<img id="p_img" alt="" 
+										src="${pageContext.request.contextPath}/resources/upload/board/${p.b_filename }">
+										${p.b_title }
+								</a>
+								</li>
+							</c:otherwise>
+							</c:choose>
 					</c:forEach>
+					</ol>
 				</div>
-			
-			</div>
-			
-			
-			
-			</div><!-- <div id="board"> -->
+			</div> <!-- popular_list  -->
+		</div><!-- <div id="board"> -->
 		</div><!-- child home -->
 	</div> <!--</div id="home_div"> -->
 	

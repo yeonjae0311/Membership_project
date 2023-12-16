@@ -150,8 +150,43 @@ h5{
 	object-fit: contain;
 }
 
-.popular_img{
+.popular_list{
+	margin-left: 5.5%;	
+	width: 45vw;
+    box-shadow: 6px 6px 1px 1px #bcecff;
+	border: 2px solid #ffebf7;
+}
+
+.popuular_title{
+	margin: 5%;
+	padding: 5%;
+	font-size:1em;
+	font-family: 'Noto Sans Korean';
+}
+
+ol{
+	margin: auto;
+	padding: auto;
+}
+
+li{
+	margin: auto;
+	padding: auto;
+}
+
+.p_wrap{
+	display: flex;
+}
+
+#p_img_wrapping{
+	
+}
+
+#p_img{
+	margin:auto;
+	padding: 1.5%;
 	width:50px;
 	height:50px;
 	object-fit: contain;
+	cursor: pointer;
 }
