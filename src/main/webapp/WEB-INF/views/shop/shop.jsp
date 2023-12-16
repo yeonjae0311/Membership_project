@@ -19,7 +19,7 @@
 		<input id="is_master" type="hidden" value="${is_master}">
 		
 		<div id="shop_banner_div">
-			<img id="shop_banner" src="${pageContext.request.contextPath}/resources/img/photo_banner/newjeans1.jpg">
+			<img id="shop_banner" src="${pageContext.request.contextPath}/resources/img/photo_banner/photocard.jpg">
 		</div>
 		
 		<div id="shop_items_div">
