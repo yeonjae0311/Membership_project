@@ -28,7 +28,7 @@
 					<div style="cursor:pointer;">
 						
 						<div class="item_one_img_div">
-							<img id="item_one" class="shop_photo" src="${pageContext.request.contextPath}/resources/upload/shop/${vo.i_detail_photo_name}">
+							<img id="item_one" class="shop_photo" src="${pageContext.request.contextPath}/resources/upload/shop/${vo.i_photo_name}">
 						</div>
 						
 						<div class="item_button_bar">
