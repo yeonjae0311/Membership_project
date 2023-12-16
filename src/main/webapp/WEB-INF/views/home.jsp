@@ -77,7 +77,6 @@
 							</div>
 					</c:forEach>
 					</c:if>
-					
 					<c:if test="${empty membervo or membervo.m_ismembership eq '0' }">
 						<c:forEach begin="1" end="${s_count }">
 						<!-- 비로그인 및 멤버십 결제 회원이 아닐 경우 보여줄 스토리 사진 -->
@@ -122,14 +121,20 @@
 				</div>
 				</div> <!-- board_view_list -->
 				
-				<div id="popular post"> <!-- 인기글 -->
+			<!-- <div class="popular_post">  <!-- 인기글 -->
+				<div id="popular_container"> 
 					<c:forEach var="popular" items="${board_list_popular}" end = '4'>
-						<div class="post_border">
-							<h4>"${popular.b_title}"</h4>
+						<div class="post_border" onclick="location.href='board_view?b_idx=${board.b_idx}'">
+							<div id="popular_img">
+							</div>
+							<div id="popular_content">
+							<h3>${popular.b_title}</h3>
+							<h4>${popular.b_content}</h4>
+							</div>
 						</div>
 					</c:forEach>
 				</div>
-				
+			</div> -->
 			</div><!-- <div id="board"> -->
 		</div><!-- child home -->
 	</div> <!--</div id="home_div"> -->
