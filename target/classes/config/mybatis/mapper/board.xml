@@ -8,12 +8,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- home.jsp에서 최신 것부터 보여주기 위한 select문 -->
 	<select id="select_board_list_popular" resultType="vo.BoardVO">
-		select *
-		from (select ROW_NUMBER() over(order by B_POSTED_DATE desc) rnum,
-		b.* from board_p_member_join_view b
-			WHERE B_ISFIXED ='0' AND M_ISMASTER ='1'
-		) ORDER BY B_LIKE_COUNT DESC
-	</select>
+        SELECT b.* FROM BOARD b LEFT JOIN P_MEMBER pm 
+        ON b.M_IDX =pm.M_IDX 
+        WHERE pm.M_ISMASTER = '0'
+        ORDER BY b.B_LIKE_COUNT desc
+    </select>
 	
 	<!-- 고정된 게시글 조회 -->
 	<select id="fixed_board_list" resultType="vo.BoardPMemberViewVO">
