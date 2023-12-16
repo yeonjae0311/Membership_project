@@ -121,7 +121,7 @@
 				</div>
 				</div> <!-- board_view_list -->
 				
-			<!-- <div class="popular_post">  <!-- 인기글 -->
+			<div class="popular_post">  <!-- 인기글 -->
 				<div id="popular_container"> 
 					<c:forEach var="popular" items="${board_list_popular}" end = '4'>
 						<div class="post_border" onclick="location.href='board_view?b_idx=${board.b_idx}'">
@@ -134,7 +134,7 @@
 						</div>
 					</c:forEach>
 				</div>
-			</div> -->
+			</div>
 			</div><!-- <div id="board"> -->
 		</div><!-- child home -->
 	</div> <!--</div id="home_div"> -->
