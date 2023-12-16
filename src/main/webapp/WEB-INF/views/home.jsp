@@ -16,14 +16,13 @@
 	<div id="header_bar"></div>
 		
 	<div id="home_div">
-		<div id="child_home">
-			<input type="button" value="buy membership" onclick="shop_payment()" style="cursor: pointer;">
-			
+		<div id="child_home">			
 			<div id="photo_banner">
 				<div class="left">
 					<input type="hidden" value="LEFT"> <!-- 배너 슬라이드 : 왼쪽 -->
 				</div>
 					<div class="photo_main">
+						<input id="buy_button" type="button" value="buy membership" onclick="shop_payment()" style="cursor: pointer;">
 						<div class="img_container">
 							<div class="img_slide">
 								<img class="banner_img" 
