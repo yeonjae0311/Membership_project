@@ -118,39 +118,38 @@
 						</div>
 					</c:forEach>
 				</div>
-				</div> <!-- board_view_list -->
-				
-			<!-- 인기글 피드 -->
+			</div> <!-- board_view_list -->
+		</div><!-- <div id="board"> -->
+			
+		<!-- 인기글 피드 -->
+		<div class="popular">
 			<div class="popular_list">
-				<h1 id="popuular_title">인기글</h1>
-				<div class="popular_container">
-					<ol id="p_wrap">
+				<div id="p_title">
+				<h1 id="popular_title">인기글</h1> 
+				<h1 id="p_like_count">좋아요</h1>
+				</div>
+			</div> <!-- popular_list -->
+			<div class="popular_container">
+				<ol id="p_ol">
 					<c:forEach var="p" items="${board_list_popular }" end="4">
 						<c:choose>
-							<c:when test="${not empty board.b_filename and board.b_filename ne 'no_file' }">
+							<c:when test="${not empty p.b_filename and p.b_filename ne 'no_file' }">
 								<li id="p_${p.b_idx }_list"> 
 									<a href="board_view?b_idx=${p.b_idx}">
 										<img id="p_img" alt="" 
 										src="${pageContext.request.contextPath}/resources/upload/board/${p.b_filename}">
 										${p.b_title }
+										<span id="li_like">${p.b_like_count }</span>
 									</a>
 								</li>
 							</c:when>
-							<c:otherwise>
-								<li id="p_${p.b_idx }_list">
-								<a href="board_view?b_idx=${p.b_idx}">
-										<img id="p_img" alt="" 
-										src="${pageContext.request.contextPath}/resources/upload/board/${p.b_filename }">
-										${p.b_title }
-								</a>
-								</li>
-							</c:otherwise>
 							</c:choose>
 					</c:forEach>
-					</ol>
-				</div>
-			</div> <!-- popular_list  -->
-		</div><!-- <div id="board"> -->
+				</ol>
+			</div>
+		</div><!-- popular  -->
+			
+			
 		</div><!-- child home -->
 	</div> <!--</div id="home_div"> -->
 	

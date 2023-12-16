@@ -5,6 +5,7 @@
 }
 #home_div{
 	display: flex;
+	align-items: center;
     justify-content: center; /* 수평 중앙 정렬 */
 }
 
@@ -150,43 +151,106 @@ h5{
 	object-fit: contain;
 }
 
-.popular_list{
-	margin-left: 5.5%;	
-	width: 45vw;
+.popular {
+    margin-left: 250px;
+    width: 500px;
+    height: auto;
     box-shadow: 6px 6px 1px 1px #bcecff;
-	border: 2px solid #ffebf7;
+    border: 2px solid #ffebf7;
+    padding: auto;
 }
 
-.popuular_title{
-	margin: 5%;
-	padding: 5%;
+.popular_list {
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
+    height: auto;
+}
+
+#p_title {
+    display: flex;
+    align-items: center;
+}
+
+.popular_list > a {
+    font-size: 5em;
+}
+
+#popular_title {
+    margin: 10px;
+    font-size: 1.5em;
+    font-family: 'Noto Sans Korean';
+}
+
+#p_like_count {
+    margin-left: 1000px;
+    font-size: 1em;
+    font-family: 'Noto Sans Korean';
+}
+
+#p_ol {
+    list-style: none;
+    padding: 0;
+}
+
+#p_ol>li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+#p_wrap {
+    display: flex;
+}
+
+#p_img {
+    margin: 5px;
+    padding: 1.5%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+#li_like {
+    margin-left: auto;
+}
+
+#p_like_count{
+	margin: 20px;
 	font-size:1em;
 	font-family: 'Noto Sans Korean';
-}
-
-ol{
-	margin: auto;
-	padding: auto;
-}
-
-li{
-	margin: auto;
-	padding: auto;
-}
-
-.p_wrap{
-	display: flex;
-}
-
-#p_img_wrapping{
 	
 }
 
+#p_ol{
+	list-style: none;
+    padding: 0;
+}
+
+#p_ol > li{
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+#p_wrap{
+	display: flex;
+}
+
 #p_img{
-	margin:auto;
+	margin: 5px;
 	padding: 1.5%;
-	width:50px;
-	height:50px;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
 	object-fit: contain;
 	cursor: pointer;
+}
+
+#li_like{
+	 margin-left: auto; 
 }
