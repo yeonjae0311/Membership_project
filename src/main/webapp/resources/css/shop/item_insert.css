@@ -1,1 +1,69 @@
 @charset "UTF-8";
+
+form{
+    width: 35vw;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 6px 6px 1px 1px #bcecff;
+	border: 2px solid #ffebf7;
+    padding-top: 2%;
+    padding-bottom: 1%;
+}
+
+input{
+    border: none;
+}
+
+.form_input_div{
+    width: 65%;
+    display: flex;
+    margin: 2% auto;
+}
+
+.form_input_div > p, .form_input_div > input[type="text"], .form_input_div > input[type="number"]{
+    border-bottom: 1px solid #ffa8db;
+}
+
+.form_div{
+    display: flex;
+    align-items: center;
+    width: 25em;
+    margin: 2% auto;
+}
+
+.form_div > p{
+    width: 9em;
+    text-align: right;
+    padding-right: 2%;
+}
+
+.form_photo_div{
+    width: 15em;
+    height: 15em;
+    border: 2.5px solid #ffebf7;
+    border-radius: 10px;
+    position: relative;
+}
+
+.form_photo_div > img{
+    padding: 2%;
+}
+
+input[type="file"]{
+    display: none;
+}
+
+.img_button{
+    width: 3em;
+    height: 3em;
+    position: absolute;
+    bottom: 2%;
+    right: 2%;
+}
+
+#button_bar{
+    margin: auto;
+    width: 15em;
+    display: flex;
+    justify-content: space-between;
+}
