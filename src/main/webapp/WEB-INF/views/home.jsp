@@ -14,7 +14,6 @@
 </head>
 <body>
 	<div id="header_bar"></div>
-		
 	<div id="home_div">
 		<div id="child_home">			
 			<div id="photo_banner">
@@ -22,7 +21,12 @@
 					<input type="hidden" value="LEFT"> <!-- 배너 슬라이드 : 왼쪽 -->
 				</div>
 					<div class="photo_main">
-						<input id="buy_button" type="button" value="membership" onclick="shop_payment()">
+						<div id="buy_button" onclick="shop_payment()">
+							<br>
+							<h3>New Jeans Membership </h3>
+							<br><br>
+							<h5>가입하기 </h5>
+						</div>
 						<div class="img_container">
 							<div class="img_slide">
 								<img class="banner_img" 
