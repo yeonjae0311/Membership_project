@@ -121,20 +121,35 @@
 				</div>
 				</div> <!-- board_view_list -->
 				
-			<div class="popular_post">  <!-- 인기글 -->
-				<div id="popular_container"> 
-					<c:forEach var="popular" items="${board_list_popular}" end = '4'>
-						<div class="post_border" onclick="location.href='board_view?b_idx=${board.b_idx}'">
-							<div id="popular_img">
-							</div>
-							<div id="popular_content">
-							<h3>${popular.b_title}</h3>
-							<h4>${popular.b_content}</h4>
-							</div>
+			<!-- 인기글 피드 -->
+			<div class="popular_user_board">
+			<div class="popular_view_list">
+				<div class="popular_container">
+					<c:forEach var="popular" items="${board_list_popular }" end="4">
+						<div class="popular_feed" onclick="location.href='board_view?b_idx=${popular.b_idx}'">
+							<c:choose>
+							<c:when test="${not empty popular.b_filename and popular.b_filename ne 'no_file' }">
+							<img class="popular_img"
+							 src="${pageContext.request.contextPath}/resources/upload/board/${popular.b_filename}"
+							 onclick="location.href='board_view?b_idx=${i.b_idx}'" style="cursor: pointer;"
+							 alt="${pageContext.request.contextPath}/resources/upload/board/유튜브`s 뉴진스 아이콘.jpg"> 
+							 <br>
+							<div class="board_text"> ${board.b_title } <br>
+							${board.b_content }</div>
+							</c:when>
+							<c:otherwise>
+							<img class="popular_img"
+							 src="${pageContext.request.contextPath}/resources/upload/board/newjeans_icon.jpg"
+							 onclick="location.href='board_view?b_idx=${i.b_idx}'" style="cursor: pointer;"> 
+							 <br>
+							<div class="board_text"> ${popular.b_title } <br>
+							${popular.b_content }</div>
+							</c:otherwise>
+							</c:choose>
 						</div>
 					</c:forEach>
 				</div>
-			</div>
+				</div> <!-- board_view_list -->
 			</div><!-- <div id="board"> -->
 		</div><!-- child home -->
 	</div> <!--</div id="home_div"> -->
