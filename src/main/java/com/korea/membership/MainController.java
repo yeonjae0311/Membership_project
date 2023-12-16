@@ -48,13 +48,11 @@ public class MainController {
 		// 게시판--------------
 		List<BoardPMemberViewVO> fixed_list = board_dao.fixed_board_list();
 		List<BoardPMemberViewVO> unfixed_master_list = board_dao.unfixed_master_board_list();
-		List<BoardPMemberViewVO> unfixed_fan_list = board_dao.unfixed_all_board_list();
-		List<BoardVO> board_list = board_dao.select_board_list();
+		List<BoardVO> board_list_popular = board_dao.select_board_list_popular();
 
 		model.addAttribute("fixed_list", fixed_list);
 		model.addAttribute("unfixed_master_list", unfixed_master_list);
-		model.addAttribute("unfixed_fan_list", unfixed_fan_list);
-		model.addAttribute("board_list", board_list);
+		model.addAttribute("board_list_popular", board_list_popular);
 		
 		PMemberVO membervo = (PMemberVO) session.getAttribute("id");
 		if (membervo == null) {

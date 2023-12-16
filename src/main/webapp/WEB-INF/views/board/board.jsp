@@ -33,14 +33,6 @@
 			<div class="board_list" id="fixed_list">
 				<div id="fixed_list_table">
 					<table class="b_list">
-						<!--
-						<tr>
-							<th>번호</th>
-							<th>제목</th>
-							<th>작성자</th>
-						</tr>
-						-->
-						
 						<tr>
 							<th id="pinned_th">
 								<img id="board_pin_icon" src="${pageContext.request.contextPath}/resources/img/pin_static_icon.png">
@@ -51,17 +43,9 @@
 						</tr>
 						<c:forEach var="i" items="${fixed_list}">
 							<tr>
-								<%--
-								<td>${i.b_idx}</td>
-								--%>
-								
 								<td>
 									<a href="board_view?b_idx=${i.b_idx}">${i.b_title} [${i.b_reply_count}]</a>
 								</td>
-								
-								<%--
-								<td>${i.m_username}</td>
-								--%>
 							</tr>
 						</c:forEach> 
 					</table>
@@ -98,8 +82,6 @@
 						</tr>
 					</table>
 				</div>
-				
-					
 				<div class="board_list" id="unfixed_fan_list">
 					<table class="b_list">
 						<tr class="title_tr">

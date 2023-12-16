@@ -79,8 +79,8 @@
 	   		</div>
 	   		
 	   		<div id=shop_button_bar>
-	   			<input type="button" value="장바구니" onclick="send_shopping_cart(this.form)">
-	   			<input type="button" value="결제하기" onclick="send_shop_payment()">
+	   			<input type="button" value="장바구니" onclick="send_shopping_cart(this.form)" style="cursor: pointer;">
+	   			<input type="button" value="결제하기" onclick="send_shop_payment()" style="cursor: pointer;">
 	   		</div>
 		</form>
 	</div>

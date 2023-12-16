@@ -7,8 +7,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 사고 방지를 위해서 일단은 alias를 이쪽에서는 사용하지 않고 테스트 -->
 	
 	<!-- home.jsp에서 최신 것부터 보여주기 위한 select문 -->
-	<select id="board_select" resultType="vo.BoardVO">
-		select * from board
+	<select id="select_board_list_popular" resultType="vo.BoardVO">
+		select *
+		from (select ROW_NUMBER() over(order by B_POSTED_DATE desc) rnum,
+		b.* from board_p_member_join_view b
+			WHERE B_ISFIXED ='0' AND M_ISMASTER ='1'
+		) ORDER BY B_LIKE_COUNT DESC
 	</select>
 	
 	<!-- 고정된 게시글 조회 -->

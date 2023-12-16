@@ -60,9 +60,9 @@
 				<div class="right">
 					<input type="hidden" value="RIGHT"> <!-- 배너 슬라이드 :  -->
 				</div>
-				</div>
+				</div> <!-- photo_banner div -->
 			
-			<!-- 스토리 4개 정도 출력해보기 시간되면 overflow로 숨기고 스토리 다 출력해도 괜찮을듯? -->
+			<!-- 스토리-->
 			<div class="story">
 				<div class="story_container">
 					<c:if test="${membervo.m_ismembership eq '1' }">
@@ -86,9 +86,9 @@
 						</c:forEach> 
 					</c:if>
 				</div>
-			</div>
+			</div> <!-- story div -->
 			
-			<!-- 최신글 5개 출력 -->
+			<!-- unfixed 관리자 피드 -->
 			<div class="board_div">
 			<input id="priority" type="hidden" value="${priority}">
 			<div class="board_view_list">
@@ -96,7 +96,7 @@
 					<c:forEach var="board" items="${unfixed_master_list }" end="4">
 						<div class="board_feed" onclick="location.href='board_view?b_idx=${board.b_idx}'">
 							<c:choose>
-							<c:when test="${not empty board.b_filename }">
+							<c:when test="${not empty board.b_filename and board.b_filename ne 'no_file' }">
 							<img class="board_img"
 							 src="${pageContext.request.contextPath}/resources/upload/board/${board.b_filename}"
 							 onclick="location.href='board_view?b_idx=${i.b_idx}'" style="cursor: pointer;"
@@ -105,21 +105,30 @@
 							<div class="board_text"> ${board.b_title } <br>
 							${board.b_content }</div>
 							</c:when>
-							<c:when test="${empty board.b_filename or board.b_filename eq no_file}">
+							<c:otherwise>
 							<img class="board_img"
 							 src="${pageContext.request.contextPath}/resources/upload/board/newjeans_icon.jpg"
-							 alt="사진이 준비되지 않았어요"> 
+							 onclick="location.href='board_view?b_idx=${i.b_idx}'" style="cursor: pointer;"> 
 							 <br>
 							<div class="board_text"> ${board.b_title } <br>
 							${board.b_content }</div>
-							</c:when>
+							</c:otherwise>
 							</c:choose>
 						</div>
 					</c:forEach>
 				</div>
+				</div> <!-- board_view_list -->
+				
+				<div id="popular post"> <!-- 인기글 -->
+					<c:forEach var="popular" items="${board_list_popular}" end = '4'>
+						<div class="post_border">
+							<h4>"${popular.b_title}"</h4>
+						</div>
+					</c:forEach>
 				</div>
+				
 			</div><!-- <div id="board"> -->
-		</div>
+		</div><!-- child home -->
 	</div> <!--</div id="home_div"> -->
 	
 	<div id="footer_bar"></div>

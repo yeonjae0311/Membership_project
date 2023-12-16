@@ -62,6 +62,7 @@
 #add_item > img{
     width: 12em;
     height: 12em;
+    cursor: pointer;
 }
 
 

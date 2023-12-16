@@ -23,9 +23,9 @@
 			재고 수량 : <input type="number" name="i_amount" min="1" max="99"><br>
 			상품 이미지 : <input type="file" name="i_photo"><br> 
 	   		상품 상세 이미지 : <input type="file" name="i_detail_photo"><br>	
-	    	<div id=button_bar>
-	    		<input type="button" value="등록하기" onclick="upload(this.form)">
-	    		<input type="button" value="취소하기" onclick="location.href='shop'">
+	    	<div id=button_bar> 
+	    		<input type="button" value="등록하기" onclick="upload(this.form)" style="cursor: pointer;">
+	    		<input type="button" value="취소하기" onclick="location.href='shop'" style="cursor: pointer;">
 	    	</div>
 	   	</form>
 	</div>

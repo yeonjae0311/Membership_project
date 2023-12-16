@@ -36,6 +36,10 @@ th, td{
 	padding: 2%;
 }
 
+td >img{
+	cursor: pointer;
+}
+
 th{
 	width: 6em;
 }
@@ -72,6 +76,7 @@ th{
 	margin-top: 2%;
     width: 10em;
 	float: right;
+	cursor: pointer;
 }
 
 .reply_div{

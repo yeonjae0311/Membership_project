@@ -89,8 +89,8 @@ public class BoardDAO {
 	}
 	
 	//home에서 전체 게시물을 조회하기 위한 코드
-	public List<BoardVO> select_board_list() {
-		return sqlSession.selectList("b.board_select");
+	public List<BoardVO> select_board_list_popular() {
+		return sqlSession.selectList("b.select_board_list_popular");
 	}
 	
 }

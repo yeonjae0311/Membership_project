@@ -7,9 +7,14 @@
 	object-fit:cover;
 }
 
+#item_delete_id, #button_plus, #button_minus{
+	cursor: pointer;
+}
+
 #item_info_div{
 	width: 200px;
 	height: 300px;
+	align-item : center;
 }
 				
 .item_img_div{

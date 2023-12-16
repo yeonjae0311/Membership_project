@@ -23,6 +23,10 @@
 	margin: 4%;
 }
 
+input {
+	cursor: pointer;
+}
+
 .item_detail_div{
 	display: flex;
 }
