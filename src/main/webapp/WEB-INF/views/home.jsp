@@ -63,8 +63,7 @@
 				<div class="right">
 					<input type="hidden" value="RIGHT"> <!-- 배너 슬라이드 :  -->
 				</div>
-				</div> <!-- photo_banner div -->
-			
+			</div> <!-- photo_banner_div -->
 			<!-- 스토리-->
 			<div class="story">
 				<div class="story_container">
@@ -98,22 +97,22 @@
 					<c:forEach var="board" items="${unfixed_master_list }" end="4">
 						<div class="board_feed" onclick="location.href='board_view?b_idx=${board.b_idx}'">
 							<c:choose>
-							<c:when test="${not empty board.b_filename and board.b_filename ne 'no_file' }">
-							<img class="board_img"
-							 src="${pageContext.request.contextPath}/resources/upload/board/${board.b_filename}"
-							 onclick="location.href='board_view?b_idx=${i.b_idx}'" style="cursor: pointer;"
-							 alt="${pageContext.request.contextPath}/resources/upload/board/유튜브`s 뉴진스 아이콘.jpg"> 
-							 <br>
-							<div class="board_text"> ${board.b_title } <br>
-							${board.b_content }</div>
-							</c:when>
-							<c:otherwise>
-							<img class="board_img"
-							 src="${pageContext.request.contextPath}/resources/upload/board/newjeans_icon.jpg"
-							 onclick="location.href='board_view?b_idx=${i.b_idx}'" style="cursor: pointer;"> 
-							 <br>
-							<div class="board_text"> ${board.b_title } <br>
-							${board.b_content }</div>
+								<c:when test="${not empty board.b_filename and board.b_filename ne 'no_file' }">
+									<img class="board_img"
+									 src="${pageContext.request.contextPath}/resources/upload/board/${board.b_filename}"
+									 onclick="location.href='board_view?b_idx=${i.b_idx}'" style="cursor: pointer;"
+									 alt="${pageContext.request.contextPath}/resources/upload/board/유튜브`s 뉴진스 아이콘.jpg"> 
+							 		<br>
+									<div class="board_text"> ${board.b_title } <br>
+									${board.b_content }</div>
+								</c:when>
+								<c:otherwise>
+									<img class="board_img"
+									 src="${pageContext.request.contextPath}/resources/upload/board/newjeans_icon.jpg"
+									 onclick="location.href='board_view?b_idx=${i.b_idx}'" style="cursor: pointer;"> 
+							 		<br>
+									<div class="board_text"> ${board.b_title } <br>
+									${board.b_content }</div>
 							</c:otherwise>
 							</c:choose>
 						</div>
@@ -122,34 +121,28 @@
 				</div> <!-- board_view_list -->
 				
 			<!-- 인기글 피드 -->
-			<div class="popular_user_board">
-			<div class="popular_view_list">
+			<div class="popular_list">
 				<div class="popular_container">
-					<c:forEach var="popular" items="${board_list_popular }" end="4">
-						<div class="popular_feed" onclick="location.href='board_view?b_idx=${popular.b_idx}'">
-							<c:choose>
-							<c:when test="${not empty popular.b_filename and popular.b_filename ne 'no_file' }">
-							<img class="popular_img"
-							 src="${pageContext.request.contextPath}/resources/upload/board/${popular.b_filename}"
-							 onclick="location.href='board_view?b_idx=${i.b_idx}'" style="cursor: pointer;"
-							 alt="${pageContext.request.contextPath}/resources/upload/board/유튜브`s 뉴진스 아이콘.jpg"> 
-							 <br>
-							<div class="board_text"> ${board.b_title } <br>
-							${board.b_content }</div>
-							</c:when>
-							<c:otherwise>
-							<img class="popular_img"
-							 src="${pageContext.request.contextPath}/resources/upload/board/newjeans_icon.jpg"
-							 onclick="location.href='board_view?b_idx=${i.b_idx}'" style="cursor: pointer;"> 
-							 <br>
-							<div class="board_text"> ${popular.b_title } <br>
-							${popular.b_content }</div>
-							</c:otherwise>
-							</c:choose>
+					<c:forEach var="p" items="${board_list_popular }" end="4">
+					<ol id="p_wrap">
+						<li id="p_${p.b_idx }_list">
+						<div id="popular_img">
+							<img alt="이미지가 없습니다." 
+							src="${pageContext.request.contextPath}/resources/upload/board/newjeans_icon.jpg"
+							onclick="location.href='board_view?b_idx=${p.b_idx}'" style="cursor: pointer;">
 						</div>
+							<div id="popular_content">
+							<a href="board_view?b_idx=${p.b_idx}">${p.b_title }</a>
+							</div>
+						
+					</ol>
 					</c:forEach>
 				</div>
-				</div> <!-- board_view_list -->
+			
+			</div>
+			
+			
+			
 			</div><!-- <div id="board"> -->
 		</div><!-- child home -->
 	</div> <!--</div id="home_div"> -->
