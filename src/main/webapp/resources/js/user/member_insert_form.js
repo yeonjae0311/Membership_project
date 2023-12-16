@@ -225,16 +225,16 @@ function tel_check(f) {
 	if(m_password == ''){
 		tel_check_alert.innerText = "전화번호를 입력하세요";
 		tel_check_alert.style.color = 'red';
-		let b_tel_check = false;
+		b_tel_check = false;
 		return;
 	}else if(!reg_tel.test(m_tel)){
 		tel_check_alert.innerText = "올바른 전화번호 형식이 아닙니다";
 		tel_check_alert.style.color = 'red';
-		let b_tel_check = false;
+		b_tel_check = false;
 		return;
 	} else {
 		tel_check_alert.innerText = "올바른 전화번호 형식입니다";
 		tel_check_alert.style.color = "#3781E3";
-		let b_tel_check = true;
+		b_tel_check = true;
 	}
 }

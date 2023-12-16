@@ -109,7 +109,7 @@ window.onload = function() {
 
 	console.log(begin_story_class)
 
-	if(begin_story_class!=null){
+	if(begin_story_class[0]!=null){
 		let s_idx = begin_story_class[0].value;
 		
 		let url = "story_update_read_hit";
