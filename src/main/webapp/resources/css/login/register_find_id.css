@@ -1,1 +1,45 @@
 @charset "UTF-8";
+
+#find_id_form{
+    width: 35em;
+    margin: 1% auto;
+    padding: 15px 0px 30px 50px;
+    border-radius: 10px;
+    box-shadow: 6px 6px 1px 1px #bcecff;
+	border: 2px solid #ffebf7;
+}
+
+#find_id_form > p{
+    font-size: 24px;
+}
+
+#find_id_form > div{
+    margin: 1% 1;
+}
+
+input[type="text"]{
+    font-size: 1.1em;
+    border-radius: 10px;
+    padding: 1% 1%;
+}
+
+p{
+    font-size: 1.1em;
+    padding: 1.1%;
+    margin: 2% 0;
+    border-radius: 10px;
+}
+
+input{
+    background: #bcecff;
+    border: none;
+    width: 68%;
+}
+
+#control_id{
+	height : 50px
+}
+
+#mail_check_input_info{
+	height : 30px
+}

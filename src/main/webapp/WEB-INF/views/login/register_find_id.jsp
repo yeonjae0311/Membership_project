@@ -15,23 +15,35 @@
 	<div id="header_bar"></div>
 	
 	<div>
-		<form>		
-			<div>아이디 찾기</div>
+		<form id="find_id_form">		
+			<p id="control_id">아이디 찾기</p>
+			
 			<div class="find_id">
-				<label class="control_label" for="m_name">성명</label>
-				<input class="form_control" type="text" id="m_name" name="m_name"/>
+				<p>
+					<label class="control_label" for="m_name">성명</label>
+				</p>
+				<p>
+					<input class="form_control" type="text" id="m_name" name="m_name" placeholder="이름을 적어주세요"/>
+				</p>
 			</div>
 			
 			<div class="find_id">
-				<label class="control_label" for="m_email">이메일</label>
-				<input name="m_email" id="m_email" onchange="change()">
-				<button id="auth_btn" type="button">이메일 인증하기</button>
-				<input class="mail_check_input" id="m_code" placeholder="인증번호를 적어주세요">
+				<p>
+					<label class="control_label" for="m_email">이메일</label>
+					
+				</p>
+				<p>
+					<input type="text" name="m_email" id="m_email" placeholder="이메일을 적어주세요">
+					<input id="auth_btn" type="button" value="이메일 인증">
+				</p>
+				<p>
+				<input type="text" class="mail_check_input" id="m_code" placeholder="인증번호를 적어주세요">
 				<div id="mail_check_input_info" ></div>
+				
 			</div>
 			
-			<div class="find_id">
-				<input type="button" value="완료" onclick="send_id(this.form)"> 
+			<div>
+				<input type="button" value="찾기" onclick="send_id(this.form)"> 
 				<input type="button" value="취소" onclick="location.href='main'">
 			</div>
 		</form>

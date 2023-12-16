@@ -2,14 +2,13 @@ function shop_payment(){
 	location.href = 'shop_payment';
 }
 
-
 //캐러셀 및 슬라이드 기능 구현
 
 window.onload = function(){
 	let images = document.querySelectorAll(".banner_img");
 	let current_idx = 0;
 	let position = 0;
-	const img_width = 60.1;  // css에서 설정한 width 값과 동일하게 맞춰주세요
+	const img_width = 68.2;  // css에서 설정한 width 값과 동일하게 맞춰주세요
 	const left_btn = document.querySelector(".left")
 	const right_btn = document.querySelector(".right")
 	const container = document.querySelector(".img_container")
@@ -33,6 +32,7 @@ window.onload = function(){
 		if(current_idx < images.length-1){
 			//left_btn.removeAttribute("disabled")
 			position -= img_width;
+			container.style.transition = '2s';
 			container.style.transform = `translateX(${position}vw)`;
 			current_idx = current_idx + 1;
 		}
@@ -40,6 +40,7 @@ window.onload = function(){
 			//right_btn.setAttribute('disabled', 'true');
 			current_idx = 0;
 			position = 0;
+			container.style.transition = 'none';
 			container.style.transform = `translateX(${position}vw)`;
 		}
 	}

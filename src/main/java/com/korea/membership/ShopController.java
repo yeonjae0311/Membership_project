@@ -54,10 +54,9 @@ public class ShopController {
 	POrderDAO porder_dao;
 	OrderDetailDAO order_detail_dao;
 
-	public ShopController(ItemDAO item_dao, CartDetailDAO cart_detail_dao, 
-						  BoardDAO board_dao, PMemberDAO pmember_dao,
-						  POrderDAO porder_dao, OrderDetailDAO order_detail_dao) {
-		
+	public ShopController(ItemDAO item_dao, CartDetailDAO cart_detail_dao, BoardDAO board_dao, PMemberDAO pmember_dao,
+			POrderDAO porder_dao, OrderDetailDAO order_detail_dao) {
+
 		this.item_dao = item_dao;
 		this.cart_detail_dao = cart_detail_dao;
 		this.board_dao = board_dao;
@@ -69,10 +68,10 @@ public class ShopController {
 	@RequestMapping("shop")
 	public String shop(Model model) {
 		PMemberVO vo = (PMemberVO) session.getAttribute("id");
-		if(vo==null) {
+		if (vo == null) {
 			return "redirect:login_form";
 		}
-		
+
 		int m_idx = vo.getM_idx();
 
 		// idx로 마스터 계정인지 판별하는 메서드 자리(이미 만든거 가져다 쓰기)
@@ -338,182 +337,187 @@ public class ShopController {
 	@RequestMapping("shop_payment")
 	public String shop_payment(Model model) {
 
+		PMemberVO vo = (PMemberVO) session.getAttribute("id");
+		if (vo == null) {
+			return "redirect:login_form";
+		}
+
 		// m_idx에 해당하는 유저정보 조회해서 바인딩
 
 		int m_idx = (int) session.getAttribute("m_idx");
 
-		PMemberVO vo = pmember_dao.select_one(m_idx);
+		vo = pmember_dao.select_one(m_idx);
 
 		model.addAttribute("vo", vo);
 
 		return Path.ShopPath.make_path("shop_payment");
 	}
-	
+
 	@RequestMapping("membership_shop_payment")
 	public String membership_shop_payment(Model model) {
 
 		// m_idx에 해당하는 유저정보 조회해서 바인딩
 
 		int m_idx = (int) session.getAttribute("m_idx");
-		
+
 		PMemberVO vo = pmember_dao.select_one(m_idx);
 
 		model.addAttribute("vo", vo);
 
 		return Path.ShopPath.make_path("membership_shop_payment");
 	}
-	
-	
+
 	@RequestMapping("cart_delete")
 	@ResponseBody
 	public String cart_delete(@RequestBody String body) {
 		ObjectMapper om = new ObjectMapper();
-			
+
 		Map<String, String> data = null;
-		
+
 		try {
 			data = om.readValue(body, new TypeReference<Map<String, String>>() {
 			});
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		int i_idx = Integer.parseInt(data.get("i_idx"));
 		int m_idx = (int) session.getAttribute("m_idx");
-		
-		HashMap<String, Integer> idx_map = new HashMap<String,Integer>();
+
+		HashMap<String, Integer> idx_map = new HashMap<String, Integer>();
 		idx_map.put("i_idx", i_idx);
 		idx_map.put("m_idx", m_idx);
-		
+
 		int res = cart_detail_dao.cart_delete(idx_map);
-		
-		if(res > 0) {
+
+		if (res > 0) {
 			return "{\"param\": \"success\"}";
 		} else {
 			return "{\"param\": \"fail\"}";
 		}
 	}
-	
 
 	@RequestMapping("membership_payment_completed")
 	public String payment_completed(Model model) {
-		
+
 		PMemberVO vo = (PMemberVO) session.getAttribute("id");
-		
+
 		int m_idx = vo.getM_idx();
 		item_dao.membership_buy(m_idx);
-		
-		int o_sum = 9900; 
+
+		int o_sum = 9900;
 		int o_count = 1;
-		
+
 		Map<String, Object> map_order = new HashMap<String, Object>();
-		map_order.put("o_sum", o_sum); map_order.put("o_count", o_count);
+		map_order.put("o_sum", o_sum);
+		map_order.put("o_count", o_count);
 		map_order.put("m_idx", m_idx);
-		 
+
 		porder_dao.order_insert(map_order);
-		  
+
 		Map<String, Object> map_detail = new HashMap<String, Object>();
-		
-		int i_idx = 1; // 멤버쉽 1개월 상품을 등록하고 i_idx를 지정해두어야함 
-		
+
+		int i_idx = 1; // 멤버쉽 1개월 상품을 등록하고 i_idx를 지정해두어야함
+
 		// 여기서 오류나면 item을 다지우고 첫번째 상품으로 멤버십 상품을 등록해주세요
-		int od_count = 1; 
+		int od_count = 1;
 		int od_sum = 9900;
-		 
-		map_detail.put("i_idx", i_idx); map_detail.put("od_count", od_count);
-		map_detail.put("od_sum", od_sum); map_detail.put("m_idx", m_idx);
-		
+
+		map_detail.put("i_idx", i_idx);
+		map_detail.put("od_count", od_count);
+		map_detail.put("od_sum", od_sum);
+		map_detail.put("m_idx", m_idx);
+
 		order_detail_dao.order_detail_insert(map_detail);
 
 		return "{\"param\": \"success\"}";
 	}
 
-	
 	@RequestMapping("payment_completed")
 	@ResponseBody
 	public String payment_completed(@RequestBody String body) throws ParseException {
-		
+
 		JSONParser parser = new JSONParser();
 		JSONObject object = (JSONObject) parser.parse(body);
 		String obj = String.valueOf(object.get("order_list_json"));
 		JSONObject object_new = (JSONObject) parser.parse(obj);
-		
-	    JSONObject total_count = (JSONObject) object_new.get("total_count");	
-	    String o_sum_str = String.valueOf(total_count.get("final_price"));
-	    String o_count_str = String.valueOf(total_count.get("total_amount"));
-		   
-	    int o_sum = Integer.parseInt(o_sum_str);
+
+		JSONObject total_count = (JSONObject) object_new.get("total_count");
+		String o_sum_str = String.valueOf(total_count.get("final_price"));
+		String o_count_str = String.valueOf(total_count.get("total_amount"));
+
+		int o_sum = Integer.parseInt(o_sum_str);
 		int o_count = Integer.parseInt(o_count_str);
 		int m_idx = (int) session.getAttribute("m_idx");
-		   
+
 		Map<String, Object> map_order = new HashMap<String, Object>();
 		map_order.put("o_sum", o_sum);
 		map_order.put("o_count", o_count);
 		map_order.put("m_idx", m_idx);
-		   
-		JSONArray items = (JSONArray)object_new.get("items");
-		   
+
+		JSONArray items = (JSONArray) object_new.get("items");
+
 		porder_dao.order_insert(map_order);
-		   	   
-		for(int i = 0 ; i<items.size();i++){	   
-			   
-		   Map<String, Object> map_detail = new HashMap<String, Object>();
-		   
-		   object = (JSONObject) items.get(i);
-           int i_idx = Integer.parseInt(String.valueOf(object.get("i_idx"))); 
-           int od_count = Integer.parseInt(String.valueOf(object.get("od_count"))); 
-           int od_sum = Integer.parseInt(String.valueOf(object.get("od_sum"))); 
-             
-           map_detail.put("i_idx", i_idx);
-           map_detail.put("od_count", od_count);
-           map_detail.put("od_sum", od_sum);
-           map_detail.put("m_idx", m_idx);        
-           
-           order_detail_dao.order_detail_insert(map_detail);
-		}	   	   	   
-		
+
+		for (int i = 0; i < items.size(); i++) {
+
+			Map<String, Object> map_detail = new HashMap<String, Object>();
+
+			object = (JSONObject) items.get(i);
+			int i_idx = Integer.parseInt(String.valueOf(object.get("i_idx")));
+			int od_count = Integer.parseInt(String.valueOf(object.get("od_count")));
+			int od_sum = Integer.parseInt(String.valueOf(object.get("od_sum")));
+
+			map_detail.put("i_idx", i_idx);
+			map_detail.put("od_count", od_count);
+			map_detail.put("od_sum", od_sum);
+			map_detail.put("m_idx", m_idx);
+
+			order_detail_dao.order_detail_insert(map_detail);
+		}
+
 		return "{\"param\": \"success\"}";
 	}
-	
+
 	@RequestMapping("completed_page")
 	public String completed_page(Model model) {
-		
+
 		LocalDateTime now = LocalDateTime.now();
 
 		String formatedNow = now.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분 ss초"));
-		
+
 		int m_idx = (int) session.getAttribute("m_idx");
-		
+
 		int o_idx = porder_dao.o_idx_select(m_idx);
-		
+
 		model.addAttribute("order_date", formatedNow);
 		model.addAttribute("order_num", o_idx);
-		
+
 		return Path.ShopPath.make_path("payment_completed");
 	}
-	
+
 	@RequestMapping("kakao")
 	@ResponseBody
 	public String kakao_payment(@RequestBody String body) {
 		ObjectMapper om = new ObjectMapper();
-		
+
 		Map<String, String> data = null;
-		
+
 		try {
 			data = om.readValue(body, new TypeReference<Map<String, String>>() {
 			});
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		String o_sum = data.get("o_sum");
 		String payment_name = "NEWJEANS MEMBERSHIP PAYMENT";
 		int membership = 0;
-		
+
 		session.setAttribute("membership", membership);
 		session.setAttribute("payment_name", payment_name);
 		session.setAttribute("payment_price", o_sum);
-		
+
 		return "{\"param\": \"success\"}";
 	}
 
@@ -521,24 +525,24 @@ public class ShopController {
 	@ResponseBody
 	public String membership_kakao_pay(@RequestBody String body) {
 		ObjectMapper om = new ObjectMapper();
-		
+
 		Map<String, String> data = null;
-		
+
 		try {
 			data = om.readValue(body, new TypeReference<Map<String, String>>() {
 			});
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		String o_sum = data.get("o_sum");
 		String payment_name = "NEWJEANS MEMBERSHIP 1개월";
 		int membership = 1;
-		
+
 		session.setAttribute("membership", membership);
 		session.setAttribute("payment_name", payment_name);
 		session.setAttribute("payment_price", o_sum);
-		
+
 		return "{\"param\": \"success\"}";
 	}
 }

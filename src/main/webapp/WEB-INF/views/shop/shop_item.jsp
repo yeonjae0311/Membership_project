@@ -43,7 +43,6 @@
 			</div>
 			
 			<div id=item_info_div>
-			
 				<div class=item_img_div>
 					<input type="hidden" id="item_img_id" value="${vo.i_photo_name}"> 
 					<img id=item_img src="${pageContext.request.contextPath}/resources/upload/shop/${vo.i_photo_name}"><br>

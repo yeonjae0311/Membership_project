@@ -99,18 +99,20 @@
 							<c:when test="${not empty board.b_filename }">
 							<img class="board_img"
 							 src="${pageContext.request.contextPath}/resources/upload/board/${board.b_filename}"
-							 onclick="location.href='board_view?b_idx=${i.b_idx}'" style="cursor: pointer;"> 
+							 onclick="location.href='board_view?b_idx=${i.b_idx}'" style="cursor: pointer;"
+							 alt="${pageContext.request.contextPath}/resources/upload/board/유튜브`s 뉴진스 아이콘.jpg"> 
 							 <br>
 							<div class="board_text"> ${board.b_title } <br>
 							${board.b_content }</div>
 							</c:when>
-							<c:otherwise>
+							<c:when test="${empty board.b_filename or board.b_filename eq no_file}">
 							<img class="board_img"
-							 src="${pageContext.request.contextPath}/resources/upload/board/유튜브`s 뉴진스 아이콘.jpg"> 
+							 src="${pageContext.request.contextPath}/resources/upload/board/newjeans_icon.jpg"
+							 alt="사진이 준비되지 않았어요"> 
 							 <br>
 							<div class="board_text"> ${board.b_title } <br>
 							${board.b_content }</div>
-							</c:otherwise>
+							</c:when>
 							</c:choose>
 						</div>
 					</c:forEach>
