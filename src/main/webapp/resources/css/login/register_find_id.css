@@ -43,3 +43,11 @@ input{
 #mail_check_input_info{
 	height : 30px
 }
+
+#auth_btn {
+	cursor: pointer;
+}
+
+#reg_btn_div > input[type="button"]{
+    cursor: pointer;
+}

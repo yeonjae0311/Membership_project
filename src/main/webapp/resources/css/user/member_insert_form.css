@@ -53,3 +53,11 @@ input[type="text"], input[type="password"]{
     border-radius: 10px;
     padding: 2% 6%;
 }
+
+#insert_btn_div > input[type="button"]{
+    cursor: pointer;
+}
+
+#input_form > input[type="button"]{
+    cursor: pointer;
+}

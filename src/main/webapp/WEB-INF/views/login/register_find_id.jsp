@@ -42,7 +42,7 @@
 				
 			</div>
 			
-			<div>
+			<div id="reg_btn_div">
 				<input type="button" value="찾기" onclick="send_id(this.form)"> 
 				<input type="button" value="취소" onclick="location.href='main'">
 			</div>

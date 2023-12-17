@@ -46,7 +46,8 @@ public class MainController {
 		List<BoardPMemberViewVO> fixed_list = board_dao.fixed_board_list();
 		List<BoardPMemberViewVO> unfixed_master_list = board_dao.unfixed_master_board_list();
 		List<BoardVO> board_list_popular = board_dao.select_board_list_popular();
-
+		
+		
 		model.addAttribute("fixed_list", fixed_list);
 		model.addAttribute("unfixed_master_list", unfixed_master_list);
 		model.addAttribute("board_list_popular", board_list_popular);

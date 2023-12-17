@@ -46,6 +46,12 @@ input[type="text"], input[type="password"]{
     padding-top: 8%;
 }
 
+#login_div > input[type="button"]{
+    width: 50%;
+    cursor: pointer;
+}
+
 #find_info_div > input[type="button"]{
     width: 50%;
+    cursor: pointer;
 }
