@@ -58,7 +58,7 @@ public class ItemDAO {
 	
 	//유저번호로 주문 목록 조회
 	public List<POrderVO> select_order_list(int m_idx){
-		return sqlSession.selectList("i.select_order_list",m_idx);
+		return sqlSession.selectList("i.select_order_list", m_idx);
 	}
 	
 	//한건의 주문 조회
