@@ -13,6 +13,18 @@
     font-size: 1em;
     padding: 3%;
     margin: 6% 6%;
+    height: 1px;
+}
+
+#check_alert{
+	font-size: 1em;
+    padding: 3%;
+    margin: 6% 6%;
+    height: 1px;
+}
+
+#check_mid{
+    padding: 1.4%;
 }
 
 #user_info_modify_form_button_div{

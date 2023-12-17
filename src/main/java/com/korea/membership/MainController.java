@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import dao.BoardDAO;
-import dao.PMemberDAO;
 import dao.StoryDAO;
 import util.Path;
 import vo.BoardPMemberViewVO;
@@ -22,7 +21,6 @@ import vo.StoryVO;
 @Controller
 public class MainController {
 
-	PMemberDAO pmember_dao;
 	StoryDAO story_dao;
 	BoardDAO board_dao;
 
@@ -32,10 +30,9 @@ public class MainController {
 	@Autowired
 	HttpSession session;
 
-	public MainController(StoryDAO story_dao, BoardDAO board_dao, PMemberDAO pmember_dao) {
+	public MainController(StoryDAO story_dao, BoardDAO board_dao) {
 		this.story_dao = story_dao;
 		this.board_dao = board_dao;
-		this.pmember_dao = pmember_dao;
 	}
 
 	@RequestMapping("/")

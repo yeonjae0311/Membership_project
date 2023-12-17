@@ -19,7 +19,7 @@
 		<input id="is_master" type="hidden" value="${is_master}">
 		
 		<div id="shop_banner_div">
-			<img id="shop_banner" src="${pageContext.request.contextPath}/resources/img/photo_banner/newjeans1.jpg">
+			<img id="shop_banner" src="${pageContext.request.contextPath}/resources/img/photo_banner/photocard.jpg">
 		</div>
 		
 		<div id="shop_items_div">
@@ -28,7 +28,7 @@
 					<div style="cursor:pointer;">
 						
 						<div class="item_one_img_div">
-							<img id="item_one" class="shop_photo" src="${pageContext.request.contextPath}/resources/upload/shop/${vo.i_detail_photo_name}">
+							<img id="item_one" class="shop_photo" src="${pageContext.request.contextPath}/resources/upload/shop/${vo.i_photo_name}">
 						</div>
 						
 						<div class="item_button_bar">

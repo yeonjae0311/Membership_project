@@ -211,6 +211,11 @@ function loadPage(...args){
 
 		final_list["total_amount"] = calc_total();
 		final_list["final_price"] = calc_price();
+		
+		if((calc_total()) == 0){
+			alert("장바구니에 상품이 없습니다")
+			return;
+		}
 
 		sessionStorage.setItem("order_list", JSON.stringify(order_list));
 
