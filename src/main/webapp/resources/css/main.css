@@ -189,7 +189,7 @@ textarea {
 	box-shadow: 6px 6px 1px 1px #bcecff;
 	border: 2px solid #ffebf7;
 
-	border-top: 1px solid #ffa8db;
-	
+	border-bottom: 1px solid #ffa8db;
+
 	border-bottom: #fac9e7;
 }
