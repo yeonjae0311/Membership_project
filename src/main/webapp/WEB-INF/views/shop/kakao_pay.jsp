@@ -15,7 +15,6 @@
 	        IMP.init('imp57607280');
 	        var msg;
 	        let order_list_json = localStorage.getItem("order_list_json");
-	        alert(order_list_json)
 	
 	        IMP.request_pay({
 	            pg: 'kakaopay',
