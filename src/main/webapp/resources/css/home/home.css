@@ -5,6 +5,7 @@
 }
 #home_div{
 	display: flex;
+	align-items: center;
     justify-content: center; /* 수평 중앙 정렬 */
 }
 
@@ -88,22 +89,32 @@ h5{
     margin-bottom : 2%; 
 }
 
+
 .story_container{
 	display: flex;
 }
 
+.story_content{
+	width: 175px;
+	height: 175px;
+	overflow:hidden;
+	margin: auto 20px auto 20px;
+}
+
 .story_img{
-	width: 15.5vw;
-	height: 30vh;
+	width: 100%;
+	height: 100%;
 	border-radius: 50%;
 	padding : auto;
-	margin: 20px 4px 20px 4px;
 	display: inline-block;
 	border: 5px solid #bcecff;
 	cursor: pointer;
+	display: block;
+	object-fit: contain;
 }
 
 .board_view_list{
+	margin: auto;
 	display: flex;
 	justify-content: center;
 }
@@ -133,31 +144,114 @@ h5{
 
 .board_img{
 	width: 100%; 
-	height:200px; 
+	height:190px; 
 	margin: auto; 
 	padding: auto;
 	border-radius: 10px;
+	object-fit: contain;
 }
 
-.popular_post{
-	overflow: hidden;
-}
-
-.popular_container{
-	diplay: flex;
-	width: 300px;
-	height: 300px
+.popular {
+    margin-left: 370px;
+    width: 500px;
+    height: auto;
     box-shadow: 6px 6px 1px 1px #bcecff;
-	border: 2px solid #ffebf7;
+    border: 2px solid #ffebf7;
+    padding: auto;
 }
 
-popular_img{
-	width: 175px;
-	height: 175px;
+.popular_list {
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
+    height: auto;
+}
+
+#p_title {
+    display: flex;
+    align-items: center;
+}
+
+.popular_list > a {
+    font-size: 5em;
+}
+
+#popular_title {
+    margin: 10px;
+    font-size: 1.5em;
+    font-family: 'Noto Sans Korean';
+}
+
+#p_like_count {
+    margin-left: autopx;
+    font-size: 1em;
+    font-family: 'Noto Sans Korean';
+}
+
+#p_ol {
+    list-style: none;
+    padding: 0;
+}
+
+#p_ol>li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+#p_wrap {
+    display: flex;
+}
+
+#p_img {
+    margin: 5px;
+    padding: 1.5%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+#li_like {
+    margin-left: auto;
+}
+
+#p_like_count{
+	margin: 20px;
+	font-size:1em;
+	font-family: 'Noto Sans Korean';
+	
+}
+
+#p_ol{
+	list-style: none;
+    padding: 0;
+}
+
+#p_ol > li{
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+#p_wrap{
+	display: flex;
+}
+
+#p_img{
+	margin: 5px;
+	padding: 1.5%;
+	width: 50px;
+	height: 50px;
 	border-radius: 50%;
-	padding : auto;
-	margin: 20px 20px 20px 20px;
-	display: inline-block;
-	border: 5px solid #bcecff;
+	object-fit: contain;
 	cursor: pointer;
+}
+
+#li_like{
+	 margin-left: auto; 
+	 margin-right: 30px;
 }
