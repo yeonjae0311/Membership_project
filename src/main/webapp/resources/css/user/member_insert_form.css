@@ -17,9 +17,9 @@
 
 label {
     display: inline-block;
-    width: 100px; /* 라벨의 너비를 조절해주세요 */
-    text-align: right;
-    margin-right: 10px; /* 라벨과 입력 요소 사이의 간격을 조절해주세요 */
+    width: 100px; 
+    text-align: left;
+    margin-right: 10px; 
 }
 
 #check_alert{

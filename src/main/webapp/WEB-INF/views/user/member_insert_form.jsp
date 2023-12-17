@@ -19,7 +19,7 @@
 		<form id="insert_form">
 			<p>회원가입</p>
 				<div id="input_form">
-					<label class="control_label" for="m_id">아이디</label>
+					<label class="control_label" for="m_id">아이디   </label>
 					<input name="m_id" id="m_id" type="text" oninput="check_id(this.form)" placeholder= "아이디를 입력해주세요">
 				</div>
 				
@@ -46,12 +46,12 @@
 				</div>
 				
 				<div id="input_form">
-					<label class="control_label" for="m_name">이름</label>
+					<label class="control_label" for="m_name">이름   </label>
 					<input name="m_name" id="m_name" type="text">
 				</div>
 			
 					<div id="input_form">
-					<label class="control_label" for="m_username">닉네임</label>
+					<label class="control_label" for="m_username">닉네임   </label>
 					<input name="m_username" id="m_username" type="text">
 				</div>
 				
