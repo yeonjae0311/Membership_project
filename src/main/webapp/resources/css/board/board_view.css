@@ -15,7 +15,7 @@
 	margin-bottom: 2%;
 }
 
-#id1{
+#board_view_table{
 	position: relative;
 }
 
@@ -29,14 +29,17 @@
 
 #like_count_div{
 	position: absolute;
-	bottom: 2%;
-	right: 7%;
+	bottom: 3%;
+	right: 2%;
+}
+
+#like_count_div > td{
+	display: flex;
 }
 
 #b_like_count{
 	border: none;
-	text-align: right;
-	width: 5em;
+	width: 2em;
 }
 
 #id1 > table{
@@ -61,8 +64,13 @@ th, td{
 	font-size: 1.3em;
 }
 
-td >img{
+/* td > img{
 	cursor: pointer;
+} */
+
+.button_img{
+	width: 2em;
+	height: 2em;
 }
 
 th{
@@ -114,11 +122,20 @@ th{
 	box-shadow: 6px 6px 1px 1px #bcecff;
 	border: 2px solid #ffebf7;
 	margin: 5% auto;
+	position: relative;
+}
+
+.delete_reply_button{
+	position: absolute;
+	width: 2em;
+	height: 2em;
+	top: 3%;
+	right: 2%;
 }
 
 .user_info_div{
 	display: flex;
-	padding-top: 2%;
+	padding-top: 4%;
     padding-left: 3%;
 }
 
@@ -148,12 +165,27 @@ th{
 	padding-right: 5%;
 }
 
+.reply_text_div{
+	width: 75%;
+	height: 5em;
+	border: 1px solid #ffa8db;
+	border-radius: 10px;
+	margin: 2% auto;
+	padding: 2%;
+	text-align: left;
+}
+
+.reply_like_div{
+	display: flex;
+	justify-content: right;
+}
+
 .like_img{
 	width: 2em;
 	height: 2em;
 }
 
-.button_img{
-	width: 25px;
-	height: 25px;
+.reply_like_count{
+	border: none;
+	width: 2em;
 }
