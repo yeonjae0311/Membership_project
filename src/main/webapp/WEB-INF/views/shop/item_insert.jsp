@@ -28,7 +28,7 @@
 				<p>
 					상품 가격 :
 				</p>
-				<input type="text" name="i_price">원
+				<input type="text" name="i_price">₩
 			</div>
 			
 			<div class="form_input_div">

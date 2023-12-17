@@ -29,7 +29,6 @@ function adjust_size(e){
         switch_value.value = "up";
         switch_img.src = window.location.origin + "/membership/resources/img/arrow_" + switch_value.value + "_icon.png";
 
-
         console.log(fixed_list_table)
         fixed_list_table.maxHeight = "100%";
     }else{
@@ -38,8 +37,6 @@ function adjust_size(e){
         
         fixed_list_table.maxHeight = "14vh";
     }
-
-
 }
 
 window.onload = function(){

@@ -52,7 +52,7 @@
 				</div>
 				
 				<div id="adjust_size_button_div">
-					<img id="adjust_size_button" data-value="down" src="${pageContext.request.contextPath}/resources/img/arrow_down_icon.png" onclick="adjust_size(event)">					
+					<img id="adjust_size_button" data-value="down" src="${pageContext.request.contextPath}/resources/img/arrow_down_icon.png" onclick="adjust_size(event)">
 				</div>
 			</div>
 			
