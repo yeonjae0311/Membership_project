@@ -51,11 +51,10 @@ function loadPage(...args){
 		item_detail_index.value = item.i_idx;
 		item_div.appendChild(item_detail_index);
 		
-		const item_delete = document.createElement("input");
+		const item_delete = document.createElement("img");
 		item_delete.id = "item_delete_" + i;
-		item_delete.type = "button";
 		item_delete.className = "item_delete";
-		item_delete.value = "x";
+		item_delete.src = IMG_PATH + "img/x_icon.png";
 		item_delete.addEventListener("click", (event) => {
 			cart_delete(i);
 		});
@@ -107,6 +106,7 @@ function loadPage(...args){
 		const item_detail_amount = document.createElement("input");
 		item_detail_amount.id = "item_detail_amount_" + i;
 		item_detail_amount.className = "item_detail_amount";
+		item_detail_amount.type = "text";
 		item_detail_amount.value = item.cd_count;
 		item_detail_amount.readOnly = true;
 		item_detail_amount_div.appendChild(item_detail_amount);
