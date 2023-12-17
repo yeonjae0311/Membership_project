@@ -158,7 +158,7 @@ function loadPage(...args){
 
 	const total_amount_div = document.createElement("div");
 	total_amount_div.id = "total_amount_div";
-	total_amount_div.innerHTML = "total: ";
+	total_amount_div.innerHTML = "total amount: ";
 
 	const total_amount = document.createElement("input");
 	total_amount.id = "total_amount";
@@ -171,7 +171,7 @@ function loadPage(...args){
 
 	const final_price_div = document.createElement("div");
 	final_price_div.id = "final_price_div";
-	final_price_div.innerHTML = "total: ";
+	final_price_div.innerHTML = "final price: ";
 
 	const final_price = document.createElement("input");
 	final_price.id = "final_price";
