@@ -41,7 +41,7 @@
 				
 			</div>
 			
-			<div class="find_password">
+			<div id="reg_btn_div">
 				<input type="button" value="찾기" onclick="javascript:send_password(this.form)"> 
 				<input type="button" value="취소" onclick="location.href='main'">
 			</div>

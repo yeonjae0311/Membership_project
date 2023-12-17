@@ -101,56 +101,27 @@
 									<img class="board_img"
 									 src="${pageContext.request.contextPath}/resources/upload/board/${board.b_filename}"
 									 onclick="location.href='board_view?b_idx=${i.b_idx}'"
-									 alt="${pageContext.request.contextPath}/resources/upload/board/유튜브`s 뉴진스 아이콘.jpg"> 
+									 alt="${pageContext.request.contextPath}/resources/upload/board/newjeans_rabbit.jpeg"> 
 							 		<br>
-									<div class="board_text"> ${board.b_title } <br>
-									${board.b_content }</div>
+									<div class="board_text">${board.b_content }</div>
+									<div class="board_name">NewJeans</div>
 								</c:when>
 								<c:otherwise>
 									<img class="board_img"
-									 src="${pageContext.request.contextPath}/resources/upload/board/newjeans_icon.jpg"
+									 src="${pageContext.request.contextPath}/resources/upload/board/newjeans_rabbit.jpeg"
 									 onclick="location.href='board_view?b_idx=${i.b_idx}'"> 
 							 		<br>
-									<div class="board_text"> ${board.b_title } <br>
-									${board.b_content }</div>
+									<div class="board_text">${board.b_content }</div>
+									<div class="board_name">NewJeans</div>
 							</c:otherwise>
+							
 							</c:choose>
 						</div>
+						
 					</c:forEach>
 				</div>
 			</div> <!-- board_view_list -->
 		</div><!-- <div id="board"> -->
-			
-		<!-- 인기글 피드 -->
-		<div class="popular">
-			<div class="popular_list">
-				<div id="p_title">
-				<h1 id="popular_title">인기글</h1> 
-				</div>
-				<h1 id="p_like_count">좋아요</h1>
-			</div> <!-- popular_list -->
-			<div class="popular_container">
-				<ol id="p_ol">
-					<c:forEach var="p" items="${board_list_popular }" end="4">
-						<c:choose>
-							<c:when test="${not empty p.b_filename and p.b_filename ne 'no_file' }">
-								<li id="p_${p.b_idx }_list"> 
-									<a href="board_view?b_idx=${p.b_idx}">  ${p.b_title }</a>
-									<span id="li_like">${p.b_like_count }</span>
-								</li>
-							</c:when>
-							<c:otherwise>
-								<li id="p_${p.b_idx }_list"> 
-									<a href="board_view?b_idx=${p.b_idx}">${p.b_title }</a>
-									<span id="li_like">${p.b_like_count }</span>
-								</li>
-							</c:otherwise>
-							</c:choose>
-					</c:forEach>
-				</ol>
-			</div>
-		</div><!-- popular  -->
-			
 			
 		</div><!-- child home -->
 	</div> <!--</div id="home_div"> -->

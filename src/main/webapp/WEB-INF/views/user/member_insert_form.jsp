@@ -91,7 +91,7 @@
 					<div id="birth_check_alert"></div>
 				</div>
 			
-			<div>
+			<div id="insert_btn_div">
 				<input type="button" value="가입" onclick="send(this.form)"> 
 				<input type="button" value="취소" onclick="location.href='main'">
 			</div>			
