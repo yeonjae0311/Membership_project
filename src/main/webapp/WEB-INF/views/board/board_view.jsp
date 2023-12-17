@@ -90,7 +90,7 @@
 				
 				<tr>
 					<td colspan="2">
-						<img class="button_img" src="${pageContext.request.contextPath}/resources/img/navigation.png" onclick="location.href='board'">
+						<img class="button_img" src="${pageContext.request.contextPath}/resources/img/arrow_back_icon.png" onclick="location.href='board'">
 					</td>
 				</tr>
 			</table>
@@ -128,10 +128,6 @@
 							</div>
 						</div>
 						
-						<div class="reply_text_div">
-							${i.r_content}
-						</div>
-						
 						<div class="reply_like_div">
 							<c:choose>
 								<c:when test="${i.rl_isliked eq '0'}">
@@ -150,6 +146,11 @@
 
 							<input class="reply_like_count" id="r_like_count_${i.r_idx}" type="text" value="${i.r_like_count}">
 						</div>
+						
+						<div class="reply_text_div">
+							${i.r_content}
+						</div>
+						
 						
 						<input id="rl_isliked_${i.r_idx}" type="hidden" value="${i.rl_isliked}" onclick="reply_like(${i.r_idx})">
 					</div>

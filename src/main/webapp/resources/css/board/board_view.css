@@ -29,7 +29,7 @@
 
 #like_count_div{
 	position: absolute;
-	bottom: 2%;
+	bottom: 3%;
 	right: 2%;
 }
 
@@ -64,8 +64,13 @@ th, td{
 	font-size: 1.3em;
 }
 
-td > img{
+/* td > img{
 	cursor: pointer;
+} */
+
+.button_img{
+	width: 2em;
+	height: 2em;
 }
 
 th{
@@ -161,21 +166,18 @@ th{
 }
 
 .reply_text_div{
-	width: 20em;
+	width: 75%;
 	height: 5em;
 	border: 1px solid #ffa8db;
 	border-radius: 10px;
-	margin-left: 5%;
-	margin-bottom: 2%;
+	margin: 2% auto;
 	padding: 2%;
 	text-align: left;
 }
 
 .reply_like_div{
-	position: absolute;
-	bottom: 10%;
-	right: 5%;
 	display: flex;
+	justify-content: right;
 }
 
 .like_img{
@@ -186,9 +188,4 @@ th{
 .reply_like_count{
 	border: none;
 	width: 2em;
-}
-
-.button_img{
-	width: 25px;
-	height: 25px;
 }
