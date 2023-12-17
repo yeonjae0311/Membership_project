@@ -5,18 +5,38 @@
 } */
 
 #board_view_div{
-	display: flex;
-	justify-content: center;
 	padding-top: 4%;
-	width: 80vw;
+	width: 45vw;
 	margin: auto;
-	justify-content: space-between;
+	text-align: center;
 }
 
 #id1, #reply_form_div{
-	width: 38vw;
-	height: 70vh;
 	margin-bottom: 2%;
+}
+
+#id1{
+	position: relative;
+}
+
+#delete_button{
+	width: 3em;
+	height: 3em;
+	position: absolute;
+	top: 2%;
+	right: 6%;
+}
+
+#like_count_div{
+	position: absolute;
+	bottom: 2%;
+	right: 7%;
+}
+
+#b_like_count{
+	border: none;
+	text-align: right;
+	width: 5em;
 }
 
 #id1 > table{
@@ -34,6 +54,11 @@
 
 th, td{
 	padding: 2%;
+}
+
+#post_title{
+	width: 20em;
+	font-size: 1.3em;
 }
 
 td >img{
@@ -79,9 +104,16 @@ th{
 	cursor: pointer;
 }
 
+#reply_list{
+	text-align: center;
+	margin-top: 3%;
+}
+
 .reply_div{
 	width: 34vw;
-	border: 1px solid #082a90;
+	box-shadow: 6px 6px 1px 1px #bcecff;
+	border: 2px solid #ffebf7;
+	margin: 5% auto;
 }
 
 .user_info_div{
@@ -116,14 +148,9 @@ th{
 	padding-right: 5%;
 }
 
-#reply_list{
-	height: 49vh;
-	overflow: auto;
-}
-
 .like_img{
-	width: 25px;
-	height: 25px;
+	width: 2em;
+	height: 2em;
 }
 
 .button_img{
