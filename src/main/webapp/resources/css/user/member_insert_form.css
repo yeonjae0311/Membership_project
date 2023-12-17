@@ -1,1 +1,55 @@
 @charset "UTF-8";
+
+#insert_form{
+    width: 20em;
+    margin: 1% auto;
+    padding: 3% 3%;
+    border-radius: 10px;
+    box-shadow: 6px 6px 1px 1px #bcecff;
+	border: 2px solid #ffebf7;
+    text-align: left;
+}
+
+#input_form{
+	display: flex; 
+	align-items: center;
+}
+
+label {
+    display: inline-block;
+    width: 100px; 
+    text-align: left;
+    margin-right: 10px; 
+}
+
+#check_alert{
+	font-size: 1em;
+    margin: 1%;
+}
+
+#insert_form > p{
+    font-size: 1.3em;
+}
+
+#insert_form > div{
+    margin: 6% 0;
+}
+
+p{
+    font-size: 1.1em;
+    padding: 3%;
+    margin: 1% 0;
+    border-radius: 10px;
+}
+
+input{
+    background: #bcecff;
+    border: none;
+    width: 88%;
+}
+
+input[type="text"], input[type="password"]{
+    font-size: 1.1em;
+    border-radius: 10px;
+    padding: 2% 6%;
+}
