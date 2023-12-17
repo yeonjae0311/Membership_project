@@ -135,16 +135,12 @@
 						<c:choose>
 							<c:when test="${not empty p.b_filename and p.b_filename ne 'no_file' }">
 								<li id="p_${p.b_idx }_list"> 
-									<img id="p_img" alt="" 
-									src="${pageContext.request.contextPath}/resources/upload/board/${p.b_filename}">
-									<a href="board_view?b_idx=${p.b_idx}">${p.b_title }</a>
+									<a href="board_view?b_idx=${p.b_idx}">  ${p.b_title }</a>
 									<span id="li_like">${p.b_like_count }</span>
 								</li>
 							</c:when>
 							<c:otherwise>
 								<li id="p_${p.b_idx }_list"> 
-									<img id="p_img" alt="" 
-									src="${pageContext.request.contextPath}/resources/upload/board/${p.b_filename}">
 									<a href="board_view?b_idx=${p.b_idx}">${p.b_title }</a>
 									<span id="li_like">${p.b_like_count }</span>
 								</li>

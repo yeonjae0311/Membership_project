@@ -237,6 +237,11 @@ h5{
     margin-bottom: 10px;
 }
 
+li > a{
+	margin-left: 13px;
+	text-decoration: none;
+}
+
 #p_wrap{
 	display: flex;
 }
