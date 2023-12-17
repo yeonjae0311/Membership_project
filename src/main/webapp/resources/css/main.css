@@ -179,14 +179,19 @@ textarea {
 	height: 5em;
 	text-align: center;
 	background: linear-gradient(0deg, #fac9e7 0%, #ffffff 100%);
+	padding-top: 40px;
+    margin-top: 4em;
 }
 
 #colors {
 	color: #bcecff;
 	font: #082a90;
 	border: #ffebf7;
+
 	box-shadow: 6px 6px 1px 1px #bcecff;
 	border: 2px solid #ffebf7;
+
 	border-top: 1px solid #ffa8db;
+	
 	border-bottom: #fac9e7;
 }

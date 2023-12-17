@@ -126,7 +126,7 @@ function send_to(page){
 
 // footer 만들기
 let footer = document.createElement("div");
-footer.innerHTML = "membership page(newjeans)";
+footer.innerHTML = "NEWJEANS MEMBERSHIP";
 
 document.getElementById("footer_bar").appendChild(footer);
 

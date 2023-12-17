@@ -55,7 +55,7 @@
 							</div>
 							<div class="img_slide">
 								<img class="banner_img" 
-								src="${pageContext.request.contextPath}/resources/img/photo_banner/bunnies_newjeans.jpg"  
+								src="${pageContext.request.contextPath}/resources/img/photo_banner/newjeans0.jpg"  
 								alt="이미지 유실">
 							</div>
 						</div>

@@ -20,53 +20,49 @@
 		<input type="hidden" id="b_idx" value="${vo.b_idx}">
 		<input type="hidden" id="m_idx" value="${id.m_idx}">
 		<div id="id1">
+			<img id="delete_button" src="${pageContext.request.contextPath}/resources/img/x_icon.png" onclick="delete_board_post()">
+			
+			<div id="like_count_div">
+				<input type="text" id="b_like_count" value=${vo.b_like_count} readonly>
+				
+				<c:choose>
+					<c:when test="${vo.bl_isliked eq '0'}">
+						<input type="hidden" id="like_count_id" value="0">
+						<input type="hidden" class="board_like_button" value="좋아요" onclick="board_like('${vo.b_idx}')">
+						<img class="like_img" id="like_img_b_${vo.b_idx}"
+								src="${pageContext.request.contextPath}/resources/img/likep.png"
+								onclick="board_like('${vo.b_idx}')">
+					</c:when>
+					
+					<c:when test="${vo.bl_isliked eq '1'}">
+						<input type="hidden" id="like_count_id" value="1">
+						<input type="hidden" class="board_like_button" value="좋아요 해제" onclick="board_like('${vo.b_idx}')">
+						<img class="like_img" id="like_img_b_${vo.b_idx}"
+								src="${pageContext.request.contextPath}/resources/img/liker.png"
+								onclick="board_like('${vo.b_idx}')">
+					</c:when>
+					
+					<c:otherwise>
+						${vo.bl_isliked }
+					</c:otherwise>
+				</c:choose>
+			</div>
+				
 			<table>
 				<tr>
-					<th>제목</th>
-					<td>${vo.b_title}</td>
+					<td id="post_title">${vo.b_title}</td>
 				</tr>
 				
 				<tr>
-					<th>작성자</th>
 					<td>${vo.m_username}</td>
 				</tr>
 				
 				<tr>
-					<th>작성일</th>
 					<td>${vo.b_posted_date}</td>
 				</tr>
 				
 				<tr>
-					<th>조회수</th>
-					<td>${vo.b_read_hit}</td>
-				</tr>
-				<tr>
-					<th>좋아요 !</th>
-					<td>
-						<input type="text" id="b_like_count" value=${vo.b_like_count} readonly>
-						
-						<c:choose>
-							<c:when test="${vo.bl_isliked eq '0'}">
-								<input type="hidden" id="like_count_id" value="0">
-								<input type="hidden" class="board_like_button" value="좋아요" onclick="board_like('${vo.b_idx}')">
-								<img class="like_img" id="like_img_b_${vo.b_idx}"
-										src="${pageContext.request.contextPath}/resources/img/likep.png"
-										onclick="board_like('${vo.b_idx}')">
-							</c:when>
-							
-							<c:when test="${vo.bl_isliked eq '1'}">
-								<input type="hidden" id="like_count_id" value="1">
-								<input type="hidden" class="board_like_button" value="좋아요 해제" onclick="board_like('${vo.b_idx}')">
-								<img class="like_img" id="like_img_b_${vo.b_idx}"
-										src="${pageContext.request.contextPath}/resources/img/liker.png"
-										onclick="board_like('${vo.b_idx}')">
-							</c:when>
-							
-							<c:otherwise>
-								${vo.bl_isliked }
-							</c:otherwise>
-						</c:choose>
-					</td>
+					<td>조회수: ${vo.b_read_hit}</td>
 				</tr>
 				
 				<c:if test="${id.m_ismaster eq '1'}">
@@ -89,7 +85,6 @@
 				<tr>
 					<td colspan="2">
 						<img class="button_img" src="${pageContext.request.contextPath}/resources/img/navigation.png" onclick="location.href='board'">
-						<img class="button_img" src="${pageContext.request.contextPath}/resources/img/remove.png" onclick="delete_board_post();">
 					</td>
 				</tr>
 			</table>

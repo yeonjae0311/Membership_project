@@ -17,7 +17,7 @@
 <body>
 	<div id="header_bar"></div>
 	
-	<div>
+	<div id="shop_payment_div">
 		<div>
 			<h1>결제하기</h1>	
 		</div>

@@ -1,4 +1,3 @@
-
 const order_list = {
 	"items": {},
 	"final_amount": {}
@@ -65,10 +64,6 @@ function item_delete(){
 	send_request(url, param, delete_return, "post"); 
 }
 
-function test(){
-	console.log("test");
-}
-
 function delete_return(...args){
 	let res = args[0].param;
 
@@ -90,8 +85,6 @@ window.onload = function() {
 }
 
 function send_shop_payment(){
-
 	location.href = 'shop_payment';
-		
 }
 
