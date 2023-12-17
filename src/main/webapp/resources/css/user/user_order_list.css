@@ -57,3 +57,7 @@ a{
 #go_to_order_detail_list{
 	font-size: 13px;
 }
+
+#none_order_list{
+	margin: 2em 4em;
+}
