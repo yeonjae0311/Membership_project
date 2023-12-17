@@ -27,8 +27,8 @@
 			<input type="hidden" id="m_idx" name="m_idx" value="${vo.m_idx }">
 			<input type="hidden" name="m_id" value="${vo.m_id }">
 			<div id="user_info_form_button_bar_div">
-				<input type="button" name="modify_form" value="수정하기" onclick="modify(this.form)">
-				<input type="button" value="회원탈퇴" onclick="delete_leave(this.form)">
+				<input type="button" name="modify_form" value="수정하기" onclick="modify(this.form)" style="cursor: pointer;">
+				<input type="button" value="회원탈퇴" onclick="delete_leave(this.form)" style="cursor: pointer;">
 			</div>
 		</form>
 	</div>

@@ -7,6 +7,10 @@
     padding: 0px 10%;
 }
 
+#file_upload, #delete_photo{
+	cursor: pointer;
+}
+
 #m_profile{
 	width: 200px;
 	height: 200px;
