@@ -85,8 +85,8 @@ h5{
 .story{
     display: flex;
     justify-content: center; /* 수평 중앙 정렬 */
-    margin-top : 2%; 
-    margin-bottom : 2%; 
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 
 
