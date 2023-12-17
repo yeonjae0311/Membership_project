@@ -8,7 +8,7 @@
 	<meta charset="UTF-8">
 	<title>MEMBERSHIP</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_css.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/shop/shop_item.js" defer></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/shop/shop_item.js" defer></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
 	<script>
@@ -38,38 +38,45 @@
 	
 	<div>
 		<form name="selected_item" action="shopping_cart_insert" method="POST">
-			<div>
-				<input type="button" id="item_delete_id" value="상품 삭제" onclick="item_delete()">
-			</div>
-			
 			<div id=item_info_div>
 				<div class=item_img_div>
 					<input type="hidden" id="item_img_id" value="${vo.i_photo_name}"> 
+					
 					<img id=item_img src="${pageContext.request.contextPath}/resources/upload/shop/${vo.i_photo_name}"><br>
+					
+					<div>
+						<img id="item_delete_id" src="${pageContext.request.contextPath}/resources/img/x_icon.png" onclick="item_delete()">
+					</div>
 				</div>
 				
-				<div>
+				<div class="shop_item_div">
 					<input type="hidden" id="i_idx" value="${vo.i_idx}">
 					<input type="hidden" name="i_name" id="i_name" value="${vo.i_name}">
-					<span>${vo.i_name}<br></span>
+					
+					<div>
+						${vo.i_name}
+					</div>
 				</div>
 				
-				<div>
+				<div id="item_detail" class="shop_item_div">
 					<input type="hidden" id="i_price" value="${vo.i_price}">
-					<span>${vo.i_price}<br></span>
+					
+					<div>
+						${vo.i_price}₩
+					</div>
+					
+					<div>
+						<select class="color_option" id="i_color" name="i_color" required>
+						    <c:forEach var="colors" items="${colors}">
+						    	<option value="${colors}">${colors}</option>
+						    </c:forEach>	   
+						</select>
+					</div>
 				</div>
 				
-				<div>
-					<select class="color_option" id="i_color" name="i_color" required>
-					    <c:forEach var="colors" items="${colors}">
-					    	<option value="${colors}">${colors}</option>
-					    </c:forEach>	   
-					</select>
-				</div>
-				
-				<div>
+				<div id="item_count_div">
 					<input type="button" id="button_plus" value=" + " onclick="item_amount(this.id)">
-					<input id="cd_count" value="1" readonly="readonly">
+					<input type="text" id="cd_count" value="1" readonly="readonly">
 					<input type="button" id="button_minus" value=" - " onclick="item_amount(this.id)">
 				</div>	
 	   		</div>
