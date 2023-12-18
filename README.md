@@ -59,8 +59,8 @@ CRUD webpage with **_HTML_** & **_CSS_** using **_Java_** backend and **_JavaScr
 
 ## Database Table
 
-> DB_tables.txt
-> 
+DB_tables.txt
+
 > **Database**
 > - 7 sequences
 > - 12 tables
