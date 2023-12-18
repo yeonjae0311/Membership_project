@@ -228,12 +228,17 @@ function order_insert_fn(){
 	}
 	
 	if(check_update_addr == 0) {
-		alert("1배송지 등록을 해주세요");
+		alert("배송지 등록을 해주세요");
 		return;
 	}
 	
 	if(check_oninput_addr == 0) {
-		alert("2배송지 등록을 해주세요");
+		alert("배송지 등록을 해주세요");
+		return;
+	}
+	
+	if(!document.getElementById("tos_checkbox").checked){
+		alert("약관에 동의해야 구매가 가능합니다.");
 		return;
 	}
 	

@@ -67,15 +67,14 @@
 		                });
 		                window.localStorage.setItem("isMembership", "1");
 		                // 성공시 이동할 페이지
-		                alert("멤버십 결제 성공")
 		                
 		                location.href = '<%=request.getContextPath()%>/completed_page';
 		            } else {
 		                msg = '결제에 실패하였습니다.';
-		                msg += '\에러내용 : ' + rsp.error_msg;
+		                // msg += '\에러내용 : ' + rsp.error_msg;
 		                // 실패시 이동할 페이지
 		                alert(msg);
-		                location.href = "shop_payment";
+		                location.href = "shop";
 		            }
 	        	} else {
 	        		if (rsp.success) {
@@ -113,15 +112,14 @@
 		                .catch(error => {
 		                    console.error('Error:', error.message);
 		                });
-		                alert("다른상품 결제 성공")
 		                // 성공시 이동할 페이지
 		                location.href = '<%=request.getContextPath()%>/completed_page';
 		            } else {
 		                msg = '결제에 실패하였습니다.';
-		                msg += '\에러내용 : ' + rsp.error_msg;
+		                // msg += '\에러내용 : ' + rsp.error_msg;
 		                // 실패시 이동할 페이지
 		                alert(msg);
-		                location.href = "shop_payment";
+		                location.href = "shop";
 		            }
 	        	}
 	            
