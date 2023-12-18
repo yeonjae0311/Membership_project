@@ -43,7 +43,7 @@
 		    </div>
 	        <div id="profile_button_bar_div">
 		        <input type="hidden" name="m_idx" value="${vo.m_idx}">
-		        <input type="button" value="수정하기" onclick="modify(this.form)">
+		        <input type="button" value="수정하기" onclick="modify(this.form)" style="cursor: pointer;">
 	        </div>	        
 	    </form>
 	</div>

@@ -46,9 +46,11 @@
 					</div>
 				</form>
 			</c:forEach>
+			<c:if test="${id.m_ismaster eq '1' }">
 			<div id="add_item" class="shop_item">
 				<img src="${pageContext.request.contextPath}/resources/img/add_icon.png" onclick="location.href='item_insert'">
 			</div>
+			</c:if>
 		</div>
 		
 	</div>

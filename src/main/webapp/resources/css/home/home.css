@@ -71,7 +71,6 @@ h5{
 	text-shadow: 2px 2px 2px white;
     font-size: 1.3em;
     padding-left: 3%;
-	
 }
 
 .left {
@@ -85,8 +84,8 @@ h5{
 .story{
     display: flex;
     justify-content: center; /* 수평 중앙 정렬 */
-    margin-top : 2%; 
-    margin-bottom : 2%; 
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 
 
@@ -132,15 +131,28 @@ h5{
 	border-radius: 10px;
 	border: 5px solid #ffebf7;
 	overflow: hidden;
+	cursor: pointer;
 }
 
 .board_text{
-	display : -webkit-box;
-	-webkit-line-clamp: 6;
+	height: 70px;
+	overflow: hidden;
+	white-space: normal;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
-	over-flow: hidden;
-	font-size: 0.9;
+	line-height : 1.3em;
+	padding: 2%;
+	border-top: 2px solid #ffebf7;
 }
+
+.board_name {
+	margin-top: auto; /* 남은 공간을 모두 차지하도록 설정 */
+	width: 30%;
+	margin: 4%;
+}
+
 
 .board_img{
 	width: 100%; 
@@ -149,114 +161,4 @@ h5{
 	padding: auto;
 	border-radius: 10px;
 	object-fit: contain;
-}
-
-.popular {
-    margin-left: 370px;
-    width: 500px;
-    height: auto;
-    box-shadow: 6px 6px 1px 1px #bcecff;
-    border: 2px solid #ffebf7;
-    padding: auto;
-}
-
-.popular_list {
-    display: flex;
-    justify-content: space-between;
-    width: 500px;
-    height: auto;
-}
-
-#p_title {
-    display: flex;
-    align-items: center;
-}
-
-.popular_list > a {
-    font-size: 5em;
-}
-
-#popular_title {
-    margin: 10px;
-    font-size: 1.5em;
-    font-family: 'Noto Sans Korean';
-}
-
-#p_like_count {
-    margin-left: autopx;
-    font-size: 1em;
-    font-family: 'Noto Sans Korean';
-}
-
-#p_ol {
-    list-style: none;
-    padding: 0;
-}
-
-#p_ol>li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
-#p_wrap {
-    display: flex;
-}
-
-#p_img {
-    margin: 5px;
-    padding: 1.5%;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: contain;
-    cursor: pointer;
-}
-
-#li_like {
-    margin-left: auto;
-}
-
-#p_like_count{
-	margin: 20px;
-	font-size:1em;
-	font-family: 'Noto Sans Korean';
-	
-}
-
-#p_ol{
-	list-style: none;
-    padding: 0;
-}
-
-#p_ol > li{
-	display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
-li > a{
-	margin-left: 13px;
-	text-decoration: none;
-}
-
-#p_wrap{
-	display: flex;
-}
-
-#p_img{
-	margin: 5px;
-	padding: 1.5%;
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	object-fit: contain;
-	cursor: pointer;
-}
-
-#li_like{
-	 margin-left: auto; 
-	 margin-right: 30px;
 }

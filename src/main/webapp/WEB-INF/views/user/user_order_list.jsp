@@ -24,7 +24,9 @@
 			<div id="user_order_list">
 				<c:choose>
 					<c:when test="${empty order_list}">
-					주문 목록이 없습니다.
+					<div id="none_order_list">
+						주문 목록이 없습니다.
+					</div>
 					</c:when>
 					<c:otherwise>	
 						<c:forEach items="${order_list}" var="order_i">
