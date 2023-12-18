@@ -1,25 +1,59 @@
 # Membership_project
-NewJeans
+NewJeans Membership Page
 
+## Purpose
+CRUD webpage with **HTML** & **CSS** using **Java** backend and **JavaScript** frontend
+ - Login
+
+> Login, Register, Find ID/PW with Email confirmation
+
+ - Story
+
+> Write and view Story posts
+>
+> Automatically deletes after 24hrs of posting
+
+ - Board
+ - Shop
+
+
+## Resources
+
+##### Languages
+ - Java
+ - JavaScript
+ - HTML
+ - CSS
+ - SQL
+ - Git
+
+##### Programs
+ - Oracle
+ - Figma
+ - Jira
+ - ERDCloud
+ - GitHub
+ - SVGRepo
+
+##### IDE
+ - DBeaver
+ - VSCode
+ - Spring
+ 
 ## Variable Naming
-.java/class name = PascalCase
-
-.jsp/folder name/variable name/method name = snake_case
-
-
-## 
+ - .java/class name = PascalCase
+ - .jsp/folder name/variable name/method name = snake_case
 
 
+ 
+ 
+ 
 
-## ORACLE TABLE LIST
+## DataBase Table
 
-CART_DETAIL TABLE
+> DB_tables.txt
+ 
 
--M_IDX
-
--I_IDX
-
--CD_COUNT
 
 
 ## flow

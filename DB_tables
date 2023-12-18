@@ -1,5 +1,5 @@
 --------------------------------------------------------------------------------
----------------------------------SEQUENCES
+---------------------------------SEQUENCES		(7 queries)
 --------------------------------------------------------------------------------
 
 CREATE SEQUENCE seq_board_idx
@@ -38,7 +38,7 @@ INCREMENT BY 1 --증감숫자가 양수면 증가 음수면 감소 디폴트는 
 START WITH 1;
 
 --------------------------------------------------------------------------------
----------------------------------TABLES
+---------------------------------TABLES		(56 queries)
 --------------------------------------------------------------------------------
 
 CREATE TABLE p_member (
@@ -113,7 +113,7 @@ CREATE TABLE order_detail (
 	od_idx	number		NOT NULL,
 	o_idx	number		NOT NULL,
 	i_idx	number		NULL,
-	od_count	number		NOT NULL,
+	od_count	number	NULL,
 	od_sum	number		NULL
 );
 
@@ -122,7 +122,7 @@ COMMENT ON COLUMN order_detail.od_count IS '아이템 주문 수량';
 CREATE TABLE cart_detail (
 	m_idx	number		NOT NULL,
 	i_idx	number		NULL,
-	cd_count	number		NOT NULL
+	cd_count	number	NULL
 );
 
 CREATE TABLE story (
@@ -167,7 +167,9 @@ CREATE TABLE reply_isLiked (
 
 CREATE TABLE p_order (
 	o_idx	number		NOT NULL,
-	m_idx	number		NOT NULL
+	m_idx	number		NOT NULL,
+	o_sum NUMBER 		NOT null,
+	o_count NUMBER		NOT NULL
 );
 
 ALTER TABLE p_member ADD CONSTRAINT PK_P_MEMBER PRIMARY KEY (
@@ -346,7 +348,7 @@ ADD CONSTRAINT pk_REPLY_ISLIKED
 PRIMARY key(r_idx,m_idx);
 
 --------------------------------------------------------------------------------
----------------------------------VIEWS
+---------------------------------VIEWS		(5 queries)
 --------------------------------------------------------------------------------
 
 --(글조회를 위한 조인)
@@ -398,15 +400,42 @@ CREATE OR REPLACE VIEW reply_view AS (
 	ON r.M_IDX =m.M_IDX
 );
 
+--(유저가 주문한 주문 번호의 상세정보를 조회를 위해 필요한 뷰)
+CREATE OR REPLACE VIEW order_detail_view as(
+	select od.*,
+	i.i_name,
+	i.i_price,
+	i.i_color,
+	i.i_photo_name,
+	i_detail_photo_name
+	FROM order_detail od LEFT JOIN item i
+	ON od.i_idx = i.i_idx
+);
+
+--(주문내역에 같이 가져갈 뷰)
+CREATE OR REPLACE VIEW P_ORDER_view AS(
+	SELECT o.o_idx,
+	max(o.m_idx) m_idx,
+	max(o.O_COUNT) O_COUNT,
+	max(o.o_sum) O_SUM,
+	CASE(max(o.O_COUNT)) WHEN 1 THEN max(odv.i_name) 
+	ELSE max(odv.i_name) || ' 외 ' || (max(o.O_COUNT)-1) || '개' END i_names ,
+	max(odv.i_photo_name) i_photo_name
+	FROM P_ORDER o 
+	LEFT JOIN (SELECT a.*,odv2.i_photo_name 
+	FROM (
+		SELECT o_idx,max(i_name) AS i_name 
+		FROM ORDER_DETAIL_VIEW GROUP BY o_idx
+		) a,ORDER_DETAIL_VIEW odv2 
+	WHERE (a.i_name=odv2.i_name)) odv
+	ON o.O_IDX =odv.O_IDX
+	group BY o.o_idx
+);
+
 --------------------------------------------------------------------------------
----------------------------------DUMMY DATA
+---------------------------------DUMMY DATA		(2 queries)
 --------------------------------------------------------------------------------
 
-INSERT INTO item VALUES (1,'아주예쁜후드티', 50000, 'red', 3,'i_photo_name','i_detail_photo_name');
-INSERT INTO item VALUES (2,'아주예쁜모자', 30000, 'white', 2,'i_photo_name','i_detail_photo_name');
-INSERT INTO item VALUES (3,'아주멋진바지', 20000, 'black', 1,'i_photo_name','i_detail_photo_name');
-
---PMember테이블
 INSERT INTO p_member values(
 	999,--인덱스
 	'root',--유저네임
@@ -425,193 +454,30 @@ INSERT INTO p_member values(
 	ADD_MONTHS(sysdate,-36)
 );
 
-INSERT INTO p_member values(
-	1001,
-	'testusername1',
-	'1111',
-	'testid1',
-	'testname1',
-	'010-1111-1111',
-	'테스트1@naver.com',
-	'유저사진이름1',
-	'0',--마스터 계정 체크 1이면 마스터 0이면 일반유저	
-	'1',--멤버십 계정 체크 1이면 멤버십 0이면 멤버십아님	
-	sysdate,--유효기간 디폴트는 sysdate
-	NULL,
-	NULL,
-	NULL,--미완성미완성미완성미완성미완성미완성미완성
-	ADD_MONTHS(sysdate,-36)
+INSERT INTO item VALUES (
+	seq_item_idx.nextval,
+	'Membership',
+	9900,
+	'none',
+	999,
+	'i_photo_name',
+	'i_detail_photo_name'
 );
 
 
-INSERT INTO p_member values(
-	1002,
-	'testusername2',
-	'1111',
-	'testid2',
-	'testname2',
-	'010-2222-2222',
-	'테스트2@naver.com',
-	'유저사진이름2',
-	'0',--마스터 계정 체크 1이면 마스터 0이면 일반유저	
-	'0',--멤버십 계정 체크 1이면 멤버십 0이면 멤버십아님	
-	ADD_MONTHS(sysdate,36),--유효기간 디폴트는 sysdate
-	NULL,
-	NULL,
-	NULL,--미완성미완성미완성미완성미완성미완성미완성
-	ADD_MONTHS(sysdate,-36)
-);
 
---보드 더미데이터 갱신
-	INSERT INTO board VALUES (
-	9991,--게시글번호
-	999,--작성자인덱스
-	'날씨 매우 좋네요',--게시글 제목
-	'안녕하세요 여러분 오늘 날씨가 매우 좋네요 그렇죠?
-	 안녕하세요 여러분 오늘 날씨가 매우 좋네요 그렇죠?
-	 안녕하세요 여러분 오늘 날씨가 매우 좋네요 그렇죠? 
-	안녕하세요 여러분 오늘 날씨가 매우 좋네요 그렇죠? 
-	안녕하세요 여러분 오늘 날씨가 매우 좋네요 그렇죠? 
-	안녕하세요 여러분 오늘 날씨가 매우 좋네요 그렇죠? ',--글내용 clob
-	NULL,
-	sysdate,--작성시간
-	'0',
-	'127.0.0.1',
-	0,
-	0
-);
 
-INSERT INTO board VALUES (
-	9992,--게시글번호
-	999,--작성자인덱스
-	'날씨 매우 좋네요',--게시글 제목
-	'안녕하세요 여러분 오늘 날씨가 매우 좋네요 그렇죠?
-	 안녕하세요 여러분 오늘 날씨가 매우 좋네요 그렇죠?
-	 안녕하세요 여러분 오늘 날씨가 매우 좋네요 그렇죠? 
-	안녕하세요 여러분 오늘 날씨가 매우 좋네요 그렇죠? 
-	안녕하세요 여러분 오늘 날씨가 매우 좋네요 그렇죠? 
-	안녕하세요 여러분 오늘 날씨가 매우 좋네요 그렇죠? ',--글내용 clob 
-	NULL,
-	sysdate,--작성시간
-	'0',
-	'127.0.0.1',
-	0,
-	0
-);
 
-INSERT INTO board VALUES (
-	9993,--게시글번호
-	999,--작성자인덱스
-	'날씨 매우 좋네요',--게시글 제목
-	'타인을 존중하고 배려해주세요 타인을 존중하고 배려해주세요 
-	타인을 존중하고 배려해주세요 타인을 존중하고 배려해주세요 
-	타인을 존중하고 배려해주세요 타인을 존중하고 배려해주세요 
-	타인을 존중하고 배려해주세요 타인을 존중하고 배려해주세요 
-	타인을 존중하고 배려해주세요  ',--글내용 clob 
-	NULL,
-	sysdate,--작성시간
-	'1',--1이면 공지글
-	'127.0.0.3',
-	0,
-	0
-);
 
-INSERT INTO board VALUES (
-	9994,--게시글번호
-	999,--작성자인덱스
-	'공지글 테스트 제목2',--게시글 제목
-	'타인을 존중하고 배려해주세요 타인을 존중하고 배려해주세요 
-	타인을 존중하고 배려해주세요 타인을 존중하고 배려해주세요 
-	타인을 존중하고 배려해주세요 타인을 존중하고 배려해주세요 
-	타인을 존중하고 배려해주세요 타인을 존중하고 배려해주세요 
-	타인을 존중하고 배려해주세요  ',--글내용 clob 
-	NULL,
-	sysdate,--작성시간
-	'1',--1이면 공지글
-	'127.0.0.4',
-	0,
-	0
-);
 
-INSERT INTO board VALUES (
-	1001,--게시글번호
-	1001,--작성자인덱스
-	'팬클럽 테스트 제목1',--게시글 제목
-	'팬클럽 회장님 입장하십니다.
-	팬클럽 회장님 입장하십니다.
-	팬클럽 회장님 입장하십니다.
-	팬클럽 회장님 입장하십니다.
-	팬클럽 회장님 입장하십니다. ',--글내용 clob 
-	NULL,
-	sysdate,--작성시간
-	'0',
-	'127.0.0.1',
-	0,
-	0
-);
 
-INSERT INTO board VALUES (
-	1002,--게시글번호
-	1001,--작성자인덱스
-	'팬클럽 테스트 제목2',--게시글 제목
-	'팬클럽 회장님 입장하십니다.
-	팬클럽 회장님 입장하십니다.
-	팬클럽 회장님 입장하십니다.
-	팬클럽 회장님 입장하십니다.
-	팬클럽 회장님 입장하십니다. ',--글내용 clob 
-	NULL,
-	sysdate,--작성시간
-	'0',
-	'127.0.0.2',
-	0,
-	0
-);
 
-INSERT INTO board VALUES (
-	1003,--게시글번호
-	1002,--작성자인덱스
-	'팬클럽 테스트 제목3',--게시글 제목
-	'팬클럽 회장님 퇴장하십니다.
-	팬클럽 회장님 퇴장하십니다.
-	팬클럽 회장님 퇴장하십니다.
-	팬클럽 회장님 퇴장하십니다.
-	팬클럽 회장님 퇴장하십니다. ',--글내용 clob 
-	NULL,
-	sysdate,--작성시간
-	'0',
-	'127.0.0.3',
-	0,
-	0
-);
 
-INSERT INTO board VALUES (
-	1004,--게시글번호
-	1002,--작성자인덱스
-	'팬클럽 테스트 제목4',--게시글 제목
-	'팬클럽 회장님 퇴장하셨습니다.
-	팬클럽 회장님 퇴장하셨습니다.
-	팬클럽 회장님 퇴장하셨습니다.
-	팬클럽 회장님 퇴장하셨습니다.
-	팬클럽 회장님 퇴장하셨습니다. ',--글내용 clob 
-	NULL,
-	sysdate,--작성시간
-	'0',
-	'127.0.0.4',
-	0,
-	0
-);
 
-INSERT INTO reply VALUES(
-	1000,
-	'내용물 엄청나게 긴것!!
-	내용물 엄청나게 긴것!!
-	내용물 엄청나게 긴것!!
-	내용물 엄청나게 긴것!!
-	내용물 엄청나게 긴것!!
-	내용물 엄청나게 긴것!!',
-	sysdate,
-	1004,
-	1001,
-	'127.0.0.1',
-	0
-);
+
+
+
+
+
+
+
