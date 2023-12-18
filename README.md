@@ -1,4 +1,4 @@
-# Membership_project
+# Membership Project
 NewJeans Membership Page
 
 ## Purpose
