@@ -62,8 +62,6 @@ function addr() {
     }).open();
 }
 
-
-
 function update_addr(){
 
 	let postcode = document.getElementById("postcode").value;
@@ -104,6 +102,7 @@ for(const key in order_item_list){
 
     const item_div = document.createElement("div");
     item_div.id = item["i_idx"];
+    item_div.className = "item_div"
 
     const item_photo = document.createElement("img");
     item_photo.className = "item_photo";
@@ -121,7 +120,7 @@ for(const key in order_item_list){
 
     const item_name = document.createElement("div");
     item_name.className = "item_name";
-    item_name.innerHTML = item["i_name"];
+    item_name.innerHTML = "이름: " + item["i_name"];
     item_info_left.appendChild(item_name);
 
     const item_color = document.createElement("div");
@@ -138,7 +137,7 @@ for(const key in order_item_list){
 
     const item_price = document.createElement("div");
     item_price.className = "total_price";
-    item_price.innerHTML = item["total_price"];
+    item_price.innerHTML = item["total_price"] + "₩";
     item_info_right.appendChild(item_price);
 
     item_info.appendChild(item_info_right);
@@ -151,7 +150,15 @@ for(const key in order_item_list){
 for(const key in totals){
     let total_amount = document.createElement("div");
     total_amount.id = key;
-    total_amount.innerHTML = `${key}: ${totals[key]}`
+    total_amount.className = "totals";
+    total_amount.innerHTML = `${key.split("_").join(" ")}:`;
+
+    let total_amount_input = document.createElement("input");
+    total_amount_input.type = "text";
+    total_amount_input.className = "total_amount_input";
+    total_amount_input.value = totals[key];
+    
+    total_amount.appendChild(total_amount_input);
 
     total_amount_div.appendChild(total_amount);
 }
@@ -162,8 +169,8 @@ const tos_checkbox = document.createElement("input");
 tos_checkbox.id = "tos_checkbox";
 tos_checkbox.type = "checkbox";
 
-tos_checkbox_div.appendChild(tos_checkbox);
 tos_checkbox_div.innerHTML = "주문자는 개인정보 제공 약관에 모두 동의합니다.";
+tos_checkbox_div.appendChild(tos_checkbox);
 
 button_bar_div.appendChild(tos_checkbox_div);
 
@@ -246,7 +253,25 @@ function order_insert_fn(){
 }
 
 function go_to_payment(...args) {  
-  	
 	location.href = "kakao_pay";
-  	
+}
+
+function adjust_size(e){
+    let switch_value = e.target.dataset;
+    
+    const toggle_img = document.getElementById("toggle_button");
+
+    const order_item_list_div = document.getElementById("order_item_list_div").style;
+
+    if(switch_value.value == "down"){
+        switch_value.value = "up";
+        toggle_img.src = window.location.origin + "/membership/resources/img/arrow_" + switch_value.value + "_icon.png";
+
+        order_item_list_div.maxHeight = "100%";
+    }else{
+        switch_value.value = "down";
+        toggle_img.src = window.location.origin + "/membership/resources/img/arrow_" + switch_value.value + "_icon.png";
+        
+        order_item_list_div.maxHeight = "18em";
+    }
 }
