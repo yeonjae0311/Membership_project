@@ -7,19 +7,19 @@ CRUD webpage with **_HTML_** & **_CSS_** using **_Java_** backend and **_JavaScr
 **Login**
 
 > Create, view, update, delete user information
-
+>
 > Login, Register, Find ID/PW with Email confirmation
 
 **Story**
 
 > Create and view Story posts
-
+>
 > Automatically deletes after 24hrs of posting
 
 **Board**
 
 > Create, view and delete Board posts
-
+>
 > Can pin posts as root user
 
 **Shop**
