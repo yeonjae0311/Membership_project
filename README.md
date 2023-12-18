@@ -7,16 +7,19 @@ CRUD webpage with **_HTML_** & **_CSS_** using **_Java_** backend and **_JavaScr
 **Login**
 
 > Create, view, update, delete user information
+
 > Login, Register, Find ID/PW with Email confirmation
 
 **Story**
 
 > Create and view Story posts
+
 > Automatically deletes after 24hrs of posting
 
 **Board**
 
 > Create, view and delete Board posts
+
 > Can pin posts as root user
 
 **Shop**
@@ -66,8 +69,13 @@ CRUD webpage with **_HTML_** & **_CSS_** using **_Java_** backend and **_JavaScr
 ## Authors
 
 Project Link: https://github.com/kyh012412/Membership_project
+
 @ [kangcs0993](https://github.com/kangcs0993)
+
 @ [Lee-chansu](https://github.com/Lee-chansu)
+
 @ [yeonjae0311](https://github.com/yeonjae0311)
+
 @ [kyh012412](https://github.com/kyh012412)
+
 @ [chai0805](https://github.com/chai0805)
