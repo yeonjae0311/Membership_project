@@ -1,15 +1,10 @@
-let b_email_check = false;
+
 let b_birth_check = false;
 let b_tel_check = false;
 
 function send(f){
 	
 	let m_name = document.getElementById("m_name");	
-	
-	if(!b_email_check){
-		alert('이메일 중복체크를 해주세요');
-		return;
-	}
 	
 	if(!b_birth_check){
 		alert('생년월일을 형식에 맞게 써주세요');
@@ -88,51 +83,3 @@ function birth_check(f) {
     }
 }
 
-function check_email(f){
-	let m_email = document.getElementById("m_email").value;
-	
-	let reg_email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-	
-	if(m_email == ''){
-		email_check_alert.innerText = '이메일을 입력하세요';
-		email_check_alert.style.color = 'red';
-		b_email_check = false;
-		b_email_auth = false;
-		return;
-	}
-	
-	if(!reg_email.test(m_email)){
-		email_check_alert.innerText = '올바른 이메일 형식이 아닙니다';
-		email_check_alert.style.color = 'red';
-		b_emai_check = false;
-		b_email_auth = false;
-		return;
-	}
-	
-	let url = "check_email";
-
-	let param = {
-		"m_email": encodeURIComponent(m_email)
-	};
-	send_request(url, param, e_check, "post");
-}
-
-function e_check(...args){
-	let res = args[0].param
-	
-	let form = document.getElementsByTagName("form")[0];
-	
-	if(res == 'ok_m_email'){
-		email_check_alert.innerText = "사용가능한 이메일입니다.";
-		email_check_alert.style.color = "#3781E3";
-		b_email_check = true;
-		b_email_auth = false;
-		form.m_email.focus();
-		return;
-	} else {
-		email_check_alert.innerText = "이미 사용중인 이메일입니다.";
-		email_check_alert.style.color = 'red';
-		b_emailCheck = false;
-		return;
-	}
-}

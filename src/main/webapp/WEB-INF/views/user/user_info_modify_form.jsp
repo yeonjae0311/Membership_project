@@ -41,7 +41,7 @@
 			<hr class="user_info_modify_form_hr">	
 					
 			<div class="modify_form_input_div">
-				이메일 : <input name="m_email" id="m_email" oninput="check_email(this.form)" value="${vo.m_email}" >
+				이메일 : <input name="m_email" id="m_email" value="${vo.m_email}" readonly >
 			</div>
 			<div id="check_alert">
 				<div id="email_check_alert"></div>
