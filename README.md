@@ -2,24 +2,30 @@
 NewJeans Membership Page
 
 ## Purpose
-CRUD webpage with **HTML** & **CSS** using **Java** backend and **JavaScript** frontend
- - Login
+CRUD webpage with **_HTML_** & **_CSS_** using **_Java_** backend and **_JavaScript_** frontend
 
+**Login**
+
+> Create, view, update, delete user information
 > Login, Register, Find ID/PW with Email confirmation
 
- - Story
+**Story**
 
-> Write and view Story posts
->
+> Create and view Story posts
 > Automatically deletes after 24hrs of posting
 
- - Board
- - Shop
+**Board**
 
+> Create, view and delete Board posts
+> Can pin posts as root user
+
+**Shop**
+
+> Create, view  and delete Shop items
 
 ## Resources
 
-##### Languages
+#### Languages
  - Java
  - JavaScript
  - HTML
@@ -27,7 +33,7 @@ CRUD webpage with **HTML** & **CSS** using **Java** backend and **JavaScript** f
  - SQL
  - Git
 
-##### Programs
+#### Programs
  - Oracle
  - Figma
  - Jira
@@ -35,7 +41,7 @@ CRUD webpage with **HTML** & **CSS** using **Java** backend and **JavaScript** f
  - GitHub
  - SVGRepo
 
-##### IDE
+#### IDE
  - DBeaver
  - VSCode
  - Spring
@@ -44,30 +50,24 @@ CRUD webpage with **HTML** & **CSS** using **Java** backend and **JavaScript** f
  - .java/class name = PascalCase
  - .jsp/folder name/variable name/method name = snake_case
 
-
- 
- 
- 
-
-## DataBase Table
+## Database Table
 
 > DB_tables.txt
- 
+> 
+> **Database**
+> - 7 sequences
+> - 12 tables
+> - 5 views
+> 
+> **Dummy Data**
+> - Root user
+> - Membership shop item
 
+## Authors
 
-
-## flow
-login
-	register -> login
-
-home
-	shop
-		shop item
-		shopping cart
-	board
-		board view
-		board post
-	story
-		story view
-	mypage
-		profile edit
+Project Link: https://github.com/kyh012412/Membership_project
+@ [kangcs0993](https://github.com/kangcs0993)
+@ [Lee-chansu](https://github.com/Lee-chansu)
+@ [yeonjae0311](https://github.com/yeonjae0311)
+@ [kyh012412](https://github.com/kyh012412)
+@ [chai0805](https://github.com/chai0805)
