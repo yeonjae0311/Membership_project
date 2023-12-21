@@ -50,8 +50,17 @@ public class BoardController {
 	}
 	
 	@RequestMapping("board")
-	public String board(Model model,String page1,String page2) {
-		session.removeAttribute("board_post_viewed");
+	public String board(Model model,String page1,String page2, String search_field, String search_word) {
+		session.removeAttribute("board_post_viewed");		
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		if(search_word != null && !search_word.isEmpty()) {
+			
+			map.put("search_field", search_field);						
+			map.put("search_word", "%"+search_word+"%");
+			System.out.println("search_field "+search_field);
+			System.out.println("search_word "+search_word);
+		}
 		
 		int nowPage1,nowPage2;
 		
@@ -65,31 +74,31 @@ public class BoardController {
 			nowPage2 = Integer.parseInt(page2);
 		}
 	
-		int count_unfixed_master_list = board_dao.count_unfixed_master_list();
-		int count_unfixed_fan_list = board_dao.count_unfixed_fan_list();
+		int count_unfixed_master_list = board_dao.count_unfixed_master_list(map);
+		System.out.println("고정하지 않은 마스터의 글의 개수 : "+count_unfixed_master_list);
+		
+		int count_unfixed_fan_list = board_dao.count_unfixed_fan_list(map);
+		System.out.println("고정하지 않은 모든유저의 글의 개수 : "+count_unfixed_fan_list);
 
 		int start1 = (nowPage1-1)*Common.BOARD_PER_PAGE+1;
 		int end1 = start1+Common.BOARD_PER_PAGE-1;
 		
-		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("start1", start1);
 		map.put("end1", end1);
-		
-		
-		
+				
 		int start2 = (nowPage2-1)*Common.BOARD_PER_PAGE+1;
 		int end2 = start2+Common.BOARD_PER_PAGE-1;		
 		
 		map.put("start2", start2);
 		map.put("end2", end2);		
 		
-		String pageMenu1 = Page.getPaging("board",
+		String pageMenu1 = Page.getPaging("board?search_field="+search_field+"&search_word="+search_word,
 				nowPage1, 
 				count_unfixed_master_list, 
 				Common.BOARD_PER_PAGE, 
 				Common.BLOCKPAGE);
 		
-		String pageMenu2 = Page.getPaging2("board",
+		String pageMenu2 = Page.getPaging2("board?search_field="+search_field+"&search_word="+search_word,
 				nowPage2, 
 				count_unfixed_fan_list, 
 				Common.BOARD_PER_PAGE, 
@@ -104,6 +113,7 @@ public class BoardController {
 		model.addAttribute("fixed_list",fixed_list);
 		model.addAttribute("unfixed_master_list",unfixed_master_list);
 		model.addAttribute("unfixed_fan_list",unfixed_fan_list);
+		
 		int priority;
 		if(nowPage1==1) {
 			priority=2; 
@@ -349,4 +359,5 @@ public class BoardController {
             return "{\"param\": \"fail\",\"b_idx\":\""+b_idx+"\"}";
         }
 	}
+	
 }

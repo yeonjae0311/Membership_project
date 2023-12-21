@@ -40,7 +40,7 @@ public class Page {
 		sb= new StringBuffer();
 		//------- 그룹페이지 처리 이전----------------------------------------------------------------------------------------
 		if(isPrevPage) {
-			sb.append("<a href='"+pageURL+"?page1=");
+			sb.append("<a href='"+pageURL+"&page1=");
 			sb.append(startPage-1);
 			sb.append("'><img src='resources/img2/btn_prev.gif'></a>");
 		}else {
@@ -57,7 +57,7 @@ public class Page {
 				sb.append(i);
 				sb.append("</font></b>");
 			}else {
-				sb.append("&nbsp;<a href='"+pageURL+"?page1=");
+				sb.append("&nbsp;<a href='"+pageURL+"&page1=");
 				sb.append(i);
 				sb.append("'>");
 				sb.append(i);
@@ -67,7 +67,7 @@ public class Page {
 		sb.append("&nbsp; ");
 		//------- 그룹페이지 처리 다음----------------------------------------------------------------------------------------
 		if(isNextPage) {
-			sb.append("<a href='"+pageURL+"?page1=");
+			sb.append("<a href='"+pageURL+"&page1=");
 			sb.append(endPage+1);
 			sb.append("'><img src='resources/img2/btn_next.gif'></a>");
 		}else {
@@ -118,7 +118,7 @@ public class Page {
 		sb= new StringBuffer();
 		//------- 그룹페이지 처리 이전----------------------------------------------------------------------------------------
 		if(isPrevPage) {
-			sb.append("<a href='"+pageURL+"?page2=");
+			sb.append("<a href='"+pageURL+"&page2=");
 			sb.append(startPage-1);
 			sb.append("'><img src='resources/img2/btn_prev.gif'></a>");
 		}else {
@@ -135,7 +135,7 @@ public class Page {
 				sb.append(i);
 				sb.append("</font></b>");
 			}else {
-				sb.append("&nbsp;<a href='"+pageURL+"?page2=");
+				sb.append("&nbsp;<a href='"+pageURL+"&page2=");
 				sb.append(i);
 				sb.append("'>");
 				sb.append(i);
@@ -145,7 +145,7 @@ public class Page {
 		sb.append("&nbsp; ");
 		//------- 그룹페이지 처리 다음----------------------------------------------------------------------------------------
 		if(isNextPage) {
-			sb.append("<a href='"+pageURL+"?page2=");
+			sb.append("<a href='"+pageURL+"&page2=");
 			sb.append(endPage+1);
 			sb.append("'><img src='resources/img2/btn_next.gif'></a>");
 		}else {

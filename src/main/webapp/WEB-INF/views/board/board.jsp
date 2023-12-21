@@ -10,6 +10,16 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/board/board.js" defer></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
+	<script type="text/javascript">
+		function search(){
+			let search_field_value = document.getElementById('search_field').value;
+			let search_word_value = document.getElementById('search_word').value;
+			alert(search_field_value);
+			alert(search_word_value);
+			
+			location.href='board?&search_field='+search_field_value+'&search_word='+search_word_value;
+		}
+	</script>
 </head>
 <body>
 	<div id="header_bar"></div>
@@ -97,13 +107,22 @@
 								
 								<td class="board_post_username">${i.m_username}</td>
 							</tr>
-						</c:forEach>
-						
+						</c:forEach>													
 						<tr>
 							<td colspan="2" class="paging_td">${pageMenu2}</td>
 						</tr>
 					</table>
-				</div>
+				</div>				
+			</div>
+			<div class="search_td">
+				<form>
+					<select id="search_field">
+						<option value="b_title">제목</option>
+						<option value="b_content">내용</option>
+					</select>
+					<input type="text" id="search_word" placeholder="검색어를 입력해주세요">
+					<input type="button" value="검색" onclick="search()">
+				</form>
 			</div>
 		</div>
 	</div>
