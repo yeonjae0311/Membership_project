@@ -130,6 +130,38 @@ public class BoardController {
 		return Path.BoardPath.make_path("board");
 	}
 	
+	@RequestMapping("edit_board_post")
+	@ResponseBody
+	public String after_edit_board_post(@RequestBody String body) {
+		ObjectMapper om = new ObjectMapper();
+
+	    Map<String, String> data = null;
+	    
+	    try {
+	    	data = om.readValue(body, new TypeReference<Map<String, String>>() {});
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+	    
+	    int m_idx = Integer.parseInt(data.get("m_idx"));
+	    int b_idx = Integer.parseInt(data.get("b_idx"));
+	    
+	    HashMap<String, Object> map = new HashMap<String, Object>();
+	    map.put("m_idx", m_idx);
+	    map.put("b_idx", b_idx);
+	    
+	    BoardPMemberViewVO result = board_dao.board_select_one(map);
+	    //본인이 쓴글이면 result잇음
+	    //본인이 아니면 null
+	    
+	    if(result!=null) {
+			return "{\"res\": \"success\"}";			
+		}else {
+			return "{\"res\": \"fail\"}";	
+		}
+	}
+	
+	
 	@RequestMapping("board_post")
 	public String board_post() {
 		return Path.BoardPath.make_path("board_post");

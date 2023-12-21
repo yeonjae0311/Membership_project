@@ -4,6 +4,7 @@ let b_idx,m_idx;
 window.onload = function(){
 	b_idx = document.getElementById('b_idx').value;
 	m_idx = document.getElementById('m_idx').value;
+	
 	if(b_idx == '1'){
 		bl_isliked = '1';
 	}else{

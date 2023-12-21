@@ -12,6 +12,30 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
 	<jsp:include page="/WEB-INF/views/login_check.jsp" />
+	<script type="text/javascript">
+		function edit_board_post(){
+			let b_idx = document.getElementById('b_idx').value;
+			let m_idx = document.getElementById('m_idx').value;
+			
+			let url = "edit_board_post";
+			let param ={
+				"b_idx" : b_idx,
+				"m_idx" : m_idx
+			};
+			
+			send_request(url,param,after_edit_board_post,"post")
+		}
+		
+		function after_edit_board_post(...args){
+			let res = args[0].res;
+			if(res == 'success'){
+				location.href='board_edit_form';
+			}else{
+				alert('글 수정 권한이 없습니다.');
+			}
+		}
+	</script>
+	
 </head>
 <body>
 	<div id="header_bar"></div>
@@ -24,6 +48,7 @@
 				<tr>
 					<td>
 						<img id="delete_button" src="${pageContext.request.contextPath}/resources/img/x_icon.png" onclick="delete_board_post()">
+						<img id="edit_button" src="${pageContext.request.contextPath}/resources/img/x_icon.png" onclick="edit_board_post()">
 					</td>
 				</tr>
 				

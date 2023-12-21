@@ -14,8 +14,6 @@
 		function search(){
 			let search_field_value = document.getElementById('search_field').value;
 			let search_word_value = document.getElementById('search_word').value;
-			alert(search_field_value);
-			alert(search_word_value);
 			
 			location.href='board?&search_field='+search_field_value+'&search_word='+search_word_value;
 		}
