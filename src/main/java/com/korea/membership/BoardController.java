@@ -50,8 +50,17 @@ public class BoardController {
 	}
 	
 	@RequestMapping("board")
-	public String board(Model model,String page1,String page2) {
-		session.removeAttribute("board_post_viewed");
+	public String board(Model model,String page1,String page2, String search_field, String search_word) {
+		session.removeAttribute("board_post_viewed");		
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		if(search_word != null && !search_word.isEmpty()) {
+			
+			map.put("search_field", search_field);						
+			map.put("search_word", "%"+search_word+"%");
+			System.out.println("search_field "+search_field);
+			System.out.println("search_word "+search_word);
+		}
 		
 		int nowPage1,nowPage2;
 		
@@ -65,31 +74,31 @@ public class BoardController {
 			nowPage2 = Integer.parseInt(page2);
 		}
 	
-		int count_unfixed_master_list = board_dao.count_unfixed_master_list();
-		int count_unfixed_fan_list = board_dao.count_unfixed_fan_list();
+		int count_unfixed_master_list = board_dao.count_unfixed_master_list(map);
+		System.out.println("고정하지 않은 마스터의 글의 개수 : "+count_unfixed_master_list);
+		
+		int count_unfixed_fan_list = board_dao.count_unfixed_fan_list(map);
+		System.out.println("고정하지 않은 모든유저의 글의 개수 : "+count_unfixed_fan_list);
 
 		int start1 = (nowPage1-1)*Common.BOARD_PER_PAGE+1;
 		int end1 = start1+Common.BOARD_PER_PAGE-1;
 		
-		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("start1", start1);
 		map.put("end1", end1);
-		
-		
-		
+				
 		int start2 = (nowPage2-1)*Common.BOARD_PER_PAGE+1;
 		int end2 = start2+Common.BOARD_PER_PAGE-1;		
 		
 		map.put("start2", start2);
 		map.put("end2", end2);		
 		
-		String pageMenu1 = Page.getPaging("board",
+		String pageMenu1 = Page.getPaging("board?search_field="+search_field+"&search_word="+search_word,
 				nowPage1, 
 				count_unfixed_master_list, 
 				Common.BOARD_PER_PAGE, 
 				Common.BLOCKPAGE);
 		
-		String pageMenu2 = Page.getPaging2("board",
+		String pageMenu2 = Page.getPaging2("board?search_field="+search_field+"&search_word="+search_word,
 				nowPage2, 
 				count_unfixed_fan_list, 
 				Common.BOARD_PER_PAGE, 
@@ -104,6 +113,7 @@ public class BoardController {
 		model.addAttribute("fixed_list",fixed_list);
 		model.addAttribute("unfixed_master_list",unfixed_master_list);
 		model.addAttribute("unfixed_fan_list",unfixed_fan_list);
+		
 		int priority;
 		if(nowPage1==1) {
 			priority=2; 
@@ -119,6 +129,38 @@ public class BoardController {
 		
 		return Path.BoardPath.make_path("board");
 	}
+	
+	@RequestMapping("check_edit_board_post")
+	@ResponseBody
+	public String after_edit_board_post(@RequestBody String body) {
+		ObjectMapper om = new ObjectMapper();
+
+	    Map<String, String> data = null;
+	    
+	    try {
+	    	data = om.readValue(body, new TypeReference<Map<String, String>>() {});
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+	    
+	    int m_idx = Integer.parseInt(data.get("m_idx"));
+	    int b_idx = Integer.parseInt(data.get("b_idx"));
+	    
+	    HashMap<String, Object> map = new HashMap<String, Object>();
+	    map.put("m_idx", m_idx);
+	    map.put("b_idx", b_idx);
+	    
+	    BoardPMemberViewVO result = board_dao.board_select_one(map);
+	    //본인이 쓴글이면 result잇음
+	    //본인이 아니면 null
+	    
+	    if(result!=null) {
+			return "{\"res\": \"success\"}";			
+		}else {
+			return "{\"res\": \"fail\"}";	
+		}
+	}
+	
 	
 	@RequestMapping("board_post")
 	public String board_post() {
@@ -178,6 +220,59 @@ public class BoardController {
 		}		
 	}
 	
+	@RequestMapping("board_post_update")
+	public String board_post_update(BoardVO vo) {		
+		PMemberVO user_vo = (PMemberVO) session.getAttribute("id");
+		if(user_vo==null) {
+			return "redirect:login_form";
+		}
+		
+		vo.setB_ip(request.getRemoteAddr());
+		
+		String webPath = "/resources/upload/board";
+		String savePath = request.getServletContext().getRealPath(webPath);
+		
+		PMemberVO Logined_vo = (PMemberVO)session.getAttribute("id");
+		vo.setM_idx(Logined_vo.getM_idx());
+		
+		MultipartFile file = vo.getB_file();
+		String filename = vo.getB_filename();
+		
+		//파일처리
+		if(!file.isEmpty() || file == null) {
+			filename = file.getOriginalFilename();
+			
+			File saveFile = new File(savePath,filename);
+			if(!saveFile.exists()) {
+				saveFile.mkdirs();
+			}else {
+				//동일파일명 방지
+				long time = System.currentTimeMillis();
+				
+				int pointidx = filename.indexOf(".");
+				String b = filename.substring(pointidx,filename.length());
+				filename = filename.substring(0,pointidx);
+				
+				filename = String.format("%s_%d",filename, time)+b;
+				
+				saveFile = new File(savePath,filename);
+			}
+			try {
+				file.transferTo(saveFile);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		vo.setB_filename(filename);
+		int res = board_dao.board_update(vo);
+		if(res>0) {
+			return "redirect:board";
+		}else {
+			return null;
+		}		
+	}
+	
 	@RequestMapping("board_reply")
 	public String board_reply(ReplyVO vo) {
 		
@@ -227,6 +322,46 @@ public class BoardController {
 		model.addAttribute("reply_list",reply_list);
 		
 		return Path.BoardPath.make_path("board_view");
+	}
+	
+	@RequestMapping("board_edit_form")
+	public String board_edit_form(Model model,String b_idx) {
+		
+		int b_idx_int;		
+		
+		//문자열이 잘 못 넘어온 경우에 대한 예외처리
+		if(b_idx!=null && !b_idx.isEmpty()) {			
+			try {
+				b_idx_int = Integer.parseInt(b_idx);				
+			} catch (Exception e) {
+				e.printStackTrace();
+				return "login_form";
+			}			
+		}else {
+			return "login_form";
+		}
+		
+		PMemberVO user_vo = (PMemberVO)session.getAttribute("id");
+		
+		if(user_vo==null){
+			return "login_form";
+		}
+		
+		int m_idx = user_vo.getM_idx();
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("b_idx", b_idx_int);
+		map.put("m_idx", m_idx);
+		
+		BoardPMemberViewVO vo = board_dao.board_select_one(map);
+		
+		if(vo==null) {
+			return "login_form";
+		}
+		
+		model.addAttribute("vo", vo);
+		
+		return Path.BoardPath.make_path("board_edit_form");
 	}
 	
 	@RequestMapping("delete_board_post")
@@ -349,4 +484,5 @@ public class BoardController {
             return "{\"param\": \"fail\",\"b_idx\":\""+b_idx+"\"}";
         }
 	}
+	
 }

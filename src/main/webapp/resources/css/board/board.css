@@ -134,3 +134,33 @@ td{
     padding: 3% 0;
     text-align: center;
 }
+
+#search_field{
+	height: 3em;
+    width: 6em;
+    outline: none;
+    padding: 0.5em;
+    margin: 1%;
+    box-sizing: border-box;
+    background: none;
+    border-radius: 20px;
+    box-shadow: 3px 3px 1px 1px #bcecff;
+    border: 2px solid #ffebf7;
+}
+
+#search_word{
+	height: 3em;
+    width: 12em;
+    outline: none;
+    padding: 0.5em;
+    margin: 1%;
+    box-sizing: border-box;
+    background: none;
+    border-radius: 20px;
+    box-shadow: 3px 3px 1px 1px #bcecff;
+    border: 2px solid #ffebf7;
+}
+
+#search_td{
+	margin:10px;
+}

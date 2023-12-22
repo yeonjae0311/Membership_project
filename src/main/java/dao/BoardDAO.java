@@ -80,17 +80,21 @@ public class BoardDAO {
 		return sqlSession.update("b.recalculate_total_like",b_idx);
 	}
 	
-	public int count_unfixed_master_list() {
-		return sqlSession.selectOne("b.count_unfixed_master_list");
+	public int count_unfixed_master_list(HashMap<String, Object> map) {
+		return sqlSession.selectOne("b.count_unfixed_master_list",map);
 	}
 	
-	public int count_unfixed_fan_list() {
-		return sqlSession.selectOne("b.count_unfixed_fan_list");
+	public int count_unfixed_fan_list(HashMap<String, Object> map) {
+		return sqlSession.selectOne("b.count_unfixed_fan_list",map);
 	}
 	
 	//home에서 전체 게시물을 조회하기 위한 코드
 	public List<BoardVO> select_board_list_popular() {
 		return sqlSession.selectList("b.select_board_list_popular");
+	}
+	
+	public int board_update(BoardVO vo) {
+		return sqlSession.update("b.board_update",vo);
 	}
 	
 }

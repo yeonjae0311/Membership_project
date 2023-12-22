@@ -57,5 +57,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete reply
 		where r_idx=#{r_idx}
 	</delete>
+	
+	<select id="select_one_reply" parameterType="java.util.HashMap" resultType="int">
+		select count(*) from reply
+		where m_idx=#{m_idx} and r_idx=#{r_idx}
+	</select>
+	
+	<update id="update_reply" parameterType="vo.ReplyVO">
+		update reply
+		set r_content=#{r_content},
+		r_date = sysdate
+		where r_idx=#{r_idx}
+	</update>
 
 </mapper>

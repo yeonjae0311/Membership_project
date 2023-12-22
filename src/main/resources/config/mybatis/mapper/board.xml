@@ -26,9 +26,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where m_idx = #{m_idx}
 	</select>
 	
-	<select id="count_unfixed_master_list" resultType="int">
+	<select id="count_unfixed_master_list" parameterType="java.util.HashMap" resultType="int">
 		select count(*) from board_p_member_join_view
 		WHERE B_ISFIXED ='0' AND M_ISMASTER ='1'
+		<if test="search_word != null">
+			<choose>
+				<when test="search_field == 'b_title'">
+					and b_title like #{search_word}
+				</when>
+				<when test="search_field == 'b_content'">				
+					and b_content like #{search_word}
+				</when>
+			</choose>
+		</if>
 	</select>
 	
 	<select id="unfixed_master_board_list" parameterType="java.util.HashMap" resultType="vo.BoardPMemberViewVO">
@@ -36,6 +46,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from (select ROW_NUMBER() over(order by B_POSTED_DATE desc) rnum,
 		b.* from board_p_member_join_view b
 			WHERE B_ISFIXED ='0' AND M_ISMASTER ='1'
+			<if test="search_word != null">
+			<choose>
+				<when test="search_field == 'b_title'">
+					and b_title like #{search_word}
+				</when>
+				<when test="search_field == 'b_content'">				
+					and b_content like #{search_word}
+				</when>
+			</choose>
+		</if>
 		)
 		where rnum between #{start1} and #{end1}
 	</select>
@@ -45,12 +65,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from (select ROW_NUMBER() over(order by B_POSTED_DATE desc) rnum,
 		b.* from board_p_member_join_view b
 			WHERE B_ISFIXED ='0' AND M_ISMASTER ='1'
+			<if test="search_word != null">
+				<choose>
+					<when test="search_field == 'b_title'">
+						and b_title like #{search_word}
+					</when>
+					<when test="search_field == 'b_content'">				
+						and b_content like #{search_word}
+					</when>
+				</choose>
+			</if>
 		)
 	</select>
 	
-	<select id="count_unfixed_fan_list" resultType="int">
+	<select id="count_unfixed_fan_list" parameterType="java.util.HashMap" resultType="int">
 		select count(*) from board_p_member_join_view
 		WHERE B_ISFIXED ='0'
+		<if test="search_word != null">
+			<choose>
+				<when test="search_field == 'b_title'">
+					and b_title like #{search_word}
+				</when>
+				<when test="search_field == 'b_content'">				
+					and b_content like #{search_word}
+				</when>
+			</choose>
+		</if>
 	</select>
 	
 	<select id="unfixed_all_board_list" resultType="vo.BoardPMemberViewVO">
@@ -58,6 +98,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from (select ROW_NUMBER() over(order by B_POSTED_DATE desc) rnum,
 		b.* from board_p_member_join_view b
 			WHERE B_ISFIXED ='0'
+			<if test="search_word != null">
+				<choose>
+					<when test="search_field == 'b_title'">
+						and b_title like #{search_word}
+					</when>
+					<when test="search_field == 'b_content'">				
+						and b_content like #{search_word}
+					</when>
+				</choose>
+			</if>
 		)
 		where rnum between #{start2} and #{end2}
 	</select>
@@ -67,6 +117,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from (select ROW_NUMBER() over(order by B_POSTED_DATE desc) rnum,
 		b.* from board_p_member_join_view b
 			WHERE B_ISFIXED ='0'
+			<if test="search_word != null">
+				<choose>
+					<when test="search_field == 'b_title'">
+						and b_title like #{search_word}
+					</when>
+					<when test="search_field == 'b_content'">				
+						and b_content like #{search_word}
+					</when>
+				</choose>
+			</if>
 		)
 	</select>
 	
@@ -145,6 +205,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="recalculate_total_like" parameterType="int">
 		update board
 		set b_like_count = (select count(*) from BOARD_ISLIKED where b_idx=#{b_idx})
+		where b_idx=#{b_idx}
+	</update>
+	
+	<update id="board_update" parameterType="vo.BoardVO">
+		update board
+		set b_title=#{b_title},
+		b_content=#{b_content},
+		b_filename=#{b_filename},
+		b_ip=#{b_ip},
+		b_posted_date=sysdate
 		where b_idx=#{b_idx}
 	</update>
 </mapper>
