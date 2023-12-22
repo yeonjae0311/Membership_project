@@ -17,7 +17,7 @@
 			let b_idx = document.getElementById('b_idx').value;
 			let m_idx = document.getElementById('m_idx').value;
 			
-			let url = "edit_board_post";
+			let url = "check_edit_board_post";
 			let param ={
 				"b_idx" : b_idx,
 				"m_idx" : m_idx
@@ -29,7 +29,9 @@
 		function after_edit_board_post(...args){
 			let res = args[0].res;
 			if(res == 'success'){
-				location.href='board_edit_form';
+				let b_idx = document.getElementById('b_idx').value;
+				
+				location.href='board_edit_form?b_idx='+b_idx;
 			}else{
 				alert('글 수정 권한이 없습니다.');
 			}
@@ -116,6 +118,7 @@
 				<tr>
 					<td colspan="2">
 						<img class="button_img" src="${pageContext.request.contextPath}/resources/img/arrow_back_icon.png" onclick="location.href='board'">
+						<img class="button_img" alt="글 수정하기" src="${pageContext.request.contextPath}/resources/img/arrow_back_icon.png" onclick="edit_board_post()">
 					</td>
 				</tr>
 			</table>

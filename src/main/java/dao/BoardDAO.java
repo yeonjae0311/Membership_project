@@ -93,4 +93,8 @@ public class BoardDAO {
 		return sqlSession.selectList("b.select_board_list_popular");
 	}
 	
+	public int board_update(BoardVO vo) {
+		return sqlSession.update("b.board_update",vo);
+	}
+	
 }

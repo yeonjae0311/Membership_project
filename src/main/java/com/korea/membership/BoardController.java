@@ -130,7 +130,7 @@ public class BoardController {
 		return Path.BoardPath.make_path("board");
 	}
 	
-	@RequestMapping("edit_board_post")
+	@RequestMapping("check_edit_board_post")
 	@ResponseBody
 	public String after_edit_board_post(@RequestBody String body) {
 		ObjectMapper om = new ObjectMapper();
@@ -220,6 +220,59 @@ public class BoardController {
 		}		
 	}
 	
+	@RequestMapping("board_post_update")
+	public String board_post_update(BoardVO vo) {		
+		PMemberVO user_vo = (PMemberVO) session.getAttribute("id");
+		if(user_vo==null) {
+			return "redirect:login_form";
+		}
+		
+		vo.setB_ip(request.getRemoteAddr());
+		
+		String webPath = "/resources/upload/board";
+		String savePath = request.getServletContext().getRealPath(webPath);
+		
+		PMemberVO Logined_vo = (PMemberVO)session.getAttribute("id");
+		vo.setM_idx(Logined_vo.getM_idx());
+		
+		MultipartFile file = vo.getB_file();
+		String filename = vo.getB_filename();
+		
+		//파일처리
+		if(!file.isEmpty() || file == null) {
+			filename = file.getOriginalFilename();
+			
+			File saveFile = new File(savePath,filename);
+			if(!saveFile.exists()) {
+				saveFile.mkdirs();
+			}else {
+				//동일파일명 방지
+				long time = System.currentTimeMillis();
+				
+				int pointidx = filename.indexOf(".");
+				String b = filename.substring(pointidx,filename.length());
+				filename = filename.substring(0,pointidx);
+				
+				filename = String.format("%s_%d",filename, time)+b;
+				
+				saveFile = new File(savePath,filename);
+			}
+			try {
+				file.transferTo(saveFile);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		vo.setB_filename(filename);
+		int res = board_dao.board_update(vo);
+		if(res>0) {
+			return "redirect:board";
+		}else {
+			return null;
+		}		
+	}
+	
 	@RequestMapping("board_reply")
 	public String board_reply(ReplyVO vo) {
 		
@@ -269,6 +322,46 @@ public class BoardController {
 		model.addAttribute("reply_list",reply_list);
 		
 		return Path.BoardPath.make_path("board_view");
+	}
+	
+	@RequestMapping("board_edit_form")
+	public String board_edit_form(Model model,String b_idx) {
+		
+		int b_idx_int;		
+		
+		//문자열이 잘 못 넘어온 경우에 대한 예외처리
+		if(b_idx!=null && !b_idx.isEmpty()) {			
+			try {
+				b_idx_int = Integer.parseInt(b_idx);				
+			} catch (Exception e) {
+				e.printStackTrace();
+				return "login_form";
+			}			
+		}else {
+			return "login_form";
+		}
+		
+		PMemberVO user_vo = (PMemberVO)session.getAttribute("id");
+		
+		if(user_vo==null){
+			return "login_form";
+		}
+		
+		int m_idx = user_vo.getM_idx();
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("b_idx", b_idx_int);
+		map.put("m_idx", m_idx);
+		
+		BoardPMemberViewVO vo = board_dao.board_select_one(map);
+		
+		if(vo==null) {
+			return "login_form";
+		}
+		
+		model.addAttribute("vo", vo);
+		
+		return Path.BoardPath.make_path("board_edit_form");
 	}
 	
 	@RequestMapping("delete_board_post")

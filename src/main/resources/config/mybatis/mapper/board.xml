@@ -207,6 +207,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set b_like_count = (select count(*) from BOARD_ISLIKED where b_idx=#{b_idx})
 		where b_idx=#{b_idx}
 	</update>
+	
+	<update id="board_update" parameterType="vo.BoardVO">
+		update board
+		set b_title=#{b_title},
+		b_content=#{b_content},
+		b_filename=#{b_filename},
+		b_ip=#{b_ip},
+		b_posted_date=sysdate
+		where b_idx=#{b_idx}
+	</update>
 </mapper>
 
 
