@@ -74,16 +74,33 @@
 				
 				let submit_child = document.createElement('button');
 				submit_child.setAttribute('type','submit');			
-				submit_child.textContent = 'Submit';
+				submit_child.textContent = 'Submit'; //여기에 아이콘?
+				
+				let cancel_child = document.createElement('button');
+				cancel_child.textContent = 'Cancel';
+				cancel_child.addEventListener("click", function(){
+					let content = input_child.value;
+					div_id.removeChild(reply_edit_form);
+					div_id.innerHTML= content;
+					let edit_button = document.getElementById('edit_reply_button_'+r_idx);					
+					edit_button.display="block";
+				});
 				
 				reply_edit_form.appendChild(r_idx_child);
 				reply_edit_form.appendChild(b_idx_child);
 				reply_edit_form.appendChild(input_child);
 				reply_edit_form.appendChild(submit_child);
+				reply_edit_form.appendChild(cancel_child);
 				
 				div_id.innerHTML="";
 						
 				div_id.appendChild(reply_edit_form);
+				
+				let edit_button = document.getElementById('edit_reply_button_'+r_idx);
+				console.log(edit_button);
+				
+				edit_button.display="none";
+				
 				
 			}else{
 				alert('댓글 수정 권한이 없습니다.');
@@ -200,7 +217,7 @@
 					<div class="reply_div" id="reply_div_${i.r_idx}">
 						<div>
 							<img class="delete_reply_button" src="${pageContext.request.contextPath}/resources/img/x_icon.png" onclick="delete_reply(${i.r_idx})">
-							<img class="delete_reply_button edit_reply_button" src="${pageContext.request.contextPath}/resources/img/edit.png" onclick="edit_reply(${i.r_idx})">
+							<img class="delete_reply_button edit_reply_button" id="edit_reply_button_${i.r_idx}" src="${pageContext.request.contextPath}/resources/img/edit.png" onclick="edit_reply(${i.r_idx})">
 						</div>
 
 						<div class="user_info_div">
