@@ -18,7 +18,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.BoardDAO;
 import dao.ReplyDAO;
+import util.Path;
+import vo.BoardVO;
 import vo.PMemberVO;
+import vo.ReplyVO;
 
 @Controller
 public class ReplyController {
@@ -145,5 +148,55 @@ public class ReplyController {
 	    }
 	    
 		return "{\"res\": \"fail\"}";
+	}
+	
+	@RequestMapping("check_edit_reply")
+	@ResponseBody
+	public String check_edit_reply(@RequestBody String body) {
+		
+		ObjectMapper om = new ObjectMapper();
+
+	    Map<String, String> data = null;
+	    
+	    try {
+	    	data = om.readValue(body, new TypeReference<Map<String, String>>() {});
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+	    int r_idx = Integer.parseInt(data.get("r_idx"));
+	    
+	    PMemberVO uservo = (PMemberVO)session.getAttribute("id");
+	    if(uservo==null) {
+			return "{\"res\": \"fail\"}";	
+	    }
+	    
+	    int m_idx = uservo.getM_idx();
+	    
+	    HashMap<String, Object> map = new HashMap<String, Object>();
+	    map.put("r_idx", r_idx);
+	    map.put("m_idx", m_idx);
+	    
+	    int res = reply_dao.select_one_reply(map);
+	    if(res>0) {
+	    	return "{\"res\": \"success\",\"r_idx\":\""+r_idx+"\"}";	
+		}else {
+			return "{\"res\": \"fail\"}";	
+		}
+	}
+	
+	@RequestMapping("update_reply")
+	public String update_reply(ReplyVO vo) {
+		System.out.println(vo);
+		vo.setR_ip(request.getRemoteAddr());
+		
+		int res = reply_dao.update_reply(vo);
+		if(res>0) {
+			
+		}
+		
+		int b_idx= vo.getB_idx();
+		
+		return "redirect:board_view?b_idx="+b_idx;
 	}
 }

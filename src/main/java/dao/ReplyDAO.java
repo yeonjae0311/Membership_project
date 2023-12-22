@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import vo.BoardPMemberReplyViewVO;
+import vo.BoardVO;
 import vo.ReplyVO;
 
 public class ReplyDAO {
@@ -45,5 +46,13 @@ public class ReplyDAO {
 	
 	public int delete_reply_by_master(int r_idx) {
 		return sqlSession.delete("r.delete_reply_by_master",r_idx);
+	}
+	
+	public int select_one_reply(HashMap<String, Object> map) {
+		return sqlSession.selectOne("r.select_one_reply", map);
+	}
+	
+	public int update_reply(ReplyVO vo) {
+		return sqlSession.update("r.update_reply",vo);
 	}
 }
