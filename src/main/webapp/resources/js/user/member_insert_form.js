@@ -177,7 +177,7 @@ function e_check(...args){
 	} else {
 		email_check_alert.innerText = "이미 사용중인 이메일입니다.";
 		email_check_alert.style.color = 'red';
-		b_emailCheck = false;
+		b_email_check = false;
 		return;
 	}
 }

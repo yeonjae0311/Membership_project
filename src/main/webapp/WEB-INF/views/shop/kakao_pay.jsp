@@ -10,7 +10,7 @@
 </head>
 <body>
     <script>
-	    document.addEventListener("DOMContentLoaded", function () {
+		function kakaopay() {
 	        var IMP = window.IMP;
 	        IMP.init('imp57607280');
 	        var msg;

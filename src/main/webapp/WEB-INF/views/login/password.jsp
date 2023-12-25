@@ -20,7 +20,7 @@
 			</div>
 			<div id="pw_result_content_div">
 				요청하신 비밀번호 찾기 결과입니다.<br>
-				회원님의 비밀번호는 ${id.m_password}입니다
+				회원님의 임시 비밀번호는 ${id.m_password}입니다
 
 			</div>
 			

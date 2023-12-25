@@ -25,11 +25,11 @@
 		</div>
 		
 		<div>	
-			Membership 가입하러 가기
+			메인 배너에서 Membership 가입이 가능합니다
 		</div>
 		
 		<div>
-			<input type="button" value="가입하기" onclick="location.href='membership_shop_payment'">
+			<input type="button" value="로그인" onclick="location.href='login_form'">
 			<input type="button" value="홈으로" onclick="location.href='main'">
 		</div>
 	</div>

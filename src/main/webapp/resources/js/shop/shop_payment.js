@@ -193,8 +193,6 @@ cancel_button.addEventListener("click", () => {
 
 button_bar_div.appendChild(cancel_button);
 
-console.log(totals.final_price);
-
 function addr_change() {
 	check_oninput_addr = 0;
 }
@@ -244,9 +242,15 @@ function order_insert_fn(){
 	
 	let url = "";
 	
+	console.log(order_item_list[0].i_idx);
+	console.log(totals.final_price);
+	
+	
 	if(order_item_list[0].i_idx == 1) {
+		console.log("kakao_m");
     	url = "membership_kakao";
     } else {
+    	console.log("kakao");
 		url = "kakao";
     }
     
@@ -255,10 +259,6 @@ function order_insert_fn(){
 	};
 
     send_request(url, param, go_to_payment, "post");
-}
-
-function go_to_payment(...args) {  
-	location.href = "kakao_pay";
 }
 
 function adjust_size(e){

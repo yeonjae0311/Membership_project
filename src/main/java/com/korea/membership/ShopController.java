@@ -353,20 +353,6 @@ public class ShopController {
 		return Path.ShopPath.make_path("shop_payment");
 	}
 
-	@RequestMapping("membership_shop_payment")
-	public String membership_shop_payment(Model model) {
-
-		// m_idx에 해당하는 유저정보 조회해서 바인딩
-
-		int m_idx = (int) session.getAttribute("m_idx");
-
-		PMemberVO vo = pmember_dao.select_one(m_idx);
-
-		model.addAttribute("vo", vo);
-
-		return Path.ShopPath.make_path("membership_shop_payment");
-	}
-
 	@RequestMapping("cart_delete")
 	@ResponseBody
 	public String cart_delete(@RequestBody String body) {
