@@ -2,33 +2,9 @@
 let b_birth_check = false;
 let b_tel_check = false;
 
-function send(f){
-	
-	let m_name = document.getElementById("m_name");	
-	
-	if(!b_birth_check){
-		alert('생년월일을 형식에 맞게 써주세요');
-		return;
-	}
-	
-	if(!b_tel_check){
-		alert('전화번호 형식에 맞게 써주세요');
-		return;
-	}
-	
-	if(m_name.value == ''){
-		alert('이름을 입력해주세요');
-		return;
-	}
-
-	f.action="user_info_modify";
-	f.method="POST";
-	f.submit();
-}
-
 function tel_check(f) {
 	let tel_check_alert = document.getElementById("tel_check_alert");
-	let reg_tel = /^010[0-9]{8}$/;
+	let reg_tel = /^010[0-9]{8}$/;	
 	
 	let m_tel = f.m_tel.value;
 	if(m_password == ''){
@@ -81,5 +57,29 @@ function birth_check(f) {
         b_birth_check = false;
         return;
     }
+}
+
+function send(f){
+	
+	let m_name = document.getElementById("m_name");	
+	
+	if(!b_birth_check){
+		alert('생년월일을 형식에 맞게 써주세요');
+		return;
+	}
+	
+	if(!b_tel_check){
+		alert('전화번호 형식에 맞게 써주세요');
+		return;
+	}
+	
+	if(m_name.value == ''){
+		alert('이름을 입력해주세요');
+		return;
+	}
+
+	f.action="user_info_modify";
+	f.method="POST";
+	f.submit();
 }
 

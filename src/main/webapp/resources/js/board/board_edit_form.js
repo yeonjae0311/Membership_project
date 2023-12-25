@@ -39,7 +39,7 @@ function change_img() {
     const story_img_div = document.getElementById("story_img_div");
 
     const img = img_file_id.files[0];
-    let allowed_extensions = [".gif", ".jpg", ".png", ".bmp"];
+    let allowed_extensions = [".gif", ".jpg", ".png", ".bmp",".jpeg",".jfif"];
 
     if (img) {
         const reader = new FileReader();
@@ -76,7 +76,7 @@ function change_img() {
             // 파일을 읽어옴
             reader.readAsDataURL(img);
         } else {
-            alert("허용된 확장자가 아닙니다. GIF, JPG, PNG, BMP 파일만 업로드 가능합니다.");
+            alert("허용된 확장자가 아닙니다. GIF, JPG, PNG, BMP, JPEG, JFIF 파일만 업로드 가능합니다.");
             img_file_id.value = ""; // 파일 선택 창 비우기
         }
     }

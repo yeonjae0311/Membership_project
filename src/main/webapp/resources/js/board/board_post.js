@@ -39,7 +39,7 @@ function change_img() {
     const story_img_div = document.getElementById("story_img_div");
 
     const img = img_file_id.files[0];
-    let allowed_extensions = [".gif", ".jpg", ".png", ".bmp"];
+    let allowed_extensions = [".gif", ".jpg", ".png", ".bmp",".jpeg",".jfif"];
 
     if (img) {
         const reader = new FileReader();
