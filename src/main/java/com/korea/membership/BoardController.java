@@ -58,8 +58,6 @@ public class BoardController {
 			
 			map.put("search_field", search_field);						
 			map.put("search_word", "%"+search_word+"%");
-			System.out.println("search_field "+search_field);
-			System.out.println("search_word "+search_word);
 		}
 		
 		int nowPage1,nowPage2;
@@ -75,10 +73,8 @@ public class BoardController {
 		}
 	
 		int count_unfixed_master_list = board_dao.count_unfixed_master_list(map);
-		System.out.println("고정하지 않은 마스터의 글의 개수 : "+count_unfixed_master_list);
 		
 		int count_unfixed_fan_list = board_dao.count_unfixed_fan_list(map);
-		System.out.println("고정하지 않은 모든유저의 글의 개수 : "+count_unfixed_fan_list);
 
 		int start1 = (nowPage1-1)*Common.BOARD_PER_PAGE+1;
 		int end1 = start1+Common.BOARD_PER_PAGE-1;
@@ -313,7 +309,6 @@ public class BoardController {
 		if(vo!=null && (board_post_viewed==null || !board_post_viewed.equals(b_idx+""))) {			
 			board_dao.plus_board_read_hit(b_idx);
 			vo = board_dao.board_select_one(map);
-			System.out.println(vo.getB_m_idx()+" "+uservo.getM_idx());
 			session.setAttribute("board_post_viewed", b_idx+"");
 		}
 		
