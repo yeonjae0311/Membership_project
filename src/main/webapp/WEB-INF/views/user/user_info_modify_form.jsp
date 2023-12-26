@@ -41,9 +41,9 @@
 			<hr class="user_info_modify_form_hr">	
 			
 			<div class="modify_form_input_div">
-				 <label class="control_label" for="m_password">비밀번호</label>
-					<input name="m_password" id="m_password" type="password" 
-					oninput="password_check(this.form)" placeholder= "영어와 숫자를 조합한 8자리 이상입니다">
+				비밀번호 : <input name="m_password" id="m_password" type="password" oninput="password_check(this.form)" 
+				placeholder= "영어와 숫자를 조합한 8자리 이상입니다">
+				<img src="${pageContext.request.contextPath}/resources/img/user/">
 			</div>
 			<hr class="user_info_modify_form_hr">
 			
