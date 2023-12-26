@@ -82,8 +82,8 @@
 					let content = input_child.value;
 					div_id.removeChild(reply_edit_form);
 					div_id.innerHTML= content;
-					let edit_button = document.getElementById('edit_reply_button_'+r_idx);					
-					edit_button.display="block";
+					let edit_button = document.getElementById('edit_reply_button_'+r_idx);		
+					edit_button.style.visibility ="visible";
 				});
 				
 				reply_edit_form.appendChild(r_idx_child);
@@ -99,7 +99,7 @@
 				let edit_button = document.getElementById('edit_reply_button_'+r_idx);
 				console.log(edit_button);
 				
-				edit_button.display="none";
+				edit_button.style.visibility="hidden";
 				
 				
 			}else{
