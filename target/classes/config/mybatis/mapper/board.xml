@@ -149,6 +149,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="board_select_one" parameterType="java.util.HashMap" resultType="vo.BoardPMemberViewVO">
 		SELECT bmjv.B_IDX ,
 		(SELECT M_USERNAME  FROM P_MEMBER WHERE M_IDX=bmjv.M_IDX) m_username,
+		(SELECT m_idx FROM P_MEMBER WHERE M_IDX=bmjv.M_IDX) b_m_idx,
 		bmjv.B_TITLE ,
 		bmjv.B_FILENAME,
 		bmjv.B_CONTENT,

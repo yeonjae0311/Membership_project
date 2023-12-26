@@ -8,94 +8,10 @@
 	<meta charset="UTF-8">
 	<title>게시글 상세보기~</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_css.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/board/board_view.js" defer></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/board/board_view.js" defer></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
 	<jsp:include page="/WEB-INF/views/login_check.jsp" />
-	<script type="text/javascript">
-		function edit_board_post(){
-			let b_idx = document.getElementById('b_idx').value;
-			let m_idx = document.getElementById('m_idx').value;
-			
-			let url = "check_edit_board_post";
-			let param ={
-				"b_idx" : b_idx,
-				"m_idx" : m_idx
-			};
-			
-			send_request(url,param,after_edit_board_post,"post")
-		}
-		
-		function after_edit_board_post(...args){
-			let res = args[0].res;
-			if(res == 'success'){
-				let b_idx = document.getElementById('b_idx').value;
-				
-				location.href='board_edit_form?b_idx='+b_idx;
-			}else{
-				alert('글 수정 권한이 없습니다.');
-			}
-		}
-		
-		function edit_reply(r_idx){
-			
-			let url = "check_edit_reply";
-			let param = {
-				"r_idx" : r_idx
-			};
-			
-			send_request(url,param,after_try_edit_reply,"post");
-		}
-		
-		function after_try_edit_reply(...args){
-			let res = args[0].res;
-			if(res == 'success'){
-				let r_idx = Number(args[0].r_idx);
-				let div_id = document.getElementById('reply_text_div_'+r_idx);				
-				
-				let reply_edit_form = document.createElement('form');
-				reply_edit_form.setAttribute('method','post');
-				reply_edit_form.setAttribute('action','update_reply');
-				
-				let r_idx_child = document.createElement('input');
-				r_idx_child.setAttribute('type','hidden');
-				r_idx_child.setAttribute('name','r_idx');
-				r_idx_child.setAttribute('value',r_idx);
-				
-				let b_idx_child = document.createElement('input');
-				b_idx_child.setAttribute('type','hidden');
-				b_idx_child.setAttribute('name','b_idx');
-				b_idx_child.setAttribute('value',document.getElementById('b_idx').value);
-				
-				let input_child = document.createElement('textarea');
-				input_child.setAttribute('name','r_content');
-				input_child.value = escapeHTML(div_id.innerHTML);
-				input_child.value = input_child.value.trim();
-				
-				let submit_child = document.createElement('button');
-				submit_child.setAttribute('type','submit');			
-				submit_child.textContent = 'Submit';
-				
-				reply_edit_form.appendChild(r_idx_child);
-				reply_edit_form.appendChild(b_idx_child);
-				reply_edit_form.appendChild(input_child);
-				reply_edit_form.appendChild(submit_child);
-				
-				div_id.innerHTML="";
-						
-				div_id.appendChild(reply_edit_form);
-				
-			}else{
-				alert('댓글 수정 권한이 없습니다.');
-			}
-		}
-		
-		function escapeHTML(html) {
-		    return html.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-		}
-		
-	</script>
-	
 </head>
 <body>
 	<div id="header_bar"></div>
@@ -107,8 +23,12 @@
 			<table id="board_view_table">
 				<tr>
 					<td>
-						<img id="delete_button" src="${pageContext.request.contextPath}/resources/img/x_icon.png" onclick="delete_board_post()">
-						<img id="edit_button" src="${pageContext.request.contextPath}/resources/img/x_icon.png" onclick="edit_board_post()">
+						<c:if test="${vo.b_m_idx == vo.m_idx || id.m_ismaster=='1'}">
+							<img id="delete_button" src="${pageContext.request.contextPath}/resources/img/x_icon.png" onclick="delete_board_post()">
+						</c:if>
+						<c:if test="${vo.b_m_idx == id.m_idx}">
+							<img id="edit_button" class="button_img" src="${pageContext.request.contextPath}/resources/img/edit.png" onclick="edit_board_post()">
+						</c:if>
 					</td>
 				</tr>
 				
@@ -199,8 +119,16 @@
 				<c:forEach var="i" items="${reply_list}">
 					<div class="reply_div" id="reply_div_${i.r_idx}">
 						<div>
-							<img class="delete_reply_button" src="${pageContext.request.contextPath}/resources/img/x_icon.png" onclick="delete_reply(${i.r_idx})">
-							<img class="delete_reply_button edit_reply_button" src="${pageContext.request.contextPath}/resources/img/edit.png" onclick="edit_reply(${i.r_idx})">
+							<span>								
+								<c:if test="${i.r_m_idx == id.m_idx || id.m_ismaster=='1'}">
+									<img class="delete_reply_button" src="${pageContext.request.contextPath}/resources/img/x_icon.png" onclick="delete_reply(${i.r_idx})">
+								</c:if>
+							</span>
+							<span>
+								<c:if test="${i.r_m_idx == id.m_idx}">
+									<img class="delete_reply_button edit_reply_button" id="edit_reply_button_${i.r_idx}" src="${pageContext.request.contextPath}/resources/img/edit.png" onclick="edit_reply(${i.r_idx})">
+								</c:if>
+							</span>
 						</div>
 
 						<div class="user_info_div">

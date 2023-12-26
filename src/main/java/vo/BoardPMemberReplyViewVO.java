@@ -8,6 +8,7 @@ import lombok.Setter;
 public class BoardPMemberReplyViewVO {
 	private int b_idx,
 	            r_idx,
+	            r_m_idx,
 	            m_idx,
 	            r_like_count,
 	            b_read_hit;
