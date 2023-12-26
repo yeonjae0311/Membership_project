@@ -82,6 +82,7 @@
 						</tr>
 					</table>
 				</div>
+				
 				<div class="board_list" id="unfixed_fan_list">
 					<table class="b_list">
 						<tr class="title_tr">
@@ -104,12 +105,14 @@
 					</table>
 				</div>				
 			</div>
+			
 			<div class="search_td">
 				<form>
 					<select id="search_field">
 						<option value="b_title">제목</option>
 						<option value="b_content">내용</option>
 					</select>
+					
 					<input type="text" id="search_word" placeholder="검색어를 입력해주세요">
 					<input type="button" value="검색" onclick="search()">
 				</form>

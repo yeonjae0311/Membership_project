@@ -36,6 +36,17 @@ input[type="text"], input[type="password"]{
     padding: 2% 6%;
 }
 
+#password_div{
+    position: relative;
+}
+
+#view_password_icon{
+    position: absolute;
+    width: 2em;
+    height: 2em;
+    right: 3%;
+}
+
 #login_div, #find_info_div{
     display: flex;
     justify-content: space-between;

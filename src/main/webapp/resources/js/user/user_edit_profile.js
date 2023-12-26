@@ -7,12 +7,7 @@ function change_img() {
 
 	if (img) {
 		const reader = new FileReader();
-
-		reader.onload = function(e) {
-			// 파일 내용을 읽어와서 이미지 소스로 설정
-			image_id.src = e.target.result;
-		};
-
+		
 		// 파일의 확장자를 체크하여 허용된 확장자인 경우에만 이미지를 설정
 		let file_extension = img.name.split('.').pop().toLowerCase();
 		if (allowed_extensions.includes("." + file_extension)) {
@@ -20,8 +15,14 @@ function change_img() {
 			reader.readAsDataURL(img);
 		} else {
 			alert("허용된 확장자가 아닙니다. GIF, JPG, PNG, BMP 파일만 업로드 가능합니다.");
-			img_file_id.value = ""; // 파일 선택 창 비우기
+			// img_file_id.value = ""; // 파일 선택 창 비우기
+			return;
 		}
+		
+		reader.onload = function(e) {
+			// 파일 내용을 읽어와서 이미지 소스로 설정
+			image_id.src = e.target.result;
+		};
 	}
 }
 
