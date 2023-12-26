@@ -20,6 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="select_reply_list" resultType="vo.BoardPMemberReplyViewVO" parameterType="java.util.HashMap">
 		SELECT rv.*,
 		rl.m_idx,
+		rv.m_idx r_m_idx,
 		CASE nvl(rl.m_idx,0) WHEN rl.m_idx THEN 1 ELSE 0 END rl_isliked
 		FROM reply_view rv LEFT JOIN (SELECT * FROM REPLY_ISLIKED rl WHERE m_idx=#{m_idx}) rl
 		ON rv.r_idx = rl.R_IDX 

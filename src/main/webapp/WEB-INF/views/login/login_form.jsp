@@ -29,8 +29,10 @@
 				<p>
 					비밀번호
 				</p>
-
-				<input name="m_password" type="password">
+				
+				<div>
+					<input name="m_password" type="password">
+				</div>
 			</div>
 			
 			<div id="login_div">

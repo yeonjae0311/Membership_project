@@ -47,3 +47,10 @@ window.onload = function(){
 		all_board_first();
 	}
 };
+
+function search(){
+	let search_field_value = document.getElementById('search_field').value;
+	let search_word_value = document.getElementById('search_word').value;
+	
+	location.href='board?&search_field='+search_field_value+'&search_word='+search_word_value;
+}

@@ -1,1 +1,28 @@
 @charset "UTF-8";
+
+#membership_info_div{
+    width: 45em;
+    margin: auto;
+    padding-top: 4%;
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-bottom: 2%;
+    box-shadow: 6px 6px 1px 1px #bcecff;
+	border: 2px solid #ffebf7;
+}
+
+#membership_info_div > div:first-child{
+    font-size: 1.3em;
+}
+
+#button_bar_div{
+    width: 70%;
+    border-top: 1px solid #082a90;
+    margin: 5% auto auto;
+    padding-top: 4%;
+    text-align: center;
+}
+
+#button_div{
+    margin-top: 2%;
+}

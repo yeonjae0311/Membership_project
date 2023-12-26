@@ -168,8 +168,8 @@ CREATE TABLE reply_isLiked (
 CREATE TABLE p_order (
 	o_idx	number		NOT NULL,
 	m_idx	number		NOT NULL,
-	o_sum NUMBER 		NOT null,
-	o_count NUMBER		NOT NULL
+	o_count NUMBER		NOT NULL,
+	o_sum NUMBER 		NOT null
 );
 
 ALTER TABLE p_member ADD CONSTRAINT PK_P_MEMBER PRIMARY KEY (
