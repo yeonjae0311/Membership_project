@@ -40,7 +40,18 @@
     width: 80%;
   }
 
-  input{
+ input{
     border-width: 0;
     background-color: #ffebf7;
-  }
+ }
+  
+ label {
+    display: inline-block;
+    width: 100px; 
+    margin-right: 10px; 
+}
+
+#check_alert{
+	font-size: 1em;
+    margin: 1%;
+}

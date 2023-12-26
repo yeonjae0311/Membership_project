@@ -24,6 +24,26 @@ function tel_check(f) {
 	}
 }
 
+function password_check(f) {
+	let password_check_alert = document.getElementById("password_check_alert");
+	let reg_password = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/;
+	
+	let m_password = f.m_password.value;
+	if(m_password == ''){
+		password_check_alert.innerText = "비밀번호를 입력하세요";
+		password_check_alert.style.color = 'red';
+		return;
+	}else if(!reg_password.test(m_password)){
+		password_check_alert.innerText = "올바른 비밀번호 형식이 아닙니다";
+		password_check_alert.style.color = 'red';
+		return;
+	} else {
+		password_check_alert.innerText = "비밀번호를 입력하셨습니다.";
+		password_check_alert.style.color = "#3781E3";
+	}
+}
+
+
 function birth_check(f) {
     let birth_check_alert = document.getElementById("birth_check_alert");
     let m_date_of_birth = document.getElementById("m_date_of_birth").value.replace(/[^0-9]/g, '');
