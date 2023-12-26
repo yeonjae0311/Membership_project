@@ -51,3 +51,16 @@ function my_check(...args){
 		location.href='main';
 	}
 }
+
+function toggle_password(e){
+	let pw_input = document.getElementById("password_input");
+	let toggle_icon = e.target;
+
+	if(pw_input.type == "password"){
+		pw_input.type = "text";
+		toggle_icon.src = IMG_PATH + "eye_open_icon.png";
+	}else{
+		pw_input.type = "password";
+		toggle_icon.src = IMG_PATH + "eye_closed_icon.png";
+	}
+}

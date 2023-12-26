@@ -131,6 +131,7 @@ td{
 }
 
 .paging_td{
+    cursor: default;
     padding: 3% 0;
     text-align: center;
 }
