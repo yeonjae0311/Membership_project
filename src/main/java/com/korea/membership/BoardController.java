@@ -312,6 +312,8 @@ public class BoardController {
 		//조회수 증가
 		if(vo!=null && (board_post_viewed==null || !board_post_viewed.equals(b_idx+""))) {			
 			board_dao.plus_board_read_hit(b_idx);
+			vo = board_dao.board_select_one(map);
+			System.out.println(vo.getB_m_idx()+" "+uservo.getM_idx());
 			session.setAttribute("board_post_viewed", b_idx+"");
 		}
 		

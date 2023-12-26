@@ -51,7 +51,8 @@
 			let res = args[0].res;
 			if(res == 'success'){
 				let r_idx = Number(args[0].r_idx);
-				let div_id = document.getElementById('reply_text_div_'+r_idx);				
+				let div_id = document.getElementById('reply_text_div_'+r_idx);
+				
 				
 				let reply_edit_form = document.createElement('form');
 				reply_edit_form.setAttribute('method','post');
@@ -74,14 +75,35 @@
 				
 				let submit_child = document.createElement('button');
 				submit_child.setAttribute('type','submit');			
-				submit_child.textContent = 'Submit'; //여기에 아이콘?
+				submit_child.textContent = 'Submit'; 
+						
+				reply_edit_form.addEventListener('submit', function(event) {
+				    if (!validate_form()) {
+				        event.preventDefault();
+				    }
+				});
+				
+				function validate_form() {
+				    let content = input_child.value.trim();
+				    
+				    if (content == '') {
+				        alert('빈 댓글은 입력할 수 없습니다.');
+				        return false;
+				    }
+
+				    return true;
+				}
+				
+				let content_temp = div_id.innerHTML;
+				div_id.innerHTML="";
 				
 				let cancel_child = document.createElement('button');
 				cancel_child.textContent = 'Cancel';
 				cancel_child.addEventListener("click", function(){
-					let content = input_child.value;
+					//let content = input_child.value;
 					div_id.removeChild(reply_edit_form);
-					div_id.innerHTML= content;
+					div_id.innerHTML=content_temp;
+					//div_id.innerHTML= content;
 					let edit_button = document.getElementById('edit_reply_button_'+r_idx);		
 					edit_button.style.visibility ="visible";
 				});
@@ -92,7 +114,7 @@
 				reply_edit_form.appendChild(submit_child);
 				reply_edit_form.appendChild(cancel_child);
 				
-				div_id.innerHTML="";
+				
 						
 				div_id.appendChild(reply_edit_form);
 				
@@ -124,8 +146,12 @@
 			<table id="board_view_table">
 				<tr>
 					<td>
-						<img id="delete_button" src="${pageContext.request.contextPath}/resources/img/x_icon.png" onclick="delete_board_post()">
-						<img id="edit_button" src="${pageContext.request.contextPath}/resources/img/x_icon.png" onclick="edit_board_post()">
+						<c:if test="${vo.b_m_idx == vo.m_idx || id.m_ismaster=='1'}">
+							<img id="delete_button" src="${pageContext.request.contextPath}/resources/img/x_icon.png" onclick="delete_board_post()">
+						</c:if>
+						<c:if test="${vo.b_m_idx == id.m_idx}">
+							<img id="edit_button" class="button_img" src="${pageContext.request.contextPath}/resources/img/edit.png" onclick="edit_board_post()">
+						</c:if>
 					</td>
 				</tr>
 				
@@ -216,8 +242,16 @@
 				<c:forEach var="i" items="${reply_list}">
 					<div class="reply_div" id="reply_div_${i.r_idx}">
 						<div>
-							<img class="delete_reply_button" src="${pageContext.request.contextPath}/resources/img/x_icon.png" onclick="delete_reply(${i.r_idx})">
-							<img class="delete_reply_button edit_reply_button" id="edit_reply_button_${i.r_idx}" src="${pageContext.request.contextPath}/resources/img/edit.png" onclick="edit_reply(${i.r_idx})">
+							<span>								
+								<c:if test="${i.r_m_idx == id.m_idx || id.m_ismaster=='1'}">
+									<img class="delete_reply_button" src="${pageContext.request.contextPath}/resources/img/x_icon.png" onclick="delete_reply(${i.r_idx})">
+								</c:if>
+							</span>
+							<span>
+								<c:if test="${i.r_m_idx == id.m_idx}">
+									<img class="delete_reply_button edit_reply_button" id="edit_reply_button_${i.r_idx}" src="${pageContext.request.contextPath}/resources/img/edit.png" onclick="edit_reply(${i.r_idx})">
+								</c:if>
+							</span>
 						</div>
 
 						<div class="user_info_div">
