@@ -452,6 +452,8 @@ public class MemberController {
 
 	@RequestMapping("user_profile_modify")
 	public String user_profile_update(PMemberVO vo) {
+		
+		System.out.println(vo.getM_photo().getOriginalFilename());
 
 		String webPath = "/resources/upload/user/";
 		String savePath = request.getServletContext().getRealPath(webPath);
