@@ -9,15 +9,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_css.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/board/board.js" defer></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
-	<script type="text/javascript">
-		function search(){
-			let search_field_value = document.getElementById('search_field').value;
-			let search_word_value = document.getElementById('search_word').value;
-			
-			location.href='board?&search_field='+search_field_value+'&search_word='+search_word_value;
-		}
-	</script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>	
 </head>
 <body>
 	<div id="header_bar"></div>
@@ -90,6 +82,7 @@
 						</tr>
 					</table>
 				</div>
+				
 				<div class="board_list" id="unfixed_fan_list">
 					<table class="b_list">
 						<tr class="title_tr">
@@ -112,12 +105,14 @@
 					</table>
 				</div>				
 			</div>
+			
 			<div class="search_td">
 				<form>
 					<select id="search_field">
 						<option value="b_title">제목</option>
 						<option value="b_content">내용</option>
 					</select>
+					
 					<input type="text" id="search_word" placeholder="검색어를 입력해주세요">
 					<input type="button" value="검색" onclick="search()">
 				</form>

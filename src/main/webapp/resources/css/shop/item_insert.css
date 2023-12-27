@@ -20,6 +20,11 @@ input{
     margin: 2% auto;
 }
 
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button{
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .form_input_div > p, .form_input_div > input[type="text"], .form_input_div > input[type="number"]{
     border-bottom: 1px solid #ffa8db;
 }

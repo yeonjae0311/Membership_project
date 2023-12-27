@@ -40,7 +40,25 @@
     width: 80%;
   }
 
-  input{
+ input{
     border-width: 0;
     background-color: #ffebf7;
-  }
+ }
+  
+ label {
+    display: inline-block;
+    width: 100px; 
+    margin-right: 10px; 
+}
+
+#fa_fa_eye_fa_lg{
+    position: absolute;
+    left: 75%;
+    top: 27px;
+    color: #082a90;
+}
+
+#check_alert{
+	font-size: 1em;
+    margin: 1%;
+}

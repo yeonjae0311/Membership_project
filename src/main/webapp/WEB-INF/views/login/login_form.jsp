@@ -29,8 +29,12 @@
 				<p>
 					비밀번호
 				</p>
-
-				<input name="m_password" type="password">
+				
+				<div id="password_div">
+					<input id="password_input" name="m_password" type="password">
+					
+					<img id="view_password_icon" src="${pageContext.request.contextPath}/resources/img/eye_closed_icon.png" onclick="toggle_password(event)">
+				</div>
 			</div>
 			
 			<div id="login_div">

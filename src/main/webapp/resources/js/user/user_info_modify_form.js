@@ -2,33 +2,9 @@
 let b_birth_check = false;
 let b_tel_check = false;
 
-function send(f){
-	
-	let m_name = document.getElementById("m_name");	
-	
-	if(!b_birth_check){
-		alert('생년월일을 형식에 맞게 써주세요');
-		return;
-	}
-	
-	if(!b_tel_check){
-		alert('전화번호 형식에 맞게 써주세요');
-		return;
-	}
-	
-	if(m_name.value == ''){
-		alert('이름을 입력해주세요');
-		return;
-	}
-
-	f.action="user_info_modify";
-	f.method="POST";
-	f.submit();
-}
-
 function tel_check(f) {
 	let tel_check_alert = document.getElementById("tel_check_alert");
-	let reg_tel = /^010[0-9]{8}$/;
+	let reg_tel = /^010[0-9]{8}$/;	
 	
 	let m_tel = f.m_tel.value;
 	if(m_password == ''){
@@ -47,6 +23,39 @@ function tel_check(f) {
 		b_tel_check = true;
 	}
 }
+
+function password_check(f) {
+	let password_check_alert = document.getElementById("password_check_alert");
+	let reg_password = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/;
+	
+	let m_password = f.m_password.value;
+	if(m_password == ''){
+		password_check_alert.innerText = "비밀번호를 입력하세요";
+		password_check_alert.style.color = 'red';
+		return;
+	}else if(!reg_password.test(m_password)){
+		password_check_alert.innerText = "올바른 비밀번호 형식이 아닙니다";
+		password_check_alert.style.color = 'red';
+		return;
+	} else {
+		password_check_alert.innerText = "비밀번호를 입력하셨습니다.";
+		password_check_alert.style.color = "#3781E3";
+	}
+}
+
+$(document).ready(function(){
+    $('.main i').on('click',function(){
+        $('input').toggleClass('active');
+        if($('input').hasClass('active')){
+            $(this).attr('class',"fa_fa_eye_fa_lg")
+            .prev('input').attr('type',"text");
+        }else{
+            $(this).attr('class',"fa fa-eye fa-lg")
+            .prev('input').attr('type','password');
+        }
+    });
+});
+
 
 function birth_check(f) {
     let birth_check_alert = document.getElementById("birth_check_alert");
@@ -81,5 +90,29 @@ function birth_check(f) {
         b_birth_check = false;
         return;
     }
+}
+
+function send(f){
+	
+	let m_name = document.getElementById("m_name");	
+	
+	if(!b_birth_check){
+		alert('생년월일을 형식에 맞게 써주세요');
+		return;
+	}
+	
+	if(!b_tel_check){
+		alert('전화번호 형식에 맞게 써주세요');
+		return;
+	}
+	
+	if(m_name.value == ''){
+		alert('이름을 입력해주세요');
+		return;
+	}
+
+	f.action="user_info_modify";
+	f.method="POST";
+	f.submit();
 }
 
