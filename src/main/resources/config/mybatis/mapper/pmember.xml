@@ -62,7 +62,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<update id="password_update" parameterType="java.util.HashMap" >
-		update p_member set m_password=#{m_code} where m_email=#{m_email}
+		update p_member set m_password=#{m_new_password} where m_email=#{m_email}
 	</update>
 	
 	<update id="user_info_update" parameterType="pmember">

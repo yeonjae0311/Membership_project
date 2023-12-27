@@ -353,20 +353,6 @@ public class ShopController {
 		return Path.ShopPath.make_path("shop_payment");
 	}
 
-	@RequestMapping("membership_shop_payment")
-	public String membership_shop_payment(Model model) {
-
-		// m_idx에 해당하는 유저정보 조회해서 바인딩
-
-		int m_idx = (int) session.getAttribute("m_idx");
-
-		PMemberVO vo = pmember_dao.select_one(m_idx);
-
-		model.addAttribute("vo", vo);
-
-		return Path.ShopPath.make_path("membership_shop_payment");
-	}
-
 	@RequestMapping("cart_delete")
 	@ResponseBody
 	public String cart_delete(@RequestBody String body) {
@@ -513,12 +499,15 @@ public class ShopController {
 		String o_sum = data.get("o_sum");
 		String payment_name = "NEWJEANS MEMBERSHIP PAYMENT";
 		int membership = 0;
-
+		System.out.println(o_sum);
 		session.setAttribute("membership", membership);
 		session.setAttribute("payment_name", payment_name);
 		session.setAttribute("payment_price", o_sum);
 
-		return "{\"param\": \"success\"}";
+		return "{\"param\": \"success\","
+				+ "\"o_sum\":\"" + o_sum + "\","
+				+ "\"payment_name\":\"" + payment_name + "\","
+				+ "\"membership\":\"" + membership + "\"}";
 	}
 
 	@RequestMapping("membership_kakao")
@@ -543,6 +532,9 @@ public class ShopController {
 		session.setAttribute("payment_name", payment_name);
 		session.setAttribute("payment_price", o_sum);
 
-		return "{\"param\": \"success\"}";
+		return "{\"param\": \"success\","
+		+ "\"o_sum\":\"" + o_sum + "\","
+		+ "\"payment_name\":\"" + payment_name + "\","
+		+ "\"membership\":\"" + membership + "\"}";
 	}
 }

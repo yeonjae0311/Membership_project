@@ -32,7 +32,7 @@
 					<label class="control_label" for="m_email">이메일</label>
 				</p>
 				<p>
-					<input type="text" name="m_email" id="m_email" placeholder="이메일을 적어주세요">
+					<input type="text" name="m_email" id="m_email" oninput="check_email(this.form)" placeholder="이메일을 적어주세요">
 					<input id="auth_btn" type="button" value="인증하기">
 				</p>
 				<p>
