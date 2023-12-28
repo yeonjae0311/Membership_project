@@ -1,6 +1,9 @@
+let temp_img ;
+
 function change_img() {
-	const img_file_id = document.getElementById("photo_file_id");
-	const image_id = document.getElementById("m_profile");
+	let img_file_id = document.getElementById("photo_file_id");
+	let image_id = document.getElementById("m_profile");
+	
 
 	const img = img_file_id.files[0];
 	let allowed_extensions = [".gif", ".jpg", ".png", ".bmp",".jpeg",".jfif"];
@@ -13,9 +16,14 @@ function change_img() {
 		if (allowed_extensions.includes("." + file_extension)) {
 			// 파일을 읽어옴
 			reader.readAsDataURL(img);
+			temp_img = img;			
+			
 		} else {
 			alert("허용된 확장자가 아닙니다. GIF, JPG, PNG, BMP, JPEG, JFIF 파일만 업로드 가능합니다.");
-			//img_file_id.value = ""; // 파일 선택 창 비우기
+			//img_file_id.value = ''; // 파일 선택 창 비우기
+			console.log(temp_img);			
+			console.log(img_file_id);
+			console.log(img_file_id.files[0]);	
 			return;
 		}
 		
@@ -33,6 +41,14 @@ function photo_default_update(f){
 }
 	
 function modify(f) {
+	let img_file_id = document.getElementById("photo_file_id");
+	const img = img_file_id.files[0];
+	let allowed_extensions = [".gif", ".jpg", ".png", ".bmp",".jpeg",".jfif"];
+	let file_extension = img.name.split('.').pop().toLowerCase();
+	if(!allowed_extensions.includes("." + file_extension)) {
+		alert("해당 파일은 GIF, JPG, PNG, BMP, JPEG, JFIF 파일이 아닙니다.");
+		return;
+	}
 	f.action = "user_profile_modify";
 	f.method = "POST";
 	f.submit();

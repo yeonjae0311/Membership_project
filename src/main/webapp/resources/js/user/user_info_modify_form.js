@@ -43,19 +43,18 @@ function password_check(f) {
 	}
 }
 
-$(document).ready(function(){
-    $('.main i').on('click',function(){
-        $('input').toggleClass('active');
-        if($('input').hasClass('active')){
-            $(this).attr('class',"fa_fa_eye_fa_lg")
-            .prev('input').attr('type',"text");
-        }else{
-            $(this).attr('class',"fa fa-eye fa-lg")
-            .prev('input').attr('type','password');
-        }
-    });
-});
+function toggle_password(e){
+	let pw_input = document.getElementById("m_password");
+	let toggle_icon = e.target;
 
+	if(pw_input.type == "password"){
+		pw_input.type = "text";
+		toggle_icon.src = IMG_PATH + "eye_open_icon.png";
+	}else{
+		pw_input.type = "password";
+		toggle_icon.src = IMG_PATH + "eye_closed_icon.png";
+	}
+}
 
 function birth_check(f) {
     let birth_check_alert = document.getElementById("birth_check_alert");
