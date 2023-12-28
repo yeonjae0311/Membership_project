@@ -351,7 +351,6 @@ PRIMARY key(r_idx,m_idx);
 ---------------------------------VIEWS		(5 queries)
 --------------------------------------------------------------------------------
 
---(글조회를 위한 조인)
 CREATE OR REPLACE VIEW board_p_member_join_view as(
 	SELECT b_idx,
 	b.m_idx,
@@ -387,13 +386,14 @@ CREATE OR REPLACE VIEW board_p_member_reply_join_view as(
 );
 
 --(댓글 하나를 위한 실질 댓글 테이터 테이블의 뷰)
-CREATE OR REPLACE VIEW reply_view AS (
-	SELECT r.R_IDX,
+CREATE OR REPLACE VIEW reply_view AS(
+SELECT r.R_IDX,
 	r.R_CONTENT,
 	r.R_DATE,
 	r.b_idx,
 	r.R_IP,
 	r.R_LIKE_COUNT,
+	r.M_IDX ,
 	m.M_USERNAME , 
 	m.M_PHOTO_NAME
 	FROM reply r LEFT JOIN P_MEMBER m

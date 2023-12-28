@@ -21,7 +21,6 @@
 #fixoption{
     width: 2em;
     height: 2em;
-
 }
 
 .board_post_class{
@@ -66,13 +65,18 @@ textarea{
     justify-content: space-around;
 }
 
-
 #photo_preview{
     width: 18em;
     height: 18em;
     margin: 0;
+    display: flex;
+    justify-content: center;
 }
 
+#board_img{
+    object-fit: contain;
+    padding: 2%;
+}
 
 #file_upload_button{
     margin-top: 3%;
@@ -80,11 +84,11 @@ textarea{
     align-items: center;
 }
 
-#b_img{
+#b_img, #delete_img{
     display: none;
 }
 
-#file_upload > img{
+#file_upload > img, #delete_photo > img{
     width: 3em;
     height: 3em;
     cursor: pointer;

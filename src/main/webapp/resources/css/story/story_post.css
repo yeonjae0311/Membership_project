@@ -13,13 +13,14 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	box-shadow: 6px 6px 1px 1px #bcecff;
+	border: 2px solid #ffebf7;
 }
 
 #story_img{
     height: 100%;
+    object-fit: contain;
     padding: 1.5%;
-	box-shadow: 6px 6px 1px 1px #bcecff;
-	border: 2px solid #ffebf7;
 }
 
 #file_upload_div{
