@@ -13,24 +13,20 @@
 <body>
 	<div id="header_bar"></div>
 	
-	<div>
 		<div id="membership_info_div">
 			<div>
 				회원가입을 축하합니다
 				NewJeans Membership을 가입하시면 해당 혜택을 이용하실 수 있습니다
 			</div>
 		
-		
-			<div id="button_bar_div">
-				<div>	
-					Membership 가입하러 가기
-				</div>
-				
-				<div id="button_div">
-					<input type="button" value="가입하기" onclick="location.href='membership_shop_payment'">
-					<input type="button" value="홈으로" onclick="location.href='main'">
-				</div>
+			<div>	
+				메인 배너에서 Membership 가입이 가능합니다
 			</div>
+			
+		<div>
+			<input type="button" value="로그인" onclick="location.href='login_form'">
+			<input type="button" value="홈으로" onclick="location.href='main'">
+
 		</div>
 	</div>
 	

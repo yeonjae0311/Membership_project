@@ -36,7 +36,7 @@ function send(f){
 function change_img() {
     const img_file_id = document.getElementById("b_img");
     const image_id = document.getElementById("board_img");
-    const story_img_div = document.getElementById("story_img_div");
+    // const story_img_div = document.getElementById("story_img_div");
 
     const img = img_file_id.files[0];
     let allowed_extensions = [".gif", ".jpg", ".png", ".bmp",".jpeg",".jfif"];
@@ -47,8 +47,14 @@ function change_img() {
         reader.onload = function(e) {
             // 파일 내용을 읽어와서 이미지 소스로 설정
             image_id.src = e.target.result;
-            image_id.style.width = "96%";
-            image_id.style.padding = "2%";
+
+            if(image_id.naturalHeight > image_id.naturalWidth){
+                image_id.style.height = "96%";
+                image_id.style.width = "";
+            }else{
+                image_id.style.height = "";
+                image_id.style.width = "96%";
+            }
 
             // console.log(story_img_div)
             // console.log(window.screen.height * .4)

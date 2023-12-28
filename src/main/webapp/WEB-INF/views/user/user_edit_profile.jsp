@@ -26,6 +26,7 @@
 	             	<label id="file_upload" for="photo_file_id">
 						<img src="${pageContext.request.contextPath}/resources/img/user/upload_photo.png">
 					</label>
+					
 		            <input type="button" id="default_profile" name="default_profile" value="기본프로필 사진으로 변경" onclick="photo_default_update(this.form)">
 		            <label id="delete_photo" for="default_profile">
 		            	<img src="${pageContext.request.contextPath}/resources/img/user/delete_photo.png">

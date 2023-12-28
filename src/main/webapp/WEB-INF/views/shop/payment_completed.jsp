@@ -27,7 +27,7 @@
 			<span>감사합니다. 고객님의 주문이 완료되었습니다.</span> 
 		</div>
 
-		<div>주문 내역 및 배송에 관한 안내는 Mypage > 나의 주문내역 에서 확인하실 수 있습니다.</div>
+		<div>주문 내역 및 배송에 관한 안내는 <a href="user_edit">Mypage</a> > <a href="user_order_list">나의 주문내역</a>에서 확인하실 수 있습니다.</div>
 		
 		<div>
 			<span id="order_date">주문일자 : ${order_date}</span>

@@ -21,14 +21,26 @@
 #fixoption{
     width: 2em;
     height: 2em;
+}
 
+#photo_preview{
+    width: 18em;
+    height: 18em;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+#board_img{
+    object-fit: contain;
+    padding: 2%;
 }
 
 .board_post_class{
     border: 1px solid #ffa8db;
     border-radius: 10px;
     width: 85%;
-    margin: auto;
+    margin: 3% auto;
 }
 
 .board_post_class:nth-child(2){
@@ -92,5 +104,9 @@ textarea{
 
 #board_button_bar_div{
     margin: 3% 5% 3% auto;
-    text-align: right;
+    text-align: center;
+}
+
+input[type="button"]{
+    width: 8em;
 }

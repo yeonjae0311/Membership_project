@@ -8,12 +8,21 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_css.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/shop/shop_payment.js" defer></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/shop/shop_payment.js" defer></script>	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	
+	
 </head>
 <body>
+	<input type="hidden" id="hidden_m_email" value="${id.m_email}">
+	<input type="hidden" id="hidden_m_name" value="${id.m_name}">
+	<input type="hidden" id="hidden_m_tel" value="${id.m_tel}">
+	<input type="hidden" id="hidden_m_addr1" value="${id.m_addr1}">
+	
 	<div id="header_bar"></div>
 	
 	<div id="shop_payment_div">
@@ -111,5 +120,6 @@
 	</div>
 	
 	<div id="footer_bar"></div>
+	
 </body>
 </html>

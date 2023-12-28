@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head data-id="board">
@@ -17,11 +17,11 @@
 	
 	<div id="board_post_div">
 		<form id="board_post_form" method="post" enctype="multipart/form-data">
-			<c:if test="${id.m_ismaster eq 1}">
-				<div id="pin_button_div">
+			<div id="pin_button_div">
+				<c:if test="${id.m_ismaster eq 1}">
 					<img id="fixoption" src="${pageContext.request.contextPath}/resources/img/pin_icon.png" onclick="check_fix()">
-				</div>				
-			</c:if>
+				</c:if>
+			</div>				
 			
 			<div class="board_post_class">
 				<input type="text" name="b_title">

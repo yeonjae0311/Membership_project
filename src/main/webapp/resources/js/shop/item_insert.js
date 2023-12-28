@@ -52,8 +52,16 @@ function change_img(event) {
         reader.onload = function(e) {
             // 파일 내용을 읽어와서 이미지 소스로 설정
             image_id.src = e.target.result;
-			image_id.style.width = "96%";
+			// image_id.style.width = "96%";
 			// image_id.style.padding = "2%";
+
+            if(image_id.naturalHeight > image_id.naturalWidth){
+                image_id.style.height = "96%";
+                image_id.style.width = "";
+            }else{
+                image_id.style.height = "";
+                image_id.style.width = "96%";
+            }
 
             // console.log(story_img_div)
             // console.log(window.screen.height * .4)
