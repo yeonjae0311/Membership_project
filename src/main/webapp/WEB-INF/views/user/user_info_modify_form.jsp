@@ -43,12 +43,14 @@
 			<div class="modify_form_input_div">
 				비밀번호 : <input name="m_password" id="m_password" type="password" oninput="password_check(this.form)" 
 				placeholder= "영어와 숫자를 조합한 8자리 이상입니다">
+				<img id="view_password_icon" src="${pageContext.request.contextPath}/resources/img/eye_closed_icon.png" 
+				onclick="toggle_password(event)">
 			</div>
-			<hr class="user_info_modify_form_hr">
-			
 			<div id="check_alert">
 				<div id="password_check_alert"></div>
 			</div>	
+			<hr class="user_info_modify_form_hr">
+			
 					
 			<div class="modify_form_input_div">
 				이메일 : <input name="m_email" id="m_email" value="${vo.m_email}" readonly >
@@ -60,7 +62,7 @@
 			<input type="hidden" name="m_idx" value="${vo.m_idx}">
 			
 			<div id="user_info_modify_form_button_div">
-				<input type="button" value="수정완료" onclick="send(this.form)">
+				<input type="button" value="수정완료" onclick="send(this.form)" style="cursor: pointer;">
 			</div>
 		</form>
 	</div>

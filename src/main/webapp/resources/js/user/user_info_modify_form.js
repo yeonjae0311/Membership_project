@@ -1,13 +1,13 @@
 
-let b_birth_check = false;
-let b_tel_check = false;
+let b_birth_check = true;
+let b_tel_check = true;
 
 function tel_check(f) {
 	let tel_check_alert = document.getElementById("tel_check_alert");
 	let reg_tel = /^010[0-9]{8}$/;	
 	
 	let m_tel = f.m_tel.value;
-	if(m_password == ''){
+	if(m_tel == ''){
 		tel_check_alert.innerText = "전화번호를 입력하세요";
 		tel_check_alert.style.color = 'red';
 		b_tel_check = false;
@@ -38,24 +38,23 @@ function password_check(f) {
 		password_check_alert.style.color = 'red';
 		return;
 	} else {
-		password_check_alert.innerText = "비밀번호를 입력하셨습니다.";
+		password_check_alert.innerText = "올바른 비밀번호 형식입니다.";
 		password_check_alert.style.color = "#3781E3";
 	}
 }
 
-$(document).ready(function(){
-    $('.main i').on('click',function(){
-        $('input').toggleClass('active');
-        if($('input').hasClass('active')){
-            $(this).attr('class',"fa_fa_eye_fa_lg")
-            .prev('input').attr('type',"text");
-        }else{
-            $(this).attr('class',"fa fa-eye fa-lg")
-            .prev('input').attr('type','password');
-        }
-    });
-});
+function toggle_password(e){
+	let pw_input = document.getElementById("m_password");
+	let toggle_icon = e.target;
 
+	if(pw_input.type == "password"){
+		pw_input.type = "text";
+		toggle_icon.src = IMG_PATH + "eye_open_icon.png";
+	}else{
+		pw_input.type = "password";
+		toggle_icon.src = IMG_PATH + "eye_closed_icon.png";
+	}
+}
 
 function birth_check(f) {
     let birth_check_alert = document.getElementById("birth_check_alert");

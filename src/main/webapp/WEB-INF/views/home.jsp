@@ -94,6 +94,34 @@
 			<input id="priority" type="hidden" value="${priority}">
 			<div class="board_view_list">
 				<div class="board_container">
+					<!-- 비로그인 및 구독하지 않은 사람의 경우 공지사항만 볼 수 있도록 -->
+					<c:if test="${empty membervo or membervo.m_ismembership eq '0' }">
+					<c:forEach var="fixed" items="${fixed_list }" end="4">
+						<div class="board_feed" onclick="location.href='board_view?b_idx=${board.b_idx}'">
+							<c:choose>
+								<c:when test="${not empty board.b_filename and board.b_filename ne 'no_file' }">
+									<img class="board_img"
+									 src="${pageContext.request.contextPath}/resources/upload/board/${board.b_filename}"
+									 onclick="location.href='board_view?b_idx=${i.b_idx}'"
+									 alt="${pageContext.request.contextPath}/resources/upload/board/newjeans_rabbit.jpeg"> 
+							 		<br>
+									<div class="board_text">${board.b_content }</div>
+									<div class="board_name">NewJeans</div>
+								</c:when>
+								<c:otherwise>
+									<img class="board_img"
+									 src="${pageContext.request.contextPath}/resources/upload/board/newjeans_rabbit.jpeg"
+									 onclick="location.href='board_view?b_idx=${i.b_idx}'"> 
+							 		<br>
+									<div class="board_text">${board.b_content }</div>
+									<div class="board_name">NewJeans</div>
+							</c:otherwise>
+							</c:choose>
+							</div>
+					</c:forEach>
+					</c:if>
+					<!-- 로그인 한 경우 관리자의 글도 볼 수 있도록 -->
+					<c:if test="${membervo.m_ismembership eq '1' }">
 					<c:forEach var="board" items="${unfixed_master_list }" end="4">
 						<div class="board_feed" onclick="location.href='board_view?b_idx=${board.b_idx}'">
 							<c:choose>
@@ -114,11 +142,10 @@
 									<div class="board_text">${board.b_content }</div>
 									<div class="board_name">NewJeans</div>
 							</c:otherwise>
-							
 							</c:choose>
 						</div>
-						
 					</c:forEach>
+					</c:if>
 				</div>
 			</div> <!-- board_view_list -->
 		</div><!-- <div id="board"> -->

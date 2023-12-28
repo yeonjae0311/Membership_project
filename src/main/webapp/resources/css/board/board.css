@@ -134,6 +134,7 @@ td{
     cursor: default;
     padding: 3% 0;
     text-align: center;
+    position : relative;
 }
 
 #search_field{
