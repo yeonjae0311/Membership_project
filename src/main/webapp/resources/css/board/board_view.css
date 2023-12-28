@@ -64,17 +64,13 @@ th, td{
 	font-size: 1.3em;
 }
 
-/* td > img{
-	cursor: pointer;
-} */
-
 .button_img{
 	width: 2em;
 	height: 2em;
 }
 
 th{
-	width: 6em;
+	width: 5em;
 }
 
 #like_count{
@@ -86,6 +82,16 @@ th{
 	padding-top: 5%;
 	height: 30vh;
 	border: 1px solid #082a90;
+}
+
+.board_post_img_div{
+	width: 15em;
+	height: 15em;
+	margin: auto;
+}
+
+.board_post_img{
+	width: 100%;
 }
 
 #reply_form{
@@ -131,6 +137,14 @@ th{
 	height: 2em;
 	top: 3%;
 	right: 2%;
+}
+
+.edit_reply_button{
+	position: absolute;
+	width: 1.5em;
+	height: 1.5em;
+	bottom: 5%;
+	right: 3%;
 }
 
 .user_info_div{

@@ -86,8 +86,9 @@
 				<tr>
 					<td id="board_content" colspan="2">
 						<c:if test="${not empty vo.b_filename and vo.b_filename ne 'no_file'}">
-							<img src="${pageContext.request.contextPath}/resources/upload/board/${vo.b_filename}" width="200">
-							<br>
+						<div class="board_post_img_div">
+							<img class="board_post_img" src="${pageContext.request.contextPath}/resources/upload/board/${vo.b_filename}" width="200">
+						</div>
 						</c:if>
 						${vo.b_content }
 					</td>
@@ -96,7 +97,6 @@
 				<tr>
 					<td colspan="2">
 						<img class="button_img" src="${pageContext.request.contextPath}/resources/img/arrow_back_icon.png" onclick="location.href='board'">
-						<img class="button_img" alt="글 수정하기" src="${pageContext.request.contextPath}/resources/img/arrow_back_icon.png" onclick="edit_board_post()">
 					</td>
 				</tr>
 			</table>
@@ -122,11 +122,6 @@
 							<span>								
 								<c:if test="${i.r_m_idx == id.m_idx || id.m_ismaster=='1'}">
 									<img class="delete_reply_button" src="${pageContext.request.contextPath}/resources/img/x_icon.png" onclick="delete_reply(${i.r_idx})">
-								</c:if>
-							</span>
-							<span>
-								<c:if test="${i.r_m_idx == id.m_idx}">
-									<img class="delete_reply_button edit_reply_button" id="edit_reply_button_${i.r_idx}" src="${pageContext.request.contextPath}/resources/img/edit.png" onclick="edit_reply(${i.r_idx})">
 								</c:if>
 							</span>
 						</div>

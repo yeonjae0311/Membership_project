@@ -48,9 +48,12 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
     border: 2.5px solid #ffebf7;
     border-radius: 10px;
     position: relative;
+    display: flex;
+    justify-content: center;
 }
 
 .form_photo_div > img{
+    object-fit: contain;
     padding: 2%;
 }
 

@@ -1,18 +1,46 @@
 let currentStoryIndex = 0;
 
-let img_class_array = document.getElementsByClassName("img_class");
+// let img_class_array = document.getElementsByClassName("story_img");
 
-for(let element of img_class_array){
-	const story_img = element.lastElementChild;
-	const story_img_height = story_img.naturalHeight;
-	const story_img_width = story_img.naturalWidth;
+// console.log(img_class_array)
 
-	if(story_img_height >= story_img_width){
-		story_img.style.height = "100%";
-	}else{
-		story_img.style.width = "100%";
-	}
-}
+// Array.prototype.map.call(img_class_array,(element) => {
+// 	const story_img = element;
+// 	console.log(element)
+// 	console.log(element.height, element.width)
+
+// 	// cons
+
+// 	const story_img_height = story_img.height;
+// 	const story_img_width = story_img.width;
+
+// 	console.log(story_img_height, story_img_width)
+
+// 	if(story_img_height >= story_img_width){
+// 		story_img.style.height = "100%";
+// 	}else{
+// 		story_img.style.width = "100%";
+// 	}
+// });
+
+// for(let element of img_class_array){
+// 	const story_img = element;
+// 	console.log(element)
+// 	console.log(element.height, element.width)
+
+// 	// cons
+
+// 	const story_img_height = story_img.height;
+// 	const story_img_width = story_img.width;
+
+// 	console.log(story_img_height, story_img_width)
+
+// 	if(story_img_height >= story_img_width){
+// 		story_img.style.height = "100%";
+// 	}else{
+// 		story_img.style.width = "100%";
+// 	}
+// }
 
 // function story_update_read_hit(storyclass){
 // 	let idx = storyclass.getElementsByClassName('story_idx');
@@ -120,6 +148,27 @@ window.onload = function() {
 		
 		send_request(url,param,after_story_update_read_hit,'post');
 	}
+
+	let img_class_array = document.getElementsByClassName("story_img");
+
+	Array.prototype.map.call(img_class_array,(element) => {
+		const story_img = element;
+		console.log(element)
+		console.log(element.height, element.width)
+	
+		// cons
+	
+		const story_img_height = story_img.height;
+		const story_img_width = story_img.width;
+	
+		console.log(story_img_height, story_img_width)
+	
+		if(story_img_height >= story_img_width){
+			story_img.style.height = "100%";
+		}else{
+			story_img.style.width = "100%";
+		}
+	});
 };
 
 function change(event){

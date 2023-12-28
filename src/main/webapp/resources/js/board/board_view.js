@@ -1,5 +1,5 @@
 let bl_isliked;
-let b_idx,m_idx;
+let b_idx, m_idx;
 
 window.onload = function(){
 	b_idx = document.getElementById('b_idx').value;
@@ -200,7 +200,6 @@ function after_try_edit_reply(...args){
 		let r_idx = Number(args[0].r_idx);
 		let div_id = document.getElementById('reply_text_div_'+r_idx);
 		
-		
 		let reply_edit_form = document.createElement('form');
 		reply_edit_form.setAttribute('method','post');
 		reply_edit_form.setAttribute('action','update_reply');
@@ -260,8 +259,6 @@ function after_try_edit_reply(...args){
 		reply_edit_form.appendChild(input_child);
 		reply_edit_form.appendChild(submit_child);
 		reply_edit_form.appendChild(cancel_child);
-		
-		
 				
 		div_id.appendChild(reply_edit_form);
 		
@@ -269,8 +266,6 @@ function after_try_edit_reply(...args){
 		console.log(edit_button);
 		
 		edit_button.style.visibility="hidden";
-		
-		
 	}else{
 		alert('댓글 수정 권한이 없습니다.');
 	}
