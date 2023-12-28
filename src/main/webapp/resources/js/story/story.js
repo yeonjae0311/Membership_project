@@ -128,27 +128,7 @@ function resultFn(...args){
 	let res = args[0].param;
 }
 
-window.onload = function() {	
-	let begin_story_class = document.getElementsByClassName('story_idx');
-	
-	if(begin_story_class.length == 0){
-		
-	}
-
-	console.log(begin_story_class)
-
-	if(begin_story_class[0]!=null){
-		let s_idx = begin_story_class[0].value;
-		
-		let url = "story_update_read_hit";
-		
-		let param = {
-			"s_idx": encodeURIComponent(s_idx)
-		};
-		
-		send_request(url,param,after_story_update_read_hit,'post');
-	}
-
+window.onload = function() {
 	let img_class_array = document.getElementsByClassName("story_img");
 
 	Array.prototype.map.call(img_class_array,(element) => {
@@ -169,6 +149,28 @@ window.onload = function() {
 			story_img.style.width = "100%";
 		}
 	});
+	
+	let begin_story_class = document.getElementsByClassName('story_idx');
+	
+	if(begin_story_class.length == 0){
+		
+	}
+
+	console.log(begin_story_class)
+
+	if(begin_story_class[0]!=null){
+		let s_idx = begin_story_class[0].value;
+		
+		let url = "story_update_read_hit";
+		
+		let param = {
+			"s_idx": encodeURIComponent(s_idx)
+		};
+		
+		send_request(url,param,after_story_update_read_hit,'post');
+	}
+
+	
 };
 
 function change(event){
