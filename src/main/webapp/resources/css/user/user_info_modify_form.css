@@ -1,64 +1,63 @@
 @charset "UTF-8";
 
-#user_info_modify_form_div {
-    width: 20em;
-    margin: 7% auto;
+#user_info_modify_form{
+    width: 30em;
+    margin: 2% auto auto;
     padding: 3.5% 3%;
     border-radius: 10px;
     box-shadow: 6px 6px 1px 1px #bcecff;
     border: 2px solid #ffbbe3;
 }
 
+input{
+    border-width: 0;
+    background-color: #ffebf7;
+    height: 2.5em;
+    border-radius: 10px;
+    width: 70%;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
 .modify_form_input_div{
-    font-size: 1em;
-    padding: 3%;
-    margin: 6% 6%;
-    height: 1px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin: 2% auto;
 }
 
-#check_alert{
-	font-size: 1em;
-    padding: 3%;
-    margin: 6% 6%;
-    height: 1px;
+.modify_form_input_div > div:first-child{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-#check_mid{
-    padding: 1.4%;
+.input_label{
+    width: 5em;
+}
+
+#check_mid, #check_alert{
+    margin: 2% auto 2% 0;
+}
+
+
+.bottom_border_div{
+    width: 100%;
+    align-self: center;
+    border-bottom: 1px solid #ffa8db;
+}
+
+#email_input_div{
+    position: relative;
 }
 
 #view_password_icon{
-	position: absolute;
     width: 2em;
     height: 2em;
-    right: auto;
+    position: absolute;
+    right: 10%;
 }
 
 #user_info_modify_form_button_div{
-    display: flex;
-    justify-content: center;
-    padding: 12% 14%;
-}
-
-.user_info_modify_form_hr {
-    border: 0;
-    border-top: 1px dotted #ffa8db;
-    border-bottom: 1px dotted #ff7eca;
-    width: 80%;
-  }
-
- input{
-    border-width: 0;
-    background-color: #ffebf7;
- }
-  
- label {
-    display: inline-block;
-    width: 100px; 
-    margin-right: 10px; 
-}
-
-#check_alert{
-	font-size: 1em;
-    margin: 1%;
+    text-align: center;
 }

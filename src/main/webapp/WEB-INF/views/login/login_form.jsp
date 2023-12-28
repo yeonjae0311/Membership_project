@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<title>login form</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_css.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/login/login_form.js" defer></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/login/login_form.js" defer></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/http_request.js"></script>
 </head>
