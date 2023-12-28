@@ -384,6 +384,7 @@ public class ShopController {
 	}
 
 	@RequestMapping("membership_payment_completed")
+	@ResponseBody
 	public String payment_completed(Model model) {
 
 		PMemberVO vo = (PMemberVO) session.getAttribute("id");
@@ -525,7 +526,7 @@ public class ShopController {
 		}
 
 		String o_sum = data.get("o_sum");
-		String payment_name = "NEWJEANS MEMBERSHIP 1개월";
+		String payment_name = "NEWJEANS MEMBERSHIP 1MONTH";
 		int membership = 1;
 
 		session.setAttribute("membership", membership);
