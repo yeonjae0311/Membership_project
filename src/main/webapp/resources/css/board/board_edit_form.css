@@ -104,5 +104,9 @@ textarea{
 
 #board_button_bar_div{
     margin: 3% 5% 3% auto;
-    text-align: right;
+    text-align: center;
+}
+
+input[type="button"]{
+    width: 8em;
 }

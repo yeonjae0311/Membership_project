@@ -74,7 +74,7 @@
 				<div id="input_form">
 					<label class="control_label" for="m_email">이메일</label>
 					
-					<input id="email_input" name="m_email" id="m_email" type="text" oninput="check_email(this.form)" placeholder="OOO@OOO.OOO">
+					<input class="email_input" name="m_email" id="m_email" type="text" oninput="check_email(this.form)" placeholder="OOO@OOO.OOO">
 				
 					<input id="auth_btn" type="button" value="인증하기">
 				</div>

@@ -83,7 +83,7 @@
 					</table>
 				</div>
 				
-				<div class="board_list" id="unfixed_fan_list">
+				<div id="unfixed_fan_list">
 					<table class="b_list">
 						<tr class="title_tr">
 							<th>제목</th>

@@ -124,11 +124,6 @@
 									<img class="delete_reply_button" src="${pageContext.request.contextPath}/resources/img/x_icon.png" onclick="delete_reply(${i.r_idx})">
 								</c:if>
 							</span>
-							<span>
-								<c:if test="${i.r_m_idx == id.m_idx}">
-									<img class="edit_reply_button" id="edit_reply_button_${i.r_idx}" src="${pageContext.request.contextPath}/resources/img/edit.png" onclick="edit_reply(${i.r_idx})">
-								</c:if>
-							</span>
 						</div>
 
 						<div class="user_info_div">
