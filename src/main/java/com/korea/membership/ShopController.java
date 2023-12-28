@@ -489,6 +489,8 @@ public class ShopController {
 		int m_idx = (int) session.getAttribute("m_idx");
 
 		int o_idx = porder_dao.o_idx_select(m_idx);
+		
+		cart_detail_dao.cart_delete_all(m_idx);
 
 		model.addAttribute("order_date", formatedNow);
 		model.addAttribute("order_num", o_idx);

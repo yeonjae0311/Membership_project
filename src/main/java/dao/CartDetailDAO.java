@@ -43,5 +43,10 @@ public class CartDetailDAO {
 	public int cart_delete(Map<String, Integer> idx_map) {
 		return sqlSession.delete("cd.cart_delete", idx_map);
 	}
+	
+	// 결제 후 장바구니 초기화
+	public int cart_delete_all(int m_idx) {
+		return sqlSession.delete("cd.cart_delete_all", m_idx);
+	}
 
 }

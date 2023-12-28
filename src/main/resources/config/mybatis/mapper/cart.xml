@@ -51,4 +51,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM CART_DETAIL cd WHERE I_IDX = #{i_idx} AND M_IDX = #{m_idx}
 	</delete>
 	
+	<!-- 결제 후 장바구니에서 아이템 전체 삭제 -->
+	<delete id="cart_delete_all" parameterType="int">
+		DELETE FROM CART_DETAIL cd WHERE M_IDX = #{m_idx}
+	</delete>
+	
 </mapper>
