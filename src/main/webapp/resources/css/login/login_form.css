@@ -2,7 +2,7 @@
 
 #login_form{
     width: 20em;
-    margin: 7% auto;
+    margin: 7% auto auto;
     padding: 3.5% 3%;
     border-radius: 10px;
     box-shadow: 6px 6px 1px 1px #bcecff;
