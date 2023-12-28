@@ -62,7 +62,7 @@
 			<input type="hidden" name="m_idx" value="${vo.m_idx}">
 			
 			<div id="user_info_modify_form_button_div">
-				<input type="button" value="수정완료" onclick="send(this.form)">
+				<input type="button" value="수정완료" onclick="send(this.form)" style="cursor: pointer;">
 			</div>
 		</form>
 	</div>

@@ -1,13 +1,13 @@
 
-let b_birth_check = false;
-let b_tel_check = false;
+let b_birth_check = true;
+let b_tel_check = true;
 
 function tel_check(f) {
 	let tel_check_alert = document.getElementById("tel_check_alert");
 	let reg_tel = /^010[0-9]{8}$/;	
 	
 	let m_tel = f.m_tel.value;
-	if(m_password == ''){
+	if(m_tel == ''){
 		tel_check_alert.innerText = "전화번호를 입력하세요";
 		tel_check_alert.style.color = 'red';
 		b_tel_check = false;
@@ -38,7 +38,7 @@ function password_check(f) {
 		password_check_alert.style.color = 'red';
 		return;
 	} else {
-		password_check_alert.innerText = "비밀번호를 입력하셨습니다.";
+		password_check_alert.innerText = "올바른 비밀번호 형식입니다.";
 		password_check_alert.style.color = "#3781E3";
 	}
 }
