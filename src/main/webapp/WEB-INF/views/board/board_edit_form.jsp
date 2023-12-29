@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head data-id="board">
@@ -35,7 +35,15 @@
 
 			<div id="file_upload_div">
 				<div id="photo_preview" class="board_post_class">
-					<img id="board_img" src="${pageContext.request.contextPath}/resources/upload/board/${vo.b_filename}">
+					<c:choose>
+						<c:when test="${vo.b_filename ne 'no_file'}">
+							<img id="board_img" src="${pageContext.request.contextPath}/resources/upload/board/${vo.b_filename}">
+						</c:when>
+						
+						<c:otherwise>
+							<img id="board_img" src="">
+						</c:otherwise>
+					</c:choose>
 				</div>
 				
 				<div id="file_upload_button">

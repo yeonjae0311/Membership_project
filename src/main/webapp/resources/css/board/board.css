@@ -156,9 +156,10 @@ td{
 
 #search_word{
 	height: 3em;
-    width: 12em;
-    outline: none;
     padding: 0.5em;
+    padding-left: 3%;
+    width: 21em;
+    outline: none;
     margin: 1%;
     box-sizing: border-box;
     background: none;

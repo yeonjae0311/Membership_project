@@ -442,7 +442,7 @@ INSERT INTO p_member values(
 	'1111',--비밀번호
 	'root',--아이디 (이것으로 로그인)
 	'루트실명',
-	'010-1111-1111',
+	'01011111111',
 	'루트1@naver.com',
 	'루트사진이름1',--사진
 	'1',--마스터 계정 체크 1이면 마스터 0이면 일반유저
@@ -451,7 +451,7 @@ INSERT INTO p_member values(
 	NULL,
 	NULL,
 	NULL,
-	ADD_MONTHS(sysdate,-36)
+	'20000101'
 );
 
 INSERT INTO item VALUES (
@@ -463,21 +463,3 @@ INSERT INTO item VALUES (
 	'i_photo_name',
 	'i_detail_photo_name'
 );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

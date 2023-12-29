@@ -215,6 +215,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		b_content=#{b_content},
 		b_filename=#{b_filename},
 		b_ip=#{b_ip},
+		b_isfixed=#{b_isfixed},
 		b_posted_date=sysdate
 		where b_idx=#{b_idx}
 	</update>
