@@ -135,7 +135,7 @@ function loadPage(...args){
 
 		const item_total_price_div = document.createElement("div");
 		item_total_price_div.className = "item_total_price_div";
-		item_total_price_div.innerHTML = "total: ";
+		item_total_price_div.innerHTML = "total\u00a0:\u00a0₩";
 
 		const item_total_price = document.createElement("input");
 		item_total_price.id = "item_total_price_" + i;
@@ -171,7 +171,7 @@ function loadPage(...args){
 
 	const final_price_div = document.createElement("div");
 	final_price_div.id = "final_price_div";
-	final_price_div.innerHTML = "final price: ";
+	final_price_div.innerHTML = "final price&nbsp;:&nbsp;₩";
 
 	const final_price = document.createElement("input");
 	final_price.id = "final_price";

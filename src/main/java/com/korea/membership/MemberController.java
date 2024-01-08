@@ -14,6 +14,7 @@ import java.util.Random;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionEvent;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -232,6 +233,7 @@ public class MemberController {
 
 	@RequestMapping("user_edit")
 	public String user_edit(HttpSession session, Model model) {
+		
 		int m_idx = (int) session.getAttribute("m_idx");
 
 		PMemberVO vo = pmember_dao.select_one(m_idx);
@@ -615,4 +617,5 @@ public class MemberController {
 
 		return Path.UserPath.make_path("user_order_view");
 	}
+	
 }

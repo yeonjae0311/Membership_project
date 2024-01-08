@@ -34,6 +34,7 @@
     width: 45vw;
     box-shadow: 6px 6px 1px 1px #bcecff;
 	border: 2px solid #ffebf7;
+	margin-bottom: 2em;
 }
 
 #fixed_list_table{

@@ -38,9 +38,7 @@
 	
 	<div>
 		<form name="selected_item" action="shopping_cart_insert" method="POST">
-			<div id=item_info_div>
-				<img id="item_delete_id" src="${pageContext.request.contextPath}/resources/img/x_icon.png" onclick="item_delete()">
-				
+			<div id=item_info_div>			
 				<div class=item_img_div>
 					<input type="hidden" id="item_img_id" value="${vo.i_photo_name}"> 
 					
@@ -53,6 +51,7 @@
 	   		</div>
 	   		
 	   		<div id="side_bar">
+	   			<img id="item_delete_id" src="${pageContext.request.contextPath}/resources/img/x_icon.png" onclick="item_delete()">
 		   		<div>
 					<div class="shop_item_div">
 						<input type="hidden" id="i_idx" value="${vo.i_idx}">
@@ -67,16 +66,17 @@
 						<input type="hidden" id="i_price" value="${vo.i_price}">
 						
 						<div>
-							${vo.i_price}₩
+							₩${vo.i_price}
 						</div>
-						
-						<div>
-							<select class="color_option" id="i_color" name="i_color" required>
-							    <c:forEach var="colors" items="${colors}">
-							    	<option value="${colors}">${colors}</option>
-							    </c:forEach>	   
-							</select>
-						</div>
+												
+					</div>
+					
+					<div class="shop_item_div">
+						<select class="color_option" id="i_color" name="i_color" required>
+						    <c:forEach var="colors" items="${colors}">
+						    	<option value="${colors}">${colors}</option>
+						    </c:forEach>	   
+						</select>
 					</div>
 					
 					<div id="item_count_div">

@@ -17,7 +17,7 @@ form{
 	width: 3em;
 	height: 3em;
 	position: absolute;
-	top: 2%;
+	top: 1%;
 	right: 2%;
 }
 
@@ -60,6 +60,7 @@ form{
 
 #shop_item_name{
 	font-size: 1.7em;
+	font-weight: bold;
 }
 
 #item_detail{
@@ -70,6 +71,7 @@ form{
 
 .color_option{
 	border: none;
+	font-size: 1.2em;
 }
 
 input[type="text"]{

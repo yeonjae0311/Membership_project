@@ -39,7 +39,7 @@
 							</div>
 							
 							<div class="item_price">
-								${vo.i_price}
+								₩${vo.i_price}
 							</div>
 						</div>		
 							
