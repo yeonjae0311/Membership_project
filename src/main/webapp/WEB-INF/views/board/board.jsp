@@ -5,7 +5,7 @@
 <html>
 <head data-id="board">
 	<meta charset="UTF-8">
-	<title>Board</title>
+	<title>NEWJEANS MEMBERSHIP</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/default_css.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/board/board.js" defer></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/main.js" defer></script>
@@ -25,7 +25,7 @@
 			
 			<div class="board_display_button">
 				<img src="${pageContext.request.contextPath}/resources/img/new_jeans_rabbit_icon.png" onclick="all_board_first()">
-				<p onclick="all_board_first()">Users</p>
+				<p onclick="all_board_first()">Bunnys</p>
 			</div>	
 		</div>
 		
@@ -57,7 +57,7 @@
 			</div>
 			
 			<div id="board_list_header">
-				<div id="board_title">All posts</div>
+				<div id="board_title">Bunny's posts</div>
 				<img id="board_post_icon" src="${pageContext.request.contextPath}/resources/img/post_upload_icon.png" onclick="location.href='board_post'">
 			</div>
 			

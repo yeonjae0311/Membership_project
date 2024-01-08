@@ -93,11 +93,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 	</select>
 	
-	<select id="unfixed_all_board_list" resultType="vo.BoardPMemberViewVO">
+	<select id="unfixed_fan_board_list" resultType="vo.BoardPMemberViewVO">
 		select *
 		from (select ROW_NUMBER() over(order by B_POSTED_DATE desc) rnum,
 		b.* from board_p_member_join_view b
-			WHERE B_ISFIXED ='0'
+			WHERE B_ISFIXED ='0' AND M_ISMASTER ='0'
 			<if test="search_word != null">
 				<choose>
 					<when test="search_field == 'b_title'">

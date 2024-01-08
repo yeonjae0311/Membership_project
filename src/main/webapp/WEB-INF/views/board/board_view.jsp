@@ -76,13 +76,6 @@
 					<td>조회수: ${vo.b_read_hit}</td>
 				</tr>
 				
-				<c:if test="${id.m_ismaster eq '1'}">
-					<tr>
-						<th>ip</th>
-						<td>${vo.b_ip}</td>
-					</tr>
-				</c:if>
-				
 				<tr>
 					<td id="board_content" colspan="2">
 						<c:if test="${not empty vo.b_filename and vo.b_filename ne 'no_file'}">
@@ -90,7 +83,9 @@
 							<img class="board_post_img" src="${pageContext.request.contextPath}/resources/upload/board/${vo.b_filename}" width="200">
 						</div>
 						</c:if>
-						${vo.b_content }
+						<div id="board_post_content_div">
+							${vo.b_content }
+						</div>
 					</td>
 				</tr>
 				
@@ -110,7 +105,7 @@
 					<textarea id="reply_textarea" name="r_content"></textarea>
 					
 					<div id="submit_button_div">
-						<input id="submit_button" type="button" value="답글 작성 완료" onclick="send_reply(this.form);">
+						<input id="submit_button" type="button" value="댓글 달기" onclick="send_reply(this.form);">
 					</div>
 				</form>
 			</div>

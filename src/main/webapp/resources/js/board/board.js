@@ -5,7 +5,7 @@ function master_board_first(){
     unfixed_master_list.style="display: block";
     unfixed_fan_list.style="display: none";
 
-    document.getElementById("board_title").innerHTML = "NewJeans posts";
+    document.getElementById("board_title").innerHTML = "NewJeans";
 }
 
 function all_board_first(){			
@@ -15,7 +15,7 @@ function all_board_first(){
     unfixed_master_list.style="display: none";
     unfixed_fan_list.style="display: block";
     
-    document.getElementById("board_title").innerHTML = "All posts";
+    document.getElementById("board_title").innerHTML = "Bunnys";
 }
 
 function adjust_size(e){

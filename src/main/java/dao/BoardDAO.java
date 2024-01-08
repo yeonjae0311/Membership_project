@@ -31,8 +31,8 @@ public class BoardDAO {
 		return sqlSession.selectList("b.unfixed_master_board_list2");
 	}
 	
-	public List<BoardPMemberViewVO> unfixed_all_board_list(HashMap<String, Object> map){
-		return sqlSession.selectList("b.unfixed_all_board_list",map);
+	public List<BoardPMemberViewVO> unfixed_fan_board_list(HashMap<String, Object> map){
+		return sqlSession.selectList("b.unfixed_fan_board_list",map);
 	}
 
 	public List<BoardPMemberViewVO> unfixed_all_board_list(){

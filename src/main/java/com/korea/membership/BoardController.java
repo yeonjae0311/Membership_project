@@ -102,7 +102,7 @@ public class BoardController {
 		
 		List<BoardPMemberViewVO> fixed_list =  board_dao.fixed_board_list();
 		List<BoardPMemberViewVO> unfixed_master_list =  board_dao.unfixed_master_board_list(map);
-		List<BoardPMemberViewVO> unfixed_fan_list =  board_dao.unfixed_all_board_list(map);
+		List<BoardPMemberViewVO> unfixed_fan_list =  board_dao.unfixed_fan_board_list(map);
 				
 		model.addAttribute("pageMenu1",pageMenu1);
 		model.addAttribute("pageMenu2",pageMenu2);
